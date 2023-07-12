@@ -37,7 +37,7 @@
                                 <a class="bg-gray-500 text-white text-xs font-bold py-1 px-3 rounded-full" href="#!">blog</a>
                             </header>
                             <!-- Preview image figure-->
-                            <figure class="mb-4"><img class="object-cover h-[450px] w-full" src="http://as.test/{{$blog->thumbnail}}" alt="..." /></figure>
+                            <figure class="mb-4"><img class="object-cover h-[450px] w-full" src="https://app.analogueshifts.com/{{$blog->thumbnail}}" alt="..." /></figure>
                             <!-- Post content-->
                             <section class="mb-5">{{$blog->content}}</section>
                         </article>

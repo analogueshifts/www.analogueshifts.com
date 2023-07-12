@@ -8,7 +8,7 @@
             <div class="grid lg:grid-cols-12 gap-5">
                 <div class="grid lg:col-span-3">
                     <div class="flex gap-3 mt-5 mb-4">
-                        <img class="object-cover rounded-full h-11 w-11" src="http://as.test/{{$job->logoURL}}" alt="..." />
+                        <img class="object-cover rounded-full h-11 w-11" src="/images/assets/blankuser.png" alt="..." />
                         <div class="">
                             <div class="font-bold">{{$job->user->name}}</div>
                             <div class="text-gray-500">{{$job->created_at->diffForHumans()}} &middot; 6 min read</div>

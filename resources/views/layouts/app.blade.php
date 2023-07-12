@@ -14,11 +14,12 @@
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
+        
+        <!-- Styles -->
+        <link href="/assets/css/style.css" rel="stylesheet">
 
         <!-- Styles -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
-        @vite(['resources/css/style.css', 'resources/js/index.js'])
-        {{-- @vite(['resources/css/index.css']) --}}
 
         <!-- Google tag (gtag.js) -->
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-JDYHWF1KQP"></script>
@@ -38,9 +39,10 @@
             <div class="min-h-screen bg-dots-darker bg-gray-100 selection:bg-yellow-500 selection:text-white">
                 @yield('content')    
             </div>
-
+            
         @include('inc.footer')
 
+        <script src="/assets/js/index.js"></script>
     </body>
 
 </html>

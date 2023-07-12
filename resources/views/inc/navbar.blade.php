@@ -61,8 +61,7 @@
     </div>
     
     <div id="navBar" class="hidden lg:hidden border-b-black">
-        <!-- Dropdown menu -->
-        <ul class="text-gray-700 font-semibold py-7 text-sm" aria-labelledby="dropdownHoverButton">
+        <ul class="text-gray-700 font-semibold py-7 text-sm">
             <li>
                 <a href={{route('about')}} class="block px-4 py-3 hover:bg-gray-100">About</a>
             </li>
@@ -82,10 +81,10 @@
                 <a href={{route('contact')}} class="block px-4 py-3 border-b-2 hover:bg-gray-100">Contact</a>
             </li>
             <li>
-                <a href="#" class="block px-4 py-3 hover:bg-gray-100">Login in</a>
+                <a href="https://app.analogueshifts.com/login" class="block px-4 py-3 hover:bg-gray-100">Login in</a>
             </li>
             <li>
-                <a href="#" class="block px-4 py-3 hover:bg-gray-100">Regiter</a>
+                <a href="https://app.analogueshifts.com/login" class="block px-4 py-3 hover:bg-gray-100">Register</a>
             </li>
         </ul>
     </div>

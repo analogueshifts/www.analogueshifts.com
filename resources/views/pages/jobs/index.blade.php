@@ -7,7 +7,7 @@
         <!-- Page Content-->
         <section class="py-5">
             <div class="container px-3 lg:px-28">
-                <h1 class="font-bold text-2xl mb-9">AnalogueShifts Job</h1>
+                <h1 class="font-bold text-2xl mb-9">AnalogueShifts Jobs</h1>
                 <div class="bg-white border-0 shadow rounded-lg overflow-hidden">
                     <div class="grid lg:grid-cols-12">
                             <div class="grid lg:col-span-6 py-16 px-3 lg:px-9">
@@ -62,13 +62,13 @@
                                                 <span class="flex items-center bg-yellow-500 font-bold text-white text-xs rounded-full py-1 px-2">{{ $tag->name }}</span>
                                             @endforeach
                                         </div>
-                                        <a class="overflow-hidden" href="/job/{{$job->slug}}"><h5 class="font-bold text-lg mb-3">{{$job->role}}</h5></a>
+                                        <a class="overflow-hidden underline" href="/job/{{$job->slug}}"><h5 class="font-bold text-lg mb-3">{{$job->role}}</h5></a>
                                         <p class="h-20 mb-0 overflow-hidden">{{$job->description}}</p>
                                     </div>
                                     <div class="p-4 pt-0 bg-transparent border-t-0">
                                         <div class="flex items-end justify-start">
                                             <div class="flex gap-5 items-center">
-                                                <img class="object-cover rounded-full h-11 w-11" src="http://as.test/{{$job->logoURL}}" alt="..." />
+                                                <img class="object-cover rounded-full h-11 w-11" src="/images/assets/blankuser.png" alt="..." />
                                                 <div class="small">
                                                     <div class="font-bold">{{$job->user->name}}</div>
                                                     <div class="text-gray-500">{{$job->created_at->diffForHumans()}}</div>

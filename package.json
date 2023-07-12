@@ -4,7 +4,7 @@
     "scripts": {
         "dev": "vite",
         "build": "vite build",
-        "watch": "npx tailwindcss -i ./resources/css/app.css -o ./resources/css/style.css --watch"
+        "watch": "npx tailwindcss -i ./resources/css/app.css -o ./public/assets/css/style.css --watch"
     },
     "devDependencies": {
         "autoprefixer": "^10.4.14",

@@ -302,12 +302,12 @@
                         @foreach ($blogs as $blog)
                             <div class="mb-5">
                                 <div class="h-full shadow border-0">
-                                    <img class="object-cover h-56 w-full" src="http://as.test/{{$blog->thumbnail}}" alt="..." />
+                                    <img class="object-cover h-56 w-full" src="https://app.analogueshifts.com/{{$blog->thumbnail}}" alt="..." />
                                     <div class="p-5">
                                         <div class="flex justify-start">
                                             <span class="flex items-center bg-yellow-500 font-bold text-white text-xs rounded-full py-1 px-2">News</span>
                                         </div>
-                                        <a class="overflow-hidden" href="/blog/{{$blog->slug}}"><h5 class="font-bold text-lg mb-3">{{$blog->title}}</h5></a>
+                                        <a class="overflow-hidden underline" href="/blog/{{$blog->slug}}"><h5 class="font-bold text-lg mb-3">{{$blog->title}}</h5></a>
                                         <p class="h-20 mb-0 overflow-hidden">{{$blog->content}}</p>
                                     </div>
                                     <div class="p-4 pt-0 bg-transparent border-t-0">
