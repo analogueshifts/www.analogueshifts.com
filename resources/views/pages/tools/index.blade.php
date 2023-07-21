@@ -4,8 +4,8 @@
 
     <main class="flex-shrink-0">
         <!-- Header-->
-        <header class="bg-gray-50 py-20">
-            <div class="container px-5 lg:px-28">
+        <header class="bg-gray-50">
+            <div class="container mx-auto py-20 px-5 xl:px-28">
                 <div class="grid justify-center">
                     <div class="md:w-[700px]">
                         <div class="grid lg:flex lg:flex-col gap-5 text-center my-5">
@@ -21,8 +21,8 @@
         </header>
       
          <!-- Blog preview section-->
-        <section class="py-5">
-            <div class="container py-16 px-3 lg:px-28">              
+        <section class="">
+            <div class="container mx-auto py-20 px-5 xl:px-28">              
                 <div class="grid lg:grid-cols-3 gap-3">
                     <div class="mb-5">
                         <div class="h-full shadow border-0">

@@ -1,5 +1,5 @@
 <nav class="bg-white border-b border-gray-100">
-    <div class="container mx-auto py-4 px-3 lg:px-28">
+    <div class="container mx-auto py-4 px-3 xl:px-28">
         <div class="flex justify-between items-center h-16">
             <div class="flex justify-between">
                 <div class="flex items-center h-9 w-auto fill-current text-gray-800 shrink-0">
@@ -47,6 +47,16 @@
                                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
                             </svg>
                         </button>
+                        <div id="dropdownHover" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44">
+                            <ul class="py-2 text-sm text-gray-700" aria-labelledby="dropdownHoverButton">
+                                <li>
+                                    <a href="https://app.analogueshifts.com/login" class="block px-4 py-2 hover:bg-gray-100">Log In</a>
+                                </li>
+                                <li>
+                                    <a href="https://app.analogueshifts.com/register" class="block px-4 py-2 hover:bg-gray-100">Register</a>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
                 <button id="navBtn" class="lg:hidden sm:items-center sm:ml-6">
@@ -84,7 +94,7 @@
                 <a href="https://app.analogueshifts.com/login" class="block px-4 py-3 hover:bg-gray-100">Login in</a>
             </li>
             <li>
-                <a href="https://app.analogueshifts.com/login" class="block px-4 py-3 hover:bg-gray-100">Register</a>
+                <a href="https://app.analogueshifts.com/register" class="block px-4 py-3 hover:bg-gray-100">Register</a>
             </li>
         </ul>
     </div>

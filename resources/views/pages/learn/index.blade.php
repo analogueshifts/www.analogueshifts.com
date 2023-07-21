@@ -5,8 +5,8 @@
     <main class="flex-shrink-0">
 
         <!-- Page Content-->
-        <section class="py-5">
-            <div class="container px-3 lg:px-28">
+        <section class="">
+            <div class="container mx-auto py-20 px-5 xl:px-28">
                 <h1 class="font-bold text-2xl mb-9">AnalogueShifts Learn</h1>
                 <div class="bg-white border-0 shadow rounded-lg overflow-hidden">
                     <div class="grid lg:grid-cols-12">
@@ -37,8 +37,8 @@
         
 
          <!-- learn preview section-->
-        <section class="py-5">
-            <div class="container py-16 px-3 lg:px-28">
+        <section class="">
+            <div class="container mx-auto py-20 px-5 xl:px-28">
                 <div class="grid justify-center gap-7">
                     <div class="">
                         <div class="grid gap-5 text-center">

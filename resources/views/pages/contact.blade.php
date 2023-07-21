@@ -5,8 +5,8 @@
     <main class="grid">
 
         <!-- Page content-->
-        <section class="py-20">
-            <div class="container px-3 lg:px-28">
+        <section class="">
+            <div class="container mx-auto py-20 px-5 xl:px-28">
                 <!-- Contact form-->
                 <div class="bg-gray-200 rounded-md py-16">
                     <div class="text-center mb-5">

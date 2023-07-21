@@ -2,10 +2,10 @@
 
 @section('content')    
     
-    <main class="grid gap-5">
+    <main class="">
         <!-- Header-->
-        <header class="bg-gray-50 py-20">
-            <div class="container px-5 lg:px-28">
+        <header class="bg-gray-50">
+            <div class="container mx-auto py-20 px-5 xl:px-28">
                 <div class="grid justify-center">
                     <div class="md:w-[700px]">
                         <div class="grid lg:flex lg:flex-col gap-5 text-center my-5">
@@ -20,8 +20,8 @@
             </div>
         </header>
         <!-- About section one-->
-        <section class="py-20 bg-gray-100" id="scroll-target">
-            <div class="container px-5 lg:px-28">
+        <section class="bg-gray-100" id="scroll-target">
+            <div class="container mx-auto py-20 px-5 xl:px-28">
                 <div class="grid lg:flex lg:grid-cols-2 gap-5 items-center">
                     <div class="grid lg:col-span-1 h-full w-full"><img class="object-cover h-full w-full rounded-md" src="/images/about/1.jpg" alt="..." /></div>
                     <div class="grid lg:col-span-1 gap-5 h-full w-full">
@@ -32,8 +32,8 @@
             </div>
         </section>
         <!-- About section two-->
-        <section class="py-20 bg-gray-100" id="scroll-target">
-            <div class="container px-5 lg:px-28">
+        <section class="bg-gray-100" id="scroll-target">
+            <div class="container mx-auto py-20 px-5 xl:px-28">
                 <div class="grid lg:flex lg:flex-row-reverse lg:grid-cols-2 gap-5 items-center">
                     <div class="grid lg:col-span-1 h-full w-full"><img class="object-cover h-full w-full rounded-md" src="/images/about/2.jpg" alt="..." /></div>
                     <div class="grid lg:col-span-1 gap-5 h-full w-full">
@@ -44,8 +44,8 @@
             </div>
         </section>
         <!-- Team members section-->
-        <section class="bg-gray-50 py-20">
-            <div class="container px-5 lg:px-28">
+        <section class="bg-gray-50">
+            <div class="container mx-auto py-20 px-5 xl:px-28">
                 <div class="grid gap-3 text-center">
                     <h3 class='flex justify-center text-2xl md:text-7xl text-black font-bold'>Our Team</h3>
                     <p class="flex justify-center text-xl font-semibold">Dedicated to quality and your success</p>

@@ -5,8 +5,8 @@
     <main class="flex-shrink-0">
         
         <!-- Page Content-->
-        <section class="bg-white py-16">
-            <div class="container px-3 lg:px-28">
+        <section class="bg-white">
+            <div class="container mx-auto py-5 px-5 xl:px-28">
                 <div class="grid lg:grid-cols-12 gap-5">
                     <div class="grid lg:col-span-3">
                         <div class="flex gap-3 mt-5 mb-4">
@@ -26,22 +26,21 @@
                             <!-- Post header-->
                             <header class="mb-4">
                                 <!-- Post title-->
-                                <h1 class="font-bold text-5xl mb-1">{{$blog->title}}</h1>
+                                <h1 class="font-bold text-xl md:text-3xl mb-1">{{$blog->title}}</h1>
                                 <!-- Post meta content-->
                                 <div class="text-gray-700 italic mb-2">{{$blog->created_at->diffForHumans()}}</div>
                                 <!-- Post categories-->
                                  @foreach($blog->tags as $tag)
-                                    <div class="text-gray-700"></div>
                                     <a class="bg-gray-500 text-white text-xs font-bold py-1 px-3 rounded-full" href="#!">{{ $tag->name }}</a>
                                 @endforeach
                                 <a class="bg-gray-500 text-white text-xs font-bold py-1 px-3 rounded-full" href="#!">blog</a>
                             </header>
                             <!-- Preview image figure-->
-                            <figure class="mb-4"><img class="object-cover h-[450px] w-full" src="https://app.analogueshifts.com/{{$blog->thumbnail}}" alt="..." /></figure>
+                            <figure class="mb-4"><img class="object-cover md:h-[450px] w-full" src={{$blog->thumbnail}} alt={{$blog->title}} /></figure>
                             <!-- Post content-->
-                            <section class="mb-5">{{$blog->content}}</section>
+                            <section class="mb-5">{!!$blog->content!!}</section>
                         </article>
-                        <!-- Comments section-->
+                        {{-- <!-- Comments section-->
                         <section>
                             <div class="bg-gray-100 border p-3 rounded-lg">
                                 <div class="grid gap-3">
@@ -97,7 +96,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </section>
+                        </section> --}}
                     </div>
                 </div>
             </div>

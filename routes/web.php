@@ -5,6 +5,7 @@ use App\Http\Controllers\AppController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\HireController;
 use App\Http\Controllers\LearnController;
+use Spatie\Sitemap\SitemapGenerator;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,3 +38,8 @@ Route::get("job/{job:slug}", [HireController::class, "show"])->name("job.show");
 
 Route::get("learn", [LearnController::class, "index"])->name("learn");
 Route::get("learn/{learn:slug}", [LearnController::class, "show"])->name("learn.show");
+
+Route::get('sitemap', function () {
+    SitemapGenerator::create('https://analogueshifts.com/')->writeToFile('sitemap.xml');
+    return 'sitemap generated';
+})->name('sitemap');

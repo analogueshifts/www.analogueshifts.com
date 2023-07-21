@@ -24,12 +24,12 @@ class BlogController extends Controller
         SEOTools::setCanonical('https://analogueshifts.com/blog');
         SEOTools::opengraph()->addProperty('type', 'articles');
         SEOTools::twitter()->setSite('@AnalogueShifts');
-        SEOTools::jsonLd()->addImage('https://analogueshifts.com/load.jpg');
+        SEOTools::jsonLd()->addImage('https://analogueshifts.com/logo.png');
         
         $blogs = Blog::orderBy('id', 'desc')->paginate(9);
         $news = Blog::orderBy('id', 'desc')->paginate(3);
         return view("pages.blog.index", [
-            'ogImage' => '/resume.jpeg',
+            'ogImage' => '/logo.png',
             'news'=> $news
         ])->with('blogs', $blogs);
     }
@@ -48,7 +48,7 @@ class BlogController extends Controller
         SEOTools::jsonLd()->addImage('https://analogueshifts.com/blog/' . $blog->thumbnail);
         
         return view("pages.blog.view", [
-            "ogImage" => "/resume.jpeg",
+            "ogImage" => "https://app.analogueshifts.com/$blog->thumbnail",
             "blog" => $blog,
         ]);
     }

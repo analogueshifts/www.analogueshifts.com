@@ -14,11 +14,11 @@ class AppController extends Controller
         SEOTools::setCanonical('https://analogueshifts.com');
         SEOTools::opengraph()->addProperty('type', 'articles');
         SEOTools::twitter()->setSite('@AnalogueShifts');
-        SEOTools::jsonLd()->addImage('https://analogueshifts.com/load.jpg');
+        SEOTools::jsonLd()->addImage('https://analogueshifts.com/logo.png');
 
         $blogs = Blog::orderBy('id', 'desc')->paginate(3);
         return view('pages.index', [
-            'ogImage' => '/resume.jpeg',
+            'ogImage' => '/logo.png',
             // "blogs" => Blog::latest()->paginate(1)->get(),
         ])->with('blogs', $blogs);
     }
@@ -30,10 +30,10 @@ class AppController extends Controller
         SEOTools::setCanonical('https://analogueshifts.com/about');
         SEOTools::opengraph()->addProperty('type', 'articles');
         SEOTools::twitter()->setSite('@AnalogueShifts');
-        SEOTools::jsonLd()->addImage('https://analogueshifts.com/load.jpg');
+        SEOTools::jsonLd()->addImage('https://analogueshifts.com/logo.png');
 
         return view('pages.about', [
-            'ogImage' => '/resume.jpeg',
+            'ogImage' => '/logo.png',
         ]);
     }
 
@@ -45,10 +45,10 @@ class AppController extends Controller
         SEOTools::setCanonical('https://analogueshifts.com/contact');
         SEOTools::opengraph()->addProperty('type', 'articles');
         SEOTools::twitter()->setSite('@AnalogueShifts');
-        SEOTools::jsonLd()->addImage('https://analogueshifts.com/load.jpg');
+        SEOTools::jsonLd()->addImage('https://analogueshifts.com/logo.png');
 
         return view('pages.contact', [
-            'ogImage' => '/resume.jpeg',
+            'ogImage' => '/logo.png',
         ]);
     }
 
@@ -60,10 +60,10 @@ class AppController extends Controller
         SEOTools::setCanonical('https://analogueshifts.com/pricing');
         SEOTools::opengraph()->addProperty('type', 'articles');
         SEOTools::twitter()->setSite('@AnalogueShifts');
-        SEOTools::jsonLd()->addImage('https://analogueshifts.com/load.jpg');
+        SEOTools::jsonLd()->addImage('https://analogueshifts.com/logo.png');
 
         return view('pages.pricing', [
-            'ogImage' => '/resume.jpeg',
+            'ogImage' => '/logo.png',
         ]);
     }
 
@@ -75,10 +75,10 @@ class AppController extends Controller
         SEOTools::setCanonical('https://analogueshifts.com/faq');
         SEOTools::opengraph()->addProperty('type', 'articles');
         SEOTools::twitter()->setSite('@AnalogueShifts');
-        SEOTools::jsonLd()->addImage('https://analogueshifts.com/load.jpg');
+        SEOTools::jsonLd()->addImage('https://analogueshifts.com/logo.png');
 
         return view('pages.faq', [
-            'ogImage' => '/resume.jpeg',
+            'ogImage' => '/logo.png',
         ]);
     }
     
@@ -90,10 +90,10 @@ class AppController extends Controller
         SEOTools::setCanonical('https://analogueshifts.com/tools');
         SEOTools::opengraph()->addProperty('type', 'articles');
         SEOTools::twitter()->setSite('@AnalogueShifts');
-        SEOTools::jsonLd()->addImage('https://analogueshifts.com/load.jpg');
+        SEOTools::jsonLd()->addImage('https://analogueshifts.com/logo.png');
 
         return view('pages.tools.index', [
-            'ogImage' => '/resume.jpeg',
+            'ogImage' => '/logo.png',
         ]);
     }
 }

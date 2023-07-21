@@ -3,8 +3,8 @@
 @section('content')
 
     <!-- Page Content-->
-    <section class="bg-white py-20">
-        <div class="container px-3 lg:px-28">
+    <section class="bg-white">
+        <div class="container mx-auto py-20 px-5 xl:px-28">
             <div class="grid lg:grid-cols-12 gap-5">
                 <div class="grid lg:col-span-3">
                     <div class="flex gap-3 mt-5 mb-4">

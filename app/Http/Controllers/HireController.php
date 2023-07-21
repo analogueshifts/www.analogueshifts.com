@@ -23,11 +23,11 @@ class HireController extends Controller
         SEOTools::setCanonical('https://analogueshifts.com/jobs');
         SEOTools::opengraph()->addProperty('type', 'articles');
         SEOTools::twitter()->setSite('@AnalogueShifts');
-        SEOTools::jsonLd()->addImage('https://analogueshifts.com/load.jpg');
+        SEOTools::jsonLd()->addImage('https://app.analogueshifts.com/logo.png');
 
         $jobs = Hire::orderBy('id', 'desc')->paginate(9);
         return view("pages/jobs/index", [
-            'ogImage' => '/resume.jpeg',
+            'ogImage' => '/logo.png',
             // "jobs" => Hire::where('display', '1')->latest()->get(),
         ])->with('jobs', $jobs);
     }
@@ -46,9 +46,9 @@ class HireController extends Controller
         SEOTools::setCanonical('https://analogueshifts.com/jobs');
         SEOTools::opengraph()->addProperty('type', 'articles');
         SEOTools::twitter()->setSite('@AnalogueShifts');
-        SEOTools::jsonLd()->addImage('https://analogueshifts.com/load.jpg');
+        SEOTools::jsonLd()->addImage('https://app.analogueshifts.com/logo.png');
         return view("pages/jobs/view", [
-            "ogImage" => "/resume.jpeg",
+            "ogImage" => "/logo.png",
             "job" => $job,
         ]);
     }

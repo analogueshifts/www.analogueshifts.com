@@ -19,9 +19,9 @@ class LearnController extends Controller
         SEOTools::setCanonical('https://analogueshifts.com/learn');
         SEOTools::opengraph()->addProperty('type', 'articles');
         SEOTools::twitter()->setSite('@AnalogueShifts');
-        SEOTools::jsonLd()->addImage('https://analogueshifts.com/learn');
+        SEOTools::jsonLd()->addImage('https://app.analogueshifts.com/logo.png');
         return view("pages.learn.index", [
-            "ogImage" => "/resume.jpeg",
+            "ogImage" => "/logo.png",
             "learns" => Learn::latest()->get(),
         ]);
     }

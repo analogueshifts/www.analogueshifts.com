@@ -5,8 +5,8 @@
     <main class="flex-shrink-0">
 
         <!-- Page Content-->
-        <section class="py-5">
-            <div class="container px-3 lg:px-28">
+        <section class="">
+            <div class="container mx-auto py-20 px-5 xl:px-28">
                 <h1 class="font-bold text-2xl mb-9">AnalogueShifts Blog</h1>
                 <div class="bg-white border-0 shadow rounded-lg overflow-hidden">
                     <div class="grid lg:grid-cols-12">
@@ -34,8 +34,8 @@
                 </div>
             </div>
         </section>
-        <section class="py-16 bg-gray-100">
-            <div class="container px-3 lg:px-28">
+        <section class="bg-gray-100">
+            <div class="container mx-auto py-20 px-5 xl:px-28">
                 <div class="grid lg:grid-cols-12">
                     <div class="grid lg:col-span-8 gap-5 p-3">
                         <h2 class="font-bold text-5xl mb-4">News</h2>
@@ -82,8 +82,8 @@
         </section>
 
          <!-- Blog preview section-->
-        <section class="py-5">
-            <div class="container py-16 px-3 lg:px-28">
+        <section class="">
+            <div class="container mx-auto py-20 px-5 xl:px-28">
                 <div class="grid justify-center gap-7">
                     <div class="">
                         <div class="grid gap-5 text-center">
@@ -100,7 +100,7 @@
                         @foreach ($blogs as $blog)
                             <div class="mb-5">
                                 <div class="h-full shadow border-0">
-                                    <img class="object-cover h-56 w-full" src="https://app.analogueshifts.com/{{$blog->thumbnail}}" alt="..." />
+                                    <img class="object-cover h-56 w-full" src={{$blog->thumbnail}} alt={{$blog->title}} />
                                     <div class="p-5">
                                         <div class="flex justify-start gap-2">
                                             <span class="flex items-center bg-yellow-500 font-bold text-white text-xs rounded-full py-1 px-2">Blog</span>
@@ -108,8 +108,8 @@
                                                 <span class="flex items-center bg-yellow-500 font-bold text-white text-xs rounded-full py-1 px-2">{{ $tag->name }}</span>
                                             @endforeach
                                         </div>
-                                        <a href="/blog/{{$blog->slug}}" class="overflow-hidden underline" href="/blog/{{$blog->slug}}"><h5 class="font-bold text-lg mb-3">{{$blog->title}}</h5></a>
-                                        <p class="h-20 mb-0 overflow-hidden">{{$blog->content}}</p>
+                                        <a href="/blog/{{$blog->slug}}" class="overflow-hidden underline"><h5 class="font-bold text-lg mb-3">{{$blog->title}}</h5></a>
+                                        {{-- <p class="h-20 mb-0 overflow-hidden">{!!$blog->content!!}</p> --}}
                                     </div>
                                     <div class="p-4 pt-0 bg-transparent border-t-0">
                                         <div class="flex items-end justify-start">
