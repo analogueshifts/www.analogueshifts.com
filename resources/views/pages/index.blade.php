@@ -93,7 +93,7 @@
     
                             <h2 class="mt-6 text-xl font-semibold text-white">Product Managers</h2>
     
-                            <p class="mt-4 text-gray-200 text-xs leading-relaxed">
+                            <p class="mt-4 text-white text-xs leading-relaxed">
                                 Highly skilled product managers trained in the development and release of products. That is, create and manage the product roadmap, track product performance, and provide feedback to stakeholders.
                             </p>
                         </div>
@@ -113,7 +113,7 @@
     
                             <h2 class="mt-6 text-xl font-semibold text-white">Project Managers</h2>
     
-                            <p class="mt-4 text-gray-200 text-xs leading-relaxed">
+                            <p class="mt-4 text-white text-xs leading-relaxed">
                                 Hire skilled professionals who organize, plan, and execute projects within constraints like budgets and schedules. Also, lead entire teams, define project goals, communicate with stakeholders, and see a project through to its closure.
                             </p>
                         </div>
@@ -133,7 +133,7 @@
     
                             <h2 class="mt-6 text-xl font-semibold text-white">UI/IX</h2>
     
-                            <p class="mt-4 text-gray-200 text-xs leading-relaxed">
+                            <p class="mt-4 text-white text-xs leading-relaxed">
                                 Hire skilled professionals who can identify new opportunities to create better user experiences. Aesthetically pleasing branding strategies help them effectively reach more customers. They also ensure that the end-to-end product or service journey meets desired outcomes.
                             </p>
                         </div>
@@ -153,7 +153,7 @@
     
                             <h2 class="mt-6 text-xl font-semibold text-white">Data Analysts</h2>
     
-                            <p class="mt-4 text-gray-200 text-xs leading-relaxed">
+                            <p class="mt-4 text-white text-xs leading-relaxed">
                                 Hire highly skilled data analysts trained in collecting and interpreting data, analysing results, reporting the results back to the relevant stakeholders.
                             </p>
                         </div>
@@ -173,7 +173,7 @@
     
                             <h2 class="mt-6 text-xl font-semibold text-white">Developers</h2>
     
-                            <p class="mt-4 text-gray-200 text-xs leading-relaxed">
+                            <p class="mt-4 text-white text-xs leading-relaxed">
                                Hire skilled developers trained to build and create software and applications. In addition, our professionals can debug and execute a software application's source code.
                             </p>
                         </div>
@@ -193,7 +193,7 @@
     
                             <h2 class="mt-6 text-xl font-semibold text-white">DevOps Engineers</h2>
     
-                            <p class="mt-4 text-gray-200 text-xs leading-relaxed">
+                            <p class="mt-4 text-white text-xs leading-relaxed">
                                 Hire skilled professionals trained to oversee code release and combine an understanding of both engineering and coding. Our professionals can create and implement systems software, analyze data, and improve existing ones.
                             </p>
                         </div>
@@ -213,7 +213,7 @@
     
                             <h2 class="mt-6 text-xl font-semibold text-white">Business Analysts</h2>
     
-                            <p class="mt-4 text-gray-200 text-xs leading-relaxed">
+                            <p class="mt-4 text-white text-xs leading-relaxed">
                                 Hire top business analysts trained in the how-to guide of improving processes, products, and services through data analysis.
                             </p>
                         </div>
@@ -233,7 +233,7 @@
     
                             <h2 class="mt-6 text-xl font-semibold text-white">Virtual Assistants</h2>
     
-                            <p class="mt-4 text-gray-200 text-xs leading-relaxed">
+                            <p class="mt-4 text-white text-xs leading-relaxed">
                                 Hire highly skilled virtual assistants that can perform tasks that are difficult or time-consuming and provide a level of convenience and flexibility. Schedule appointments, travel arrangements, manage email and social media accounts and provide customer service.
                             </p>
                         </div>
@@ -253,7 +253,7 @@
     
                             <h2 class="mt-6 text-xl font-semibold text-white">Social Media Managers</h2>
     
-                            <p class="mt-4 text-gray-200 text-xs leading-relaxed">
+                            <p class="mt-4 text-white text-xs leading-relaxed">
                                 Hire top social media managers that can represent your company globally through your social channels. They are trained in the right tips for building a brand voice and online presence.
                             </p>
                         </div>
