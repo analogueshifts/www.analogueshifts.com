@@ -814,10 +814,6 @@ video {
   height: 2.25rem;
 }
 
-.h-\[450px\] {
-  height: 450px;
-}
-
 .h-full {
   height: 100%;
 }
@@ -1227,11 +1223,6 @@ video {
   background-color: rgb(255 255 255 / 0.5);
 }
 
-.bg-yellow-50 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(254 252 232 / var(--tw-bg-opacity));
-}
-
 .bg-yellow-500 {
   --tw-bg-opacity: 1;
   background-color: rgb(234 179 8 / var(--tw-bg-opacity));
@@ -1540,16 +1531,6 @@ video {
   color: rgb(82 82 91 / var(--tw-text-opacity));
 }
 
-.text-gray-400 {
-  --tw-text-opacity: 1;
-  color: rgb(156 163 175 / var(--tw-text-opacity));
-}
-
-.text-gray-200 {
-  --tw-text-opacity: 1;
-  color: rgb(229 231 235 / var(--tw-text-opacity));
-}
-
 .underline {
   text-decoration-line: underline;
 }
@@ -1844,10 +1825,6 @@ video {
     background-color: rgb(31 41 55 / 0.5);
   }
 
-  .dark\:bg-yellow-800\/20 {
-    background-color: rgb(133 77 14 / 0.2);
-  }
-
   .dark\:bg-opacity-80 {
     --tw-bg-opacity: 0.8;
   }
@@ -1938,6 +1915,16 @@ video {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
+  .md\:px-9 {
+    padding-left: 2.25rem;
+    padding-right: 2.25rem;
+  }
+
+  .md\:text-3xl {
+    font-size: 1.875rem;
+    line-height: 2.25rem;
+  }
+
   .md\:text-5xl {
     font-size: 3rem;
     line-height: 1;
@@ -1951,16 +1938,6 @@ video {
   .md\:text-xl {
     font-size: 1.25rem;
     line-height: 1.75rem;
-  }
-
-  .md\:text-2xl {
-    font-size: 1.5rem;
-    line-height: 2rem;
-  }
-
-  .md\:text-3xl {
-    font-size: 1.875rem;
-    line-height: 2.25rem;
   }
 }
 
@@ -2010,10 +1987,6 @@ video {
     display: none;
   }
 
-  .lg\:h-\[450px\] {
-    height: 450px;
-  }
-
   .lg\:w-96 {
     width: 24rem;
   }
@@ -2050,18 +2023,9 @@ video {
     flex-direction: column;
   }
 
-  .lg\:gap-8 {
-    gap: 2rem;
-  }
-
   .lg\:px-0 {
     padding-left: 0px;
     padding-right: 0px;
-  }
-
-  .lg\:px-28 {
-    padding-left: 7rem;
-    padding-right: 7rem;
   }
 
   .lg\:px-9 {
@@ -2081,21 +2045,11 @@ video {
     font-size: 3rem;
     line-height: 1;
   }
-
-  .lg\:text-3xl {
-    font-size: 1.875rem;
-    line-height: 2.25rem;
-  }
 }
 
 @media (min-width: 1280px) {
   .xl\:px-28 {
     padding-left: 7rem;
     padding-right: 7rem;
-  }
-
-  .xl\:px-20 {
-    padding-left: 5rem;
-    padding-right: 5rem;
   }
 }

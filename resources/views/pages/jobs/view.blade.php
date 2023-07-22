@@ -4,7 +4,7 @@
 
     <!-- Page Content-->
     <section class="bg-white">
-        <div class="container mx-auto py-20 px-5 xl:px-28">
+        <div class="container mx-auto py-5 px-3 md:px-9 xl:px-28">
             <div class="grid lg:grid-cols-12 gap-5">
                 <div class="grid lg:col-span-3">
                     <div class="flex gap-3 mt-5 mb-4">

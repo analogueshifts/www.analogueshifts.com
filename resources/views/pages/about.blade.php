@@ -5,7 +5,7 @@
     <main class="">
         <!-- Header-->
         <header class="bg-gray-50">
-            <div class="container mx-auto py-20 px-5 xl:px-28">
+            <div class="container mx-auto py-5 px-3 md:px-9 xl:px-28">
                 <div class="grid justify-center">
                     <div class="md:w-[700px]">
                         <div class="grid lg:flex lg:flex-col gap-5 text-center my-5">
@@ -21,7 +21,7 @@
         </header>
         <!-- About section one-->
         <section class="bg-gray-100" id="scroll-target">
-            <div class="container mx-auto py-20 px-5 xl:px-28">
+            <div class="container mx-auto py-5 px-3 md:px-9 xl:px-28">
                 <div class="grid lg:flex lg:grid-cols-2 gap-5 items-center">
                     <div class="grid lg:col-span-1 h-full w-full"><img class="object-cover h-full w-full rounded-md" src="/images/about/1.jpg" alt="..." /></div>
                     <div class="grid lg:col-span-1 gap-5 h-full w-full">
@@ -33,7 +33,7 @@
         </section>
         <!-- About section two-->
         <section class="bg-gray-100" id="scroll-target">
-            <div class="container mx-auto py-20 px-5 xl:px-28">
+            <div class="container mx-auto py-5 px-3 md:px-9 xl:px-28">
                 <div class="grid lg:flex lg:flex-row-reverse lg:grid-cols-2 gap-5 items-center">
                     <div class="grid lg:col-span-1 h-full w-full"><img class="object-cover h-full w-full rounded-md" src="/images/about/2.jpg" alt="..." /></div>
                     <div class="grid lg:col-span-1 gap-5 h-full w-full">
@@ -45,7 +45,7 @@
         </section>
         <!-- Team members section-->
         <section class="bg-gray-50">
-            <div class="container mx-auto py-20 px-5 xl:px-28">
+            <div class="container mx-auto py-5 px-3 md:px-9 xl:px-28">
                 <div class="grid gap-3 text-center">
                     <h3 class='flex justify-center text-2xl md:text-7xl text-black font-bold'>Our Team</h3>
                     <p class="flex justify-center text-xl font-semibold">Dedicated to quality and your success</p>

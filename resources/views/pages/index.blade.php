@@ -6,7 +6,7 @@
         
         <!-- Header-->
         <header class="bg-dots-lighter bg-black">
-            <div class="container mx-auto py-20 px-5 xl:px-28">
+            <div class="container mx-auto py-5 px-3 md:px-9 xl:px-28">
                 <div class="grid lg:grid-cols-5 items-center justify-center">
                     <div class="grid lg:col-span-3">
                         <div class="grid gap-5 my-5 text-white text-center lg:text-start">
@@ -25,7 +25,7 @@
 
         <!-- Features section-->
         <section class="">
-            <div class="container mx-auto py-20 px-5 xl:px-28">
+            <div class="container mx-auto py-5 px-3 md:px-9 xl:px-28">
                 <div class="grid lg:grid-cols-3 gap-3">
                     <div class="grid lg:col-span-1 mb-5 lg:mb-0"><h2 class="font-bold text-4xl mb-0">A better way to start building.</h2></div>
                     <div class="grid lg:col-span-2">
@@ -268,7 +268,7 @@
         
         <!-- Testimonial section-->
         <div class="bg-white">
-            <div class="container mx-auto py-20 px-5 xl:px-28">
+            <div class="container mx-auto py-5 px-3 md:px-9 xl:px-28">
                 <div class="flex justify-center">
                     <div class="w-[800px]">
                         <div class="text-center">
@@ -288,7 +288,7 @@
         </div>
         <!-- Blog preview section-->
         <section class="">
-            <div class="container mx-auto py-20 px-5 xl:px-28">
+            <div class="container mx-auto py-5 px-3 md:px-9 xl:px-28">
                 <div class="grid justify-center gap-7">
                     <div class="">
                         <div class="grid gap-5 text-center">

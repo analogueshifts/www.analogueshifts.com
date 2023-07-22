@@ -5,8 +5,8 @@
 <main class="flex-shrink-0">
     
     <!-- Page Content-->
-    <section class="py-5">
-        <div class="container px-5 my-5">
+    <section class="">
+        <div class="container mx-auto py-5 px-3 md:px-9 xl:px-28">
             <div class="text-center mb-5">
                 <h1 class="fw-bolder">Frequently Asked Questions</h1>
                 <p class="lead fw-normal text-muted mb-0">How can we help you?</p>

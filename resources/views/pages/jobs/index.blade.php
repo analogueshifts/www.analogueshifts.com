@@ -6,7 +6,7 @@
 
         <!-- Page Content-->
         <section class="">
-            <div class="container mx-auto py-20 px-5 xl:px-28">
+            <div class="container mx-auto py-5 px-3 md:px-9 xl:px-28">
                 <h1 class="font-bold text-2xl mb-9">AnalogueShifts Jobs</h1>
                 <div class="bg-white border-0 shadow rounded-lg overflow-hidden">
                     <div class="grid lg:grid-cols-12">
@@ -38,7 +38,7 @@
        
         <!-- job preview section-->
         <section class="">
-            <div class="container mx-auto py-20 px-5 xl:px-28">
+            <div class="container mx-auto py-5 px-3 md:px-9 xl:px-28">
                 <div class="grid justify-center gap-7">
                     <div class="">
                         <div class="grid gap-5 text-center">

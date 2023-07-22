@@ -6,7 +6,7 @@
 
         <!-- Page content-->
         <section class="">
-            <div class="container mx-auto py-20 px-5 xl:px-28">
+            <div class="container mx-auto py-5 px-3 md:px-9 xl:px-28">
                 <!-- Contact form-->
                 <div class="bg-gray-200 rounded-md py-16">
                     <div class="text-center mb-5">

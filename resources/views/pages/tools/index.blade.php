@@ -5,7 +5,7 @@
     <main class="flex-shrink-0">
         <!-- Header-->
         <header class="bg-gray-50">
-            <div class="container mx-auto py-20 px-5 xl:px-28">
+            <div class="container mx-auto py-5 px-3 md:px-9 xl:px-28">
                 <div class="grid justify-center">
                     <div class="md:w-[700px]">
                         <div class="grid lg:flex lg:flex-col gap-5 text-center my-5">
@@ -22,7 +22,7 @@
       
          <!-- Blog preview section-->
         <section class="">
-            <div class="container mx-auto py-20 px-5 xl:px-28">              
+            <div class="container mx-auto py-5 px-3 md:px-9 xl:px-28">              
                 <div class="grid lg:grid-cols-3 gap-3">
                     <div class="mb-5">
                         <div class="h-full shadow border-0">

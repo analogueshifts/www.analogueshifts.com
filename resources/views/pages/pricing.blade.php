@@ -5,8 +5,8 @@
     <main class="flex-shrink-0">
        
         <!-- Pricing section-->
-        <section class="bg-light py-5">
-            <div class="container px-5 my-5">
+        <section class="bg-light">
+            <div class="container mx-auto py-5 px-3 md:px-9 xl:px-28">
                 <div class="text-center mb-5">
                     <h1 class="fw-bolder">Pay as you grow</h1>
                     <p class="lead fw-normal text-muted mb-0">With our no hassle pricing plans</p>
