@@ -18,8 +18,8 @@ class BlogController extends Controller
      */
     public function index()
     {
-        SEOTools::setTitle('Blog');
-        SEOTools::setDescription('AnalogueShifts is a Project Management and Talent Acquisition Company');
+        SEOTools::setTitle('Trends in Talent Recruitment');
+        SEOTools::setDescription('Stay up-to-date with the latest news and trends in the tech industry with Analogueshifts blog. Our expert writers cover a wide range of topics, from coding to cybersecurity and everything in between.');
         SEOTools::opengraph()->setUrl('https://analogueshifts.com/blog');
         SEOTools::setCanonical('https://analogueshifts.com/blog');
         SEOTools::opengraph()->addProperty('type', 'articles');

@@ -17,8 +17,8 @@ class HireController extends Controller
 
     public function jobs()
     {
-        SEOTools::setTitle('Jobs');
-        SEOTools::setDescription('AnalogueShifts is a Project Management and Talent Acquisition Company');
+        SEOTools::setTitle('Jobs in Tech');
+        SEOTools::setDescription('Looking for the best tech jobs worldwide? Analogueshifts has you covered. We work with top employers to bring you the latest opportunities in the tech industry. Visit our jobs page today to start your search.');
         SEOTools::opengraph()->setUrl('https://analogueshifts.com/jobs');
         SEOTools::setCanonical('https://analogueshifts.com/jobs');
         SEOTools::opengraph()->addProperty('type', 'articles');

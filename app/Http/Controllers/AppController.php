@@ -8,8 +8,8 @@ use Artesaos\SEOTools\Facades\SEOTools;
 class AppController extends Controller
 {
     public function index(){
-        SEOTools::setTitle('Home');
-        SEOTools::setDescription('AnalogueShifts is a Project Management and Talent Acquisition Company');
+        SEOTools::setTitle('Tech Talent Recruitment and Acquisition');
+        SEOTools::setDescription('Looking for the best tech talent worldwide? Analogueshifts is the recruitment agency for you. Our team of experts can help you streamline recruitment and find the perfect talent for your organization.');
         SEOTools::opengraph()->setUrl('https://analogueshifts.com');
         SEOTools::setCanonical('https://analogueshifts.com');
         SEOTools::opengraph()->addProperty('type', 'articles');
@@ -24,8 +24,8 @@ class AppController extends Controller
     }
 
     public function about(){
-        SEOTools::setTitle('About');
-        SEOTools::setDescription('AnalogueShifts is a Project Management and Talent Acquisition Company');
+        SEOTools::setTitle('About Us');
+        SEOTools::setDescription('At Analogueshifts, we are passionate about connecting employers with top tech talent from around the world. Our team of experts brings years of experience and industry knowledge to every recruitment search. Learn more about us and our mission today.');
         SEOTools::opengraph()->setUrl('https://analogueshifts.com/about');
         SEOTools::setCanonical('https://analogueshifts.com/about');
         SEOTools::opengraph()->addProperty('type', 'articles');
@@ -39,8 +39,8 @@ class AppController extends Controller
 
     public function contact()
     {
-        SEOTools::setTitle('Contact');
-        SEOTools::setDescription('AnalogueShifts is a Project Management and Talent Acquisition Company');
+        SEOTools::setTitle('24/7 Contact Center');
+        SEOTools::setDescription('Have a question for Analogueshifts? Our team is here to help. Contact us today to learn more about our recruitment services or to discuss your organizations hiring needs');
         SEOTools::opengraph()->setUrl('https://analogueshifts.com/contact');
         SEOTools::setCanonical('https://analogueshifts.com/contact');
         SEOTools::opengraph()->addProperty('type', 'articles');
@@ -84,8 +84,8 @@ class AppController extends Controller
     
     public function tools()
     {
-        SEOTools::setTitle('Tools');
-        SEOTools::setDescription('AnalogueShifts is a Project Management and Talent Acquisition Company');
+        SEOTools::setTitle('Talent Recruitment Tools');
+        SEOTools::setDescription('Looking for the right tools to streamline your recruitment process? Analogueshifts has you covered. Our tools page offers a variety of resources, from applicant tracking systems to candidate assessment tools, to help you find the perfect candidate for your organization.');
         SEOTools::opengraph()->setUrl('https://analogueshifts.com/tools');
         SEOTools::setCanonical('https://analogueshifts.com/tools');
         SEOTools::opengraph()->addProperty('type', 'articles');
