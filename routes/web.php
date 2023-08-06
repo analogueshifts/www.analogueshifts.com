@@ -30,8 +30,8 @@ Route::get("/contact", [AppController::class, "contact"])->name("contact");
 
 Route::get("/tools", [AppController::class, "tools"])->name("tools");
 
-Route::get("blog", [BlogController::class, "index"])->name("blog");
-Route::get("blog/{blog:slug}", [BlogController::class, "show"])->name("blog.show");
+// Route::get("blog", [BlogController::class, "index"])->name("blog");
+// Route::get("blog/{blog:slug}", [BlogController::class, "show"])->name("blog.show");
 
 Route::get("jobs", [HireController::class, "Jobs"])->name("jobs");
 Route::get("job/{job:slug}", [HireController::class, "show"])->name("job.show");

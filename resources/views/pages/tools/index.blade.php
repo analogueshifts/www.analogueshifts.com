@@ -12,7 +12,7 @@
                             <h1 class="text-4xl font-bold mb-3">Better with AnalogueShifts Tools</h1>
                             <p class="text-xl text-gray-500 mb-4">Solve the problem of cost for Startups and Large scale companies abroad by sourcing the best talents for clients, with easy to integrate AnalogueShifts Tools</p>
                             <div class="flex justify-center">
-                                <a class="bg-as text-white text-xl py-3 px-5 rounded-md" href="#scroll-target">Get Started</a>
+                                <a class="bg-as text-white text-xl py-3 px-5 rounded-md" href="https://app.analogueshifts.com">Get Started</a>
                             </div>
                         </div>
                     </div>
@@ -31,8 +31,8 @@
                                 <div class="flex justify-end">
                                     <span class="flex items-center bg-as font-bold text-white text-xs rounded-full py-1 px-2">New</span>
                                 </div>
-                                <a class="text-sm" href="#scroll-target">AnalogueShifts Hire Talents</a>
-                                <a href="/blog/"><h5 class="font-bold text-lg mb-3 underline">Learn more</h5></a>
+                                <a class="text-sm" href="https://app.analogueshifts.com">AnalogueShifts Hire Talents</a>
+                                <a href="https://app.analogueshifts.com"><h5 class="font-bold text-lg mb-3 underline">Learn more</h5></a>
                             </div>
                         </div>
                     </div>
@@ -44,8 +44,8 @@
                                 <div class="flex justify-end">
                                     <span class="flex items-center bg-as font-bold text-white text-xs rounded-full py-1 px-2">New</span>
                                 </div>
-                                <a class="text-sm" href="#scroll-target">AnalogueShifts Form and Vetting system</a>
-                                <a href="/blog/"><h5 class="font-bold text-lg mb-3 underline">Learn more</h5></a>
+                                <a class="text-sm" href="https://app.analogueshifts.com">AnalogueShifts Form and Vetting system</a>
+                                <a href="https://app.analogueshifts.com"><h5 class="font-bold text-lg mb-3 underline">Learn more</h5></a>
                             </div>
                         </div>
                     </div>
@@ -57,8 +57,8 @@
                                 <div class="flex justify-end">
                                     <span class="flex items-center bg-as font-bold text-white text-xs rounded-full py-1 px-2">New</span>
                                 </div>
-                                <a class="text-sm" href="#scroll-target">AnalogueShifts Resume Builder</a>
-                                <a href="/blog/"><h5 class="font-bold text-lg mb-3 underline">Learn more</h5></a>
+                                <a class="text-sm" href="https://app.analogueshifts.com">AnalogueShifts Resume Builder</a>
+                                <a href="https://app.analogueshifts.com"><h5 class="font-bold text-lg mb-3 underline">Learn more</h5></a>
                             </div>
                         </div>
                     </div>

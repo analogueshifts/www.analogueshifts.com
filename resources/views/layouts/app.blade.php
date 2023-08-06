@@ -17,10 +17,10 @@
         <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
         
         <!-- Styles -->
-        <link href="/assets/css/style.css" rel="stylesheet">
+        <link href="./assets/css/style.css" rel="stylesheet">
 
         <!-- Styles -->
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
+        @vite(['./resources/css/app.css', './resources/js/app.js'])
 
         <!-- Google tag (gtag.js) -->
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-JDYHWF1KQP"></script>
@@ -43,7 +43,7 @@
             
         @include('inc.footer')
 
-        <script src="/assets/js/index.js"></script>
+        <script src="./assets/js/index.js"></script>
     </body>
 
 </html>

@@ -9,3 +9,5 @@ navBtn.addEventListener("click", (e) => {
         navBar.classList.add("hidden");
     }
 });
+
+const item = document.querySelector("#id");

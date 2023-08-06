@@ -16,7 +16,7 @@
                     <a href={{route('about')}}>
                         About
                     </a>
-                    <a href={{route('blog')}}>
+                    <a href="/blog">
                         Blog
                     </a>
                     <a href={{route('jobs')}}>
@@ -76,7 +76,7 @@
                 <a href={{route('about')}} class="block px-4 py-3 hover:bg-gray-100">About</a>
             </li>
             <li>
-                <a href={{route('blog')}} class="block px-4 py-3 hover:bg-gray-100">Blog</a>
+                <a href="/blog" class="block px-4 py-3 hover:bg-gray-100">Blog</a>
             </li>
             <li>
                 <a href={{route('jobs')}} class="block px-4 py-3 hover:bg-gray-100">Jobs</a>
