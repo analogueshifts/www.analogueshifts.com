@@ -7,7 +7,7 @@
         <!-- Header-->
         <header class="object-cover" style="background-image: url('/images/dummy/a4.jpg')">
             <div class="bg-trasnparent bg-opacity-80 backdrop-blur-lg drop-shadow-lg">
-                <div class="container mx-auto py-20 px-3 md:px-9 xl:px-28">
+                <div class="container mx-auto py-5 md:py-20 px-3 md:px-9 xl:px-28">
                     <div class="grid items-center justify-center">
                         <div class="bg-black/20 bg-opacity-80 backdrop-blur-3xl drop-shadow-2xl p-2 md:p-9 rounded">
                             <div class="grid gap-5 my-5 text-white text-center">
