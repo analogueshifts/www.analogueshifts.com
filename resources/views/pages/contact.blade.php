@@ -20,46 +20,50 @@
                         </div>
                         <h1 class="text-3xl font-bold">Get in touch</h1>
                         <p class="font-semibold text-gray-500 mb-0">We'd love to hear from you</p>
+                        <div  class="flex text-center text-yellow-500">
+                            @if(session('success'))
+                                <span>{{ session('success') }}</span>
+                            @endif
+                        </div>
                     </div>
                     <div class="grid gap-5 mx-5 lg:mx-80">
-                        <form class="grid gap-5 w-full" data-sb-form-api-token="API_TOKEN">
+                        <form method="POST" action="{{ route('contact.store') }}" class="grid gap-5 w-full" data-sb-form-api-token="API_TOKEN">
+                            @csrf
                             <!-- Name input-->
                             <div class="grid gap-2">
-                                <input class="border border-black outline-none w-full py-3 px-5 rounded-md" id="name" type="text" placeholder="Enter your name" data-sb-validations="required" />
-                                <div class="hidden" data-sb-feedback="name:required">A name is required.</div>
+                                <input class="border @error('name') border-red-500 @enderror outline-none w-full py-3 px-5 rounded-md" name="name" id="name" type="text" placeholder="Enter your name" data-sb-validations="required" />
+                                @error('name')
+                                    <div class="hidden" data-sb-feedback="name:required">A name is required.</div>
+                                @enderror
                             </div>
                             <!-- Email address input-->
                             <div class="grid gap-2">
-                                <input class="border border-black outline-none w-full py-3 px-5 rounded-md" id="email" type="email" placeholder="name@example.com" data-sb-validations="required,email" />
-                                <div class="hidden" data-sb-feedback="email:required">An email is required.</div>
+                                <input class="border  @error('email') border-red-500 @enderror outline-none w-full py-3 px-5 rounded-md" name="email" id="email" type="email" placeholder="name@example.com" data-sb-validations="required,email" />
+                                @error('email')
+                                    <div class="hidden" data-sb-feedback="email:required">An email is required.</div>
+                                @enderror
                             </div>
                             <!-- Phone number input-->
                             <div class="grid gap-2">
-                                <input class="border border-black outline-none w-full py-3 px-5 rounded-md" id="phone" type="tel" placeholder="(123) 456-7890" data-sb-validations="required" />
-                                <div class="hidden" data-sb-feedback="phone:required">A phone number is required.</div>
+                                <input class="border  @error('tel') border-red-500 @enderror outline-none w-full py-3 px-5 rounded-md" name="tel" id="phone" type="tel" placeholder="(123) 456-7890" data-sb-validations="required" />
+                                @error('tel')
+                                    <div class="hidden" data-sb-feedback="phone:required">A phone number is required.</div>
+                                @enderror
+                            </div>
+                            <!-- Suubject input-->
+                            <div class="grid gap-2">
+                                <input class="border  @error('subject') border-red-500 @enderror outline-none w-full py-3 px-5 rounded-md" name="subject" id="subject" type="tel" placeholder="Subject/Topic" data-sb-validations="required" />
+                                @error('subject')
+                                    <div class="hidden" data-sb-feedback="phone:required">Subject is required.</div>
+                                @enderror
                             </div>
                             <!-- Message input-->
                             <div class="grid gap-2">
-                                <textarea class="border  border-black outline-none w-full py-3 px-5 rounded-md" id="message" type="text" placeholder="Enter your message here..." style="height: 10rem" data-sb-validations="required"></textarea>
-                                <div class="hidden" data-sb-feedback="message:required">A message is required.</div>
+                                <textarea class="border @error('message') border-red-500 @enderror outline-none w-full py-3 px-5 rounded-md" name="message" id="message" type="text" placeholder="Enter your message here..." style="height: 10rem" data-sb-validations="required"></textarea>
+                                @error('message')
+                                    <div class="hidden" data-sb-feedback="message:required">A message is required.</div>
+                                @enderror
                             </div>
-                            <!-- Submit success message-->
-                            <!---->
-                            <!-- This is what your users will see when the form-->
-                            <!-- has successfully submitted-->
-                            <div class="hidden w-full" id="submitSuccessMessage">
-                                <div class="text-center mb-3">
-                                    <div class="fw-bolder">Form submission successful!</div>
-                                    To activate this form, sign up at
-                                    <br />
-                                    <a href="https://startbootstrap.com/solution/contact-forms">https://startbootstrap.com/solution/contact-forms</a>
-                                </div>
-                            </div>
-                            <!-- Submit error message-->
-                            <!---->
-                            <!-- This is what your users will see when there is-->
-                            <!-- an error submitting the form-->
-                            <div class="hidden w-full" id="submitErrorMessage"><div class="text-center text-danger mb-3">Error sending message!</div></div>
                             <!-- Submit Button-->
                             <div class="flex w-full"><button class="bg-as text-white w-full py-3 px-5 rounded-md disabled" id="submitButton" type="submit">Submit</button></div>
                         </form>

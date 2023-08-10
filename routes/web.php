@@ -5,6 +5,7 @@ use App\Http\Controllers\AppController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\HireController;
 use App\Http\Controllers\LearnController;
+use App\Http\Controllers\ContactController;
 use Spatie\Sitemap\SitemapGenerator;
 
 /*
@@ -24,7 +25,8 @@ Route::get('/welcome', function () {
 
 Route::get("/", [AppController::class, "index"])->name("home");
 Route::get("/about", [AppController::class, "about"])->name("about");
-Route::get("/contact", [AppController::class, "contact"])->name("contact");
+Route::get("/contact", [ContactController::class, "contact"])->name("contact");
+Route::post("/contact", [ContactController::class, "store"])->name( "contact.store");
 // Route::get("/pricing", [AppController::class, "pricing"])->name("pricing");
 // Route::get("/faq", [AppController::class, "faq"])->name("faq");
 

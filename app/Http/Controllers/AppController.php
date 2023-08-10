@@ -37,21 +37,6 @@ class AppController extends Controller
         ]);
     }
 
-    public function contact()
-    {
-        SEOTools::setTitle('24/7 Contact Center');
-        SEOTools::setDescription('Have a question for Analogueshifts? Our team is here to help. Contact us today to learn more about our recruitment services or to discuss your organizations hiring needs');
-        SEOTools::opengraph()->setUrl('https://analogueshifts.com/contact');
-        SEOTools::setCanonical('https://analogueshifts.com/contact');
-        SEOTools::opengraph()->addProperty('type', 'articles');
-        SEOTools::twitter()->setSite('@AnalogueShifts');
-        SEOTools::jsonLd()->addImage('https://analogueshifts.com/logo.png');
-
-        return view('pages.contact', [
-            'ogImage' => '/logo.png',
-        ]);
-    }
-
     public function pricing()
     {
         SEOTools::setTitle('Pricing');
