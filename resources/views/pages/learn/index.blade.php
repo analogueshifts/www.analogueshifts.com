@@ -51,33 +51,43 @@
                 @if(count($learns) < 1)
                 
                 @else
-                    @foreach ($learns as $learn)
-                        <div class="grid lg:grid-cols-3 gap-3">
-                            <div class="mb-5">
-                                <div class="h-full shadow border-0">
-                                    <img class="object-cover h-56 w-full" src="http://as.test/{{$learn->thumbnail}}" alt="..." />
-                                    <div class="p-5">
-                                        <div class="flex justify-start">
-                                            <span class="flex items-center bg-yellow-500 font-bold text-white text-xs rounded-full py-1 px-2">Learn</span>
-                                        </div>
-                                        <a class="overflow-hidden" href="/learn/{{$learn->slug}}"><h5 class="font-bold text-lg mb-3">{{$learn->title}}</h5></a>
-                                        <p class="h-20 mb-0 overflow-hidden">{{$learn->content}}</p>
+                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-3">
+                        @foreach ($learns as $learn)
+                        <div class="mb-5">
+                            <div class="h-full shadow border-0">
+                                <div>
+                                    <iframe
+                                        height="315"
+                                        width="100%"
+                                        src="https://www.youtube.com/embed/{{$learn->url}}"
+                                        title="{{$learn->title}}"
+                                        frameBorder="0"
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                        allowFullScreen
+                                    ></iframe>
+                                </div>
+                                <div class="p-5">
+                                    <div class="flex justify-start">
+                                        <span class="flex items-center bg-yellow-500 font-bold text-white text-xs rounded-full py-1 px-2">Learn</span>
                                     </div>
-                                    <div class="p-4 pt-0 bg-transparent border-t-0">
-                                        <div class="flex items-end justify-center">
-                                            <div class="flex gap-5 items-center">
-                                                <img class="object-cover rounded-full h-11 w-11" src="/images/team/social.jpg" alt="..." />
-                                                <div class="small">
-                                                    <div class="font-bold">Kelly Rowan</div>
-                                                    <div class="text-gray-500">{{$learn->created_at->diffForHumans()}} &middot; 6 min read</div>
-                                                </div>
+                                    <h5 class="font-bold text-lg mb-3 overflow-hidden">{{$learn->title}}</h5>
+                                    <p class="h-20 mb-0 overflow-hidden">{{$learn->description}}</p>
+                                </div>
+                                <div class="p-4 pt-0 bg-transparent border-t-0">
+                                    <div class="flex items-end justify-start">
+                                        <div class="flex gap-5 items-center">
+                                            <img class="object-cover rounded-full h-11 w-11" src="/images/assets/blankuser.png" alt="..." />
+                                            <div class="small">
+                                                <div class="font-bold">{{$learn->user->name}}</div>
+                                                <div class="text-gray-500">{{$learn->created_at->diffForHumans()}}</div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    @endforeach
+                        @endforeach
+                    </div>
                 @endif
 
 
