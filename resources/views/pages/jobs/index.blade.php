@@ -17,14 +17,6 @@
                                     </div>
                                     <div class="text-3xl font-bold">Jobs of your kind are here for you</div>
                                     <p>Clear and concise job listings, The job search page contains detailed descriptions of the available positions, including the job title, location, and required qualifications.</p>
-                                    <a class="flex items-center text-yellow-500" href="/job/">
-                                <span class="flex items-center">
-                                    Job openings
-                                </span>
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="flex items-center w-6 h-6">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
-                                </svg>
-                            </a>
                                 </div>
                             </div>
                             <div class="grid lg:col-span-6">
@@ -53,7 +45,7 @@
                 @else
                     <div class="grid lg:grid-cols-3 gap-3">
                         @foreach ($jobs as $job)
-                            <div class="mb-5">
+                            <a href="/job/{{$job->slug}}" class="mb-5">
                                 <div class="h-full shadow border-0">
                                     <div class="p-5">
                                         <div class="flex justify-start gap-2">
@@ -62,7 +54,7 @@
                                                 <span class="flex items-center bg-yellow-500 font-bold text-white text-xs rounded-full py-1 px-2">{{ $tag->name }}</span>
                                             @endforeach
                                         </div>
-                                        <a class="overflow-hidden underline" href="/job/{{$job->slug}}"><h5 class="font-bold text-lg mb-3">{{$job->role}}</h5></a>
+                                        <span class="overflow-hidden underline"><h5 class="font-bold text-lg mb-3">{{$job->role}}</h5></span>
                                         <p class="h-20 mb-0 overflow-hidden">{{$job->description}}</p>
                                     </div>
                                     <div class="p-4 pt-0 bg-transparent border-t-0">
@@ -77,7 +69,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </a>
                         @endforeach
                     </div>
 

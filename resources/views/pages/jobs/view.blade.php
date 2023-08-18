@@ -3,9 +3,9 @@
 @section('content')
 
     <!-- Page Content-->
-    <section class="bg-white">
+    <section class="bg-white min-h-screen border-b">
         <div class="container mx-auto py-5 px-3 md:px-9 xl:px-28">
-            <div class="grid lg:grid-cols-12 gap-5">
+            <div class="grid lg:grid-cols-12 gap-5 h-full">
                 <div class="grid lg:col-span-3">
                     <div class="flex gap-3 mt-5 mb-4">
                         <img class="object-cover rounded-full h-11 w-11" src="/images/assets/blankuser.png" alt="..." />
@@ -36,6 +36,13 @@
                         <!-- Post content-->
                         <div class="bg-gray-100 border p-3 rounded-lg">
                             <section class="mb-5">{{$job->description}}</section>                                
+                        </div>
+                        <div class="flex justify-end w-full py-2 px-0">
+                            <a href={{$job->vet}}
+                                class="bg-as text-white py-2 px-4 rounded-md"
+                            >
+                                Apply here
+                            </a>
                         </div>
                     </article>
                 </div>
