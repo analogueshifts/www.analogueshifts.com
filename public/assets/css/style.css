@@ -637,14 +637,6 @@ video {
   z-index: 50;
 }
 
-.col-auto {
-  grid-column: auto;
-}
-
-.m-0 {
-  margin: 0px;
-}
-
 .m-3 {
   margin: 0.75rem;
 }
@@ -1920,6 +1912,10 @@ body::-webkit-scrollbar-thumb:hover {
 }
 
 @media (min-width: 768px) {
+  .md\:flex {
+    display: flex;
+  }
+
   .md\:h-96 {
     height: 24rem;
   }
@@ -2078,6 +2074,10 @@ body::-webkit-scrollbar-thumb:hover {
 }
 
 @media (min-width: 1280px) {
+  .xl\:flex {
+    display: flex;
+  }
+
   .xl\:px-28 {
     padding-left: 7rem;
     padding-right: 7rem;

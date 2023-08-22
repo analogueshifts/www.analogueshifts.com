@@ -35,14 +35,22 @@
                         </header>
                         <!-- Post content-->
                         <div class="bg-gray-100 border p-3 rounded-lg">
-                            <section class="mb-5">{{$job->description}}</section>                                
+                            <section class="mb-5">{!!$job->description!!}</section>                                
                         </div>
                         <div class="flex justify-end w-full py-2 px-0">
-                            <a href={{$job->vet}}
-                                class="bg-as text-white py-2 px-4 rounded-md"
-                            >
-                                Apply here
-                            </a>
+                            @if($job->vet === null)
+                                <a href="#"
+                                    class="bg-as text-white py-2 px-4 rounded-md"
+                                >
+                                    Apply here
+                                </a>
+                            @else
+                                <a href={{$job->vet}}
+                                    class="bg-as text-white py-2 px-4 rounded-md"
+                                >
+                                    Apply here
+                                </a>
+                            @endif
                         </div>
                     </article>
                 </div>

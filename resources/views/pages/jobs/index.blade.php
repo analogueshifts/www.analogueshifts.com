@@ -55,7 +55,7 @@
                                             @endforeach
                                         </div>
                                         <span class="overflow-hidden underline"><h5 class="font-bold text-lg mb-3">{{$job->role}}</h5></span>
-                                        <p class="h-20 mb-0 overflow-hidden">{{$job->description}}</p>
+                                        {{-- <p class="h-20 mb-0 overflow-hidden">{{$job->description}}</p> --}}
                                     </div>
                                     <div class="p-4 pt-0 bg-transparent border-t-0">
                                         <div class="flex items-end justify-start">

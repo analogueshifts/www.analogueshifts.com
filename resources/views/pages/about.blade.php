@@ -9,7 +9,7 @@
                 <div class="grid justify-center">
                     <div class="md:w-[700px]">
                         <div class="grid lg:flex lg:flex-col gap-5 text-center my-5">
-                            <h1 class="text-4xl font-bold mb-3">Our mission is to make building websites easier for everyone.</h1>
+                            <h1 class="text-4xl font-bold mb-3">Our mission is to make hiring easier for everyone.</h1>
                             <p class="text-xl text-gray-500 mb-4">Our mission is to solve the problem of cost for Startups and Large scale companies abroad by sourcing the best talents for clients.</p>
                             <div class="flex justify-center">
                                 <a class="bg-as text-white text-xl py-3 px-5 rounded-md" href="#scroll-target">Read our story</a>
