@@ -6,7 +6,7 @@
                 <a class="link-light small" href="/about">Terms</a>
                 <a class="link-light small" href="/contact">Contact</a>
             </div>
-            <div class=""><div class="">Copyright &copy; AnalogueShits 2023</div></div>
+            <div class=""><div class="">Copyright &copy; AnalogueShifts 2023</div></div>
             <div class="flex gap-3">
                 <a class="" href="https://www.linkedin.com/company/analogue-shifts/" target="_blank">LinkIn</a>
                 <a class="" href="https://www.instagram.com/analogueshifts_/?igshid=MzRlODBiNWFlZA%3D%3D" target="_blank">Instagram</a>
