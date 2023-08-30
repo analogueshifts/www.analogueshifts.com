@@ -52,4 +52,16 @@ class HireController extends Controller
             "job" => $job,
         ]);
     }
+
+    public function apply(Hire $job)
+    {
+        if($job->application === "" ){
+            return view("pages/jobs/apply", [
+                "ogImage" => "/logo.png",
+                "job" => $job,
+            ]);
+        }else{
+            return redirect(route("job.show", $job->slug));
+        }
+    }
 }

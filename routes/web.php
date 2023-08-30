@@ -37,6 +37,7 @@ Route::get("/tools", [AppController::class, "tools"])->name("tools");
 
 Route::get("jobs", [HireController::class, "Jobs"])->name("jobs");
 Route::get("job/{job:slug}", [HireController::class, "show"])->name("job.show");
+Route::get("job/apply/{job:slug}", [HireController::class, "apply"])->name("job.apply");
 
 Route::get("learn", [LearnController::class, "index"])->name("learn");
 Route::get("learn/{learn:slug}", [LearnController::class, "show"])->name("learn.show");

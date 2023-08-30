@@ -1111,6 +1111,18 @@ video {
   border-top-width: 0px;
 }
 
+.border-l {
+  border-left-width: 1px;
+}
+
+.border-l-2 {
+  border-left-width: 2px;
+}
+
+.border-l-4 {
+  border-left-width: 4px;
+}
+
 .border-as {
   --tw-border-opacity: 1;
   border-color: rgb(229 190 57 / var(--tw-border-opacity));
@@ -1912,10 +1924,6 @@ body::-webkit-scrollbar-thumb:hover {
 }
 
 @media (min-width: 768px) {
-  .md\:flex {
-    display: flex;
-  }
-
   .md\:h-96 {
     height: 24rem;
   }

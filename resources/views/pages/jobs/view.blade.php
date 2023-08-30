@@ -38,14 +38,14 @@
                             <section class="mb-5">{!!$job->description!!}</section>                                
                         </div>
                         <div class="flex justify-end w-full py-2 px-0">
-                            @if($job->vet === null)
-                                <a href="#"
+                            @if($job->application === "")
+                                <a href="/job/apply/{{$job->slug}}"
                                     class="bg-as text-white py-2 px-4 rounded-md"
                                 >
                                     Apply here
                                 </a>
                             @else
-                                <a href={{$job->vet}}
+                                <a href={{$job->application}}
                                     class="bg-as text-white py-2 px-4 rounded-md"
                                 >
                                     Apply here
