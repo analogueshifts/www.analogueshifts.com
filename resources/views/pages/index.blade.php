@@ -83,7 +83,7 @@
             </div>
         </section>
         
-        <div class="bg-gray-100" style="background-image: url('/images/dummy/as.png')">
+        <div class="bg-gray-100">
             <div class="container mx-auto py-16 px-5 xl:px-28">
                 <div class="flex justify-center mb-9">
                     <a class="text-2xl px-9 py-4 rounded-lg bg-as text-white hover:bg-transparent font-semibold hover:text-as hover:ring-2 ring-as" href="https://app.analogueshifts.com/tools/hire">Find Top Talents</a>
