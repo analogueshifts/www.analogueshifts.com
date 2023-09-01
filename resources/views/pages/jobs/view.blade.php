@@ -8,10 +8,10 @@
             <div class="grid lg:grid-cols-12 gap-5 h-full">
                 <div class="grid lg:col-span-3">
                     <div class="flex gap-3 mt-5 mb-4">
-                        <img class="object-cover rounded-full h-11 w-11" src="/images/assets/blankuser.png" alt="..." />
+                        {{-- <img class="object-cover rounded-full h-11 w-11" src="/images/assets/blankuser.png" alt="..." /> --}}
                         <div class="">
                             <div class="font-bold">{{$job->user->name}}</div>
-                            <div class="text-gray-500">{{$job->created_at->diffForHumans()}} &middot; 6 min read</div>
+                            <div class="text-gray-500">{{$job->created_at->diffForHumans()}} &middot;</div>
                             @foreach($job->tags as $tag)
                                 <div class="text-gray-700">{{ $tag->name }}</div>
                             @endforeach
@@ -28,10 +28,14 @@
                             <!-- Post meta content-->
                             <div class="text-gray-700 italic mb-2">{{$job->created_at->diffForHumans()}}</div>
                             <!-- Post categories-->
-                            <a class="bg-gray-500 text-white text-xs font-bold py-1 px-3 rounded-full" href="#!">Web Design</a>
+                            {{-- <a class="bg-gray-500 text-white text-xs font-bold py-1 px-3 rounded-full" href="#!">Web Design</a> --}}
                             @foreach($job->tags as $tag)
                                 <a class="bg-gray-500 text-white text-xs font-bold py-1 px-3 rounded-full" href="#!">{{ $tag->name }}</a>
                             @endforeach
+                            <span class="bg-gray-500 text-white text-xs font-bold py-1 px-3 rounded-full">Location: {!!$job->hire_type!!}</span>                                
+                            <span class="bg-gray-500 text-white text-xs font-bold py-1 px-3 rounded-full">Experience: {!!$job->experience!!}</span>                                
+                            <span class="bg-gray-500 text-white text-xs font-bold py-1 px-3 rounded-full">Salary: ${!!$job->range!!}</span>                                
+                            <span class="bg-gray-500 text-white text-xs font-bold py-1 px-3 rounded-full">Duration: {!!$job->duration!!}</span>                                
                         </header>
                         <!-- Post content-->
                         <div class="bg-gray-100 border p-3 rounded-lg">

@@ -43,24 +43,30 @@
                 @if(count($jobs) < 1)
                 
                 @else
-                    <div class="grid lg:grid-cols-3 gap-3">
+                    <div class="grid gap-3 mb-3">
                         @foreach ($jobs as $job)
                             <a href="/job/{{$job->slug}}" class="mb-5">
-                                <div class="h-full shadow border-0">
+                                <div class="bg-white h-full shadow border-0">
                                     <div class="p-5">
-                                        <div class="flex justify-start gap-2">
-                                            <span class="flex items-center bg-yellow-500 font-bold text-white text-xs rounded-full py-1 px-2">Job</span>
+                                        <div class="h-20 overflow-x-auto scroll">
+                                            <span class="bg-yellow-500 font-bold text-white text-xs rounded-full py-1 px-2">Job</span>
+                                            <span class="bg-yellow-500 font-bold text-white text-xs rounded-full py-1 px-2">Location: {!!$job->hire_type!!}</span>                                
+                                            <span class="bg-yellow-500 font-bold text-white text-xs rounded-full py-1 px-2">Experience: {!!$job->experience!!}</span>                                
+                                            <span class="bg-yellow-500 font-bold text-white text-xs rounded-full py-1 px-2">Salary: ${!!$job->range!!}</span>                                
+                                            <span class="bg-yellow-500 font-bold text-white text-xs rounded-full py-1 px-2">Duration: {!!$job->duration!!}</span>   
                                             @foreach($job->tags as $tag)
                                                 <span class="flex items-center bg-yellow-500 font-bold text-white text-xs rounded-full py-1 px-2">{{ $tag->name }}</span>
                                             @endforeach
                                         </div>
-                                        <span class="overflow-hidden underline"><h5 class="font-bold text-lg mb-3">{{$job->role}}</h5></span>
-                                        {{-- <p class="h-20 mb-0 overflow-hidden">{{$job->description}}</p> --}}
+                                        <h5 class="h-16 overflow-hidden font-bold text-lg mb-3">{{$job->role}}</h5>
+                                        <div class="h-20 mb-0 overflow-hidden">
+                                            <p>{!!$job->description!!}</p>
+                                        </div>
                                     </div>
                                     <div class="p-4 pt-0 bg-transparent border-t-0">
                                         <div class="flex items-end justify-start">
                                             <div class="flex gap-5 items-center">
-                                                <img class="object-cover rounded-full h-11 w-11" src="/images/assets/blankuser.png" alt="..." />
+                                                {{-- <img class="object-cover rounded-full h-11 w-11" src="/images/assets/blankuser.png" alt="..." /> --}}
                                                 <div class="small">
                                                     <div class="font-bold">{{$job->user->name}}</div>
                                                     <div class="text-gray-500">{{$job->created_at->diffForHumans()}}</div>
