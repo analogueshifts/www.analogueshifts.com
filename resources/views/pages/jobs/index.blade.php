@@ -60,7 +60,7 @@
                                         </div>
                                         <h5 class="h-16 overflow-hidden font-bold text-lg mb-3">{{$job->role}}</h5>
                                         <div class="h-20 mb-0 overflow-hidden">
-                                            <p>{!!$job->description!!}</p>
+                                            <p>{!! Illuminate\Support\Str::limit(strip_tags($job->description), $limit = 350, $end = '...') !!}</p>
                                         </div>
                                     </div>
                                     <div class="p-4 pt-0 bg-transparent border-t-0">
