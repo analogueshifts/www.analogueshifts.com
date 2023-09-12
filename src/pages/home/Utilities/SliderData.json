@@ -1,0 +1,20 @@
+{
+    "SliderData": [
+        {
+            "image" : "images/a1.jpg",
+            "text": "We are here to understand exactly what kind of person you want, to tailor our service to best fit your needs and deliver results for businesses in all industries."
+        },
+        {
+            "image" : "images/a2.jpg",
+            "text": " With a focus on cultural fit, talent acquisition and matching your candidate pool with the talent you need, we’re here to help."
+        },
+        {
+            "image" : "images/a3.jpg",
+            "text": " We believe in employees who are passionate about what they do, thoughtful and reliable, with a high level of integrity."
+        },
+        {
+            "image" : "images/a4.jpg",
+            "text": "We are here to understand exactly what kind of person you want, to tailor our service to best fit your needs and deliver results for businesses in all industries."
+        }
+    ]
+}

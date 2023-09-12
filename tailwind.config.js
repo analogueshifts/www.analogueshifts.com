@@ -1,22 +1,22 @@
-/** @type {import('tailwindcss').Config} */
-const defaultTheme = require("tailwindcss/defaultTheme");
+const defaultTheme = require('tailwindcss/defaultTheme')
 
 module.exports = {
-    content: [
-        "./resources/**/*.blade.php",
-        "./resources/**/*.js",
-        "./resources/**/*.vue",
-        "./node_modules/flowbite/**/*.js",
-    ],
+    content: ['./src/**/*.js'],
+    darkMode: 'media',
     theme: {
         extend: {
             colors: {
-                as: "#E5BE39",
+                as: '#E5BE39',
             },
             fontFamily: {
-                sans: ["Figtree", ...defaultTheme.fontFamily.sans],
+                sans: ['Nunito', ...defaultTheme.fontFamily.sans],
             },
         },
     },
-    plugins: [],
-};
+    variants: {
+        extend: {
+            opacity: ['disabled'],
+        },
+    },
+    plugins: [require('@tailwindcss/forms')],
+}
