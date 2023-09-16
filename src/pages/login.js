@@ -1,5 +1,3 @@
-import Head from 'next/head'
-import { NextSeo } from 'next-seo'
 import ApplicationLogo from '@/components/ApplicationLogo'
 import AuthCard from '@/components/AuthCard'
 import AuthSessionStatus from '@/components/AuthSessionStatus'
@@ -58,8 +56,7 @@ const Login = () => {
 
     return (
         <GuestLayout>
-            <SeoController />
-            
+            <SeoController seoData={seoData} />
             <AuthCard
                 logo={
                     <Link href="/">

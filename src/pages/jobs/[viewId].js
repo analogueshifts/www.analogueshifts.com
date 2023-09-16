@@ -21,7 +21,6 @@ export default function View() {
     const [job, setJob] = useState([])
 
     const slug = router.query.viewId
-    
     useEffect(() => {
         if (slug) {
             axios
@@ -31,11 +30,10 @@ export default function View() {
                     setJob(data)
                 })
                 .catch(error => {
-                    console.log(error)
+                    alert(error)
                 })
         }
     }, [slug])
-
 
     useEffect(() => {
         // Define animations

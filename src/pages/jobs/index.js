@@ -26,7 +26,7 @@ export default function about() {
                 setJobs(data)
             })
             .catch(error => {
-                console.log(error)
+                alert(error)
             })
 
         // Initialize GSAP and ScrollTrigger

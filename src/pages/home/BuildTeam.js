@@ -1,8 +1,6 @@
-import Data from './Utilities/BuildTeamData.json';
-
+import Data from './Utilities/BuildTeamData.json'
 
 function BuildTeam() {
-
     return (
         <section className="bg-gray-200">
             <div className="container mx-auto py-16 px-5 xl:px-28">
@@ -36,4 +34,4 @@ function BuildTeam() {
     )
 }
 
-export default BuildTeam;
+export default BuildTeam

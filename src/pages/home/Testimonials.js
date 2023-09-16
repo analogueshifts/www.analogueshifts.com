@@ -1,6 +1,3 @@
-import { useState, useEffect } from 'react'
-import gsap from 'gsap'
-
 function Testimonials() {
     return (
         <div>

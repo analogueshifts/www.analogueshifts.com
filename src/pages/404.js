@@ -1,7 +1,5 @@
-import Link from "next/link"
-import Head from 'next/head'
-import { NextSeo } from 'next-seo'
-import SeoController from "@/lib/SeoController"
+import Link from 'next/link'
+import SeoController from '@/lib/SeoController'
 
 const seoData = {
     title: '404',
@@ -13,7 +11,7 @@ const seoData = {
 
 const NotFoundPage = () => (
     <>
-        <SeoController seoData={seoData}/>
+        <SeoController seoData={seoData} />
         <section className="relative flex items-top justify-center min-h-screen sm:items-center sm:pt-0">
             <div className="container mx-auto py-5 px-3 md:px-9 xl:px-28">
                 <div className="bg-white border-0 shadow rounded-lg overflow-hidden">

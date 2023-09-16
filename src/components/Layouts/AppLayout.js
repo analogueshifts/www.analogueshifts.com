@@ -1,7 +1,6 @@
 import Navigation from '@/components/Layouts/Navigation'
 
-const AppLayout = ({ header, children }) => {
-
+const AppLayout = ({ children }) => {
     return (
         <div className="min-h-screen bg-gray-50">
             <Navigation />

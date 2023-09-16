@@ -1,14 +1,10 @@
-import Head from 'next/head'
-import { NextSeo } from 'next-seo'
 import { useEffect } from 'react'
 import Link from 'next/link'
-import { useAuth } from '@/hooks/auth'
 import AppLayout from '@/components/Layouts/AppLayout'
 import gsap from 'gsap'
 import SeoController from '@/lib/SeoController'
 
 export default function about() {
-    
     const seoData = {
         title: 'About Us',
         description:
@@ -55,8 +51,7 @@ export default function about() {
 
     return (
         <AppLayout>
-           <SeoController seoData={seoData} />
-
+            <SeoController seoData={seoData} />
             <div>
                 {/* Page Content */}
                 <section className="">

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Menu, Transition } from '@headlessui/react'
 
 const Dropdown = ({
@@ -30,6 +30,10 @@ const Dropdown = ({
     }
 
     const [open, setOpen] = useState(false)
+
+    useEffect(() => {
+        setOpen(open)
+    }, [setOpen, open])
 
     return (
         <Menu as="div" className="relative">

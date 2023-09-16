@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useEffect } from 'react'
 import gsap from 'gsap'
 
 function Landing() {
@@ -43,7 +43,7 @@ function Landing() {
                                 <img
                                     className="object-cover h-full w-full"
                                     src="/images/a4.jpg"
-                                    alt='landing'
+                                    alt="landing"
                                 />
                             </div>
                         </div>
