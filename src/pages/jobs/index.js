@@ -136,8 +136,8 @@ export default function about() {
                                 )
                                 .map((job, index) => (
                                     <Link
-                                        href={`/jobs/${job.slug}`}
-                                        as={`/jobs/${job.slug}`}
+                                        href={`/jobs/${job.display}`}
+                                        as={`/jobs/${job.display}`}
                                         // as={`/jobs/${job.role.replace(
                                         //     /\s+/g,
                                         //     '-',

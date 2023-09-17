@@ -12,7 +12,7 @@ export default function View() {
         title: 'Jobs in Tech',
         description:
             'Looking for the best tech jobs worldwide? AnalogueShifts has you covered. We work with top employers to bring you the latest opportunities in the tech industry. Visit our jobs page today to start your search.',
-        // canonical: `https://www.analogueshifts.com/jobs/${slug}`,
+        // canonical: `https://www.analogueshifts.com/jobs/${display}`,
         ogImage: 'a4.jpg',
     }
 
@@ -20,11 +20,11 @@ export default function View() {
 
     const [job, setJob] = useState([])
 
-    const slug = router.query.viewId
+    const display = router.query.viewId
     useEffect(() => {
-        if (slug) {
+        if (display) {
             axios
-                .get(`/jobs/${slug}`)
+                .get(`/jobs/${display}`)
                 .then(res => {
                     const data = res.data
                     setJob(data)
@@ -33,7 +33,7 @@ export default function View() {
                     alert(error)
                 })
         }
-    }, [slug])
+    }, [display])
 
     useEffect(() => {
         // Define animations
@@ -105,7 +105,7 @@ export default function View() {
                             <div className="flex lg:justify-end w-full py-2 px-0">
                                 {job.application === '' ? (
                                     <a
-                                        href="/job/apply/{job.slug}"
+                                        href="/job/apply/{job.display}"
                                         className="bg-as text-white w-full lg:w-fit py-2 px-4 rounded-md fade-in">
                                         Apply here
                                     </a>
