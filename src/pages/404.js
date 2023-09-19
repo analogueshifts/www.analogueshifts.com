@@ -6,7 +6,7 @@ const seoData = {
     description:
         'Next SEO packages simplifies the SEO management in Next Apps with less configurations',
     canonical: 'www.analogueshifts.com',
-    ogImage: 'a4.jpg',
+    ogImage: '/images/a4.jpg',
 }
 
 const NotFoundPage = () => (

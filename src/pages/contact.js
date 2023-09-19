@@ -9,7 +9,7 @@ function contact() {
         description:
             "Have a question for Analogueshifts? Our team is here to help. Contact us today to learn more about our recruitment services or to discuss your organization's hiring needs",
         canonical: 'https://www.analogueshifts.com/contact',
-        ogImage: 'a4.jpg',
+        ogImage: '/images/a4.jpg',
     }
 
     useEffect(() => {

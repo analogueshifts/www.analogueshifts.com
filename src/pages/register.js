@@ -39,7 +39,7 @@ const Register = () => {
         description:
             'Next SEO packages simplifies the SEO management in Next Apps with less configurations',
         canonical: 'https://www.analogueshifts.com/register',
-        ogImage: 'a4.jpg',
+        ogImage: '/images/a4.jpg',
     }
 
     return (

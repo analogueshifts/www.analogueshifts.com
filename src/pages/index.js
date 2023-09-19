@@ -14,7 +14,7 @@ export default function Home() {
         description:
             'Looking for the best tech talent worldwide? Analogueshifts is the recruitment agency for you. Our team of experts can help you streamline recruitment and find the perfect talent for your organization. ',
         canonical: 'https://www.analogueshifts.com',
-        ogImage: 'a4.jpg',
+        ogImage: '/images/a4.jpg',
     }
 
     return (

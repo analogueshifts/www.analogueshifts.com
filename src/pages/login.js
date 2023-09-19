@@ -51,7 +51,7 @@ const Login = () => {
         description:
             'Next SEO packages simplifies the SEO management in Next Apps with less configurations',
         canonical: 'https://www.analogueshifts.com/login',
-        ogImage: 'a4.jpg',
+        ogImage: '/images/a4.jpg',
     }
 
     return (

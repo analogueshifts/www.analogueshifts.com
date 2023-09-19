@@ -13,7 +13,7 @@ export default function View() {
         description:
             'Looking for the best tech jobs worldwide? AnalogueShifts has you covered. We work with top employers to bring you the latest opportunities in the tech industry. Visit our jobs page today to start your search.',
         // canonical: `https://www.analogueshifts.com/jobs/${display}`,
-        ogImage: 'a4.jpg',
+        ogImage: '/images/a4.jpg',
     }
 
     const router = useRouter()
