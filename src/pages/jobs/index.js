@@ -159,7 +159,7 @@ export default function about() {
                                                         {job.experience}
                                                     </span>
                                                     <span className="inline-block bg-yellow-500 text-white text-xs font-bold rounded-full py-1 px-3">
-                                                        Salary: ${job.range}
+                                                        Salary: {job.range}
                                                     </span>
                                                     <span className="inline-block bg-yellow-500 text-white text-xs font-bold rounded-full py-1 px-3">
                                                         Duration: {job.duration}
