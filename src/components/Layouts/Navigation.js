@@ -91,7 +91,7 @@ const Navigation = ({ user }) => {
                             ) : (
                                 <Link
                                     className="text-lg py-1.5 px-3 rounded-full bg-yellow-500 text-white hover:bg-transparent hover:text-yellow-500 hover:ring-2 ring-yellow-500"
-                                    href="/dashboard">
+                                    href="https://app.analogueshifts.com">
                                     Get Started
                                 </Link>
                             )}
@@ -159,7 +159,7 @@ const Navigation = ({ user }) => {
                                 active={router.pathname === '/contact'}>
                                 Contact
                             </ResponsiveNavLink>
-                            <ResponsiveNavLink href="/dashboard">
+                            <ResponsiveNavLink href="https://app.analogueshifts.com">
                                 Get Started
                             </ResponsiveNavLink>
                         </div>
