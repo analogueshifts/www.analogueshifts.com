@@ -35,6 +35,41 @@ function Testimonials() {
                             </div>
                         </div>
                     </div>
+
+                    {/* Call to action */}
+                    <aside className="flex justify-center py-16">
+                        <div className="bg-yellow-500 grid lg:flex items-center justify-center gap-5 w-full p-9 rounded-lg">
+                            <div className="grid gap-5 text-center lg:text-start">
+                                <div className="text-2xl font-bold text-white">
+                                    New products, delivered to you.
+                                </div>
+                                <div className="text-gray-100 text-sm">
+                                    Sign up for our Jobsletter for the latest
+                                    updates.
+                                </div>
+                            </div>
+                            <div className="grid gap-5 text-center lg:text-start">
+                                <form className="flex mb-2 min-w-full">
+                                    <input
+                                        className="text-sm lg:text-md placeholder:text-sm outline-none w-full py-2 px-5 rounded-l-md"
+                                        type="email"
+                                        placeholder="Email address..."
+                                        aria-label="Email address..."
+                                        aria-describedby="button-Jobsletter"
+                                    />
+                                    <button
+                                        className="bg-transparent text-sm border outline-none w-full py-2 px-5 rounded-r-md"
+                                        type="button">
+                                        Sign up
+                                    </button>
+                                </form>
+                                <div className="text-gray-100 text-sm">
+                                    We care about privacy, and will never share
+                                    your data.
+                                </div>
+                            </div>
+                        </div>
+                    </aside>
                 </div>
             </div>
         </div>
