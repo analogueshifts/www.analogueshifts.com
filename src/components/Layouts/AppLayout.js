@@ -1,4 +1,5 @@
 import Navigation from '@/components/Layouts/Navigation'
+import Footer from './Footer'
 
 const AppLayout = ({ children }) => {
     return (
@@ -7,6 +8,8 @@ const AppLayout = ({ children }) => {
 
             {/* Page Content */}
             <main>{children}</main>
+
+            <Footer />
         </div>
     )
 }
