@@ -115,12 +115,7 @@ console.log(`${process.env.AS_PUBLIC_BACKEND_URL}`)
                 )
                 .map((job, index) => (
                   <Link
-                    href={`/jobs/${job.display}`}
-                    as={`/jobs/${job.display}`}
-                    // as={`/jobs/${job.role.replace(
-                    //     /\s+/g,
-                    //     '-',
-                    // )}/${job.id}`}
+                    to={`/jobs/${job.display}`}
                     className="mb-5 animate-fade-in-job"
                     key={index}
                   >
