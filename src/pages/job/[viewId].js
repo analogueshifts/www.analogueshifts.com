@@ -1,28 +1,25 @@
-// import { useRouter } from 'next/router'
-// import { useEffect } from 'react'
-// import axios from '../../lib/axios'
+import { useEffect } from 'react'
+import axios from '../../lib/axios'
+import { navigate } from 'gatsby'
 
-// export default function View() {
-//     const router = useRouter()
+export default function View(props) {
 
-//     const slug = router.query.viewId
+    const slug = props.params.viewId
 
-//     useEffect(() => {
-//         if (slug) {
-//             axios
-//                 .get(`/job/${slug}`)
-//                 .then(res => {
-//                     const data = res.data
+    useEffect(() => {
+        if (slug) {
+            axios
+                .get(`/job/${slug}`)
+                .then(res => {
+                    const data = res.data
 
-//                     router.push(`/jobs/${data.display}`)
-//                 })
-//                 .catch(error => {
-//                     alert(error)
-//                 })
-//         }
-//     }, [slug, router])
+                    navigate(`/jobs/${data.display}`)
+                })
+                .catch(error => {
+                    alert(error)
+                })
+        }
+    }, [slug])
 
-//     // No need for a JSX return, as this page is intended for immediate redirection
-
-//     return null
-// }
+    return null
+}
