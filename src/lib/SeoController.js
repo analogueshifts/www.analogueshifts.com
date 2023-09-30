@@ -1,5 +1,6 @@
 import * as React from "react"
 import { useStaticQuery, graphql } from "gatsby"
+import ogImage from "../images/ogImage.png"
 
 function SeoController({ seoData, children }) {
   const { site } = useStaticQuery(
@@ -27,6 +28,11 @@ function SeoController({ seoData, children }) {
       <meta name="description" content={metaDescription} />
       <meta property="og:title" content={seoData.title} />
       <meta property="og:description" content={metaDescription} />
+      <meta property="og:image" content={ogImage} />
+      <link
+        rel="canonical"
+        href={seoData.canonical || "https://analogueshifts.com"}
+      />
       <meta property="og:type" content="website" />
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:creator" content={site.siteMetadata?.author || ``} />
