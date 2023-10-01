@@ -18,7 +18,7 @@ const Navigation = () => {
               <div className="flex items-center">
                 {/* Logo */}
                 <div className="flex-shrink-0 flex items-center">
-                  <Link to="/">
+                  <Link href="/">
                     <ApplicationLogo className="block h-10 w-auto fill-current text-gray-600" />
                   </Link>
                 </div>
@@ -26,30 +26,33 @@ const Navigation = () => {
 
               {/* Navigation Links */}
               <div className="hidden space-x-8 lg:-my-px lg:ml-10 lg:flex">
-                <NavLink to="/" 
+                <NavLink 
+                  href="/" 
                   // active={router.pathname === "/"}
                 >
                   Home
                 </NavLink>
-                <NavLink to="/blog" 
+                <NavLink 
+                  href="/blog" 
                   // active={router.pathname === "/blog"}
                 >
                   Blog
                 </NavLink>
-                <NavLink to="/jobs" 
+                <NavLink 
+                  href="/jobs" 
                   // active={router.pathname === "/jobs"}
                 >
                   Jobs
                 </NavLink>
-                <NavLink to="/about" 
+                <NavLink 
+                  href="/about" 
                   // active={router.pathname === "/about"}
                 >
                   About
                 </NavLink>
                 <NavLink
-                  to="/contact"
-                  
-                    // active={router.pathname === "/contact"}
+                  href="/contact"
+                  // active={router.pathname === "/contact"}
                 >
                   Contact
                 </NavLink>
@@ -104,36 +107,33 @@ const Navigation = () => {
           {open && (
             <div className="bg-white block lg:hidden">
               <div className="pt-2 pb-3 space-y-1">
-                <ResponsiveNavLink to="/" 
+                <ResponsiveNavLink 
+                  href="/" 
                   // active={router.pathname === "/"}
                 >
                   Home
                 </ResponsiveNavLink>
                 <ResponsiveNavLink
-                  to="/blog"
-                  
-                    // active={router.pathname === "/blog"}
+                  href="/blog"
+                  // active={router.pathname === "/blog"}
                 >
                   Blog
                 </ResponsiveNavLink>
                 <ResponsiveNavLink
-                  to="/jobs"
-                  
-                    // active={router.pathname === "/jobs"}
+                  href="/jobs"
+                  // active={router.pathname === "/jobs"}
                 >
                   Jobs
                 </ResponsiveNavLink>
                 <ResponsiveNavLink
-                  to="/about"
-                  
-                    // active={router.pathname === "/about"}
+                  href="/about"
+                  // active={router.pathname === "/about"}
                 >
                   About
                 </ResponsiveNavLink>
                 <ResponsiveNavLink
-                  to="/contact"
-                  
-                    // active={router.pathname === "/contact"}
+                  href="/contact"
+                  // active={router.pathname === "/contact"}
                 >
                   Contact
                 </ResponsiveNavLink>

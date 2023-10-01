@@ -31,31 +31,31 @@ export default function NotFoundPage() {
                 <div className="grid gap-5 p-4">
                   <Link
                     className="text-gray-500 font-semibold text-md p-3 border hover:ml-3"
-                    to="/"
+                    href="/"
                   >
                     Home
                   </Link>
                   <Link
                     className="text-gray-500 font-semibold text-md p-3 border hover:ml-3"
-                    to="/blog"
+                    href="/blog"
                   >
                     Blog
                   </Link>
                   <Link
                     className="text-gray-500 font-semibold text-md p-3 border hover:ml-3"
-                    to="/jobs"
+                    href="/jobs"
                   >
                     Jobs
                   </Link>
                   <Link
                     className="text-gray-500 font-semibold text-md p-3 border hover:ml-3"
-                    to="/about"
+                    href="/about"
                   >
                     About
                   </Link>
                   <Link
                     className="text-gray-500 font-semibold text-md p-3 border hover:ml-3"
-                    to="/contact"
+                    href="/contact"
                   >
                     Contact
                   </Link>
