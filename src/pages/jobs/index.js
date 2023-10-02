@@ -19,7 +19,6 @@ export default function Jobs() {
 
   const [jobs, setJobs] = useState([])
   const [searchFilter, setSearchFilter] = useState("")
-console.log(`${process.env.AS_PUBLIC_BACKEND_URL}`)
 
   useEffect(() => {
     // Fetch job data from your API
@@ -115,7 +114,7 @@ console.log(`${process.env.AS_PUBLIC_BACKEND_URL}`)
                 )
                 .map((job, index) => (
                   <Link
-                    to={`/jobs/${job.display}`}
+                    href={`/jobs/${job.display}`}
                     className="mb-5 animate-fade-in-job"
                     key={index}
                   >
