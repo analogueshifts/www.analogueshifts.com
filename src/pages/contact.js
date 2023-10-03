@@ -9,7 +9,7 @@ const seoData = {
   title: "24/7 Contact Center",
   description:
     "Have a question for Analogueshifts? Our team is here to help. Contact us today to learn more about our recruitment services or to discuss your organization's hiring needs",
-  canonical: "https://www.analogueshifts.com/contact",
+  canonical: "https://analogueshifts.com/contact",
   ogImage: "/images/a4.jpg",
 }
 export default function Contact() {

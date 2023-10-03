@@ -11,7 +11,7 @@ const seoData = {
     title: 'Tech Talent Recruitment and Acquisition',
     description:
         'Looking for the best tech talent worldwide? Analogueshifts is the recruitment agency for you. Our team of experts can help you streamline recruitment and find the perfect talent for your organization. ',
-    canonical: 'https://www.analogueshifts.com',
+    canonical: 'https://analogueshifts.com',
     ogImage: '/images/a4.jpg',
 }
 

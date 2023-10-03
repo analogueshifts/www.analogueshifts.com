@@ -18,7 +18,7 @@ const seoData = {
     title: 'About Us',
     description:
         "At Analogueshifts, we're passionate about connecting employers with top tech talent from around the world. Our team of experts brings years of experience and industry knowledge to every recruitment search. Learn more about us and our mission today.",
-    canonical: 'https://www.analogueshifts.com/about',
+    canonical: 'https://analogueshifts.com/about',
     ogImage: '/images/a4.jpg',
 }
 
