@@ -6,33 +6,18 @@ import SeoController from '../../lib/SeoController'
 
 export const Head = () => <SeoController seoData={seoData} />
 
-    const seoData = {
-        title: 'Jobs in Tech',
-        description:
-            'Looking for the best tech jobs worldwide? AnalogueShifts has you covered. We work with top employers to bring you the latest opportunities in the tech industry. Visit our jobs page today to start your search.',
-        // canonical: `https://www.analogueshifts.com/jobs/${display}`,
-        ogImage: '/images/a4.jpg',
-    }
+const seoData = {
+  title: "Jobs in Tech",
+  description:
+    "Looking for the best tech jobs worldwide? AnalogueShifts has you covered. We work with top employers to bring you the latest opportunities in the tech industry. Visit our jobs page today to start your search.",
+  // canonical: `https://www.analogueshifts.com/jobs/${display}`,
+  ogImage: "/images/a4.jpg",
+}
 
-export default function View(props) {
-  const [job, setJob] = useState([])
-
-  const display = props.params.viewId
-
-  useEffect(() => {
-    if (display) {
-      axios
-        .get(`/jobs/${display}`)
-        .then(res => {
-          const data = res.data
-          setJob(data)
-        })
-        .catch(error => {
-          alert(error)
-        })
-    }
-  }, [display])
-
+export default function View({ pageContext }) {
+  
+  const { role, created_at, hire_type, experience, range, duration, description, application } = pageContext
+  
   useEffect(() => {
     // Define animations
     const fadeIn = gsap.from(".fade-in", {
@@ -58,27 +43,27 @@ export default function View(props) {
               <header className="mb-4">
                 {/* Post title */}
                 <h1 className="font-bold text-3xl md:text-5xl mb-2 fade-in">
-                  {job.role}
+                  {role}
                 </h1>
                 {/* Post meta content */}
                 <div className="text-gray-700 italic mb-2">
-                  {job.created_at}
+                  {created_at}
                 </div>
                 <div className="flex flex-wrap gap-4">
                   <span className="inline-block bg-yellow-500 text-white text-xs font-bold rounded-full py-1 px-3 fade-in">
                     Job
                   </span>
                   <span className="inline-block bg-yellow-500 text-white text-xs font-bold rounded-full py-1 px-3 fade-in">
-                    Location: {job.hire_type}
+                    Location: {hire_type}
                   </span>
                   <span className="inline-block bg-yellow-500 text-white text-xs font-bold rounded-full py-1 px-3 fade-in">
-                    Experience: {job.experience}
+                    Experience: {experience}
                   </span>
                   <span className="inline-block bg-yellow-500 text-white text-xs font-bold rounded-full py-1 px-3 fade-in">
-                    Salary: {job.range}
+                    Salary: {range}
                   </span>
                   <span className="inline-block bg-yellow-500 text-white text-xs font-bold rounded-full py-1 px-3 fade-in">
-                    Duration: {job.duration}
+                    Duration: {duration}
                   </span>
                 </div>
               </header>
@@ -87,21 +72,21 @@ export default function View(props) {
                 <section
                   className="mb-5"
                   dangerouslySetInnerHTML={{
-                    __html: job.description,
+                    __html: description,
                   }}
                 />
               </div>
               <div className="flex lg:justify-end w-full py-2 px-0">
-                {job.application === "" ? (
+                {application === "" ? (
                   <a
-                    href="/job/apply/{job.display}"
+                    href="/job/apply/{display}"
                     className="bg-as text-white w-full lg:w-fit py-2 px-4 rounded-md fade-in"
                   >
                     Apply here
                   </a>
                 ) : (
                   <a
-                    href={job.application}
+                    href={application}
                     className="bg-as text-white w-full lg:w-fit py-2 px-4 rounded-md fade-in"
                   >
                     Apply here

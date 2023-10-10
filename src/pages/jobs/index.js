@@ -1,10 +1,10 @@
-import { Link } from "gatsby"
 import React, { useEffect, useState } from "react"
+import { Link } from "gatsby"
 import { gsap } from "gsap"
 import axios from "../../lib/axios"
 import AppLayout from "../../components/Layouts/AppLayout"
-import LandImg from "../../images/jobs/1.jpg"
 import SeoController from "../../lib/SeoController"
+import LandImg from "../../images/jobs/1.jpg"
 
 export const Head = () => <SeoController seoData={seoData} />
 const seoData = {
@@ -88,7 +88,11 @@ export default function Jobs() {
                   </div>
                 </div>
                 <div className="grid lg:col-span-6">
-                  <img className="object-cover h-full w-full" src={LandImg} alt="Jobs" />
+                  <img
+                    className="object-cover h-full w-full"
+                    src={LandImg}
+                    alt="Jobs"
+                  />
                 </div>
               </div>
             </div>

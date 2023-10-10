@@ -15,6 +15,18 @@ module.exports = {
     siteUrl: `https://analogueshifts.com/`,
   },
   plugins: [
+    {
+      resolve: `gatsby-plugin-page-creator`,
+      options: {
+        path: `${__dirname}/src/pages/jobs`,
+      },
+    },
+    {
+      resolve: `gatsby-plugin-page-creator`,
+      options: {
+        path: `${__dirname}/src/pages/job`,
+      },
+    },
     "gatsby-plugin-postcss",
     `gatsby-plugin-image`,
     {
