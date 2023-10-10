@@ -25,7 +25,7 @@ export default function Jobs() {
     axios
       .get("/jobs")
       .then(res => {
-        const data = res.data.jobs.data
+        const data = res.data.jobs
         setJobs(data)
       })
       .catch(error => {
