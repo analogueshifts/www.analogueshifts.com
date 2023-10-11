@@ -1,4 +1,10 @@
-on: push
+on:
+  schedule:
+    - cron: '0 8,12,18,20 * * *' # This runs the scheduled job multiple times a day.
+  push:
+    branches:
+      - main # This runs the push job when there's a push to the 'main' branch.
+
 name: 🚀 Deploy website on push
 jobs:
   web-deploy:
