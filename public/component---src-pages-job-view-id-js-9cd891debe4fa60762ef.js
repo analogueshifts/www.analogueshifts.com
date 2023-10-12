@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkgatsby_starter_default=self.webpackChunkgatsby_starter_default||[]).push([[534],{9022:function(t,a,e){e.r(a),e.d(a,{default:function(){return r}});var n=e(7294),s=e(90),u=e(1883);function r(t){const a=t.params.viewId;return(0,n.useEffect)((()=>{a&&s.Z.get(`/job/${a}`).then((t=>{const a=t.data;(0,u.navigate)(`/jobs/${a.display}`)})).catch((t=>{alert(t)}))}),[a]),null}}}]);
+//# sourceMappingURL=component---src-pages-job-view-id-js-9cd891debe4fa60762ef.js.map

@@ -1,0 +1,38 @@
+[
+    {
+        "path": "/job/[viewId]/",
+        "matchPath": "/job/:viewId"
+    },
+    {
+        "path": "/404.html",
+        "matchPath": "/404.html"
+    },
+    {
+        "path": "/404/",
+        "matchPath": "/404/"
+    },
+    {
+        "path": "/about/",
+        "matchPath": "/about/"
+    },
+    {
+        "path": "/contact/",
+        "matchPath": "/contact/"
+    },
+    {
+        "path": "/display/",
+        "matchPath": "/display/"
+    },
+    {
+        "path": "/jobs/",
+        "matchPath": "/jobs/"
+    },
+    {
+        "path": "/using-dsg/",
+        "matchPath": "/using-dsg/"
+    },
+    {
+        "path": "/[viewId]/",
+        "matchPath": "/:viewId"
+    }
+]
