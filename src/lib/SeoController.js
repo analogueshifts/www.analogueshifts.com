@@ -1,46 +1,24 @@
-import * as React from "react"
-import { useStaticQuery, graphql } from "gatsby"
-import ogImage from "../images/ogImage.png"
+import Head from 'next/head'
+import { NextSeo } from 'next-seo'
 
-function SeoController({ seoData, children }) {
-  const { site } = useStaticQuery(
-    graphql`
-      query {
-        site {
-          siteMetadata {
-            title
-            description
-            author
-          }
-        }
-      }
-    `
-  )
-
-  const metaDescription = seoData.description || site.siteMetadata.description
-  const defaultTitle = site.siteMetadata?.title
-
-  return (
-    <>
-      <title>
-        {defaultTitle ? `${seoData.title} | ${defaultTitle}` : seoData.title}
-      </title>
-      <meta name="description" content={metaDescription} />
-      <meta property="og:title" content={seoData.title} />
-      <meta property="og:description" content={metaDescription} />
-      <meta property="og:image" content={ogImage} />
-      <link
-        rel="canonical"
-        href={seoData.canonical || "https://analogueshifts.com"}
-      />
-      <meta property="og:type" content="website" />
-      <meta name="twitter:card" content="summary" />
-      <meta name="twitter:creator" content={site.siteMetadata?.author || ``} />
-      <meta name="twitter:title" content={seoData.title} />
-      <meta name="twitter:description" content={metaDescription} />
-      {children}
-    </>
-  )
+function SeoController({ seoData }) {
+    return (
+        <>
+            <Head>
+                <meta property="og:image" content={seoData?.ogImage} />
+                <meta property="og:image:height" content="630" />
+                <meta property="og:image:width" content="1200" />
+                <link rel="icon" type="image/x-icon" href="/logo.png" />
+            </Head>
+            <NextSeo
+                title={`${
+                    seoData?.title ? ` ${seoData.title}` : ''
+                } - AnalogueShifts`}
+                description={seoData?.description}
+                canonical="https://www.analogueshifts.com"
+            />
+        </>
+    )
 }
 
 export default SeoController
