@@ -98,7 +98,7 @@ function contact() {
                     <div className="container mx-auto py-5 px-3 md:px-9 xl:px-28">
                         {/* Contact form */}
                         <div id="form" className="bg-gray-200 rounded-md py-16">
-                            <div className="text-center mb-5">
+                            <div>
                                 <div className="flex justify-center w-full">
                                     <span className="bg-as text-white p-2 rounded-lg">
                                         <svg
@@ -111,14 +111,37 @@ function contact() {
                                         </svg>
                                     </span>
                                 </div>
-                                <h1 className="text-3xl font-bold">
-                                    Get in touch
-                                </h1>
-                                <p className="font-semibold text-gray-500 mb-0">
-                                    We'd love to hear from you
-                                </p>
-                                <div className="flex text-center text-yellow-500">
-                                    form
+                                <div className="text-center mb-5">
+                                    <h1 className="text-3xl font-bold">
+                                        Get in touch
+                                    </h1>
+                                    <p className="font-semibold text-gray-500 mb-0">
+                                        We'd love to hear from you
+                                    </p>
+                                </div>
+                                <div className="flex justify-center text-yellow-900 w-full py-9 px-5 md:px-24">
+                                    <form className="flex flex-col gap-9 w-full">
+                                        <div className="grid md:flex gap-5">
+                                            <div className="grid gap-5 w-full">
+                                                <label>Name</label>
+                                                <input
+                                                    className="bg-slate-100 w-full py-2 px-3 outline-none rounded border-l-2 border-as"
+                                                    name="name"
+                                                />
+                                            </div>
+                                            <div className="grid gap-5 w-full">
+                                                <label>Email</label>
+                                                <input
+                                                    className="bg-slate-100 w-full py-2 px-3 outline-none rounded border-l-2 border-as"
+                                                    name="email"
+                                                />
+                                            </div>
+                                        </div>
+                                        <div className="grid gap-5 w-full">
+                                            <label>Message</label>
+                                            <textarea className="bg-slate-100 h-56 w-full py-2 px-3 outline-none rounded border-l-2 border-as" />
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -231,9 +254,11 @@ function contact() {
                                 <div className="flex items-start text-lg font-bold">
                                     Call us
                                 </div>
-                                <p className="flex items-start text-gray-500">
+                                <p className="grid items-start text-gray-500">
                                     Call us during normal business hours at
-                                    (555) 892-9403.
+                                    <a href="tel:+2348066708343">
+                                        +2348066708343
+                                    </a>
                                 </p>
                             </div>
                         </div>
