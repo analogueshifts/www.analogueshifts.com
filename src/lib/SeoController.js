@@ -9,6 +9,23 @@ function SeoController({ seoData }) {
                 <meta property="og:image:height" content="630" />
                 <meta property="og:image:width" content="1200" />
                 <link rel="icon" type="image/x-icon" href="/logo.png" />
+                {/* Google tag (gtag.js) */}
+                <script
+                    async
+                    src="https://www.googletagmanager.com/gtag/js?id=G-JDYHWF1KQP"
+                />
+                <script
+                    dangerouslySetInnerHTML={{
+                        __html: `
+                            window.dataLayer = window.dataLayer || [];
+                            function gtag() {
+                                dataLayer.push(arguments);
+                            }
+                            gtag('js', new Date());
+                            gtag('config', 'G-JDYHWF1KQP');
+                        `,
+                    }}
+                />
             </Head>
             <NextSeo
                 title={`${
