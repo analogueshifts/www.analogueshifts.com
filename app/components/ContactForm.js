@@ -9,6 +9,34 @@ export default function ContactForm() {
     const [message, setMessage] = useState('')
     const [subject, setSubject] = useState('')
 
+    // const nodemailer = require('nodemailer')
+    // const transporter = nodemailer.createTransport({
+    //     host: process.env.NEXT_PUBLIC_MAIL_HOST,
+    //     port: process.env.NEXT_PUBLIC_MAIL_PORT,
+    //     secure: process.env.NEXT_PUBLIC_MAIL_ENCRYPTION,
+    //     auth: {
+    //         // TODO: replace `user` and `pass` values from <https://forwardemail.net>
+    //         user: process.env.NEXT_PUBLIC_MAIL_USERNAME,
+    //         pass: process.env.NEXT_PUBLIC_MAIL_PASSWORD,
+    //     },
+    // })
+
+    // const sendMail = async function main(e) {
+    //     e.preventDefault()
+    //     setLoading(true)
+    //     // send mail with defined transport object
+    //     const response = await transporter.sendMail({
+    //         from: name,
+    //         email, // sender address
+    //         to: 'hello@analogueshifts.com, norply@analogueshifts.com', // list of receivers
+    //         subject, // Subject line
+    //         text: message, // plain text body
+    //         html: message, // html body
+    //     })
+    //     console.log(await response.json())
+    //     setLoading(false)
+    // }
+
     const sendMail = async e => {
         e.preventDefault()
         setLoading(true)
