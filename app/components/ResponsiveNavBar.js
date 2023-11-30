@@ -12,7 +12,7 @@ export default function ResponsiveNavBar() {
     return (
         <div
             style={{ opacity: opacity }}
-            className="bg-white duration-500 fixed w-[calc(100vw-50px)] top-[65px] block lg:hidden">
+            className="bg-white duration-500 fixed w-[calc(100vw-50px)] top-[68px] block lg:hidden">
             <div className="pt-2 pb-3 space-y-1">
                 <ResponsiveNavLink href="/" active={pathname === '/'}>
                     Home
