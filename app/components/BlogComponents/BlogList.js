@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react'
 import { axiosBlog } from '../../lib/axios'
 import Link from 'next/link'
 import Image from 'next/image'
+import A4 from '@/public/images/a4.jpg'
 import SearchIcon from '@/public/images/search-icon.png'
 import LoadingTwo from '../Loading'
 import Author from '@/public/author.png'
@@ -46,8 +47,37 @@ export default function BlogList() {
     return (
         <>
             {loading && <LoadingTwo />}
-            <div className="w-full">
-                <div className="w-full relative h-12 flex items-center">
+            <div className="py-9">
+                <div className="bg-white border-0 shadow rounded-lg overflow-hidden">
+                    <div className="grid lg:grid-cols-12">
+                        <div className="grid lg:col-span-7 py-16 px-3">
+                            <div className="grid justify-center lg:justify-start gap-5 lg:w-[500px] p-4">
+                                <span className="text-3xl md:text-5xl font-bold">
+                                    AnalogueShifts HelpFul Articles
+                                </span>
+                                <p>
+                                    Your Success in Recruitment and Technical
+                                    Support is our Priority. Welcome to Analogue
+                                    Shifts, where we blend the expertise of
+                                    recruitment with the precision of technical
+                                    support to deliver exceptional results for
+                                    your business. We understand that finding
+                                    top talent and providing reliable technical
+                                    assistance are crucial to driving your
+                                    company’s growth.
+                                </p>
+                            </div>
+                        </div>
+                        <div className="grid lg:col-span-5">
+                            <Image
+                                className="object-cover h-full w-full"
+                                src={A4}
+                                alt="landing"
+                            />
+                        </div>
+                    </div>
+                </div>
+                <div className="w-full relative h-12 flex items-center my-5">
                     <input
                         placeholder="Search Blog"
                         value={searchFilter}
@@ -73,20 +103,32 @@ export default function BlogList() {
                                     key={crypto.randomUUID()}
                                     href={`blog/${data.slug}`}
                                     className="w-[31%] hover:scale-105 duration-300 h-max pb-6 max-[1000px]:w-[48%] max-[600px]:w-full overflow-hidden rounded-2xl shadow-xl flex flex-col blog-box">
-                                    <div className="w-full h-6/12  p-3.5">
-                                        <div className="flex flex-col pb-5 w-full gap-3 h-max">
+                                    <div className="flex flex-col justify-evenly w-full h-6/12  p-3.5">
+                                        <div className="flex flex-col pb-5 w-full gap-3 h-56">
                                             <p className="text-sm text-black/60 font-semibold">
                                                 BLOG
                                             </p>
                                             <p className="text-base text-black/80 font-medium">
-                                                {data.title.rendered.length < 75
-                                                    ? data.title.rendered
-                                                    : data.title.rendered
-                                                          .slice(0, 72)
-                                                          .concat('...')}
+                                                <div
+                                                    dangerouslySetInnerHTML={{
+                                                        __html:
+                                                            data.title.rendered
+                                                                .length < 75
+                                                                ? data.title
+                                                                      .rendered
+                                                                : data.title.rendered
+                                                                      .slice(
+                                                                          0,
+                                                                          72,
+                                                                      )
+                                                                      .concat(
+                                                                          '...',
+                                                                      ),
+                                                    }}
+                                                />
                                             </p>
                                         </div>
-                                        <div className="flex w-full h-[40px] gap-4">
+                                        <div className="flex items-end w-full h-[40px] gap-4">
                                             <Image
                                                 src={Author}
                                                 alt=""

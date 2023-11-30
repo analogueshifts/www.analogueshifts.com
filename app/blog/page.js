@@ -10,10 +10,7 @@ export default function Page() {
         <div>
             {/* Page Content */}
             <section className="">
-                <div className="container py-5 px-3 md:px-9 xl:px-14">
-                    <h1 id="title" className="font-bold text-2xl mb-9">
-                        AnalogueShifts HelpFul Articles
-                    </h1>
+                <div className="container mx-auto py-5 px-3 md:px-9 xl:px-28">
                     <BlogList />
                 </div>
             </section>

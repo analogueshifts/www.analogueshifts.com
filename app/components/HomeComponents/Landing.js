@@ -17,15 +17,15 @@ function Landing() {
                         ? 'opacity-1 translate-y-0'
                         : 'opacity-0 translate-y-2'
                 }`}>
-                <div className="container mx-auto py-5 px-3 md:px-9 xl:px-20">
-                    <div id="intro" className="bg-white overflow-hidden">
+                <div className="container mx-auto py-5 px-3 md:px-9 xl:px-28">
+                    <div className="bg-white border-0 shadow rounded-lg overflow-hidden">
                         <div className="grid lg:grid-cols-12">
-                            <div className="grid lg:col-span-6 py-16 max-[500px]:pt-10 max-[500px]:pb-16 items-center px-3">
-                                <div className="grid justify-center lg:justify-start gap-5 lg:w-[500px]">
-                                    <span className="text-3xl max-[500px]:text-center max-[500px]:pb-5 md:text-4xl leading-[50px] tracking-normal font-bold text-black/90">
+                            <div className="grid lg:col-span-7 py-16 px-3">
+                                <div className="grid justify-center lg:justify-start gap-5 lg:w-[500px] p-4">
+                                    <span className="text-3xl md:text-5xl font-bold">
                                         The Future of Talent Recruitment
                                     </span>
-                                    <p className="text-[15px] leading-[30px] font-medium text-black/70 text-justify">
+                                    <p>
                                         Your Success in Recruitment and
                                         Technical Support is our Priority.
                                         Welcome to Analogue Shifts, where we
@@ -39,7 +39,7 @@ function Landing() {
                                     </p>
                                 </div>
                             </div>
-                            <div className="grid lg:col-span-6">
+                            <div className="grid lg:col-span-5">
                                 <Image
                                     className="object-cover h-full w-full"
                                     src={A4}
