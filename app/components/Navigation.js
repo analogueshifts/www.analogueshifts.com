@@ -2,18 +2,25 @@
 import ApplicationLogo from './ApplicationLogo'
 import Link from 'next/link'
 import NavLink from './NavLink'
-import ResponsiveNavLink from './ResponsiveNavLink'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { usePathname } from 'next/navigation'
+import ResponsiveNavBar from './ResponsiveNavBar'
 
 const Navigation = () => {
     const pathname = usePathname()
 
     const [open, setOpen] = useState(false)
 
+    //Close the Nav bar whenever the pathname changes
+    useEffect(() => {
+        if (open) {
+            setOpen(previous => !previous)
+        }
+    }, [pathname])
+
     return (
         <div className="flex w-full justify-center pt-3 pb-20 px-3">
-            <nav className="bg-white bg-opacity-20 backdrop-blur-lg drop-shadow-lg border border-gray-100 w-[calc(100%-50px)] lg:rounded-full fixed z-30">
+            <nav className="bg-white bg-opacity-20 backdrop-blur-lg drop-shadow-lg border border-gray-100 w-[calc(100%-50px)] rounded-full fixed z-30">
                 {/* Primary Navigation Menu */}
                 <div className="w-full mx-auto px-4 lg:px-6 xl:px-8">
                     <div className="flex justify-between h-16">
@@ -92,59 +99,7 @@ const Navigation = () => {
                 </div>
 
                 {/* Responsive Navigation Menu */}
-                {open && (
-                    <div className="bg-white block lg:hidden">
-                        <div className="pt-2 pb-3 space-y-1">
-                            <ResponsiveNavLink
-                                href="/"
-                                active={pathname === '/'}>
-                                Home
-                            </ResponsiveNavLink>
-                            <ResponsiveNavLink
-                                href="/blog"
-                                active={pathname === '/blog'}>
-                                Blog
-                            </ResponsiveNavLink>
-                            <ResponsiveNavLink
-                                href="/jobs"
-                                active={pathname === '/jobs'}>
-                                Jobs
-                            </ResponsiveNavLink>
-                            <ResponsiveNavLink
-                                href="/about"
-                                active={pathname === '/about'}>
-                                About
-                            </ResponsiveNavLink>
-                            <ResponsiveNavLink
-                                href="/contact"
-                                active={pathname === '/contact'}>
-                                Contact
-                            </ResponsiveNavLink>
-                            <ResponsiveNavLink href="https://app.analogueshifts.com">
-                                Get Started
-                            </ResponsiveNavLink>
-                        </div>
-
-                        {/* Responsive Settings Options */}
-                        <div className="pt-4 pb-1 border-t border-gray-200">
-                            <div>
-                                <div className="space-y-1">
-                                    {/* Authentication */}
-                                    <ResponsiveNavLink
-                                        href="/login"
-                                        active={pathname === '/login'}>
-                                        Login
-                                    </ResponsiveNavLink>
-                                    <ResponsiveNavLink
-                                        href="/register"
-                                        active={pathname === '/register'}>
-                                        Register
-                                    </ResponsiveNavLink>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                )}
+                {open && <ResponsiveNavBar />}
             </nav>
         </div>
     )

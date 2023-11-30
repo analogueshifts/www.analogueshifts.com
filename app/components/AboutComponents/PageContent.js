@@ -26,16 +26,18 @@ export default function PageContent() {
                         : 'opacity-0 translate-y-2'
                 }`}>
                 <div className="container mx-auto py-5 px-3 md:px-9 xl:px-20">
-                    <h1 id="title" className="font-bold text-2xl mb-9">
+                    <h1
+                        id="title"
+                        className="font-bold max-[500px]:hidden text-2xl mb-9">
                         About AnalogueShifts
                     </h1>
                     <div className="bg-white overflow-hidden">
                         <div className="grid lg:grid-cols-12">
-                            <div className="grid lg:col-span-6 py-16 px-3 lg:px-3">
+                            <div className="grid lg:col-span-6 py-16 max-[500px]:pb-16 max-[500px]:pt-10 px-3 lg:px-3">
                                 <div
                                     id="intro"
                                     className="grid gap-5 lg:w-96 p-4">
-                                    <div className="text-3xl md:text-4xl leading-[50px] tracking-normal font-bold text-black/90">
+                                    <div className="text-3xl md:text-4xl max-[500px]:text-center leading-[50px] tracking-normal font-bold text-black/90">
                                         Learn about AnalogueShifts
                                     </div>
                                     <p className="text-[15px] leading-[30px] font-medium text-black/70 text-justify">

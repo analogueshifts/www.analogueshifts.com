@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import Image1 from '@/public/images/1.jpg'
+import ContactForm from '../components/ContactForm'
 
 export const metadata = {
     title: '24/7 Contact Center',
@@ -49,12 +50,14 @@ export default function Page() {
             {/* Page Content */}
             <section className="">
                 <div className="container mx-auto py-5 px-3 md:px-9 xl:px-20">
-                    <h1 id="title" className="font-bold text-2xl mb-9">
+                    <h1
+                        id="title"
+                        className="font-bold max-[500px]:hidden text-2xl mb-9">
                         AnalogueShifts Jobs
                     </h1>
                     <div className="bg-white overflow-hidden">
                         <div className="grid lg:grid-cols-12">
-                            <div className="grid lg:col-span-6 py-16 px-3 ">
+                            <div className="grid lg:col-span-6 py-16 max-[500px]:pb-16 max-[500px]:pt-10 px-3 ">
                                 <div
                                     id="intro"
                                     className="grid gap-5 lg:w-96 p-4">
@@ -63,7 +66,7 @@ export default function Page() {
                                             Jobs
                                         </span>
                                     </div>
-                                    <div className="text-3xl md:text-4xl leading-[50px] tracking-normal font-bold text-black/90">
+                                    <div className="text-3xl max-[500px]:text-center md:text-4xl leading-[50px] tracking-normal font-bold text-black/90">
                                         Jobs of your kind are here for you
                                     </div>
                                     <p className="text-[15px] leading-[30px] font-medium text-black/70 text-justify">
@@ -91,61 +94,7 @@ export default function Page() {
             <section className="">
                 <div className="container mx-auto py-5 px-3 md:px-9 xl:px-20">
                     {/* Contact form */}
-                    <div id="form" className="bg-gray-200 rounded-md py-16">
-                        <div>
-                            <div className="flex justify-center w-full">
-                                <span className="bg-as text-white p-2 rounded-lg">
-                                    <svg
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        viewBox="0 0 20 20"
-                                        fill="currentColor"
-                                        className="w-9 h-9">
-                                        <path d="M3 4a2 2 0 00-2 2v1.161l8.441 4.221a1.25 1.25 0 001.118 0L19 7.162V6a2 2 0 00-2-2H3z" />
-                                        <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 01-2.46 0L1 8.839V14a2 2 0 002 2h14a2 2 0 002-2V8.839z" />
-                                    </svg>
-                                </span>
-                            </div>
-                            <div className="text-center mb-5">
-                                <h1 className="text-3xl font-bold">
-                                    Get in touch
-                                </h1>
-                                <p className="font-semibold text-gray-500 mb-0">
-                                    We'd love to hear from you
-                                </p>
-                            </div>
-                            <div className="flex justify-center text-yellow-900 w-full py-9 px-5 md:px-24">
-                                <form className="flex flex-col gap-9 w-full">
-                                    <div className="grid md:flex gap-5">
-                                        <div className="grid gap-5 w-full">
-                                            <label>Name</label>
-                                            <input
-                                                className="bg-slate-100 w-full py-2 px-3 outline-none rounded border-l-2 border-as"
-                                                name="name"
-                                            />
-                                        </div>
-                                        <div className="grid gap-5 w-full">
-                                            <label>Email</label>
-                                            <input
-                                                className="bg-slate-100 w-full py-2 px-3 outline-none rounded border-l-2 border-as"
-                                                name="email"
-                                            />
-                                        </div>
-                                    </div>
-                                    <div className="grid gap-5 w-full">
-                                        <label>Message</label>
-                                        <textarea className="bg-slate-100 h-56 w-full py-2 px-3 outline-none rounded border-l-2 border-as" />
-                                    </div>
-                                    <div className="w-full flex justify-end">
-                                        <button
-                                            type="submit"
-                                            className="px-5 py-2.5 text-sm rounded-lg duration-300 hover:-translate-y-1 text-white bg-as">
-                                            Submit
-                                        </button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
+                  <ContactForm />
                     {/* Contact cards */}
                     <div className="grid lg:grid-cols-4 gap-5 py-20 px-5">
                         <div

@@ -20,9 +20,9 @@ function Landing() {
                 <div className="container mx-auto py-5 px-3 md:px-9 xl:px-20">
                     <div id="intro" className="bg-white overflow-hidden">
                         <div className="grid lg:grid-cols-12">
-                            <div className="grid lg:col-span-6 py-16 items-center px-3">
+                            <div className="grid lg:col-span-6 py-16 max-[500px]:pt-10 max-[500px]:pb-16 items-center px-3">
                                 <div className="grid justify-center lg:justify-start gap-5 lg:w-[500px]">
-                                    <span className="text-3xl md:text-4xl leading-[50px] tracking-normal font-bold text-black/90">
+                                    <span className="text-3xl max-[500px]:text-center max-[500px]:pb-5 md:text-4xl leading-[50px] tracking-normal font-bold text-black/90">
                                         The Future of Talent Recruitment
                                     </span>
                                     <p className="text-[15px] leading-[30px] font-medium text-black/70 text-justify">

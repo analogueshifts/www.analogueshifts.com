@@ -78,19 +78,19 @@ export default function JobView() {
                         : 'opacity-0 translate-y-2'
                 }`}>
                 <div className="container mx-auto py-5 px-3 md:px-9 xl:px-20">
-                    <h1 className="font-bold text-2xl mb-9 animate-fade-in-head">
+                    <h1 className="font-bold max-[500px]:hidden text-2xl mb-9 animate-fade-in-head">
                         AnalogueShifts Jobs
                     </h1>
                     <div className="bg-white overflow-hidden">
                         <div id="intro" className="grid lg:grid-cols-12">
-                            <div className="grid lg:col-span-6 py-16 px-3 lg:px-3 mr-3">
+                            <div className="grid lg:col-span-6 py-16 max-[500px]:pb-16 max-[500px]:pt-10 px-3 lg:px-3 mr-3">
                                 <div className="grid gap-5 lg:w-96">
                                     <div className="flex justify-start mb-2">
                                         <span className="bg-as text-white text-xs font-bold rounded-full py-1 px-3">
                                             Jobs
                                         </span>
                                     </div>
-                                    <div className="text-3xl md:text-4xl leading-[50px] tracking-normal font-bold text-black/90">
+                                    <div className="text-3xl max-[500px]:text-center md:text-4xl leading-[50px] tracking-normal font-bold text-black/90">
                                         AnalogueShifts featured job posts.
                                     </div>
                                     <p className="text-[15px] leading-[30px] font-medium text-black/70 text-justify">
