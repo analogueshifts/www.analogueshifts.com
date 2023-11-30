@@ -1,6 +1,6 @@
 'use client'
 import { useState, useEffect } from 'react'
-import { gsap, ScrollTrigger } from 'gsap'
+//import { gsap, ScrollTrigger } from 'gsap'
 import axios from '@/app/lib/axios'
 import { useRouter } from 'next/navigation'
 import Image from 'next/image'
@@ -8,7 +8,7 @@ import LocationIcon from '@/public/icons/location-icon.png'
 import CategoryIcon from '@/public/icons/category-icon.png'
 import Link from 'next/link'
 
-gsap.registerPlugin(ScrollTrigger)
+//gsap.registerPlugin(ScrollTrigger)
 
 export default function ViewId({ id }) {
     const router = useRouter()

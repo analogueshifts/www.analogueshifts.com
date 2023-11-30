@@ -2,7 +2,7 @@
 import { useEffect, useState } from 'react'
 import axios from '@/app/lib/axios'
 import Link from 'next/link'
-import { gsap, ScrollTrigger } from 'gsap'
+//import { gsap, ScrollTrigger } from 'gsap'
 import Image from 'next/image'
 import Job1 from '@/public/images/jobs/1.jpg'
 import { useInView } from 'react-intersection-observer'
@@ -29,7 +29,7 @@ export default function JobView() {
             })
 
         // Initialize GSAP and ScrollTrigger
-        gsap.registerPlugin(ScrollTrigger)
+        // gsap.registerPlugin(ScrollTrigger)
 
         // Add GSAP animation to the "Head" card
         /*gsap.from('.animate-fade-in-head', {

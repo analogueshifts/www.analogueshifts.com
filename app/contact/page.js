@@ -94,7 +94,7 @@ export default function Page() {
             <section className="">
                 <div className="container mx-auto py-5 px-3 md:px-9 xl:px-20">
                     {/* Contact form */}
-                  <ContactForm />
+                    <ContactForm />
                     {/* Contact cards */}
                     <div className="grid lg:grid-cols-4 gap-5 py-20 px-5">
                         <div
