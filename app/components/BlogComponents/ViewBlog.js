@@ -38,7 +38,7 @@ export default function ViewBlog({ slug }) {
         <>
             {loading && <LoadingTwo />}
             <section className="">
-                <div className="container mx-auto py-5 px-5 md:px-9 xl:px-28">
+                <div className="container mx-auto py-5 px-5 md:px-24 lg:px-56 xl:px-72">
                     {blogData && (
                         <>
                             <h1 id="title" className="font-bold text-2xl mb-9">
