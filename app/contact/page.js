@@ -50,31 +50,26 @@ export default function Page() {
             {/* Page Content */}
             <section className="">
                 <div className="container mx-auto py-5 px-3 md:px-9 xl:px-20">
-                    <h1
-                        id="title"
-                        className="font-bold max-[500px]:hidden text-2xl mb-9">
-                        AnalogueShifts Jobs
+                    <h1 className="font-bold text-2xl mb-9 animate-fade-in-head">
+                        AnalogueShifts Contact
                     </h1>
-                    <div className="bg-white overflow-hidden">
-                        <div className="grid lg:grid-cols-12">
-                            <div className="grid lg:col-span-6 py-16 max-[500px]:pb-16 max-[500px]:pt-10 px-3 ">
-                                <div
-                                    id="intro"
-                                    className="grid gap-5 lg:w-96 p-4">
+                    <div className="bg-white border-0 shadow rounded-lg overflow-hidden">
+                        <div id="intro" className="grid lg:grid-cols-12">
+                            <div className="grid lg:col-span-6 py-16 px-3 lg:px-9">
+                                <div className="grid gap-5 lg:w-96 p-4">
                                     <div className="flex justify-start mb-2">
                                         <span className="bg-as text-white text-xs font-bold rounded-full py-1 px-3">
                                             Jobs
                                         </span>
                                     </div>
-                                    <div className="text-3xl max-[500px]:text-center md:text-4xl leading-[50px] tracking-normal font-bold text-black/90">
-                                        Jobs of your kind are here for you
+                                    <div className="text-3xl font-bold">
+                                        AnalogueShifts featured Contacts.
                                     </div>
-                                    <p className="text-[15px] leading-[30px] font-medium text-black/70 text-justify">
-                                        Clear and concise job listings, The job
-                                        search page contains detailed
-                                        descriptions of the available positions,
-                                        including the job title, location, and
-                                        required qualifications.
+                                    <p>
+                                        Clear and concise job listings, Here,
+                                        you'll find the latest updates and
+                                        developments from our recruitment
+                                        company. Get in touch.
                                     </p>
                                 </div>
                             </div>
@@ -82,7 +77,6 @@ export default function Page() {
                                 <Image
                                     className="object-cover h-full w-full"
                                     src={Image1}
-                                    alt="..."
                                 />
                             </div>
                         </div>
