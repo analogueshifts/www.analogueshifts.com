@@ -77,42 +77,45 @@ export default function JobView() {
                         ? 'opacity-1 translate-y-0'
                         : 'opacity-0 translate-y-2'
                 }`}>
-                <div className="container mx-auto py-5 px-3 md:px-9 xl:px-20">
-                    <h1 className="font-bold max-[500px]:hidden text-2xl mb-9 animate-fade-in-head">
-                        AnalogueShifts Jobs
-                    </h1>
-                    <div className="bg-white overflow-hidden">
-                        <div id="intro" className="grid lg:grid-cols-12">
-                            <div className="grid lg:col-span-6 py-16 max-[500px]:pb-16 max-[500px]:pt-10 px-3 lg:px-3 mr-3">
-                                <div className="grid gap-5 lg:w-96">
-                                    <div className="flex justify-start mb-2">
-                                        <span className="bg-as text-white text-xs font-bold rounded-full py-1 px-3">
-                                            Jobs
-                                        </span>
+                <section className="">
+                    <div className="container mx-auto py-5 px-3 md:px-9 xl:px-20">
+                        <h1 id="title" className="font-bold text-2xl mb-9">
+                            AnalogueShifts Jobs
+                        </h1>
+                        <div className="bg-white border-0 shadow rounded-lg overflow-hidden">
+                            <div className="grid lg:grid-cols-12">
+                                <div className="grid lg:col-span-6 py-16 px-3 lg:px-9">
+                                    <div
+                                        id="intro"
+                                        className="grid gap-5 lg:w-96 p-4">
+                                        <div className="flex justify-start mb-2">
+                                            <span className="bg-as text-white text-xs font-bold rounded-full py-1 px-3">
+                                                Jobs
+                                            </span>
+                                        </div>
+                                        <div className="text-3xl font-bold">
+                                            Jobs of your kind are here for you
+                                        </div>
+                                        <p>
+                                            Clear and concise job listings, The
+                                            job search page contains detailed
+                                            descriptions of the available
+                                            positions, including the job title,
+                                            location, and required
+                                            qualifications.
+                                        </p>
                                     </div>
-                                    <div className="text-3xl max-[500px]:text-center md:text-4xl leading-[50px] tracking-normal font-bold text-black/90">
-                                        AnalogueShifts featured job posts.
-                                    </div>
-                                    <p className="text-[15px] leading-[30px] font-medium text-black/70 text-justify">
-                                        Clear and concise job listings, The job
-                                        search page contains detailed
-                                        descriptions of the available positions,
-                                        including the job title, location, and
-                                        required qualifications. Here, you'll
-                                        find the latest updates and developments
-                                        from our recruitment company.
-                                    </p>
                                 </div>
-                            </div>
-                            <div className="grid lg:col-span-6">
-                                <Image
-                                    className="object-cover h-full w-full"
-                                    src={Job1}
-                                />
+                                <div className="grid lg:col-span-6">
+                                    <Image
+                                        className="object-cover h-full w-full"
+                                        src={Job1}
+                                    />
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                </section>
             </section>
             {/* job preview section */}
             <section className="">
