@@ -12,7 +12,7 @@ export default function ResponsiveNavBar() {
     return (
         <div
             style={{ opacity: opacity }}
-            className="bg-white duration-500 fixed w-[calc(100vw-50px)] top-[68px] block lg:hidden">
+            className="bg-white duration-500 w-full block lg:hidden">
             <div className="pt-2 pb-3 space-y-1">
                 <ResponsiveNavLink href="/" active={pathname === '/'}>
                     Home
@@ -31,7 +31,7 @@ export default function ResponsiveNavBar() {
                     active={pathname === '/contact'}>
                     Contact
                 </ResponsiveNavLink>
-                <ResponsiveNavLink href="https://app.analogueshifts.com">
+                <ResponsiveNavLink href="https://app.analogueshifts.com/dashboard">
                     Get Started
                 </ResponsiveNavLink>
             </div>
@@ -41,14 +41,10 @@ export default function ResponsiveNavBar() {
                 <div>
                     <div className="space-y-1">
                         {/* Authentication */}
-                        <ResponsiveNavLink
-                            href="/login"
-                            active={pathname === '/login'}>
+                        <ResponsiveNavLink href="https://app.analogueshifts.com/login">
                             Login
                         </ResponsiveNavLink>
-                        <ResponsiveNavLink
-                            href="/register"
-                            active={pathname === '/register'}>
+                        <ResponsiveNavLink href="https://app.analogueshifts.com/register">
                             Register
                         </ResponsiveNavLink>
                     </div>

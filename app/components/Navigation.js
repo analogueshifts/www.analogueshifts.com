@@ -19,8 +19,8 @@ const Navigation = () => {
     }, [pathname])
 
     return (
-        <div className="flex w-full justify-center pt-3 pb-20 px-3">
-            <nav className="bg-white bg-opacity-20 backdrop-blur-lg drop-shadow-lg border border-gray-100 w-[calc(100%-50px)] rounded-full fixed z-30">
+        <div className="flex justify-center pt-3 pb-20 px-3">
+            <nav className="bg-white bg-opacity-20 backdrop-blur-lg drop-shadow-lg border border-gray-100 w-full lg:rounded-full fixed z-30">
                 {/* Primary Navigation Menu */}
                 <div className="w-full mx-auto px-4 lg:px-6 xl:px-8">
                     <div className="flex justify-between h-16">
