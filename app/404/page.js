@@ -2,8 +2,7 @@ import Link from 'next/link'
 
 export const metadata = {
     title: '404',
-    description:
-        'Next SEO packages simplifies the SEO management in Next Apps with less configurations',
+    description: 'Page not Fount',
 }
 
 export default function Page() {
@@ -30,6 +29,11 @@ export default function Page() {
                                         className="text-gray-500 font-semibold text-md p-3 border hover:ml-3"
                                         href="/blog">
                                         Blog
+                                    </Link>
+                                    <Link
+                                        className="text-gray-500 font-semibold text-md p-3 border hover:ml-3"
+                                        href="/jobs">
+                                        Jobs
                                     </Link>
                                     <Link
                                         className="text-gray-500 font-semibold text-md p-3 border hover:ml-3"

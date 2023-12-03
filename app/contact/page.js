@@ -1,13 +1,15 @@
 import Image from 'next/image'
 import Image1 from '@/public/images/1.jpg'
 import ContactForm from '../components/ContactForm'
+// import SeoController from '../lib/SeoController'
 
 export const metadata = {
-    title: '24/7 Contact Center',
+    title: '24/7 Contact Center | AnalogueShift',
     description:
         "Have a question for Analogueshifts? Our team is here to help. Contact us today to learn more about our recruitment services or to discuss your organization's hiring needs",
+    canonical: 'https://www.analogueshifts.com',
+    ogImage: '/images/a4.jpg',
 }
-
 export default function Page() {
     /* useEffect(() => {
         // Animation for the main heading
@@ -47,6 +49,7 @@ export default function Page() {
 
     return (
         <div>
+            {/* <SeoController seoData={seoData} /> */}
             {/* Page Content */}
             <section className="">
                 <div className="container mx-auto py-5 px-3 md:px-9 xl:px-20">

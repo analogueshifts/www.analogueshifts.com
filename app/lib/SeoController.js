@@ -1,4 +1,6 @@
+'use client'
 import Head from 'next/head'
+import HImage from '@/public/logo.png'
 import { NextSeo } from 'next-seo'
 
 function SeoController({ seoData }) {
@@ -8,7 +10,7 @@ function SeoController({ seoData }) {
                 <meta property="og:image" content={seoData?.ogImage} />
                 <meta property="og:image:height" content="630" />
                 <meta property="og:image:width" content="1200" />
-                <link rel="icon" type="image/x-icon" href="/logo.png" />
+                <link rel="icon" type="image/x-icon" href={HImage} />
                 {/* Google tag (gtag.js) */}
                 <script
                     async

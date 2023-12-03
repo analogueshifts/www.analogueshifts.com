@@ -1,11 +1,13 @@
 import PageContent from '../components/AboutComponents/PageContent'
+// import SeoController from '../lib/SeoController'
 
 export const metadata = {
-    title: 'About Us',
+    title: 'About Us | AnalogueShifts',
     description:
         "At Analogueshifts, we're passionate about connecting employers with top tech talent from around the world. Our team of experts brings years of experience and industry knowledge to every recruitment search. Learn more about us and our mission today.",
+    canonical: 'https://www.analogueshifts.com',
+    ogImage: '/images/a4.jpg',
 }
-
 export default function Page() {
     /*useEffect(() => {
         // Animation for the main heading
@@ -43,5 +45,10 @@ export default function Page() {
         })
     }, [])*/
 
-    return <PageContent />
+    return (
+        <>
+            {/* <SeoController seoData={seoData} /> */}
+            <PageContent />
+        </>
+    )
 }
