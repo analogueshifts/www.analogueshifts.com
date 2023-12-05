@@ -1,7 +1,7 @@
 import ViewBlog from '@/app/components/BlogComponents/ViewBlog'
 import { axiosBlog } from '@/app/lib/axios'
 
-export async function generateMetadata({ params }, parent) {
+export async function generateMetadata({ params }) {
     // read route params
     const slug = params.blogTitle
 
