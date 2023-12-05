@@ -7,8 +7,22 @@ export const metadata = {
     title: '24/7 Contact Center | AnalogueShift',
     description:
         "Have a question for Analogueshifts? Our team is here to help. Contact us today to learn more about our recruitment services or to discuss your organization's hiring needs",
-    canonical: 'https://www.analogueshifts.com',
-    ogImage: '/images/a4.jpg',
+    openGraph: {
+        title: '24/7 Contact Center | AnalogueShift',
+        description:
+            "Have a question for Analogueshifts? Our team is here to help. Contact us today to learn more about our recruitment services or to discuss your organization's hiring needs",
+        url: 'https://www.analogueshifts.com',
+        siteName: 'AnalogueShifts',
+        images: [
+            {
+                url: '/images/a4.jpg',
+                width: 800,
+                height: 600,
+            },
+        ],
+        locale: 'en_US',
+        type: 'website',
+    },
 }
 export default function Page() {
     /* useEffect(() => {

@@ -8,11 +8,6 @@ import Author from '@/public/author.png'
 
 // import Image from 'next/image'
 
-export const metadata = {
-    title: 'HelpFul Articles',
-    description: 'Some HelpFul Blog/Articles',
-}
-
 export default function ViewBlog({ slug }) {
     const [blogData, setBlogData] = useState()
     const [loading, setLoading] = useState(false)
@@ -25,6 +20,7 @@ export default function ViewBlog({ slug }) {
             .then(res => {
                 const data = res.data[0]
                 setBlogData(data)
+                console.log(data)
                 setLoading(false)
             })
             .catch(error => {

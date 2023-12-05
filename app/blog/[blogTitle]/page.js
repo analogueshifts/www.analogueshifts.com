@@ -1,13 +1,37 @@
 import ViewBlog from '@/app/components/BlogComponents/ViewBlog'
+import { axiosBlog } from '@/app/lib/axios'
 
-// import Image from 'next/image'
+export async function generateMetadata({ params }, parent) {
+    // read route params
+    const slug = params.blogTitle
 
-export const metadata = {
-    title: 'Trends in Talent Recruitment | AnalogueShifts Blog',
-    description:
-        "Stay up-to-date with the latest news and trends in the tech industry with Analogueshifts' blog. Our expert writers cover a wide range of topics, from coding to cybersecurity and everything in between.",
-    canonical: 'https://www.analogueshifts.com',
-    ogImage: '/images/a4.jpg',
+    // fetch data
+    const product = await axiosBlog
+        .get('/posts?slug=' + slug)
+        .then(res => {
+            const data = res.data[0]
+            return data
+        })
+        .catch(error => {
+            alert(error)
+        })
+
+    return {
+        title: product.yoast_head_json.title,
+        description: product.yoast_head_json.og_description,
+        openGraph: {
+            title: product.yoast_head_json.title,
+            description: product.yoast_head_json.og_description,
+            url: 'https://www.analogueshifts.com',
+            siteName: 'AnalogueShifts',
+            images: product.yoast_head_json.og_image,
+            locale: 'en_US',
+            type: 'website',
+        },
+        alternates: {
+            canonical: product.yoast_head_json.canonical,
+        },
+    }
 }
 
 export default function Page({ params }) {

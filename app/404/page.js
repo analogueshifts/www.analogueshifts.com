@@ -2,7 +2,22 @@ import Link from 'next/link'
 
 export const metadata = {
     title: '404',
-    description: 'Page not Fount',
+    description: 'Page not Found',
+    openGraph: {
+        title: '404',
+        description: 'Page not Found',
+        url: 'https://www.analogueshifts.com',
+        siteName: 'AnalogueShifts',
+        images: [
+            {
+                url: '/images/a4.jpg',
+                width: 800,
+                height: 600,
+            },
+        ],
+        locale: 'en_US',
+        type: 'website',
+    },
 }
 
 export default function Page() {

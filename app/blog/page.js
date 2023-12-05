@@ -4,8 +4,22 @@ export const metadata = {
     title: 'Trends in Talent Recruitment | AnalogueShifts Blog',
     description:
         "Stay up-to-date with the latest news and trends in the tech industry with Analogueshifts' blog. Our expert writers cover a wide range of topics, from coding to cybersecurity and everything in between.",
-    canonical: 'https://www.analogueshifts.com',
-    ogImage: '/images/a4.jpg',
+    openGraph: {
+        title: 'Trends in Talent Recruitment | AnalogueShifts Blog',
+        description:
+            "Stay up-to-date with the latest news and trends in the tech industry with Analogueshifts' blog. Our expert writers cover a wide range of topics, from coding to cybersecurity and everything in between.",
+        url: 'https://www.analogueshifts.com',
+        siteName: 'AnalogueShifts',
+        images: [
+            {
+                url: '/images/a4.jpg',
+                width: 800,
+                height: 600,
+            },
+        ],
+        locale: 'en_US',
+        type: 'website',
+    },
 }
 
 export default function Page() {
