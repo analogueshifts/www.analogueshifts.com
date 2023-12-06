@@ -124,7 +124,7 @@ export default function ShareJob({ cancel, link }) {
                         </button>
                     </div>
                 </div>
-                <div className="w-full flex flex-col pt-3 gap-2.5">
+                <div className="w-full  flex flex-col pt-3 gap-2.5">
                     <p className="font-medium text-black/80 text-base">
                         Share To
                     </p>

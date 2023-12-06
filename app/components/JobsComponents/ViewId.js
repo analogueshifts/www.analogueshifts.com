@@ -130,7 +130,7 @@ export default function ViewId({ id }) {
                         )}
 
                         {job && (
-                            <section className="w-full px-8 pt-6 h-16 flex gap-5 flex-wrap">
+                            <section className="w-full px-8 pt-6 h-max flex gap-5 flex-wrap">
                                 <a
                                     href={job.application}
                                     className="bg-as text-white rounded lg:w-fit py-2.5 duration-300 hover:-translate-y-1 px-14">
