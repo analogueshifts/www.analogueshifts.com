@@ -6,10 +6,12 @@ import Link from 'next/link'
 import Image from 'next/image'
 import Job1 from '@/public/images/jobs/1.jpg'
 import { useInView } from 'react-intersection-observer'
+import LoadingTwo from '../Loading'
 
 export default function JobView() {
     const [jobs, setJobs] = useState([])
     const [searchFilter, setSearchFilter] = useState('')
+    const [loading, setLoading] = useState(false)
 
     const [ref, inView] = useInView({
         triggerOnce: true,
@@ -17,14 +19,17 @@ export default function JobView() {
     })
 
     useEffect(() => {
+        setLoading(true)
         // Fetch job data from your API
         axios
             .get('/jobs')
             .then(res => {
                 const data = res.data.jobs
                 setJobs(data)
+                setLoading(false)
             })
             .catch(error => {
+                setLoading(false)
                 alert(error)
             })
 
@@ -70,6 +75,7 @@ export default function JobView() {
 
     return (
         <>
+            {loading && <LoadingTwo />}
             <section
                 ref={ref}
                 className={`duration-500 ${

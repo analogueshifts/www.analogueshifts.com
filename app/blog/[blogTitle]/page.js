@@ -10,6 +10,7 @@ export async function generateMetadata({ params }) {
         .get('/posts?slug=' + slug)
         .then(res => {
             const data = res.data[0]
+            console.log(data)
             return data
         })
         .catch(error => {
@@ -19,6 +20,8 @@ export async function generateMetadata({ params }) {
     return {
         title: product.yoast_head_json.title,
         description: product.yoast_head_json.og_description,
+        robots: product.yoast_head_json.robots,
+        authors: [{ name: product.yoast_head_json.author }],
         openGraph: {
             title: product.yoast_head_json.title,
             description: product.yoast_head_json.og_description,
@@ -26,10 +29,16 @@ export async function generateMetadata({ params }) {
             siteName: 'AnalogueShifts',
             images: product.yoast_head_json.og_image,
             locale: 'en_US',
-            type: 'website',
+            type: product.yoast_head_json.og_type,
+            publishedTime: product.yoast_head_json.article_published_time,
+            modifiedTime: product.yoast_head_json.article_modified_time,
         },
         alternates: {
-            canonical: product.yoast_head_json.canonical,
+            canonical: 'https://www.analogueshifts.com/blog/' + product.slug,
+        },
+        twitter: {
+            card: product.yoast_head_json.twitter_card,
+            misc: product.yoast_head_json.twitter_misc,
         },
     }
 }
