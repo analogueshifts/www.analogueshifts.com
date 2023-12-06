@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react'
 import { axiosBlog } from '../../lib/axios'
 import Link from 'next/link'
 import Image from 'next/image'
-import A4 from '@/public/images/a4.jpg'
+import A4 from '@/public/images/blogHero.jpg'
 import SearchIcon from '@/public/images/search-icon.png'
 import LoadingTwo from '../Loading'
 import Author from '@/public/author.png'
@@ -51,11 +51,11 @@ export default function BlogList() {
             <div className="py-9">
                 <div className="bg-white border-0 shadow rounded-lg overflow-hidden">
                     <div className="grid lg:grid-cols-12">
-                        <div className="grid lg:col-span-7 py-16 px-3">
-                            <div className="grid justify-center lg:justify-start gap-5 lg:w-[500px] p-4">
-                                <h1 className="text-3xl md:text-5xl font-bold">
+                        <div className="grid lg:col-span-6 py-16 px-3 lg:px-9">
+                            <div id="intro" className="grid gap-5 lg:w-96 p-4">
+                                <div className="text-3xl font-bold">
                                     AnalogueShifts HelpFul Articles
-                                </h1>
+                                </div>
                                 <h2>
                                     Your Success in Recruitment and Technical
                                     Support is our Priority. Welcome to Analogue
@@ -69,11 +69,10 @@ export default function BlogList() {
                                 </h2>
                             </div>
                         </div>
-                        <div className="grid lg:col-span-5">
+                        <div className="grid lg:col-span-6">
                             <Image
                                 className="object-cover h-full w-full"
                                 src={A4}
-                                alt="landing"
                             />
                         </div>
                     </div>

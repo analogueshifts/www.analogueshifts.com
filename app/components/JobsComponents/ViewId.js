@@ -2,7 +2,7 @@
 import { useState, useEffect } from 'react'
 //import { gsap, ScrollTrigger } from 'gsap'
 import axios from '@/app/lib/axios'
-import { useRouter } from 'next/navigation'
+import { useRouter, usePathname } from 'next/navigation'
 import Image from 'next/image'
 import LocationIcon from '@/public/icons/location-icon.png'
 import Link from 'next/link'
@@ -13,6 +13,7 @@ import ShareJob from '../shareJobModal'
 
 export default function ViewId({ id }) {
     const router = useRouter()
+    const pathname = usePathname()
 
     const [job, setJob] = useState()
     const [loading, setLoading] = useState(false)
@@ -140,7 +141,10 @@ export default function ViewId({ id }) {
 
                                 <button
                                     onClick={() =>
-                                        setLinkToShare(job.application)
+                                        setLinkToShare(
+                                            'https://www.analogueshifts.com' +
+                                                pathname,
+                                        )
                                     }
                                     className="border-as border text-as duration-300 hover:-translate-y-1 rounded lg:w-fit py-2.5 px-14">
                                     Share Job
