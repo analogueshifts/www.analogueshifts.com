@@ -7,6 +7,7 @@ module.exports = {
         './app/**/*.{js,ts,jsx,tsx,mdx}',
     ],
     darkMode: 'media',
+
     theme: {
         extend: {
             colors: {

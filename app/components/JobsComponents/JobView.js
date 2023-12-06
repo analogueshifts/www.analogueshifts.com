@@ -155,7 +155,7 @@ export default function JobView() {
                                         className="mb-5 animate-fade-in-job"
                                         key={index}>
                                         <div className="bg-white h-full shadow border-0">
-                                            <div className="p-5">
+                                            <div className="p-7">
                                                 <div className="flex flex-wrap gap-2">
                                                     <span className="inline-block bg-yellow-500 text-white text-xs font-bold rounded-full py-1 px-3">
                                                         Job
@@ -176,7 +176,7 @@ export default function JobView() {
                                                     </span>
                                                 </div>
 
-                                                <h5 className="h-16 overflow-hidden font-bold text-lg mb-3">
+                                                <h5 className="h-16 overflow-hidden font-bold text-lg mt-3.5 mb-1.5">
                                                     {job.role}
                                                 </h5>
                                                 <div className="h-fit mb-0 overflow-hidden">

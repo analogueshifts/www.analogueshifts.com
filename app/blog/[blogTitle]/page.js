@@ -10,7 +10,6 @@ export async function generateMetadata({ params }) {
         .get('/posts?slug=' + slug)
         .then(res => {
             const data = res.data[0]
-            console.log(data)
             return data
         })
         .catch(error => {
