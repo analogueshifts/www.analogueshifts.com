@@ -6,10 +6,10 @@ import AboutImage1 from '@/public/images/about/1.jpg'
 import AboutImage2 from '@/public/images/about/2.jpg'
 import CEO from '@/public/images/team/ceo.jpeg'
 import Recruit from '@/public/images/team/recruit.jpg'
-import Director from '@/public/images/team/director.jpg'
+import FrontEnd from '@/public/images/team/frontend.jpeg'
 import Social from '@/public/images/team/social.jpg'
 import Dev from '@/public/images/team/dev.png'
-import Lawyer from '@/public/images/team/lawyer.jpeg'
+import Writer from '@/public/images/team/writer.jpg'
 import { useInView } from 'react-intersection-observer'
 export default function PageContent() {
     const [ref, inView] = useInView({
@@ -38,7 +38,7 @@ export default function PageContent() {
                                     <div className="text-3xl font-bold">
                                         Learn about AnalogueShifts
                                     </div>
-                                    <p>
+                                    <h2>
                                         AnalogueShifts is a Project Management
                                         and Talent Acquisition Company. Our
                                         mission is to solve the problem of cost
@@ -47,7 +47,7 @@ export default function PageContent() {
                                         clients. We are equipped with the most
                                         talented work force across the globe and
                                         we are ready to work 24/7.
-                                    </p>
+                                    </h2>
                                 </div>
                             </div>
                             <div className="grid lg:col-span-6">
@@ -71,10 +71,10 @@ export default function PageContent() {
                     <div className="grid justify-center">
                         <div className="md:w-[700px]">
                             <div className="grid lg:flex lg:flex-col gap-5 text-center my-5">
-                                <h1 className="text-4xl font-bold mb-3">
+                                <p className="text-4xl font-bold mb-3">
                                     Our mission is to make hiring easier for
                                     everyone.
-                                </h1>
+                                </p>
                                 <p className="text-lg mb-4 leading-[30px] font-medium text-black/60 text-center">
                                     Our mission is to solve the problem of cost
                                     for Startups and Large scale companies
@@ -209,21 +209,6 @@ export default function PageContent() {
                             </div>
                             <div className="grid justify-center rounded p-2 cursor-pointer relative">
                                 <Image
-                                    src={Director}
-                                    className="object-cover grid justify-center bg-gray-300 h-80 md:h-96 w-80 md:w-96 rounded-lg"
-                                    alt="..."
-                                />
-                                <div className="bg-white rounded-md grid justify-center py-3 px-2 gap-1 font-bold absolute inset-x-5 bottom-5">
-                                    <span className="flex justify-center">
-                                        Robert Michaelson
-                                    </span>
-                                    <span className="flex justify-center text-yellow-500">
-                                        US Sales Director
-                                    </span>
-                                </div>
-                            </div>
-                            <div className="grid justify-center rounded p-2 cursor-pointer relative">
-                                <Image
                                     src={Social}
                                     className="object-cover grid justify-center bg-gray-300 h-80 md:h-96 w-80 md:w-96 rounded-lg"
                                     alt="..."
@@ -248,22 +233,37 @@ export default function PageContent() {
                                         Teslim Abdulwahab
                                     </span>
                                     <span className="flex justify-center text-yellow-500">
-                                        Developer
+                                        Full-Stack Developer
                                     </span>
                                 </div>
                             </div>
                             <div className="grid justify-center rounded p-2 cursor-pointer relative">
                                 <Image
-                                    src={Lawyer}
+                                    src={FrontEnd}
                                     className="object-cover grid justify-center bg-gray-300 h-80 md:h-96 w-80 md:w-96 rounded-lg"
                                     alt="..."
                                 />
                                 <div className="bg-white rounded-md grid justify-center py-3 px-2 gap-1 font-bold absolute inset-x-5 bottom-5">
                                     <span className="flex justify-center">
-                                        Nonye nwonsu
+                                        Promise Onuoha
                                     </span>
                                     <span className="flex justify-center text-yellow-500">
-                                        Lawyer
+                                        Frontend Developer
+                                    </span>
+                                </div>
+                            </div>
+                            <div className="grid justify-center rounded p-2 cursor-pointer relative">
+                                <Image
+                                    src={Writer}
+                                    className="object-cover grid justify-center bg-gray-300 h-80 md:h-96 w-80 md:w-96 rounded-lg"
+                                    alt="..."
+                                />
+                                <div className="bg-white rounded-md grid justify-center py-3 px-2 gap-1 font-bold absolute inset-x-5 bottom-5">
+                                    <span className="flex justify-center">
+                                        Grace Evumovwe
+                                    </span>
+                                    <span className="flex justify-center text-yellow-500">
+                                        Content Writer
                                     </span>
                                 </div>
                             </div>
