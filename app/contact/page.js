@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import Image1 from '@/public/images/1.jpg'
+import Image1 from '@/public/images/contactHero.jpg'
 import ContactForm from '../components/ContactForm'
 // import SeoController from '../lib/SeoController'
 
@@ -77,11 +77,6 @@ export default function Page() {
                         <div id="intro" className="grid lg:grid-cols-12">
                             <div className="grid lg:col-span-6 py-16 px-3 lg:px-9">
                                 <div className="grid gap-5 lg:w-96 p-4">
-                                    <div className="flex justify-start mb-2">
-                                        <span className="bg-as text-white text-xs font-bold rounded-full py-1 px-3">
-                                            Jobs
-                                        </span>
-                                    </div>
                                     <div className="text-3xl font-bold">
                                         AnalogueShifts featured Contacts.
                                     </div>
