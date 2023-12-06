@@ -66,9 +66,9 @@ export default function ViewId({ id }) {
                         {job && (
                             <header className="pt-5 max-[500px]:pt-2 mb-20 max-[500px]:mb-14">
                                 {/* Post title */}
-                                <p className="font-medium text-black/90 text-2xl md:text-4xl fade-in pb-4">
+                                <h1 className="font-medium text-black/90 text-2xl md:text-4xl fade-in pb-4">
                                     {job.role}
-                                </p>
+                                </h1>
                                 <div className="flex gap-6 items-center pl-20 max-[500px]:pl-5 max-[500px]:gap-5 flex-wrap">
                                     <div className="flex items-center gap-2">
                                         <Image
@@ -121,11 +121,12 @@ export default function ViewId({ id }) {
                                 <p className="font-normal text-black/90 text-2xl md:text-3xl fade-in pb-5">
                                     Job description
                                 </p>
-                                <p
+                                <h2
                                     className="h-max text-black/90 text-lg font-medium"
                                     dangerouslySetInnerHTML={{
                                         __html: job.description,
-                                    }}></p>
+                                    }}
+                                />
                             </section>
                         )}
 

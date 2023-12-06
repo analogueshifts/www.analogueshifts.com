@@ -22,10 +22,10 @@ function Landing() {
                         <div className="grid lg:grid-cols-12">
                             <div className="grid lg:col-span-7 py-16 px-3">
                                 <div className="grid justify-center lg:justify-start gap-5 lg:w-[500px] p-4">
-                                    <span className="text-3xl md:text-5xl font-bold">
+                                    <h1 className="text-3xl md:text-5xl font-bold">
                                         The Future of Talent Recruitment
-                                    </span>
-                                    <p>
+                                    </h1>
+                                    <h2>
                                         Your Success in Recruitment and
                                         Technical Support is our Priority.
                                         Welcome to Analogue Shifts, where we
@@ -36,7 +36,7 @@ function Landing() {
                                         talent and providing reliable technical
                                         assistance are crucial to driving your
                                         company’s growth.
-                                    </p>
+                                    </h2>
                                 </div>
                             </div>
                             <div className="grid lg:col-span-5">

@@ -29,7 +29,7 @@ export default function BlogList() {
                 setLoading(false)
             })
     }, [])
-    console.log(blogData)
+    // console.log(blogData)
 
     // useEffect(() => {
     //     if (searchValue.length > 1) {
@@ -53,10 +53,10 @@ export default function BlogList() {
                     <div className="grid lg:grid-cols-12">
                         <div className="grid lg:col-span-7 py-16 px-3">
                             <div className="grid justify-center lg:justify-start gap-5 lg:w-[500px] p-4">
-                                <span className="text-3xl md:text-5xl font-bold">
+                                <h1 className="text-3xl md:text-5xl font-bold">
                                     AnalogueShifts HelpFul Articles
-                                </span>
-                                <p>
+                                </h1>
+                                <h2>
                                     Your Success in Recruitment and Technical
                                     Support is our Priority. Welcome to Analogue
                                     Shifts, where we blend the expertise of
@@ -66,7 +66,7 @@ export default function BlogList() {
                                     top talent and providing reliable technical
                                     assistance are crucial to driving your
                                     company’s growth.
-                                </p>
+                                </h2>
                             </div>
                         </div>
                         <div className="grid lg:col-span-5">

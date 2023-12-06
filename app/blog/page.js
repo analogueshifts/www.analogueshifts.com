@@ -3,7 +3,7 @@ import BlogList from '../components/BlogComponents/BlogList'
 export const metadata = {
     title: 'Trends in Talent Recruitment | AnalogueShifts Blog',
     description:
-        "Stay up-to-date with the latest news and trends in the tech industry with Analogueshifts' blog. Our expert writers cover a wide range of topics, from coding to cybersecurity and everything in between.",
+        "Stay up-to-date with the latest news and trends in the tech industry with Analogueshifts' blog. Our expert writers cover a wide range of topics, from coding to cybersecurity and everything in between. ",
     openGraph: {
         title: 'Trends in Talent Recruitment | AnalogueShifts Blog',
         description:
@@ -19,6 +19,9 @@ export const metadata = {
         ],
         locale: 'en_US',
         type: 'website',
+    },
+    alternates: {
+        canonical: 'https://www.analogueshifts.com/blog/',
     },
 }
 

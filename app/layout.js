@@ -33,6 +33,13 @@ export const metadata = {
 export default function RootLayout({ children }) {
     return (
         <html lang="en">
+            <head>
+                <link
+                    rel="icon"
+                    href="https://www.analogueshifts.com/logo.png"
+                    sizes="any"
+                />
+            </head>
             <body className={inter.className}>
                 <section className="bg-slate-50">
                     <Navigation />

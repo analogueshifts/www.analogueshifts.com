@@ -4,7 +4,7 @@ import axios from '@/app/lib/axios'
 import Link from 'next/link'
 //import { gsap, ScrollTrigger } from 'gsap'
 import Image from 'next/image'
-import Job1 from '@/public/images/jobs/1.jpg'
+import Job3 from '@/public/images/jobs/3.jpg'
 import { useInView } from 'react-intersection-observer'
 import LoadingTwo from '../Loading'
 
@@ -102,20 +102,20 @@ export default function JobView() {
                                         <div className="text-3xl font-bold">
                                             Jobs of your kind are here for you
                                         </div>
-                                        <p>
+                                        <h2>
                                             Clear and concise job listings, The
                                             job search page contains detailed
                                             descriptions of the available
                                             positions, including the job title,
                                             location, and required
                                             qualifications.
-                                        </p>
+                                        </h2>
                                     </div>
                                 </div>
                                 <div className="grid lg:col-span-6">
                                     <Image
                                         className="object-cover h-full w-full"
-                                        src={Job1}
+                                        src={Job3}
                                     />
                                 </div>
                             </div>

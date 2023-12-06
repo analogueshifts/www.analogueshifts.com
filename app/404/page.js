@@ -18,6 +18,9 @@ export const metadata = {
         locale: 'en_US',
         type: 'website',
     },
+    alternates: {
+        canonical: 'https://www.analogueshifts.com/404/',
+    },
 }
 
 export default function Page() {

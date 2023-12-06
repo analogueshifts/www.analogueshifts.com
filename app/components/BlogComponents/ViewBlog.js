@@ -20,7 +20,7 @@ export default function ViewBlog({ slug }) {
             .then(res => {
                 const data = res.data[0]
                 setBlogData(data)
-                console.log(data)
+                // console.log(data)
                 setLoading(false)
             })
             .catch(error => {
@@ -75,9 +75,9 @@ export default function ViewBlog({ slug }) {
                                     className="w-[40px] h-[40px] rounded-full"
                                 />
                                 <div className="h-full flex flex-col justify-center">
-                                    <p className="text-sm text-black/80 font-medium">
+                                    <h2 className="text-sm text-black/80 font-medium">
                                         AnalogueShifts
-                                    </p>
+                                    </h2>
                                 </div>
                             </Link>
                             <Link

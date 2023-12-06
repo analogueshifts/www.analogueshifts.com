@@ -23,6 +23,9 @@ export const metadata = {
         locale: 'en_US',
         type: 'website',
     },
+    alternates: {
+        canonical: 'https://www.analogueshifts.com/contact/',
+    },
 }
 export default function Page() {
     /* useEffect(() => {
@@ -82,12 +85,12 @@ export default function Page() {
                                     <div className="text-3xl font-bold">
                                         AnalogueShifts featured Contacts.
                                     </div>
-                                    <p>
+                                    <h2>
                                         Clear and concise job listings, Here,
                                         you'll find the latest updates and
                                         developments from our recruitment
                                         company. Get in touch.
-                                    </p>
+                                    </h2>
                                 </div>
                             </div>
                             <div className="grid lg:col-span-6">
