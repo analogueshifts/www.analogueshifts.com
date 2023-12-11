@@ -46,29 +46,8 @@ export default function ContactForm() {
         setLoading(true)
 
         try {
-            /* const response = await fetch(
-             '/contact',
-                {
-                    method: 'POST',
-                    headers: {
-                        'content-type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        name,
-                        email,
-                        tel,
-                        subject,
-                        message,
-                    }),
-                },
-            )
-            console.log(await response.json())*/
             const response = await axios.post('/contact', {
-                name: name,
-                email: email,
-                tel: tel,
-                subject: subject,
-                message: message,
+                data: JSON.stringify({ name, email, tel, subject, message }),
             })
             if (response.status === 'success') {
                 setSuccessMessage(response.data.status)
