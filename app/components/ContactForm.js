@@ -1,6 +1,7 @@
 'use client'
 import { useState } from 'react'
 import LoadingTwo from './Loading'
+import axios from '@/app/lib/axios'
 
 export default function ContactForm() {
     const [loading, setLoading] = useState(false)
@@ -40,21 +41,25 @@ export default function ContactForm() {
     const sendMail = async e => {
         e.preventDefault()
         setLoading(true)
-
-        const response = await fetch('/api/sendEmail', {
-            method: 'POST',
-            headers: {
-                'content-type': 'application/json',
-            },
-            body: JSON.stringify({
-                name,
-                email,
-                subject,
-                message,
-            }),
-        })
-        console.log(await response.json())
-        setLoading(false)
+        axios
+            .post('/contact', {
+                data: JSON.stringify({
+                    name,
+                    email,
+                    // tel: '08067988642',
+                    subject,
+                    message,
+                }),
+            })
+            .then(res => {
+                const data = res
+                console.log(data)
+                setLoading(false)
+            })
+            .catch(error => {
+                setLoading(false)
+                alert(error)
+            })
     }
 
     return (
