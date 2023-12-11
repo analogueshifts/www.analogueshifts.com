@@ -1,6 +1,8 @@
 'use client'
 import { useState } from 'react'
 import LoadingTwo from './Loading'
+import axios from '../lib/axios'
+import SuccessPopup from './SuccessPopup'
 
 export default function ContactForm() {
     const [loading, setLoading] = useState(false)
@@ -8,6 +10,8 @@ export default function ContactForm() {
     const [email, setEmail] = useState('')
     const [message, setMessage] = useState('')
     const [subject, setSubject] = useState('')
+    const [tel, setTel] = useState('')
+    const [successMessage, setSuccessMessage] = useState(null)
 
     // const nodemailer = require('nodemailer')
     // const transporter = nodemailer.createTransport({
@@ -41,25 +45,47 @@ export default function ContactForm() {
         e.preventDefault()
         setLoading(true)
 
-        const response = await fetch('/api/sendEmail', {
-            method: 'POST',
-            headers: {
-                'content-type': 'application/json',
-            },
-            body: JSON.stringify({
-                name,
-                email,
-                subject,
-                message,
-            }),
-        })
-        console.log(await response.json())
-        setLoading(false)
+        try {
+            /* const response = await fetch(
+             '/contact',
+                {
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        name,
+                        email,
+                        tel,
+                        subject,
+                        message,
+                    }),
+                },
+            )
+            console.log(await response.json())*/
+            const response = await axios.post('/contact', {
+                name: name,
+                email: email,
+                tel: tel,
+                subject: subject,
+                message: message,
+            })
+            if (response.status === 'success') {
+                setSuccessMessage(response.data.status)
+            } else {
+                alert('Error Sending Message')
+            }
+            setLoading(false)
+        } catch (error) {
+            setLoading(false)
+            console.log(error)
+        }
     }
 
     return (
         <>
             {loading && <LoadingTwo />}
+            <SuccessPopup successMessage={successMessage} />
             <div id="form" className="bg-gray-200 rounded-md py-16">
                 <div>
                     <div className="flex justify-center w-full">
@@ -107,6 +133,17 @@ export default function ContactForm() {
                                         required
                                     />
                                 </div>
+                            </div>
+                            <div className="grid gap-5 w-full">
+                                <label>Phone</label>
+                                <input
+                                    type="text"
+                                    className="bg-slate-100 w-full py-2 px-3 outline-none rounded border-l-2 border-as"
+                                    name="phone"
+                                    value={tel}
+                                    onChange={e => setTel(e.target.value)}
+                                    required
+                                />
                             </div>
                             <div className="grid gap-5 w-full">
                                 <label>Subject</label>
