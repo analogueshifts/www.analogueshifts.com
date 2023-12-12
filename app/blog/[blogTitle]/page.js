@@ -24,7 +24,7 @@ export async function generateMetadata({ params }) {
         openGraph: {
             title: product.yoast_head_json.title,
             description: product.yoast_head_json.og_description,
-            url: 'https://www.analogueshifts.com',
+            url: 'https://www.analogueshifts.com/' + product.slug,
             siteName: 'AnalogueShifts',
             images: product.yoast_head_json.og_image,
             locale: 'en_US',
@@ -33,7 +33,7 @@ export async function generateMetadata({ params }) {
             modifiedTime: product.yoast_head_json.article_modified_time,
         },
         alternates: {
-            canonical: 'https://www.analogueshifts.com/blog/' + product.slug,
+            canonical: '/blog/' + product.slug,
         },
         twitter: {
             card: product.yoast_head_json.twitter_card,

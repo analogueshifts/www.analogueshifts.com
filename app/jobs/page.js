@@ -9,7 +9,7 @@ export const metadata = {
         title: 'Jobs in Tech',
         description:
             'Looking for the best tech jobs worldwide? AnalogueShifts has you covered. We work with top employers to bring you the latest opportunities in the tech industry. Visit our jobs page today to start your search.',
-        url: 'https://www.analogueshifts.com',
+        url: 'https://www.analogueshifts.com/jobs',
         siteName: 'AnalogueShifts',
         images: [
             {
@@ -22,7 +22,7 @@ export const metadata = {
         type: 'website',
     },
     alternates: {
-        canonical: 'https://www.analogueshifts.com/jobs/',
+        canonical: '/jobs',
     },
 }
 

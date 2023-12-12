@@ -8,7 +8,7 @@ export const metadata = {
         title: 'Trends in Talent Recruitment | AnalogueShifts Blog',
         description:
             "Stay up-to-date with the latest news and trends in the tech industry with Analogueshifts' blog. Our expert writers cover a wide range of topics, from coding to cybersecurity and everything in between.",
-        url: 'https://www.analogueshifts.com',
+        url: 'https://www.analogueshifts.com/blog',
         siteName: 'AnalogueShifts',
         images: [
             {
@@ -21,7 +21,7 @@ export const metadata = {
         type: 'website',
     },
     alternates: {
-        canonical: 'https://www.analogueshifts.com/blog/',
+        canonical: '/blog',
     },
 }
 

@@ -9,7 +9,7 @@ export const metadata = {
         title: 'About Us | AnalogueShifts',
         description:
             "At Analogueshifts, we're passionate about connecting employers with top tech talent from around the world. Our team of experts brings years of experience and industry knowledge to every recruitment search. Learn more about us and our mission today.",
-        url: 'https://www.analogueshifts.com',
+        url: 'https://www.analogueshifts.com/about',
         siteName: 'AnalogueShifts',
         images: [
             {
@@ -22,7 +22,7 @@ export const metadata = {
         type: 'website',
     },
     alternates: {
-        canonical: 'https://www.analogueshifts.com/about/',
+        canonical: '/about',
     },
 }
 export default function Page() {
