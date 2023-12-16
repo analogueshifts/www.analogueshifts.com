@@ -132,11 +132,6 @@ function Footer() {
                                 target="blank">
                                 Terms & Conditions
                             </Link>
-                            <Link
-                                href="mailto:hello@analogueshifts.com"
-                                target="blank">
-                                Modern Slavery Statement
-                            </Link>
                         </div>
                     </div>
                 </div>
