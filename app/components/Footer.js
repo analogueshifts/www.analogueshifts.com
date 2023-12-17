@@ -122,12 +122,10 @@ function Footer() {
                         </div>
                         <div className="">
                             <li>Pages</li>
-                            <Link href="/docs/privacy-policy" target="blank">
+                            <Link href="/docs/privacy-policy">
                                 Privacy Policy
                             </Link>
-                            <Link
-                                href="/docs/terms-and-conditions"
-                                target="blank">
+                            <Link href="/docs/terms-and-conditions">
                                 Terms & Conditions
                             </Link>
                         </div>
