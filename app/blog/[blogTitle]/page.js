@@ -39,6 +39,31 @@ export async function generateMetadata({ params }) {
             card: product.yoast_head_json.twitter_card,
             misc: product.yoast_head_json.twitter_misc,
         },
+
+        '@context': 'https://schema.org/',
+        '@type': 'BlogPosting',
+        headline: '',
+        image: {
+            '@type': 'ImageObject',
+            url: '',
+            width: '',
+            height: '',
+        },
+        author: {
+            '@type': 'Person',
+            name: '',
+        },
+        publisher: {
+            '@type': 'Organization',
+            name: '',
+            logo: {
+                '@type': 'ImageObject',
+                url: '',
+                width: '',
+                height: '',
+            },
+        },
+        datePublished: '',
     }
 }
 
