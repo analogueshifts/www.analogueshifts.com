@@ -13,17 +13,17 @@ export const metadata = {
     },
     identifier: {
         '@type': 'PropertyValue',
-        name: 'Google',
+        name: 'AnalogueShifts',
         value: '1234567',
     },
-    datePosted: '2017-01-18',
-    validThrough: '2017-03-18T00:00',
+    datePosted: '2023-01-18',
+    validThrough: '2024-03-18T00:00',
     employmentType: 'CONTRACTOR',
     hiringOrganization: {
         '@type': 'Organization',
-        name: 'Google',
-        sameAs: 'https://www.google.com',
-        logo: 'https://www.example.com/images/logo.png',
+        name: 'AnalogueShifts',
+        sameAs: 'https://www.analogueshifts.com',
+        logo: 'https://www.analogueshifts.com/logo.png',
     },
     jobLocation: {
         '@type': 'Place',
