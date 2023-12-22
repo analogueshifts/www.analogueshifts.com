@@ -28,7 +28,7 @@ function Footer() {
                             </h3>
                         </a>
 
-                        <div className="grid gap-3 text-lg text-gray-100 font-sans">
+                        <div className="grid gap-3 text-lg text-gray-100 font-sans w-max">
                             <a href="tel:+2348066708343" target="blank">
                                 Call: +2348066708343
                             </a>
