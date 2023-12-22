@@ -40,25 +40,24 @@ export default function ContactForm() {
     //     console.log(await response.json())
     //     setLoading(false)
     // }
-
+    const data = JSON.stringify({ name, email, tel, subject, message })
     const sendMail = async e => {
         e.preventDefault()
         setLoading(true)
-
-        try {
-            const response = await axios.post('/contact', {
-                data: JSON.stringify({ name, email, tel, subject, message }),
+        axios
+            .post('/contact', data)
+            .then(response => {
+                if (response.status === 'success') {
+                    setSuccessMessage(response.data.status)
+                } else {
+                    alert('Error Sending Message')
+                }
+                setLoading(false)
             })
-            if (response.status === 'success') {
-                setSuccessMessage(response.data.status)
-            } else {
-                alert('Error Sending Message')
-            }
-            setLoading(false)
-        } catch (error) {
-            setLoading(false)
-            console.log(error)
-        }
+            .catch(error => {
+                setLoading(false)
+                alert(error)
+            })
     }
 
     return (
