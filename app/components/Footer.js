@@ -12,7 +12,7 @@ function Footer() {
         <div className="footer">
             <footer className="container mx-auto p-4">
                 <div className="wrapper">
-                    <div className="space-y-20">
+                    <div className="space-y-12">
                         <a href="/" className="logo flex gap-5">
                             <img
                                 src="logo.png"
@@ -68,6 +68,7 @@ function Footer() {
                         <div className="">
                             <li>Discover Talents</li>
                             <a
+                                className="mb-2"
                                 href="mailto:hello@analogueshifts.com"
                                 target="blank">
                                 For Companies
@@ -86,16 +87,19 @@ function Footer() {
                         <div className="">
                             <li>Find Work</li>
                             <a
+                                className="mb-2"
                                 href="mailto:hello@analogueshifts.com"
                                 target="blank">
                                 For Technologies
                             </a>
                             <a
+                                className="mb-2"
                                 href="mailto:hello@analogueshifts.com"
                                 target="blank">
                                 Learning Community
                             </a>
                             <a
+                                className="mb-2"
                                 href="mailto:hello@analogueshifts.com"
                                 target="blank">
                                 Leadership Program
@@ -108,12 +112,20 @@ function Footer() {
                         </div>
                         <div className="">
                             <li>Analogue Shifts</li>
-                            <Link href="/about">About Us</Link>
-                            <Link href="mailto:hello@analogueshifts.com">
+                            <Link className="mb-2" href="/about">
+                                About Us
+                            </Link>
+                            <Link
+                                className="mb-2"
+                                href="mailto:hello@analogueshifts.com">
                                 Events
                             </Link>
-                            <Link href="/blog">Blog</Link>
-                            <Link href="mailto:hello@analogueshifts.com">
+                            <Link className="mb-2" href="/blog">
+                                Blog
+                            </Link>
+                            <Link
+                                className="mb-2"
+                                href="mailto:hello@analogueshifts.com">
                                 Press Center
                             </Link>
                             <Link href="mailto:hello@analogueshifts.com">
@@ -122,7 +134,7 @@ function Footer() {
                         </div>
                         <div className="">
                             <li>Pages</li>
-                            <Link href="/docs/privacy-policy">
+                            <Link className="mb-2" href="/docs/privacy-policy">
                                 Privacy Policy
                             </Link>
                             <Link href="/docs/terms-and-conditions">

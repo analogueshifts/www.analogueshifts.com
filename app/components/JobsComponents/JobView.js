@@ -90,19 +90,17 @@ export default function JobView() {
                         </h1>
                         <div className="bg-white border-0 shadow rounded-lg overflow-hidden">
                             <div className="grid lg:grid-cols-12">
-                                <div className="grid lg:col-span-6 py-16 px-3 lg:px-9">
-                                    <div
-                                        id="intro"
-                                        className="grid gap-5 lg:w-96 p-4">
+                                <div className="grid lg:col-span-6 p-7 lg:p-14">
+                                    <div id="intro" className="grid gap-5">
                                         <div className="flex justify-start mb-2">
                                             <span className="bg-as text-white text-xs font-bold rounded-full py-1 px-3">
                                                 Jobs
                                             </span>
                                         </div>
-                                        <div className="text-3xl font-bold">
+                                        <h1 className="text-2xl md:text-4xl font-bold lg:leading-[50px] tracking-wide">
                                             Jobs of your kind are here for you
-                                        </div>
-                                        <h2>
+                                        </h1>
+                                        <h2 className="text-justify">
                                             Clear and concise job listings, The
                                             job search page contains detailed
                                             descriptions of the available

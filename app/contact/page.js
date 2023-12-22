@@ -74,13 +74,13 @@ export default function Page() {
                         AnalogueShifts Contact
                     </h1>
                     <div className="bg-white border-0 shadow rounded-lg overflow-hidden">
-                        <div id="intro" className="grid lg:grid-cols-12">
-                            <div className="grid lg:col-span-6 py-16 px-3 lg:px-9">
-                                <div className="grid gap-5 lg:w-96 p-4">
-                                    <div className="text-3xl font-bold">
+                        <div className="grid lg:grid-cols-12">
+                            <div className="grid lg:col-span-6 p-7 lg:p-14">
+                                <div className="grid justify-center lg:justify-start gap-5 lg:col-span-6">
+                                    <h1 className="text-2xl md:text-4xl font-bold lg:leading-[50px] tracking-wide">
                                         AnalogueShifts featured Contacts.
-                                    </div>
-                                    <h2>
+                                    </h1>
+                                    <h2 className="text-justify">
                                         Clear and concise job listings, Here,
                                         you'll find the latest updates and
                                         developments from our recruitment
@@ -90,8 +90,9 @@ export default function Page() {
                             </div>
                             <div className="grid lg:col-span-6">
                                 <Image
-                                    className="object-cover h-full w-full"
+                                    className="object-cover w-full"
                                     src={Image1}
+                                    alt="landing"
                                 />
                             </div>
                         </div>
@@ -108,7 +109,7 @@ export default function Page() {
                     <div className="grid lg:grid-cols-4 gap-5 py-20 px-5">
                         <div
                             id="card"
-                            className="bg-white grid lg:col-span-1 p-3 gap-2 items-start h-full w-full shadow rounded">
+                            className="bg-white grid lg:col-span-1 p-5 gap-2 items-start h-full w-full shadow rounded">
                             <div className="flex justify-start items-start pb-2">
                                 <span className="bg-as text-white rounded p-2">
                                     <svg
@@ -135,7 +136,7 @@ export default function Page() {
                         </div>
                         <div
                             id="card"
-                            className="bg-white grid lg:col-span-1 p-3 gap-2 items-start h-full w-full shadow rounded">
+                            className="bg-white grid lg:col-span-1 p-5 gap-2 items-start h-full w-full shadow rounded">
                             <div className="flex justify-start items-start pb-2">
                                 <span className="bg-as text-white rounded p-2">
                                     <svg
@@ -163,7 +164,7 @@ export default function Page() {
                         </div>
                         <div
                             id="card"
-                            className="bg-white grid lg:col-span-1 p-3 gap-2 items-start h-full w-full shadow rounded">
+                            className="bg-white grid lg:col-span-1 p-5 gap-2 items-start h-full w-full shadow rounded">
                             <div className="flex justify-start items-start pb-2">
                                 <span className="bg-as text-white rounded p-2">
                                     <svg
@@ -191,7 +192,7 @@ export default function Page() {
                         </div>
                         <div
                             id="card"
-                            className="bg-white grid lg:col-span-1 p-3 gap-2 items-start h-full w-full shadow rounded">
+                            className="bg-white grid lg:col-span-1 p-5 gap-2 items-start h-full w-full shadow rounded">
                             <div className="flex justify-start items-start pb-2">
                                 <span className="bg-as text-white rounded p-2">
                                     <svg

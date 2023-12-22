@@ -49,14 +49,17 @@ export default function BlogList() {
         <>
             {loading && <LoadingTwo />}
             <div className="py-9">
+                <h1 id="title" className="font-bold text-2xl mb-9">
+                    AnalogueShifts Blog
+                </h1>
                 <div className="bg-white border-0 shadow rounded-lg overflow-hidden">
                     <div className="grid lg:grid-cols-12">
-                        <div className="grid lg:col-span-6 py-16 px-3 lg:px-9">
-                            <div id="intro" className="grid gap-5 lg:w-96 p-4">
-                                <div className="text-3xl font-bold">
+                        <div className="grid lg:col-span-6 p-7 lg:p-14">
+                            <div className="grid justify-center lg:justify-start gap-5 lg:col-span-6">
+                                <h1 className="text-2xl md:text-4xl font-bold lg:leading-[50px] tracking-wide">
                                     AnalogueShifts HelpFul Articles
-                                </div>
-                                <h2>
+                                </h1>
+                                <h2 className="text-justify">
                                     Your Success in Recruitment and Technical
                                     Support is our Priority. Welcome to Analogue
                                     Shifts, where we blend the expertise of
@@ -73,6 +76,7 @@ export default function BlogList() {
                             <Image
                                 className="object-cover h-full w-full"
                                 src={A4}
+                                alt="landing"
                             />
                         </div>
                     </div>

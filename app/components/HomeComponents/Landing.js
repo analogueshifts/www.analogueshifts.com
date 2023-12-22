@@ -17,15 +17,15 @@ function Landing() {
                         ? 'opacity-1 translate-y-0'
                         : 'opacity-0 translate-y-2'
                 }`}>
-                <div className="container mx-auto py-5 px-3 md:px-9 xl:px-28">
+                <div className="container mx-auto py-5 px-3 md:px-9 xl:px-20">
                     <div className="bg-white border-0 shadow rounded-lg overflow-hidden">
                         <div className="grid lg:grid-cols-12">
-                            <div className="grid lg:col-span-7 py-16 px-3">
-                                <div className="grid justify-center lg:justify-start gap-5 lg:w-[500px] p-4">
-                                    <h1 className="text-3xl md:text-5xl font-bold">
+                            <div className="grid lg:col-span-6 p-7 lg:p-14">
+                                <div className="grid justify-center lg:justify-start gap-5 lg:col-span-6">
+                                    <h1 className="text-2xl md:text-4xl font-bold lg:leading-[50px] tracking-wide">
                                         The Future of Talent Recruitment
                                     </h1>
-                                    <h2>
+                                    <h2 className="text-justify">
                                         Your Success in Recruitment and
                                         Technical Support is our Priority.
                                         Welcome to Analogue Shifts, where we
@@ -39,7 +39,7 @@ function Landing() {
                                     </h2>
                                 </div>
                             </div>
-                            <div className="grid lg:col-span-5">
+                            <div className="grid lg:col-span-6">
                                 <Image
                                     className="object-cover h-full w-full"
                                     src={A4}

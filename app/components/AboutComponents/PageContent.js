@@ -32,14 +32,12 @@ export default function PageContent() {
                     </h1>
                     <div className="bg-white border-0 shadow rounded-lg overflow-hidden">
                         <div className="grid lg:grid-cols-12">
-                            <div className="grid lg:col-span-6 py-16 px-3 lg:px-9">
-                                <div
-                                    id="intro"
-                                    className="grid gap-5 lg:w-96 p-4">
-                                    <div className="text-3xl font-bold">
+                            <div className="grid lg:col-span-6 p-7 lg:p-14">
+                                <div className="grid justify-center lg:justify-start gap-5 lg:col-span-6">
+                                    <h1 className="text-2xl md:text-4xl font-bold lg:leading-[50px] tracking-wide">
                                         Learn about AnalogueShifts
-                                    </div>
-                                    <h2>
+                                    </h1>
+                                    <h2 className="text-justify">
                                         AnalogueShifts is a Project Management
                                         and Talent Acquisition Company. Our
                                         mission is to solve the problem of cost
@@ -55,6 +53,7 @@ export default function PageContent() {
                                 <Image
                                     className="object-cover h-full w-full"
                                     src={Image1}
+                                    alt="landing"
                                 />
                             </div>
                         </div>
@@ -102,7 +101,7 @@ export default function PageContent() {
                         : 'opacity-0 translate-y-2'
                 }`}
                 id="scroll-target">
-                <div className="container mx-auto py-10 px-3 md:px-9 xl:px-20">
+                <div className="container mx-auto py-14 px-3 md:px-9 xl:px-20">
                     <div className="grid lg:flex lg:grid-cols-2 gap-7 items-center">
                         <div className="grid lg:col-span-1 h-full w-full">
                             <Image
@@ -134,7 +133,7 @@ export default function PageContent() {
                         : 'opacity-0 translate-x-2'
                 }`}
                 id="scroll-target">
-                <div className="container mx-auto py-10 px-3 md:px-9 xl:px-20">
+                <div className="container mx-auto py-14 px-3 md:px-9 xl:px-20">
                     <div className="grid lg:flex lg:flex-row-reverse lg:grid-cols-2 gap-7 items-center">
                         <div className="grid lg:col-span-1 h-full w-full">
                             <Image
@@ -167,7 +166,7 @@ export default function PageContent() {
                         ? 'opacity-1 translate-y-0'
                         : 'opacity-0 translate-y-2'
                 }`}>
-                <div className="container mx-auto py-10 px-3 md:px-9 xl:px-20">
+                <div className="container mx-auto py-14 px-3 md:px-9 xl:px-20">
                     <div className="grid gap-3 text-center">
                         <h3 className="flex justify-center text-2xl md:text-7xl text-black font-bold">
                             Our Team
