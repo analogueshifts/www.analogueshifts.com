@@ -1,10 +1,8 @@
-import { Inter, Lexend } from 'next/font/google'
+import { Lexend } from 'next/font/google'
 import Navigation from './components/Navigation'
 import './globals.css'
 import './scss/app.scss'
 import Footer from './components/Footer'
-
-const inter = Inter({ subsets: ['latin'] })
 
 const lexend = Lexend({
     weight: '400',
