@@ -74,6 +74,7 @@ function Footer() {
                                 For Companies
                             </a>
                             <a
+                                className="mb-2"
                                 href="mailto:hello@analogueshifts.com"
                                 target="blank">
                                 Enterprises
