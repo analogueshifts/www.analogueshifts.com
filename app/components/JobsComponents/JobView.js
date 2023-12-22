@@ -97,7 +97,7 @@ export default function JobView() {
                                                 Jobs
                                             </span>
                                         </div>
-                                        <h1 className="text-2xl md:text-4xl font-bold lg:leading-[50px] tracking-wide">
+                                        <h1 className="text-3xl md:text-4xl font-bold lg:leading-[50px] tracking-wide">
                                             Jobs of your kind are here for you
                                         </h1>
                                         <h2 className="text-justify">
