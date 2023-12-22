@@ -11,7 +11,7 @@ export const metadata = {
         title: '24/7 Contact Center | AnalogueShift',
         description:
             "Have a question for Analogueshifts? Our team is here to help. Contact us today to learn more about our recruitment services or to discuss your organization's hiring needs",
-        url: 'https://www.analogueshifts.com',
+        url: 'https://www.analogueshifts.com/contact',
         siteName: 'AnalogueShifts',
         images: [
             {
@@ -24,7 +24,7 @@ export const metadata = {
         type: 'website',
     },
     alternates: {
-        canonical: 'https://www.analogueshifts.com/contact/',
+        canonical: '/contact',
     },
 }
 export default function Page() {

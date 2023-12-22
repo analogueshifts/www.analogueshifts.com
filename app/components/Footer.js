@@ -122,20 +122,11 @@ function Footer() {
                         </div>
                         <div className="">
                             <li>Pages</li>
-                            <Link
-                                href="mailto:hello@analogueshifts.com"
-                                target="blank">
+                            <Link href="/docs/privacy-policy">
                                 Privacy Policy
                             </Link>
-                            <Link
-                                href="mailto:hello@analogueshifts.com"
-                                target="blank">
+                            <Link href="/docs/terms-and-conditions">
                                 Terms & Conditions
-                            </Link>
-                            <Link
-                                href="mailto:hello@analogueshifts.com"
-                                target="blank">
-                                Modern Slavery Statement
                             </Link>
                         </div>
                     </div>

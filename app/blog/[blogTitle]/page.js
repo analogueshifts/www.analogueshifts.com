@@ -24,7 +24,7 @@ export async function generateMetadata({ params }) {
         openGraph: {
             title: product.yoast_head_json.title,
             description: product.yoast_head_json.og_description,
-            url: 'https://www.analogueshifts.com',
+            url: 'https://www.analogueshifts.com/' + product.slug,
             siteName: 'AnalogueShifts',
             images: product.yoast_head_json.og_image,
             locale: 'en_US',
@@ -33,12 +33,37 @@ export async function generateMetadata({ params }) {
             modifiedTime: product.yoast_head_json.article_modified_time,
         },
         alternates: {
-            canonical: 'https://www.analogueshifts.com/blog/' + product.slug,
+            canonical: '/blog/' + product.slug,
         },
         twitter: {
             card: product.yoast_head_json.twitter_card,
             misc: product.yoast_head_json.twitter_misc,
         },
+
+        '@context': 'https://schema.org/',
+        '@type': 'BlogPosting',
+        headline: '',
+        image: {
+            '@type': 'ImageObject',
+            url: product.yoast_head_json.og_image,
+            width: 100,
+            height: 100,
+        },
+        author: {
+            '@type': 'Person',
+            name: [{ name: product.yoast_head_json.author }],
+        },
+        publisher: {
+            '@type': 'Organization',
+            name: [{ name: product.yoast_head_json.author }],
+            logo: {
+                '@type': 'ImageObject',
+                url: 'https://www.analogueshifts.com/logo.png',
+                width: 100,
+                height: 100,
+            },
+        },
+        datePublished: '',
     }
 }
 
