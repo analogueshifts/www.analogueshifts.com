@@ -7,7 +7,7 @@ const SuccessPopup = ({ successMessage, isVisible, setIsVisible }) => {
             setIsVisible(true)
             const timeoutId = setTimeout(() => {
                 setIsVisible(false)
-            }, 5000)
+            }, 9000)
             return () => clearTimeout(timeoutId)
         }
     }, [successMessage])

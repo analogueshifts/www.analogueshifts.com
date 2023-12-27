@@ -31,6 +31,11 @@ export default function ContactForm() {
                 status: true,
                 message: 'Message sent successfully, We will get in touch.',
             })
+            setName('')
+            setEmail('')
+            setMessage('')
+            setSubject('')
+            setTel('')
         }
         if (!response.ok) {
             setLoading(false)
