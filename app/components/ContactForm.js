@@ -1,7 +1,7 @@
 'use client'
 import { useState } from 'react'
 import LoadingTwo from './Loading'
-import axios from '../lib/axios'
+// import axios from '../lib/axios'
 import SuccessPopup from './SuccessPopup'
 
 export default function ContactForm() {
@@ -12,58 +12,58 @@ export default function ContactForm() {
     const [subject, setSubject] = useState('')
     const [tel, setTel] = useState('')
     const [successMessage, setSuccessMessage] = useState(null)
+    const [isVisible, setIsVisible] = useState(false)
 
-    // const nodemailer = require('nodemailer')
-    // const transporter = nodemailer.createTransport({
-    //     host: process.env.NEXT_PUBLIC_MAIL_HOST,
-    //     port: process.env.NEXT_PUBLIC_MAIL_PORT,
-    //     secure: process.env.NEXT_PUBLIC_MAIL_ENCRYPTION,
-    //     auth: {
-    //         // TODO: replace `user` and `pass` values from <https://forwardemail.net>
-    //         user: process.env.NEXT_PUBLIC_MAIL_USERNAME,
-    //         pass: process.env.NEXT_PUBLIC_MAIL_PASSWORD,
-    //     },
-    // })
-
-    // const sendMail = async function main(e) {
-    //     e.preventDefault()
-    //     setLoading(true)
-    //     // send mail with defined transport object
-    //     const response = await transporter.sendMail({
-    //         from: name,
-    //         email, // sender address
-    //         to: 'hello@analogueshifts.com, norply@analogueshifts.com', // list of receivers
-    //         subject, // Subject line
-    //         text: message, // plain text body
-    //         html: message, // html body
-    //     })
-    //     console.log(await response.json())
-    //     setLoading(false)
-    // }
-    const data = JSON.stringify({ name, email, tel, subject, message })
     const sendMail = async e => {
         e.preventDefault()
         setLoading(true)
-        axios
-            .post('/contact', data)
-            .then(response => {
-                if (response.status === 'success') {
-                    setSuccessMessage(response.data.status)
-                } else {
-                    alert('Error Sending Message')
-                }
-                setLoading(false)
+        const data = JSON.stringify({ name, email, tel, subject, message })
+        const response = await fetch('/api/contact', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: data,
+        })
+        if (response.ok) {
+            setLoading(false)
+            setSuccessMessage({
+                status: true,
+                message: 'Message sent we will get in touch.',
             })
-            .catch(error => {
-                setLoading(false)
-                alert(error)
-            })
+        }
+        if (!response.ok) {
+            setLoading(false)
+            setSuccessMessage({ status: false, message: response.statusText })
+        }
     }
+    // const sendMail = async e => {
+    //     e.preventDefault()
+    //     setLoading(true)
+    //     axios
+    //         .post('/contact', data)
+    //         .then(response => {
+    //             if (response.status === 'success') {
+    //                 setSuccessMessage(response.data.status)
+    //             } else {
+    //                 alert('Error Sending Message')
+    //             }
+    //             setLoading(false)
+    //         })
+    //         .catch(error => {
+    //             setLoading(false)
+    //             alert(error)
+    //         })
+    // }
 
     return (
         <>
             {loading && <LoadingTwo />}
-            <SuccessPopup successMessage={successMessage} />
+            <SuccessPopup
+                successMessage={successMessage}
+                isVisible={isVisible}
+                setIsVisible={setIsVisible}
+            />
             <div id="form" className="bg-gray-200 rounded-md py-16">
                 <div>
                     <div className="flex justify-center w-full">

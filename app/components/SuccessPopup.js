@@ -1,15 +1,13 @@
 'use client'
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 
-const SuccessPopup = ({ successMessage }) => {
-    const [isVisible, setIsVisible] = useState(false)
-
+const SuccessPopup = ({ successMessage, isVisible, setIsVisible }) => {
     useEffect(() => {
         if (successMessage) {
             setIsVisible(true)
             const timeoutId = setTimeout(() => {
                 setIsVisible(false)
-            }, 3000)
+            }, 5000)
             return () => clearTimeout(timeoutId)
         }
     }, [successMessage])
@@ -17,8 +15,15 @@ const SuccessPopup = ({ successMessage }) => {
     return (
         <>
             {isVisible && (
-                <div className="success-popup">
-                    <p>{successMessage}</p>
+                <div
+                    className={
+                        successMessage.status ? 'success-popup' : 'error-popup'
+                    }>
+                    <p>
+                        {successMessage.message}
+                        {successMessage.status === false &&
+                            ', Try again later.'}
+                    </p>
                 </div>
             )}
         </>
