@@ -19,11 +19,7 @@ const SuccessPopup = ({ successMessage, isVisible, setIsVisible }) => {
                     className={
                         successMessage.status ? 'success-popup' : 'error-popup'
                     }>
-                    <p>
-                        {successMessage.message}
-                        {successMessage.status === false &&
-                            ', Try again later.'}
-                    </p>
+                    <p>{successMessage.message}</p>
                 </div>
             )}
         </>

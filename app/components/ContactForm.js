@@ -29,12 +29,15 @@ export default function ContactForm() {
             setLoading(false)
             setSuccessMessage({
                 status: true,
-                message: 'Message sent we will get in touch.',
+                message: 'Message sent successfully, We will get in touch.',
             })
         }
         if (!response.ok) {
             setLoading(false)
-            setSuccessMessage({ status: false, message: response.statusText })
+            setSuccessMessage({
+                status: false,
+                message: 'Message sending failed, Try again later',
+            })
         }
     }
     // const sendMail = async e => {
