@@ -133,6 +133,7 @@ export default function BlogList() {
                         numbers.map(num => {
                             return (
                                 <button
+                                    key={num}
                                     onClick={() => setSelectedNumber(num)}
                                     className={`w-8 h-8 flex justify-center items-center font-medium text-base ${
                                         selectedNumber === num
