@@ -1,18 +1,20 @@
 'use client'
 import { useState, useEffect } from 'react'
 import { axiosBlog } from '../../lib/axios'
-import Link from 'next/link'
 import Image from 'next/image'
 import A4 from '@/public/images/blogHero.jpg'
 import SearchIcon from '@/public/images/search-icon.png'
 import LoadingTwo from '../Loading'
-import Author from '@/public/author.png'
+import MasonryGrid from './MansoryGrid'
 // import { data } from 'autoprefixer'
 
 export default function BlogList() {
     const [blogData, setBlogData] = useState([])
     const [searchFilter, setSearchFilter] = useState('')
     const [loading, setLoading] = useState(false)
+    const [blogs, setBlogs] = useState([])
+    const [selectedNumber, setSelectedNumber] = useState(1)
+    const [numbers, setNumbers] = useState([])
 
     useEffect(() => {
         // Fetch job data from your API
@@ -21,7 +23,7 @@ export default function BlogList() {
             .get('/posts')
             .then(res => {
                 const data = res.data
-                setBlogData(data)
+                setBlogs(data)
                 setLoading(false)
             })
             .catch(error => {
@@ -29,6 +31,27 @@ export default function BlogList() {
                 setLoading(false)
             })
     }, [])
+
+    useEffect(() => {
+        setNumbers([])
+        let division = blogs.length / 6
+        if (division.toString().length > 1) {
+            for (let i = 1; i <= Math.floor(division) + 1; i++) {
+                setNumbers(previous => [...previous, i])
+            }
+        } else {
+            for (let i = 1; i <= division; i++) {
+                setNumbers(previous => [...previous, i])
+            }
+        }
+    }, [blogs])
+
+    useEffect(() => {
+        if (blogs[0]) {
+            setBlogData(blogs.slice(0, 6 * selectedNumber))
+        }
+    }, [blogs, selectedNumber])
+
     // console.log(blogData)
 
     // useEffect(() => {
@@ -95,77 +118,31 @@ export default function BlogList() {
                     />
                 </div>
                 <div className="pt-5 w-full flex justify-between flex-wrap gap-y-5">
-                    {blogData &&
-                        blogData
-                            .filter(data =>
+                    {blogData && (
+                        <MasonryGrid
+                            posts={blogData.filter(data =>
                                 data.title.rendered
                                     .toLowerCase()
                                     .includes(searchFilter.toLowerCase()),
+                            )}
+                        />
+                    )}
+                </div>
+                <div className="mt-10 w-full flex gap-x-3.5 gap-y-3.5 flex-wrap">
+                    {blogs[0] &&
+                        numbers.map(num => {
+                            return (
+                                <button
+                                    onClick={() => setSelectedNumber(num)}
+                                    className={`w-8 h-8 flex justify-center items-center font-medium text-base ${
+                                        selectedNumber === num
+                                            ? 'bg-as text-white'
+                                            : 'bg-gray-200 text-black/80'
+                                    }`}>
+                                    {num}
+                                </button>
                             )
-                            .map(data => (
-                                <Link
-                                    key={crypto.randomUUID()}
-                                    href={`blog/${data.slug}`}
-                                    className="w-[31%] hover:scale-105 duration-300 h-max pb-6 max-[1000px]:w-[48%] max-[600px]:w-full overflow-hidden rounded-2xl shadow-xl flex flex-col blog-box">
-                                    <div className="flex flex-col justify-evenly w-full h-6/12">
-                                        <div className="flex flex-col pb-5 w-full gap-3">
-                                            <div className="h-56 w-full">
-                                                <img
-                                                    src={
-                                                        data.yoast_head_json
-                                                            .og_image[0].url
-                                                    }
-                                                    alt={
-                                                        data.yoast_head_json
-                                                            .og_image[0].url
-                                                    }
-                                                    className="h-full w-full object-cover"
-                                                />
-                                            </div>
-                                            <div className="flex flex-col w-full gap-3 p-3.5">
-                                                <p className="text-sm text-black/60 font-semibold">
-                                                    BLOG
-                                                </p>
-                                                <p className="text-base text-black/80 font-medium">
-                                                    <div
-                                                        dangerouslySetInnerHTML={{
-                                                            __html:
-                                                                data.title
-                                                                    .rendered
-                                                                    .length < 60
-                                                                    ? data.title
-                                                                          .rendered
-                                                                    : data.title.rendered
-                                                                          .slice(
-                                                                              0,
-                                                                              60,
-                                                                          )
-                                                                          .concat(
-                                                                              '...',
-                                                                          ),
-                                                        }}
-                                                    />
-                                                </p>
-                                            </div>
-                                        </div>
-                                        <div className="flex items-end w-full h-[40px] gap-4 px-3.5">
-                                            <Image
-                                                src={Author}
-                                                alt=""
-                                                className="w-[40px] h-[40px] rounded-full"
-                                            />
-                                            <div className="h-full flex flex-col justify-between">
-                                                <p className="text-sm text-black/80 font-medium">
-                                                    AnalogueShifts
-                                                </p>
-                                                <p className="text-xs text-black/60 font-medium">
-                                                    {data.date}
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </Link>
-                            ))}
+                        })}
                 </div>
             </div>
         </>
