@@ -34,10 +34,10 @@ export default function PageContent() {
                         <div className="grid lg:grid-cols-12">
                             <div className="grid lg:col-span-6 p-7 lg:p-14">
                                 <div className="grid justify-center lg:justify-start gap-5 lg:col-span-6">
-                                    <h1 className="text-3xl md:text-4xl font-bold lg:leading-[50px] tracking-wide">
+                                    <h1 className="text-3xl md:text-4xl font-bold lg:leading-[50px] tracking-normal">
                                         Learn about AnalogueShifts
                                     </h1>
-                                    <h2 className="text-justify">
+                                    <h2 className="">
                                         AnalogueShifts is a Project Management
                                         and Talent Acquisition Company. Our
                                         mission is to solve the problem of cost
@@ -112,7 +112,7 @@ export default function PageContent() {
                         </div>
                         <div className="grid lg:col-span-1 gap-5 h-full w-full">
                             <h2 className="text-3xl font-bold">About us</h2>
-                            <p className="text text-lg leading-[30px] font-medium text-black/60 text-justify">
+                            <p className="text text-lg leading-[30px] font-medium text-black/60 ">
                                 AnalogueShifts is a Project Management and
                                 Talent Acquisition Company. Our mission is to
                                 solve the problem of cost for Startups and Large
@@ -144,7 +144,7 @@ export default function PageContent() {
                         </div>
                         <div className="grid lg:col-span-1 gap-5 h-full w-full">
                             <h2 className="text-3xl font-bold">What we do</h2>
-                            <p className="text text-lg leading-[30px] font-medium text-black/60 text-justify">
+                            <p className="text text-lg leading-[30px] font-medium text-black/60 ">
                                 We are a dynamic and motivated team of people
                                 who share the same goal to find the right talent
                                 for your company. We offer high quality services

@@ -97,10 +97,10 @@ export default function JobView() {
                                                 Jobs
                                             </span>
                                         </div>
-                                        <h1 className="text-3xl md:text-4xl font-bold lg:leading-[50px] tracking-wide">
+                                        <h1 className="text-3xl md:text-4xl font-bold lg:leading-[50px] tracking-normal">
                                             Jobs of your kind are here for you
                                         </h1>
-                                        <h2 className="text-justify">
+                                        <h2 className="">
                                             Clear and concise job listings, The
                                             job search page contains detailed
                                             descriptions of the available

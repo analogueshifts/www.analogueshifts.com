@@ -77,10 +77,10 @@ export default function Page() {
                         <div className="grid lg:grid-cols-12">
                             <div className="grid lg:col-span-6 p-7 lg:p-14">
                                 <div className="grid justify-center lg:justify-start gap-5 lg:col-span-6">
-                                    <h1 className="text-3xl md:text-4xl font-bold lg:leading-[50px] tracking-wide">
+                                    <h1 className="text-3xl md:text-4xl font-bold lg:leading-[50px] tracking-normal">
                                         AnalogueShifts featured Contacts.
                                     </h1>
-                                    <h2 className="text-justify">
+                                    <h2 className="">
                                         Clear and concise job listings, Here,
                                         you'll find the latest updates and
                                         developments from our recruitment
