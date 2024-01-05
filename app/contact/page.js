@@ -70,9 +70,9 @@ export default function Page() {
             {/* Page Content */}
             <section className="">
                 <div className="container mx-auto py-5 px-3 md:px-9 xl:px-20">
-                    <h1 className="font-bold text-2xl mb-9 animate-fade-in-head">
+                    {/* <h1 className="font-bold text-2xl mb-9 animate-fade-in-head">
                         AnalogueShifts Contact
-                    </h1>
+                    </h1> */}
                     <div className="bg-white border-0 shadow rounded-lg overflow-hidden">
                         <div className="grid lg:grid-cols-12">
                             <div className="grid lg:col-span-6 p-7 lg:p-14">
@@ -81,10 +81,14 @@ export default function Page() {
                                         AnalogueShifts featured Contacts.
                                     </h1>
                                     <h2 className="">
-                                        Clear and concise job listings, Here,
-                                        you'll find the latest updates and
-                                        developments from our recruitment
-                                        company. Get in touch.
+                                        Thank you for your interest in Analogue
+                                        Shifts! We are committed to providing
+                                        exceptional talent recruitment and
+                                        technical support services to help your
+                                        business thrive. Whether you have
+                                        inquiries, require assistance, or want
+                                        to discuss potential collaboration, our
+                                        team is here to assist you.
                                     </h2>
                                 </div>
                             </div>
