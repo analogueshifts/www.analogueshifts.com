@@ -54,6 +54,7 @@ export default function ViewBlog({ slug }) {
                             </p>
                             <p className="text-black/90 font-medium">
                                 <div
+                                    id="post"
                                     dangerouslySetInnerHTML={{
                                         __html: blogData.content.rendered,
                                     }}

@@ -1,0 +1,26 @@
+.wp-block-image {
+    @apply py-9;
+}
+
+.wp-block-heading {
+    @apply text-3xl py-9;
+}
+
+#post {
+    @apply flex flex-col tracking-wide;
+    p {
+        // @apply ;
+    }
+    ol {
+        @apply p-3 list-decimal;
+    }
+    ul {
+        @apply p-3 list-disc;
+    }
+    .ez-toc-title-container {
+        @apply flex pt-5;
+        .ez-toc-icon-toggle-span{
+            @apply hidden;
+        }
+    }
+} 
