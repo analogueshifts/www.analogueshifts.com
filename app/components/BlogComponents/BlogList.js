@@ -72,14 +72,16 @@ export default function BlogList() {
         <>
             {loading && <LoadingTwo />}
             <div className="py-9">
-                <h1 id="title" className="font-bold text-2xl mb-9">
+                {/* <h1 id="title" className="font-bold text-2xl mb-9">
                     AnalogueShifts Blog
-                </h1>
+                </h1> */}
                 <div className="bg-white border-0 shadow rounded-lg overflow-hidden">
                     <div className="grid lg:grid-cols-12">
                         <div className="grid lg:col-span-6 p-7 lg:p-14">
                             <div className="grid justify-center lg:justify-start gap-5 lg:col-span-6">
-                                <h1 className="text-3xl md:text-4xl font-bold lg:leading-[50px] tracking-normal">
+                                <h1
+                                    id="title"
+                                    className="text-3xl md:text-4xl font-bold lg:leading-[50px] tracking-normal">
                                     AnalogueShifts HelpFul Articles
                                 </h1>
                                 <h2 className="">

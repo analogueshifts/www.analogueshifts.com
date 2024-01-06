@@ -85,9 +85,9 @@ export default function JobView() {
                 }`}>
                 <section className="">
                     <div className="container mx-auto py-5 px-3 md:px-9 xl:px-20">
-                        <h1 id="title" className="font-bold text-2xl mb-9">
+                        {/* <h1 id="title" className="font-bold text-2xl mb-9">
                             AnalogueShifts Jobs
-                        </h1>
+                        </h1> */}
                         <div className="bg-white border-0 shadow rounded-lg overflow-hidden">
                             <div className="grid lg:grid-cols-12">
                                 <div className="grid lg:col-span-6 p-7 lg:p-14">
@@ -97,7 +97,9 @@ export default function JobView() {
                                                 Jobs
                                             </span>
                                         </div>
-                                        <h1 className="text-3xl md:text-4xl font-bold lg:leading-[50px] tracking-normal">
+                                        <h1
+                                            id="title"
+                                            className="text-3xl md:text-4xl font-bold lg:leading-[50px] tracking-normal">
                                             Jobs of your kind are here for you
                                         </h1>
                                         <h2 className="">
