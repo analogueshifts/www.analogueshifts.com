@@ -67,27 +67,41 @@ export default function PageContent() {
                         ? 'opacity-1 translate-x-0'
                         : 'opacity-0 -translate-x-2'
                 }`}>
-                <div className="container mx-auto py-10 px-3 md:px-9 xl:px-20">
-                    <div className="grid justify-center">
-                        <div className="md:w-[700px]">
-                            <div className="grid lg:flex lg:flex-col gap-5 text-center my-5">
-                                <p className="text-4xl font-bold mb-3">
-                                    Our mission is to make hiring easier for
-                                    everyone.
-                                </p>
-                                <p className="text-lg mb-4 leading-[30px] font-medium text-black/60 text-center">
-                                    Our mission is to solve the problem of cost
-                                    for Startups and Large scale companies
-                                    abroad by sourcing the best talents for
-                                    clients.
-                                </p>
-                                <div className="flex justify-center">
-                                    <Link
-                                        className="bg-as text-white text-lg duration-300 hover:-translate-y-1 py-3 px-5 rounded-md"
-                                        href="#scroll-target">
-                                        Read our story
-                                    </Link>
-                                </div>
+                <div className="container  mx-auto py-14  px-3 md:px-9 xl:px-20">
+                    <div className="grid lg:grid-cols-3  items-center">
+                        <div className="grid pb-10 lg:pb-0 lg:col-span-1 h-full w-full justify-center lg:justify-start items-center">
+                            <div className=" w-full h-[500px]">
+                                <video controls className="w-full h-full">
+                                    <source
+                                        src="/videos/about_us.mp4"
+                                        type="video/mp4"
+                                    />
+                                </video>
+                            </div>
+                        </div>
+                        <div className="flex flex-col lg:pl-12 lg:col-span-2 gap-8 h-full w-full justify-center">
+                            <h2 className="text-3xl font-bold text-center lg:text-start">
+                                {' '}
+                                Our mission is to make hiring easier for
+                                everyone.
+                            </h2>
+                            <p className="text text-center lg:text-start text-lg leading-[30px] font-medium text-black/60 ">
+                                Our overarching objective is to effectively
+                                address the pressing issue of cost that
+                                confronts both Startups and Large scale
+                                companies operating abroad, and we aim to
+                                achieve this by meticulously curating and
+                                sourcing the most exceptional talents tailored
+                                to the specific needs and requirements of our
+                                esteemed clients.
+                            </p>
+
+                            <div className="w-full flex justify-center lg:justify-start">
+                                <Link
+                                    className="bg-as w-max text-white text-lg duration-300 hover:-translate-y-1 py-3 px-5 rounded-md"
+                                    href="#scroll-target">
+                                    Read our story
+                                </Link>
                             </div>
                         </div>
                     </div>
@@ -103,13 +117,6 @@ export default function PageContent() {
                 id="scroll-target">
                 <div className="container mx-auto py-14 px-3 md:px-9 xl:px-20">
                     <div className="grid lg:flex lg:grid-cols-2 gap-7 items-center">
-                        <div className="grid lg:col-span-1 h-full w-full">
-                            <Image
-                                className="object-cover h-full w-full rounded-md"
-                                src={AboutImage1}
-                                alt="..."
-                            />
-                        </div>
                         <div className="grid lg:col-span-1 gap-5 h-full w-full">
                             <h2 className="text-3xl font-bold">About us</h2>
                             <p className="text text-lg leading-[30px] font-medium text-black/60 ">
@@ -121,6 +128,13 @@ export default function PageContent() {
                                 most talented work force across the globe and we
                                 are ready to work 24/7.
                             </p>
+                        </div>
+                        <div className="grid lg:col-span-1 h-full w-full">
+                            <Image
+                                className="object-cover h-full w-full rounded-md"
+                                src={AboutImage1}
+                                alt="..."
+                            />
                         </div>
                     </div>
                 </div>
@@ -135,13 +149,6 @@ export default function PageContent() {
                 id="scroll-target">
                 <div className="container mx-auto py-14 px-3 md:px-9 xl:px-20">
                     <div className="grid lg:flex lg:flex-row-reverse lg:grid-cols-2 gap-7 items-center">
-                        <div className="grid lg:col-span-1 h-full w-full">
-                            <Image
-                                className="object-cover h-full w-full rounded-md"
-                                src={AboutImage2}
-                                alt="..."
-                            />
-                        </div>
                         <div className="grid lg:col-span-1 gap-5 h-full w-full">
                             <h2 className="text-3xl font-bold">What we do</h2>
                             <p className="text text-lg leading-[30px] font-medium text-black/60 ">
@@ -155,6 +162,13 @@ export default function PageContent() {
                                 to best fit your needs and deliver results for
                                 businesses in all industries.
                             </p>
+                        </div>
+                        <div className="grid lg:col-span-1 h-full w-full">
+                            <Image
+                                className="object-cover h-full w-full rounded-md"
+                                src={AboutImage2}
+                                alt="..."
+                            />
                         </div>
                     </div>
                 </div>
