@@ -71,7 +71,7 @@ export default function PageContent() {
                     <div className="grid lg:grid-cols-3  items-center">
                         <div className="grid pb-10 lg:pb-0 lg:col-span-1 h-full w-full justify-center lg:justify-start items-center">
                             <div className=" w-full h-[500px]">
-                                <video controls className="w-full h-full">
+                                <video controls muted className="w-full h-full">
                                     <source
                                         src="/videos/about_us.mp4"
                                         type="video/mp4"
