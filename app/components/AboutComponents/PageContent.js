@@ -310,7 +310,7 @@ export default function PageContent() {
                                         Nnochiri Oral
                                     </span>
                                     <span className="flex justify-center text-yellow-500">
-                                        Microsoft Azure Trainer
+                                        DevOps Engineer
                                     </span>
                                 </div>
                             </div>
