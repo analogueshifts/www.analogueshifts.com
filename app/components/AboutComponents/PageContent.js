@@ -11,6 +11,7 @@ import Social from '@/public/images/team/social.jpg'
 import Dev from '@/public/images/team/dev.png'
 import Writer from '@/public/images/team/writer.jpg'
 import Content from '@/public/images/team/content.jpg'
+import Microsoft from "@/public/images/team/microsoft-azure-trainer.jpg"
 import { useInView } from 'react-intersection-observer'
 export default function PageContent() {
     const [ref, inView] = useInView({
@@ -295,6 +296,21 @@ export default function PageContent() {
                                     </span>
                                     <span className="flex justify-center text-yellow-500">
                                         Content Developer
+                                    </span>
+                                </div>
+                            </div>
+                            <div className="grid justify-center rounded p-2 cursor-pointer relative">
+                                <Image
+                                    src={Microsoft}
+                                    className="object-cover grid justify-center bg-gray-300 h-80 md:h-96 w-80 md:w-96 rounded-lg"
+                                    alt="..."
+                                />
+                                <div className="bg-white rounded-md grid justify-center py-3 px-2 gap-1 font-bold absolute inset-x-5 bottom-5">
+                                    <span className="flex justify-center">
+                                        Nnochiri Oral
+                                    </span>
+                                    <span className="flex justify-center text-yellow-500">
+                                       Microsoft Azure Trainer
                                     </span>
                                 </div>
                             </div>
