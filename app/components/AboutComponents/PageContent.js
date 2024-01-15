@@ -11,7 +11,7 @@ import Social from '@/public/images/team/social.jpg'
 import Dev from '@/public/images/team/dev.png'
 import Writer from '@/public/images/team/writer.jpg'
 import Content from '@/public/images/team/content.jpg'
-import Microsoft from "@/public/images/team/microsoft-azure-trainer.jpg"
+import Microsoft from '@/public/images/team/microsoft-azure-trainer.jpg'
 import { useInView } from 'react-intersection-observer'
 export default function PageContent() {
     const [ref, inView] = useInView({
@@ -310,7 +310,7 @@ export default function PageContent() {
                                         Nnochiri Oral
                                     </span>
                                     <span className="flex justify-center text-yellow-500">
-                                       Microsoft Azure Trainer
+                                        Microsoft Azure Trainer
                                     </span>
                                 </div>
                             </div>
