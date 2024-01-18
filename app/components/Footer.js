@@ -37,6 +37,11 @@ function Footer() {
                                 target="blank">
                                 Mail: hello@analogueshifts.com
                             </a>
+                            <span>
+                                Address: 5 Chief Sunday Olaiya Close <br />{' '}
+                                Salawe Avenue, Off Love All Street <br /> Ikosi,
+                                Lagos-Nigeria
+                            </span>
                         </div>
 
                         <div className="flex gap-5 text-4xl text-zinc-100 justify-center p-5">
