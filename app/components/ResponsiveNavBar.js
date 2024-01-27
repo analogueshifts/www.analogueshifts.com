@@ -31,7 +31,7 @@ export default function ResponsiveNavBar() {
                     active={pathname === '/contact'}>
                     Contact
                 </ResponsiveNavLink>
-                <ResponsiveNavLink href="https://app.analogueshifts.com/dashboard">
+                <ResponsiveNavLink href="/dashboard">
                     Get Started
                 </ResponsiveNavLink>
             </div>
@@ -41,10 +41,10 @@ export default function ResponsiveNavBar() {
                 <div>
                     <div className="space-y-1">
                         {/* Authentication */}
-                        <ResponsiveNavLink href="https://app.analogueshifts.com/login">
+                        <ResponsiveNavLink href="/login">
                             Login
                         </ResponsiveNavLink>
-                        <ResponsiveNavLink href="https://app.analogueshifts.com/register">
+                        <ResponsiveNavLink href="/register">
                             Register
                         </ResponsiveNavLink>
                     </div>

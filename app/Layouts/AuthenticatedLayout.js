@@ -6,6 +6,17 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
 export default function Authenticated({ user, header, children }) {
+    const auth = sessionStorage.getItem('analogueshifts')
+    if (auth === null || auth === undefined) {
+        window.location.href = '/login'
+        return null
+    }
+
+    function logout() {
+        sessionStorage.removeItem('analogueshifts')
+        window.location.href = '/login'
+    }
+
     const pathname = usePathname()
 
     //Toggle The Nav Bar
@@ -81,10 +92,10 @@ export default function Authenticated({ user, header, children }) {
 
                 <ul className="side-menu">
                     <li>
-                        <Link href="#" className="logout">
+                        <button onClick={logout} className="logout">
                             <i className="fas fa-right-from-bracket"></i>
                             <span className="text">Logout</span>
-                        </Link>
+                        </button>
                     </li>
                 </ul>
             </section>

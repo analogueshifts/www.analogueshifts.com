@@ -60,7 +60,7 @@ const Navigation = () => {
                         <div className="hidden lg:flex lg:items-center lg:ml-6">
                             <Link
                                 className="text-sm font-medium py-2 px-7 duration-300 rounded-full bg-yellow-500 text-white hover:bg-transparent hover:text-yellow-500 hover:ring-1 ring-yellow-500"
-                                href="https://app.analogueshifts.com">
+                                href="/dashboard">
                                 Get Started
                             </Link>
                         </div>

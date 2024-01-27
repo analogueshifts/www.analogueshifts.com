@@ -10,6 +10,39 @@ export default function Login() {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [errorMessage, setErrorMessage] = useState('')
+    const url = process.env.NEXT_PUBLIC_BACKEND_URL + '/login'
+
+    function submit(e) {
+        e.preventDefault()
+        const axios = require('axios')
+        let data = JSON.stringify({
+            email: email,
+            password: password,
+        })
+
+        let config = {
+            method: 'post',
+            maxBodyLength: Infinity,
+            url: url,
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+            },
+            data: data,
+        }
+
+        axios
+            .request(config)
+            .then(async response => {
+                const userData = JSON.stringify(response.data)
+                sessionStorage.setItem('analogueshifts', userData)
+                window.location.href = '/dashboard'
+            })
+            .catch(error => {
+                console.log(error)
+                setErrorMessage('Invalid email or password')
+            })
+    }
 
     return (
         <main className="w-full h-max min-h-screen mx-auto flex justify-center items-center px-5 py-10">
@@ -20,13 +53,20 @@ export default function Login() {
                 </div>
                 <div className="lg:w-[450px] md:w-[350px] flex flex-col">
                     <ApplicationLogo />
-                    <form method="post" className="pt-11 w-full flex flex-col">
+                    <form
+                        onSubmit={submit}
+                        className="pt-11 w-full flex flex-col">
                         <p className="font-medium text-lg text-tremor-content-grayText pb-4">
                             Welcome!
                         </p>
                         <p className="font-bold text-3xl text-[#292929] pb-5">
                             Sign Into Your Account
                         </p>
+                        {errorMessage.length > 0 && (
+                            <p className="text-base font-normal text-[#ff0000]">
+                                {errorMessage}
+                            </p>
+                        )}
                         <div className="w-full pb-5 flex flex-col gap-2.5">
                             <p className="text-base font-normal text-tremor-content-grayText">
                                 Email
@@ -68,11 +108,6 @@ export default function Login() {
                                     onChange={e => setPassword(e.target.value)}
                                 />
                             </div>
-                            {errorMessage.length > 0 && (
-                                <p className="text-base font-normal text-[#ff0000]">
-                                    {errorMessage}
-                                </p>
-                            )}
                         </div>
                         <button
                             type="submit"
