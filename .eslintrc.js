@@ -46,6 +46,7 @@ module.exports = {
         'react/no-unescaped-entities': 0,
         'react/require-default-props': 0,
         'react/react-in-jsx-scope': 0,
+        'react/self-closing-comp': 0,
         'linebreak-style': 'off',
         semi: ['error', 'never'],
         'prettier/prettier': [

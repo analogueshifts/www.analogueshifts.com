@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import Authenticated from '@/app/Layouts/AuthenticatedLayout'
 import Image from 'next/image'
 import Curve from '@/public/images/curve.png'
-import Editor from '@/app/components/utilities/Editor'
+// import Editor from '@/app/components/utilities/Editor'
 
 //Dummy Data
 import { dummmyHiresData } from './data'
@@ -223,7 +223,7 @@ export default function Edit({ slug }) {
                                 <label className="block mb-1 text-sm font-medium text-gray-900">
                                     Description*
                                 </label>
-                                <Editor data={data} setData={setData} />
+                                {/* <Editor data={data} setData={setData} /> */}
                                 {/* <textarea
                             name="decription"
                             id="message"

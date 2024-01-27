@@ -3,7 +3,7 @@ import { useState } from 'react'
 import Authenticated from '@/app/Layouts/AuthenticatedLayout'
 import Image from 'next/image'
 import Curve from '@/public/images/curve.png'
-import Editor from '@/app/components/utilities/Editor'
+// import Editor from '@/app/components/utilities/Editor'
 
 export default function Create() {
     const [user, setUser] = useState(null)
@@ -204,21 +204,10 @@ export default function Create() {
                                 <label className="block mb-1 text-sm font-medium text-gray-900">
                                     Description*
                                 </label>
-                                <Editor data={data} setData={setData} />
-                                {/* <textarea
-                                name="decription"
-                                id="message"
-                                value={data.description}
-                                onChange={(e) =>
-                                    setData(
-                                        "description",
-                                        e.target.value
-                                    )
-                                }
-                                rows="4"
-                                className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-yellow-500 focus:border-yellow-500"
-                                placeholder="Describe skill requirements..."
-                            ></textarea> */}
+                                {/* <Editor
+                                    data={data.description}
+                                    setData={setData}
+                                /> */}
                             </div>
                         </div>
                     </div>
