@@ -1,8 +1,7 @@
 import { Lexend } from 'next/font/google'
-import Navigation from './components/Navigation'
 import './globals.css'
 import './scss/app.scss'
-import Footer from './components/Footer'
+import Script from 'next/script'
 
 const lexend = Lexend({
     weight: '400',
@@ -45,13 +44,11 @@ export default function RootLayout({ children }) {
                     sizes="any"
                 />
             </head>
-            <body className={lexend.className}>
-                <section className="bg-slate-50">
-                    <Navigation />
-                    {children}
-                    <Footer />
-                </section>
-            </body>
+            <body className={lexend.className}>{children}</body>
+            <Script
+                src="https://kit.fontawesome.com/39a80cd06c.js"
+                crossorigin="anonymous"
+            />
         </html>
     )
 }

@@ -1,18 +1,14 @@
-import GuestLayout from './Layouts/GuestLayout'
-import BuildTeam from './components/HomeComponents/BuildTeam'
-import Landing from './components/HomeComponents/Landing'
-import Services from './components/HomeComponents/Services'
-import Testimonials from './components/HomeComponents/Testimonials'
+import Register from './components/Register'
 
 export const metadata = {
-    title: 'Tech Talent Recruitment and Acquisition | AnalogueShifts',
+    title: 'Sign Up | AnalogueShifts',
     description:
         'Looking for the best tech talent worldwide? Analogueshifts is the recruitment agency for you. Our team of experts can help you streamline recruitment and find the perfect talent for your organization. ',
     openGraph: {
         title: 'Tech Talent Recruitment and Acquisition | AnalogueShifts',
         description:
             'Looking for the best tech talent worldwide? Analogueshifts is the recruitment agency for you. Our team of experts can help you streamline recruitment and find the perfect talent for your organization. ',
-        url: 'https://www.analogueshifts.com',
+        url: 'https://www.analogueshifts.com/register',
         siteName: 'AnalogueShifts',
         images: [
             {
@@ -25,17 +21,10 @@ export const metadata = {
         type: 'website',
     },
     alternates: {
-        canonical: '/',
+        canonical: '/register',
     },
 }
 
 export default function Page() {
-    return (
-        <GuestLayout>
-            <Landing />
-            <Services />
-            <BuildTeam />
-            <Testimonials />
-        </GuestLayout>
-    )
+    return <Register />
 }

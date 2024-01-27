@@ -1,3 +1,4 @@
+import GuestLayout from '../Layouts/GuestLayout'
 import BlogList from '../components/BlogComponents/BlogList'
 
 export const metadata = {
@@ -27,13 +28,13 @@ export const metadata = {
 
 export default function Page() {
     return (
-        <div>
+        <GuestLayout>
             {/* Page Content */}
             <section className="">
                 <div className="container mx-auto py-5 px-3 md:px-9 xl:px-20">
                     <BlogList />
                 </div>
             </section>
-        </div>
+        </GuestLayout>
     )
 }

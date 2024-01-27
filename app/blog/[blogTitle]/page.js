@@ -1,3 +1,4 @@
+import GuestLayout from '@/app/Layouts/GuestLayout'
 import ViewBlog from '@/app/components/BlogComponents/ViewBlog'
 import { axiosBlog } from '@/app/lib/axios'
 
@@ -69,8 +70,8 @@ export async function generateMetadata({ params }) {
 
 export default function Page({ params }) {
     return (
-        <div>
+        <GuestLayout>
             <ViewBlog slug={params.blogTitle} />
-        </div>
+        </GuestLayout>
     )
 }

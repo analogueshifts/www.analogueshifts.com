@@ -1,3 +1,4 @@
+import GuestLayout from '@/app/Layouts/GuestLayout'
 import ViewId from '../../components/JobsComponents/ViewId'
 // import SeoController from '@/app/lib/SeoController'
 
@@ -60,9 +61,11 @@ export const metadata = {
 
 export default function Page({ params }) {
     return (
-        <section className="min-h-screen border-b">
-            {/* <SeoController seoData={seoData} /> */}
-            <ViewId id={params.jobViewId} />
-        </section>
+        <GuestLayout>
+            <section className="min-h-screen border-b">
+                {/* <SeoController seoData={seoData} /> */}
+                <ViewId id={params.jobViewId} />
+            </section>
+        </GuestLayout>
     )
 }

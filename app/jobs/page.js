@@ -1,3 +1,4 @@
+import GuestLayout from '../Layouts/GuestLayout'
 import JobView from '../components/JobsComponents/JobView'
 // import SeoController from '../lib/SeoController'
 
@@ -28,10 +29,10 @@ export const metadata = {
 
 export default function Page() {
     return (
-        <div>
+        <GuestLayout>
             {/* Page Content */}
             {/* <SeoController seoData={seoData} /> */}
             <JobView />
-        </div>
+        </GuestLayout>
     )
 }

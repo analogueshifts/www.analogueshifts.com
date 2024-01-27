@@ -1,3 +1,4 @@
+import GuestLayout from '../Layouts/GuestLayout'
 import PageContent from '../components/AboutComponents/PageContent'
 // import SeoController from '../lib/SeoController'
 
@@ -63,9 +64,9 @@ export default function Page() {
     }, [])*/
 
     return (
-        <>
+        <GuestLayout>
             {/* <SeoController seoData={seoData} /> */}
             <PageContent />
-        </>
+        </GuestLayout>
     )
 }

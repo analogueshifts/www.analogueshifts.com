@@ -2,6 +2,7 @@
 import { useState, useEffect } from 'react'
 import { axiosBlog } from '../../lib/axios'
 import LoadingTwo from '../../components/Loading'
+import GuestLayout from '@/app/Layouts/GuestLayout'
 
 export default function page() {
     const [dataRes, setDataRes] = useState()
@@ -24,7 +25,7 @@ export default function page() {
     }, [])
 
     return (
-        <>
+        <GuestLayout>
             {loading && <LoadingTwo />}
             <div className="container mx-auto py-5 md:py-20 px-5 md:px-24 lg:px-56 xl:px-72">
                 <div>
@@ -46,6 +47,6 @@ export default function page() {
                     )}
                 </div>
             </div>
-        </>
+        </GuestLayout>
     )
 }

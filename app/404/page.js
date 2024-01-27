@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import GuestLayout from '../Layouts/GuestLayout'
 
 export const metadata = {
     title: '404',
@@ -25,7 +26,7 @@ export const metadata = {
 
 export default function Page() {
     return (
-        <>
+        <GuestLayout>
             <section className="relative flex items-top justify-center min-h-screen sm:items-center sm:pt-0">
                 <div className="container mx-auto py-5 px-3 md:px-9 xl:px-28">
                     <div className="bg-white border-0 shadow rounded-lg overflow-hidden">
@@ -69,6 +70,6 @@ export default function Page() {
                     </div>
                 </div>
             </section>
-        </>
+        </GuestLayout>
     )
 }

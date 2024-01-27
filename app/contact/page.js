@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import Image1 from '@/public/images/contactHero.jpg'
 import ContactForm from '../components/ContactForm'
+import GuestLayout from '../Layouts/GuestLayout'
 // import SeoController from '../lib/SeoController'
 
 export const metadata = {
@@ -65,7 +66,7 @@ export default function Page() {
     }, [])*/
 
     return (
-        <div>
+        <GuestLayout>
             {/* <SeoController seoData={seoData} /> */}
             {/* Page Content */}
             <section className="">
@@ -225,6 +226,6 @@ export default function Page() {
                     </div>
                 </div>
             </section>
-        </div>
+        </GuestLayout>
     )
 }
