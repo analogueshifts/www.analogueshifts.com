@@ -3,6 +3,10 @@ import './globals.css'
 import './scss/app.scss'
 import Script from 'next/script'
 
+//Toastify
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
+
 const lexend = Lexend({
     weight: '400',
     subsets: ['latin'],
@@ -44,7 +48,11 @@ export default function RootLayout({ children }) {
                     sizes="any"
                 />
             </head>
-            <body className={lexend.className}>{children}</body>
+            <body className={lexend.className}>
+                {' '}
+                <ToastContainer position="top-center" />
+                {children}
+            </body>
             <Script
                 src="https://kit.fontawesome.com/39a80cd06c.js"
                 crossorigin="anonymous"

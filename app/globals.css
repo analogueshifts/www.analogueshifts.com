@@ -155,7 +155,8 @@ body::-webkit-scrollbar-thumb:hover {
     box-shadow: 20px -20px 0 var(--grey);
 }
 
-.sidebar .side-menu li a {
+.sidebar .side-menu li a,
+.sidebar .side-menu li button {
     height: 100%;
     width: 100%;
     background: var(--light);
@@ -168,24 +169,29 @@ body::-webkit-scrollbar-thumb:hover {
     overflow-x: hidden;
 }
 
-.sidebar.hide .side-menu li a {
+.sidebar.hide .side-menu li a,
+.sidebar.hide .side-menu li button {
     width: calc(48px - (4px * 2));
     transition: 0.3s ease;
 }
 
-.sidebar .side-menu li.active a {
+.sidebar .side-menu li.active a,
+.sidebar .side-menu li.active button {
     color: var(--as);
 }
 
-.sidebar .side-menu.top li a:hover {
+.sidebar .side-menu.top li a:hover,
+.sidebar .side-menu.top li button:hover {
     color: var(--as);
 }
 
-.sidebar .side-menu li a.logout {
+.sidebar .side-menu li a.logout,
+.sidebar .side-menu li button.logout {
     color: var(--red);
 }
 
-.sidebar .side-menu li a i {
+.sidebar .side-menu li a i,
+.sidebar .side-menu li button i {
     min-width: calc(60px - ((4px + 6px) * 2));
     display: flex;
     justify-content: center;

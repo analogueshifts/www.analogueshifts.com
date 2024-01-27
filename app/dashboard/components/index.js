@@ -1,5 +1,5 @@
 'use client'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Image from 'next/image'
 import Authenticated from '@/app/Layouts/AuthenticatedLayout'
 import Curve from '@/public/images/curve.png'
@@ -11,6 +11,15 @@ import { modesDummyData } from './data'
 export default function Dashboard() {
     const [selectedMode, setSelectedMode] = useState('Buy')
     const [user, setUser] = useState(null)
+
+    useEffect(() => {
+        let storedData = JSON.parse(
+            window.localStorage.getItem('analogueshifts'),
+        )
+        if (storedData) {
+            setUser(storedData[0].user)
+        }
+    }, [])
 
     return (
         <Authenticated
@@ -33,11 +42,9 @@ export default function Dashboard() {
                     />
                     <div className="-translate-y-5">
                         <h2 className="text-2xl font-bold text-gray-800">
-                            {user?.name} Maria Donald
+                            {user?.name}
                         </h2>
-                        <p className="text-gray-600">
-                            {user?.email} Mariadonald@gmail.com
-                        </p>
+                        <p className="text-gray-600">{user?.email}</p>
                         {/* <p className="text-blue-500">Nigeria</p> */}
                     </div>
                     {/* Metric Overview */}
