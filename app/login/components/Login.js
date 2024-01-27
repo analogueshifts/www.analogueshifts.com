@@ -35,7 +35,7 @@ export default function Login() {
             .request(config)
             .then(async response => {
                 const userData = JSON.stringify(response.data)
-                sessionStorage.setItem('analogueshifts', userData)
+                localStorage.setItem('analogueshifts', userData)
                 window.location.href = '/dashboard'
             })
             .catch(error => {

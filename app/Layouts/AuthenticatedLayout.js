@@ -6,14 +6,8 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
 export default function Authenticated({ user, header, children }) {
-    const auth = sessionStorage.getItem('analogueshifts')
-    if (auth === null || auth === undefined) {
-        window.location.href = '/login'
-        return null
-    }
-
     function logout() {
-        sessionStorage.removeItem('analogueshifts')
+        localStorage.removeItem('analogueshifts')
         window.location.href = '/login'
     }
 
@@ -26,6 +20,11 @@ export default function Authenticated({ user, header, children }) {
     }
 
     useEffect(() => {
+        const auth = localStorage.getItem('analogueshifts')
+        if (auth === null || auth === undefined) {
+            window.location.href = '/login'
+            return null
+        }
         const sideBar = document.querySelector('.sidebar')
         window.addEventListener('resize', () => {
             if (window.innerWidth < 768) {

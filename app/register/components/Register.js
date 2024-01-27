@@ -7,11 +7,46 @@ import { useState } from 'react'
 import Link from 'next/link'
 
 export default function Register() {
+    const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [confirm_password, setConfirmPassword] = useState('')
     const [errorMessage, setErrorMessage] = useState('')
+    const url = process.env.NEXT_PUBLIC_BACKEND_URL + '/register'
 
+    function submit(e) {
+        e.preventDefault()
+        const axios = require('axios')
+        let data = JSON.stringify({
+            name: name,
+            email: email,
+            password: password,
+            password_confirmation: confirm_password,
+        })
+
+        let config = {
+            method: 'post',
+            maxBodyLength: Infinity,
+            url: url,
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+            },
+            data: data,
+        }
+
+        axios
+            .request(config)
+            .then(async response => {
+                const userData = JSON.stringify(response.data)
+                localStorage.setItem('analogueshifts', userData)
+                window.location.href = '/dashboard'
+            })
+            .catch(error => {
+                console.log(error)
+                setErrorMessage('Invalid email or password')
+            })
+    }
     return (
         <main className="w-full h-max min-h-screen mx-auto flex justify-center items-center px-5 py-10">
             <section className="max-w-full lg:w-[1000px] md:w-[800px] md:flex-row flex-col flex justify-between items-center">
@@ -21,13 +56,36 @@ export default function Register() {
                 </div>
                 <div className="lg:w-[450px] md:w-[350px] flex flex-col">
                     <ApplicationLogo />
-                    <form method="post" className="pt-11 w-full flex flex-col">
+                    <form
+                        onSubmit={submit}
+                        className="pt-11 w-full flex flex-col">
                         <p className="font-medium text-lg text-tremor-content-grayText pb-4">
                             Welcome!
                         </p>
                         <p className="font-bold text-3xl text-[#292929] pb-5">
                             Join our Community
                         </p>
+                        <div className="w-full pb-5 flex flex-col gap-2.5">
+                            <p className="text-base font-normal text-tremor-content-grayText">
+                                Name
+                            </p>
+                            <div
+                                className={`w-full relative flex items-center h-12`}>
+                                <i className="fa-solid absolute left-5 fa-envelope text-base text-tremor-content-grayText w-8"></i>
+
+                                <input
+                                    className={`${
+                                        errorMessage.length > 0
+                                            ? 'border border-[#FF0000]'
+                                            : 'border border-black/10'
+                                    } w-full rounded-2xl h-full pl-12 pr-4  outline-none text-base font-normal text-gray-400`}
+                                    placeholder="Name"
+                                    value={name}
+                                    type="name"
+                                    onChange={e => setName(e.target.value)}
+                                />
+                            </div>
+                        </div>
                         <div className="w-full pb-5 flex flex-col gap-2.5">
                             <p className="text-base font-normal text-tremor-content-grayText">
                                 Email
