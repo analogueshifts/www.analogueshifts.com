@@ -24,7 +24,6 @@ export const metadata = {
         canonical: '/tools/hire',
     },
 }
-
 export default function Page() {
     return <Create />
 }
