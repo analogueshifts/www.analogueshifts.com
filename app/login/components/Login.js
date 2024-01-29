@@ -4,7 +4,7 @@ import Avatar from '@/public/images/login/avatar.png'
 import LoadingTwo from '@/app/components/Loading'
 import Image from 'next/image'
 import ApplicationLogo from '@/app/components/ApplicationLogo'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { toast } from 'react-toastify'
 
@@ -57,6 +57,14 @@ export default function Login() {
                 setErrorMessage('Invalid email or password')
             })
     }
+
+    useEffect(() => {
+        const auth = localStorage.getItem('analogueshifts')
+        if (auth) {
+            window.location.href = '/dashboard'
+            return null
+        }
+    }, [])
 
     return (
         <>

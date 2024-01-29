@@ -3,7 +3,7 @@ import Group from '@/public/images/login/group.png'
 import Avatar from '@/public/images/login/avatar.png'
 import Image from 'next/image'
 import ApplicationLogo from '@/app/components/ApplicationLogo'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import LoadingTwo from '@/app/components/Loading'
 import { toast } from 'react-toastify'
@@ -60,6 +60,14 @@ export default function Register() {
                 setErrorMessage('Invalid email or password')
             })
     }
+    useEffect(() => {
+        const auth = localStorage.getItem('analogueshifts')
+        if (auth) {
+            window.location.href = '/dashboard'
+            return null
+        }
+    }, [])
+
     return (
         <>
             {' '}
