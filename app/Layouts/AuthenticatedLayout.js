@@ -101,7 +101,7 @@ export default function Authenticated({ user, header, children }) {
                                                 setOpen(false)
                                                 logout()
                                             }}>
-                                            Delete
+                                            Log Out
                                         </button>
                                         <button
                                             type="button"

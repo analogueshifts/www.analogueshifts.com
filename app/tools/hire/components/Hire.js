@@ -102,7 +102,7 @@ export default function HirePageDetails() {
                     </div>
                 </Dialog>
             </Transition.Root>
-            <div className="w-full min-w-[300px] min-h-[calc(100dvh-128px)]">
+            <div className="w-full min-w-[300px] min-h-[calc(100dvh-128px)] pt-5">
                 <div className="flex justify-center">
                     <Link
                         href="/tools/hire/create"
