@@ -105,7 +105,7 @@ export default function HirePageDetails() {
             <div className="w-full min-w-[300px] min-h-[calc(100dvh-128px)]">
                 <div className="flex justify-center">
                     <Link
-                        href="/tools/hire/talents"
+                        href="/tools/hire/create"
                         className="py-3 w-52 text-white/80 font-semibold text-base bg-tremor-background-lightYellow rounded-xl flex items-center justify-center gap-2">
                         Hire Talents
                         <i className="fas fa-plus"></i>
