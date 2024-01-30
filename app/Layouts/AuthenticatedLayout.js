@@ -1,10 +1,10 @@
 'use client'
-import React, { useState, Fragment, useRef } from 'react'
+import React, { useState, Fragment, useRef, useEffect } from 'react'
 import Logo from '@/public/logo.png'
 import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { Menu, Transition, Dialog } from '@headlessui/react'
+import { Transition, Dialog } from '@headlessui/react'
 
 export default function Authenticated({ user, header, children }) {
     const [open, setOpen] = useState(false)
