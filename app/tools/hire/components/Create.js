@@ -247,9 +247,7 @@ export default function Create() {
                                     onChange={e =>
                                         setData(prev => ({
                                             ...prev,
-                                            validThrough: new Date(
-                                                e.target.value,
-                                            ).toISOString(),
+                                            validThrough: e.target.value,
                                         }))
                                     }
                                     className="w-full py-3 px-5 border border-l-4 border-as outline-none text-black/70"
