@@ -95,7 +95,7 @@ export default function Register() {
                                 </p>
                                 <div
                                     className={`w-full relative flex items-center h-12`}>
-                                    <i className="fa-solid absolute left-5 fa-envelope text-base text-tremor-content-grayText w-8"></i>
+                                    <i className="fa-solid absolute left-5 fa-signature text-base text-tremor-content-grayText w-8"></i>
 
                                     <input
                                         className={`${
