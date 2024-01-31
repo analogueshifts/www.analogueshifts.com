@@ -5,12 +5,26 @@ import Image from 'next/image'
 import Curve from '@/public/images/curve.png'
 import Tiptap from '@/app/components/utilities/Tiptap'
 import { toast } from 'react-toastify'
+import { useRouter } from 'next/navigation'
+import DashboardLoader from '@/app/components/DashboardLoader'
 
 export default function Create() {
     const [user, setUser] = useState(null)
     const [urlType, setUrlType] = useState('External')
     const [applicantLocationType, setApplicantLocationType] = useState('State')
     const [applicantLocationName, setApplicantLocationName] = useState('')
+    const [loading, setLoading] = useState(false)
+    const router = useRouter()
+    const url = process.env.NEXT_PUBLIC_BACKEND_URL + '/hire/store'
+
+    useEffect(() => {
+        let storedData = JSON.parse(
+            window.localStorage.getItem('analogueshifts'),
+        )
+        if (storedData) {
+            setUser(storedData[0])
+        }
+    }, [])
 
     const [data, setData] = useState({
         title: '',
@@ -56,6 +70,39 @@ export default function Create() {
 
     const submit = e => {
         e.preventDefault()
+        const axios = require('axios')
+        let config = {
+            method: 'post',
+            maxBodyLength: Infinity,
+            url: url,
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+                Authorization: 'Bearer ' + user.token,
+                Cookie:
+                    'analogueshifts_session=eyJpdiI6Ijk2OWprRDdzZEZWMDVoZldkbHVDUkE9PSIsInZhbHVlIjoiZkJRckt0QW02ZEU0NHcwdEZ6TkdMYlZGaXJNOFpnM3JyL3BieXJFaERHNlNva09qRm9rRHpMWkNieWI4TWVnMUdMK1RraXNENjZiUnZkMVhYM0hLQkp6bk1SaHBNSUpRajRDZDdQZWRVNmxLK0gvTVJFS2JhbnI1OVVnM0Zqa0siLCJtYWMiOiI3ZmMzMmQ5YjY2NjhiNGE0OGJiM2FmMWQ0OTg5NTA5NDMzMGRjYmJiNGNjMDliMjYyMTZkODExMzJmODk1MjM5IiwidGFnIjoiIn0%3D',
+            },
+            data: data,
+        }
+        setLoading(true)
+        axios
+            .request(config)
+            .then(response => {
+                setLoading(false)
+                toast.success('Your Hire Request Has Been Sent', {
+                    position: 'top-right',
+                    autoClose: 3000,
+                })
+                router.push('/tools/hire')
+            })
+            .catch(error => {
+                console.log(error)
+                toast.error(error, {
+                    position: 'top-right',
+                    autoClose: 3000,
+                })
+                setLoading(false)
+            })
     }
 
     const addApplicantLocation = (type, name) => {
@@ -101,7 +148,8 @@ export default function Create() {
                     Hire Talents
                 </h2>
             }>
-            <div className="w-full min-w-[300px] min-h-[calc(100dvh-128px)]">
+            {loading && <DashboardLoader />}
+            <div className="w-full min-w-[300px] min-h-[calc(100dvh-80px)] lg:min-h-[calc(100dvh-112px)]">
                 <div className="w-full h-60 rounded-2xl bg-tremor-background-brown flex justify-end">
                     <Image src={Curve} alt="" />
                 </div>

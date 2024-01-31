@@ -5,15 +5,43 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { Transition, Dialog } from '@headlessui/react'
+import { toast } from 'react-toastify'
+import DashboardLoader from '../components/DashboardLoader'
 
 export default function Authenticated({ user, header, children }) {
     const [open, setOpen] = useState(false)
     const cancelButtonRef = useRef(null)
-    function logout() {
-        localStorage.removeItem('analogueshifts')
-        window.location.href = '/login'
+    const [loading, setLoading] = useState(false)
+    async function logout() {
+        const axios = require('axios')
+        const url = process.env.NEXT_PUBLIC_BACKEND_URL + '/logout'
+        let config = {
+            method: 'post',
+            maxBodyLength: Infinity,
+            url: url,
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+                Authorization: 'Bearer ' + user.token,
+                Cookie:
+                    'analogueshifts_session=eyJpdiI6Ijk2OWprRDdzZEZWMDVoZldkbHVDUkE9PSIsInZhbHVlIjoiZkJRckt0QW02ZEU0NHcwdEZ6TkdMYlZGaXJNOFpnM3JyL3BieXJFaERHNlNva09qRm9rRHpMWkNieWI4TWVnMUdMK1RraXNENjZiUnZkMVhYM0hLQkp6bk1SaHBNSUpRajRDZDdQZWRVNmxLK0gvTVJFS2JhbnI1OVVnM0Zqa0siLCJtYWMiOiI3ZmMzMmQ5YjY2NjhiNGE0OGJiM2FmMWQ0OTg5NTA5NDMzMGRjYmJiNGNjMDliMjYyMTZkODExMzJmODk1MjM5IiwidGFnIjoiIn0%3D',
+            },
+        }
+        setLoading(true)
+        try {
+            await axios.request(config)
+            localStorage.removeItem('analogueshifts')
+            setLoading(false)
+            window.location.href = '/login'
+        } catch (error) {
+            console.log(error)
+            toast.error('Error Logging Out', {
+                position: 'top-right',
+                autoClose: 3000,
+            })
+            setLoading(false)
+        }
     }
-
     const pathname = usePathname()
 
     //Toggle The Nav Bar
@@ -41,6 +69,7 @@ export default function Authenticated({ user, header, children }) {
 
     return (
         <main className="body">
+            {loading && <DashboardLoader />}
             <Transition.Root show={open} as={Fragment}>
                 <Dialog
                     as="div"

@@ -1,9 +1,11 @@
 'use client'
-import React, { useState, Fragment, useRef } from 'react'
+import { axiosDashboardJob } from '@/app/lib/axios'
+import React, { useState, Fragment, useRef, useEffect } from 'react'
 import Authenticated from '@/app/Layouts/AuthenticatedLayout'
 import Link from 'next/link'
-import { dummmyHiresData } from './data'
 import { Menu, Transition, Dialog } from '@headlessui/react'
+import DashboardLoader from '@/app/components/DashboardLoader'
+import { toast } from 'react-toastify'
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
@@ -11,10 +13,84 @@ function classNames(...classes) {
 
 export default function HirePageDetails() {
     const [user, setUser] = useState(null)
-    const [open, setOpen] = useState(false)
+    const [open, setOpen] = useState(null)
     const [idToBeDeleted, setIdToBeDeleted] = useState(null)
+    const [data, setData] = useState([])
+    const [loading, setLoading] = useState(false)
+
+    const fetchJobs = () => {
+        setLoading(true)
+        axiosDashboardJob
+            .get('/hire/dashboard', {
+                headers: {
+                    Authorization: 'Bearer ' + user.token,
+                },
+            })
+            .then(res => {
+                setLoading(false)
+                setData(res.data.hires)
+            })
+            .catch(error => {
+                setLoading(false)
+                toast.error('Error Getting Jobs', {
+                    position: 'top-right',
+                    autoClose: 3000,
+                })
+            })
+    }
+
+    const deleteJobPost = async () => {
+        const axios = require('axios')
+        const url =
+            process.env.NEXT_PUBLIC_BACKEND_URL + '/hire/' + idToBeDeleted
+        setLoading(true)
+        try {
+            await axios.delete(url, {
+                headers: {
+                    Authorization: `Bearer ${user.token}`,
+                    'Content-Type': 'application/json',
+                    Cookie:
+                        'analogueshifts_session=eyJpdiI6Ijk2OWprRDdzZEZWMDVoZldkbHVDUkE9PSIsInZhbHVlIjoiZkJRckt0QW02ZEU0NHcwdEZ6TkdMYlZGaXJNOFpnM3JyL3BieXJFaERHNlNva09qRm9rRHpMWkNieWI4TWVnMUdMK1RraXNENjZiUnZkMVhYM0hLQkp6bk1SaHBNSUpRajRDZDdQZWRVNmxLK0gvTVJFS2JhbnI1OVVnM0Zqa0siLCJtYWMiOiI3ZmMzMmQ5YjY2NjhiNGE0OGJiM2FmMWQ0OTg5NTA5NDMzMGRjYmJiNGNjMDliMjYyMTZkODExMzJmODk1MjM5IiwidGFnIjoiIn0%3D',
+                },
+            })
+            await fetchJobs()
+            toast.success('Job Deleted Successfully', {
+                position: 'top-right',
+                autoClose: 3000,
+            })
+            setIdToBeDeleted(null)
+        } catch (error) {
+            console.log(error)
+            toast.error('Error Deleting Job', {
+                position: 'top-right',
+                autoClose: 3000,
+            })
+            setLoading(false)
+        }
+    }
 
     const cancelButtonRef = useRef(null)
+
+    useEffect(() => {
+        let storedData = JSON.parse(
+            window.localStorage.getItem('analogueshifts'),
+        )
+        if (storedData) {
+            setUser(storedData[0])
+        }
+    }, [])
+
+    useEffect(() => {
+        if (user) {
+            fetchJobs()
+        }
+    }, [user])
+
+    useEffect(() => {
+        if (idToBeDeleted) {
+            deleteJobPost()
+        }
+    }, [idToBeDeleted])
 
     return (
         <Authenticated
@@ -24,7 +100,8 @@ export default function HirePageDetails() {
                     Hire Talents
                 </h2>
             }>
-            <Transition.Root show={open} as={Fragment}>
+            {loading && <DashboardLoader />}
+            <Transition.Root show={open !== null} as={Fragment}>
                 <Dialog
                     as="div"
                     className="relative z-10"
@@ -83,15 +160,18 @@ export default function HirePageDetails() {
                                             type="button"
                                             className="inline-flex w-full justify-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 sm:ml-3 sm:w-auto"
                                             onClick={() => {
-                                                setOpen(false)
-                                                setIdToBeDeleted(null)
+                                                setIdToBeDeleted(open)
+                                                setOpen(null)
                                             }}>
                                             Delete
                                         </button>
                                         <button
                                             type="button"
                                             className="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto"
-                                            onClick={() => setOpen(false)}
+                                            onClick={() => {
+                                                setIdToBeDeleted(null)
+                                                setOpen(null)
+                                            }}
                                             ref={cancelButtonRef}>
                                             Cancel
                                         </button>
@@ -102,7 +182,7 @@ export default function HirePageDetails() {
                     </div>
                 </Dialog>
             </Transition.Root>
-            <div className="w-full min-w-[300px] min-h-[calc(100dvh-128px)] pt-5">
+            <div className="w-full min-w-[300px] min-h-[calc(100dvh-80px)] lg:min-h-[calc(100dvh-112px)] pt-5">
                 <div className="flex justify-center">
                     <Link
                         href="/tools/hire/create"
@@ -114,37 +194,21 @@ export default function HirePageDetails() {
 
                 <div>
                     <div className="mt-6 border-t border-gray-100">
-                        <dl className="divide-y divide-gray-100">
-                            {dummmyHiresData.map(item => {
+                        {data &&
+                            data.map(item => {
                                 return (
                                     <div
                                         key={crypto.randomUUID()}
-                                        className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-                                        <dt className="text-sm font-medium leading-6 text-gray-900">
-                                            {item.role}
-                                        </dt>
-                                        <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-1 sm:mt-0">
-                                            <span
-                                                className={`${
-                                                    item.display === '1'
-                                                        ? 'text-green-600'
-                                                        : 'text-red-600'
-                                                }`}>
-                                                {item.display === '1'
-                                                    ? 'Live'
-                                                    : 'Offline'}
-                                            </span>{' '}
-                                            -{' '}
-                                            <span
-                                                className={`${
-                                                    item.status === 'Approved'
-                                                        ? 'text-green-600'
-                                                        : 'text-red-600'
-                                                }`}>
-                                                {item.status}
-                                            </span>
-                                        </dd>
-                                        <dt className="mt-3 sm:mt-0">
+                                        className="px-4 py-6 flex border-b justify-between items-start">
+                                        <div className="w-6/12 justify-between flex flex-wrap gap-x-3 gap-y-1.5">
+                                            <p className="text-sm font-semibold leading-6 text-gray-900">
+                                                {item.title}
+                                            </p>
+                                            <p className=" text-sm font-medium leading-6 text-gray-700 sm:col-span-1 sm:mt-0">
+                                                {item.employmentType}
+                                            </p>
+                                        </div>
+                                        <div className="w-6/12 pr-5 flex justify-end">
                                             <Menu
                                                 as="div"
                                                 className="relative inline-block text-left">
@@ -164,7 +228,7 @@ export default function HirePageDetails() {
                                                     leave="transition ease-in duration-75"
                                                     leaveFrom="transform opacity-100 scale-100"
                                                     leaveTo="transform opacity-0 scale-95">
-                                                    <Menu.Items className="absolute left-0 z-10 mt-2 w-56 origin-top-left rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                                                    <Menu.Items className="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                                                         <div className="py-1">
                                                             <Menu.Item>
                                                                 {({
@@ -207,11 +271,8 @@ export default function HirePageDetails() {
                                                                 }) => (
                                                                     <button
                                                                         onClick={() => {
-                                                                            setIdToBeDeleted(
-                                                                                item.id,
-                                                                            )
                                                                             setOpen(
-                                                                                true,
+                                                                                item.id,
                                                                             )
                                                                         }}
                                                                         className={classNames(
@@ -230,11 +291,10 @@ export default function HirePageDetails() {
                                                     </Menu.Items>
                                                 </Transition>
                                             </Menu>
-                                        </dt>
+                                        </div>
                                     </div>
                                 )
                             })}
-                        </dl>
                     </div>
                 </div>
             </div>
