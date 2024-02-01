@@ -15,33 +15,38 @@ export default function MenuDropDown({ user, close }) {
     return (
         <div
             style={{ transform: bgPos }}
-            className="fixed duration-500 w-full left-0 top-[80px] h-[calc(100dvh-80px)] bg-black/80 z-50 flex flex-col justify-center items-center gap-8">
-            <Link
-                style={{ opacity: textOpacity, transitionDelay: '0.5s' }}
-                href="/dashboard"
-                className={`text-[#f1f1f1] duration-500 text-2xl font-semibold flex items-center`}>
-                <span className="">DASHBOARD</span>
-            </Link>
-            <Link
-                style={{ opacity: textOpacity, transitionDelay: '0.7s' }}
-                href="/tools/hire"
-                className={`text-[#f1f1f1] duration-500 text-2xl font-semibold flex items-center`}>
-                <span className="">HIRE TALENTS</span>
-            </Link>
-            <Link
-                style={{ opacity: textOpacity, transitionDelay: '0.9s' }}
-                href="/tools/vetting"
-                className={`text-[#f1f1f1] text-2xl duration-500 font-semibold flex items-center`}>
-                <span className="">VETTING SYSTEM</span>
-            </Link>
-            {user?.role == 'admin' && (
+            className="fixed duration-500 w-full top-0 left-0 h-[100dvh] bg-black/80 z-50 ">
+            <div className="absolute bg-transparent  w-full h-[calc(100%-80px)] top-[80px] z-60 flex flex-col justify-center items-center gap-8">
                 <Link
-                    style={{ opacity: textOpacity, transitionDelay: '1.1s' }}
-                    href="/dashboard/users"
-                    className={`text-[#f1f1f1] text-2xl duration-500 font-semibold flex items-center`}>
-                    <span className="">USERS</span>
+                    style={{ opacity: textOpacity, transitionDelay: '0.5s' }}
+                    href="/dashboard"
+                    className={` duration-500 text-xl font-semibold flex items-center`}>
+                    <span className="text-[#f1f1f1]">DASHBOARD</span>
                 </Link>
-            )}
+                <Link
+                    style={{ opacity: textOpacity, transitionDelay: '0.7s' }}
+                    href="/tools/hire"
+                    className={` duration-500 text-xl font-semibold flex items-center`}>
+                    <span className="text-[#f1f1f1]">HIRE TALENTS</span>
+                </Link>
+                <Link
+                    style={{ opacity: textOpacity, transitionDelay: '0.9s' }}
+                    href="/tools/vetting"
+                    className={` text-xl duration-500 font-semibold flex items-center`}>
+                    <span className="text-[#f1f1f1]">VETTING SYSTEM</span>
+                </Link>
+                {user?.role == 'admin' && (
+                    <Link
+                        style={{
+                            opacity: textOpacity,
+                            transitionDelay: '1.1s',
+                        }}
+                        href="/dashboard/users"
+                        className={` text-xl duration-500 font-semibold flex items-center`}>
+                        <span className="text-[#f1f1f1]">USERS</span>
+                    </Link>
+                )}
+            </div>
         </div>
     )
 }

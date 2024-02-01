@@ -10,6 +10,7 @@ module.exports = {
 
     theme: {
         extend: {
+            zIndex: { 60: 60 },
             colors: {
                 as: '#E5BE39',
                 tremor: {

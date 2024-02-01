@@ -219,7 +219,6 @@ body::-webkit-scrollbar-thumb:hover {
     position: sticky;
     top: 0;
     left: 0;
-    z-index: 1000;
 }
 
 .content nav::before {

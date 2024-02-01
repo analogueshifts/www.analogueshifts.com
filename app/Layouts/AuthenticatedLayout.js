@@ -240,7 +240,7 @@ export default function Authenticated({ user, header, children }) {
             </section>
 
             <section className="content">
-                <nav className=" justify-between">
+                <nav className=" justify-between z-50">
                     <i
                         onClick={() => toggleMenu('hide')}
                         className="fas fa-bars menu-btn"></i>
@@ -250,23 +250,29 @@ export default function Authenticated({ user, header, children }) {
                         <ApplicationLogo />
                     </Link>
                     <button
-                        className={`${navAnimationClass} block hamburger sm:hidden outline-none`}
+                        className={`${navAnimationClass} block z-60 hamburger sm:hidden outline-none`}
                         type="button"
                         onClick={toggleDrawer}>
-                        <span className={`hamburger-top bg-[#342e37]`}></span>
                         <span
-                            className={`hamburger-middle bg-[#342e37]`}></span>
+                            className={`hamburger-top ${
+                                mobileOpen ? 'bg-[#f1f1f1]' : 'bg-[#342e37]'
+                            }`}></span>
                         <span
-                            className={`hamburger-bottom bg-[#342e37]`}></span>
+                            className={`hamburger-middle ${
+                                mobileOpen ? 'bg-[#f1f1f1]' : 'bg-[#342e37]'
+                            }`}></span>
+                        <span
+                            className={`hamburger-bottom ${
+                                mobileOpen ? 'bg-[#f1f1f1]' : 'bg-[#342e37]'
+                            }`}></span>
                     </button>
+                    {mobileOpen && (
+                        <MenuDropDown
+                            user={user}
+                            close={() => setMobileOpen(false)}
+                        />
+                    )}
                 </nav>
-
-                {mobileOpen && (
-                    <MenuDropDown
-                        user={user}
-                        close={() => setMobileOpen(false)}
-                    />
-                )}
 
                 <main className="lg:p-7 p-3">{children}</main>
             </section>
