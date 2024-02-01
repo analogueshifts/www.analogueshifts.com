@@ -270,6 +270,10 @@ export default function Authenticated({ user, header, children }) {
                         <MenuDropDown
                             user={user}
                             close={() => setMobileOpen(false)}
+                            handleLogout={() => {
+                                toggleMenu('hide')
+                                setOpen(true)
+                            }}
                         />
                     )}
                 </nav>

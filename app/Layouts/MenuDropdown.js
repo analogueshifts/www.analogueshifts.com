@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 import { usePathname } from 'next/navigation'
 import Link from 'next/link'
 
-export default function MenuDropDown({ user, close }) {
+export default function MenuDropDown({ user, close, handleLogout }) {
     const [bgPos, setBgPos] = useState('translateY(-100%)')
     const [textOpacity, setTextOpacity] = useState(0)
     const pathname = usePathname()
@@ -46,6 +46,13 @@ export default function MenuDropDown({ user, close }) {
                         <span className="text-[#f1f1f1]">USERS</span>
                     </Link>
                 )}
+                 <button onClick={handleLogout}
+                 type='button'
+                    style={{ opacity: textOpacity, transitionDelay: '0.9s' }}
+                    
+                    className={` text-xl duration-500 font-semibold flex items-center`}>
+                    <span className="text-[#f1f1f1]">LOG OUT</span>
+                </button>
             </div>
         </div>
     )
