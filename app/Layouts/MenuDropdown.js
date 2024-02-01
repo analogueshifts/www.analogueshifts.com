@@ -46,10 +46,10 @@ export default function MenuDropDown({ user, close, handleLogout }) {
                         <span className="text-[#f1f1f1]">USERS</span>
                     </Link>
                 )}
-                 <button onClick={handleLogout}
-                 type='button'
-                    style={{ opacity: textOpacity, transitionDelay: '0.9s' }}
-                    
+                <button
+                    onClick={handleLogout}
+                    type="button"
+                    style={{ opacity: textOpacity, transitionDelay: '1.3s' }}
                     className={` text-xl duration-500 font-semibold flex items-center`}>
                     <span className="text-[#f1f1f1]">LOG OUT</span>
                 </button>
