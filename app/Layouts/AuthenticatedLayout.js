@@ -8,10 +8,13 @@ import { Transition, Dialog } from '@headlessui/react'
 import { toast } from 'react-toastify'
 import DashboardLoader from '../components/DashboardLoader'
 import ApplicationLogo from '../components/ApplicationLogo'
+import MenuDropDown from './MenuDropdown'
 
 export default function Authenticated({ user, header, children }) {
     const [open, setOpen] = useState(false)
+    const [mobileOpen, setMobileOpen] = useState(false)
     const cancelButtonRef = useRef(null)
+    const [navAnimationClass, setNavAnimationClass] = useState('')
     const [loading, setLoading] = useState(false)
     async function logout() {
         const axios = require('axios')
@@ -47,6 +50,20 @@ export default function Authenticated({ user, header, children }) {
         sideBar.classList.toggle(value)
     }
 
+    const toggleDrawer = () => {
+        if (mobileOpen) {
+            setNavAnimationClass('')
+            setMobileOpen(prevExpenses => {
+                return !prevExpenses
+            })
+        } else {
+            setNavAnimationClass('open')
+            setMobileOpen(prevExpenses => {
+                return !prevExpenses
+            })
+        }
+    }
+
     useEffect(() => {
         const auth = localStorage.getItem('analogueshifts')
         if (auth === null || auth === undefined) {
@@ -62,6 +79,14 @@ export default function Authenticated({ user, header, children }) {
         if (window.innerWidth < 768) {
             sideBar.classList.add('hide')
         }
+        window.addEventListener('resize', () => {
+            setMobileOpen(false)
+            setNavAnimationClass('')
+        })
+        return window.removeEventListener('resize', () => {
+            setMobileOpen(false)
+            setNavAnimationClass('')
+        })
     }, [])
 
     return (
@@ -147,17 +172,10 @@ export default function Authenticated({ user, header, children }) {
                 <div className="logo fixed sm:static">
                     <Link
                         href="https://www.analogueshifts.com"
-                        className="icon sm:static fixed top-3 left-5">
-                        <Image
-                            src={Logo}
-                            alt="Logo"
-                            className="w-6 h-6 sm:flex hidden"
-                        />
-                        <div className="sm:hidden flex">
-                            <ApplicationLogo />
-                        </div>
+                        className="icon sm:flex hidden">
+                        <Image src={Logo} alt="Logo" className="w-6 h-6" />
                     </Link>
-                    <div className="text pt-1.5 hidden sm:flex">{header}</div>
+                    <div className="text pt-1.5">{header}</div>
                 </div>
 
                 <ul className="side-menu top">
@@ -222,11 +240,33 @@ export default function Authenticated({ user, header, children }) {
             </section>
 
             <section className="content">
-                <nav className="flex sm:justify-start justify-end">
+                <nav className=" justify-between">
                     <i
                         onClick={() => toggleMenu('hide')}
                         className="fas fa-bars menu-btn"></i>
+                    <Link
+                        href="https://www.analogueshifts.com"
+                        className="sm:hidden flex">
+                        <ApplicationLogo />
+                    </Link>
+                    <button
+                        className={`${navAnimationClass} block hamburger sm:hidden outline-none`}
+                        type="button"
+                        onClick={toggleDrawer}>
+                        <span className={`hamburger-top bg-[#342e37]`}></span>
+                        <span
+                            className={`hamburger-middle bg-[#342e37]`}></span>
+                        <span
+                            className={`hamburger-bottom bg-[#342e37]`}></span>
+                    </button>
                 </nav>
+
+                {mobileOpen && (
+                    <MenuDropDown
+                        user={user}
+                        close={() => setMobileOpen(false)}
+                    />
+                )}
 
                 <main className="lg:p-7 p-3">{children}</main>
             </section>

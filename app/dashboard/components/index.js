@@ -29,7 +29,7 @@ export default function Dashboard() {
                     Dashboard
                 </h2>
             }>
-            <div className="w-full min-w-[300px] min-h-[calc(100dvh-80px)] lg:min-h-[calc(100dvh-112px)]">
+            <div className="w-full min-w-[300px] px-1.5 min-h-[calc(100dvh-80px)] lg:min-h-[calc(100dvh-112px)]">
                 <div className="w-full h-60 rounded-2xl bg-tremor-background-brown flex justify-end">
                     <Image src={Curve} alt="" />
                 </div>
