@@ -450,3 +450,37 @@ body::-webkit-scrollbar-thumb:hover {
         transform: translate(24px, 0);
     }
 }
+@media (max-width: 640px) {
+    .content {
+        width: calc(100% - 60px);
+        left: 60px;
+    }
+
+    .sidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 60px;
+    }
+    .sidebar.hide {
+        width: 0px;
+    }
+
+    .sidebar.hide ~ .content {
+        width: calc(100% - 0px);
+        left: 0px;
+    }
+    .content nav {
+        height: 70px;
+        padding: 0 24px;
+    }
+
+    .content nav::before {
+        content: '';
+        border-radius: 0px;
+    }
+
+    .content main {
+        max-height: calc(100vh - 70px);
+    }
+}

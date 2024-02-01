@@ -7,6 +7,7 @@ import { usePathname } from 'next/navigation'
 import { Transition, Dialog } from '@headlessui/react'
 import { toast } from 'react-toastify'
 import DashboardLoader from '../components/DashboardLoader'
+import ApplicationLogo from '../components/ApplicationLogo'
 
 export default function Authenticated({ user, header, children }) {
     const [open, setOpen] = useState(false)
@@ -143,16 +144,20 @@ export default function Authenticated({ user, header, children }) {
                 </Dialog>
             </Transition.Root>
             <section className="sidebar">
-                <div className="logo">
+                <div className="logo fixed sm:static">
                     <Link
                         href="https://www.analogueshifts.com"
-                        className="icon">
+                        className="icon sm:static fixed top-3 left-5">
                         <Image
                             src={Logo}
                             alt="Logo"
-                            className="w-6 h-6"></Image>
+                            className="w-6 h-6 sm:flex hidden"
+                        />
+                        <div className="sm:hidden flex">
+                            <ApplicationLogo />
+                        </div>
                     </Link>
-                    <div className="text pt-1.5">{header}</div>
+                    <div className="text pt-1.5 hidden sm:flex">{header}</div>
                 </div>
 
                 <ul className="side-menu top">
@@ -162,7 +167,9 @@ export default function Authenticated({ user, header, children }) {
                         }`}>
                         <Link href="/dashboard" className="nav-link">
                             <i className="fas fa-border-all"></i>
-                            <span className="text">Dashboard</span>
+                            <span className="text hidden sm:flex">
+                                Dashboard
+                            </span>
                         </Link>
                     </li>
                     <li
@@ -171,7 +178,9 @@ export default function Authenticated({ user, header, children }) {
                         }`}>
                         <Link href="/tools/hire" className="nav-link">
                             <i className="fas fa-users"></i>
-                            <span className="text">Hire Talents</span>
+                            <span className="text hidden sm:flex">
+                                Hire Talents
+                            </span>
                         </Link>
                     </li>
                     <li
@@ -180,14 +189,18 @@ export default function Authenticated({ user, header, children }) {
                         }`}>
                         <Link href="/tools/vetting" className="nav-link">
                             <i className="fa-brands fa-teamspeak"></i>
-                            <span className="text">Vetting System</span>
+                            <span className="text hidden sm:flex">
+                                Vetting System
+                            </span>
                         </Link>
                     </li>
                     {user?.role == 'admin' && (
                         <li className={`${pathname === '' ? 'active' : ''}`}>
                             <Link href="" className="nav-link">
                                 <i className="fas fa-users"></i>
-                                <span className="text">Users</span>
+                                <span className="text hidden sm:flex">
+                                    Users
+                                </span>
                             </Link>
                         </li>
                     )}
@@ -196,17 +209,20 @@ export default function Authenticated({ user, header, children }) {
                 <ul className="side-menu">
                     <li>
                         <button
-                            onClick={() => setOpen(true)}
+                            onClick={() => {
+                                toggleMenu('hide')
+                                setOpen(true)
+                            }}
                             className="logout">
                             <i className="fas fa-right-from-bracket"></i>
-                            <span className="text">Logout</span>
+                            <span className="text hidden sm:flex">Logout</span>
                         </button>
                     </li>
                 </ul>
             </section>
 
             <section className="content">
-                <nav>
+                <nav className="flex sm:justify-start justify-end">
                     <i
                         onClick={() => toggleMenu('hide')}
                         className="fas fa-bars menu-btn"></i>
