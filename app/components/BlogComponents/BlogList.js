@@ -6,6 +6,7 @@ import A4 from '@/public/images/blogHero.jpg'
 import SearchIcon from '@/public/images/search-icon.png'
 import LoadingTwo from '../Loading'
 import MasonryGrid from './MansoryGrid'
+import Link from 'next/link'
 // import { data } from 'autoprefixer'
 
 export default function BlogList() {
@@ -32,7 +33,7 @@ export default function BlogList() {
             })
     }, [])
 
-    useEffect(() => {
+    const handlePagination = () => {
         setNumbers([])
         let division = blogs.length / 6
         if (division.toString().length > 1) {
@@ -44,13 +45,25 @@ export default function BlogList() {
                 setNumbers(previous => [...previous, i])
             }
         }
+    }
+
+    useEffect(() => {
+        handlePagination()
     }, [blogs])
 
     useEffect(() => {
         if (blogs[0]) {
-            setBlogData(blogs.slice(0, 6 * selectedNumber))
+            setBlogData(
+                blogs
+                    .filter(data =>
+                        data.title.rendered
+                            .toLowerCase()
+                            .includes(searchFilter.toLowerCase()),
+                    )
+                    .slice(0, 6 * selectedNumber),
+            )
         }
-    }, [blogs, selectedNumber])
+    }, [blogs, selectedNumber, searchFilter])
 
     // console.log(blogData)
 
@@ -120,32 +133,32 @@ export default function BlogList() {
                     />
                 </div>
                 <div className="pt-5 w-full flex justify-between flex-wrap gap-y-5">
-                    {blogData && (
-                        <MasonryGrid
-                            posts={blogData.filter(data =>
-                                data.title.rendered
-                                    .toLowerCase()
-                                    .includes(searchFilter.toLowerCase()),
-                            )}
-                        />
-                    )}
+                    {blogData && <MasonryGrid posts={blogData} />}
                 </div>
-                <div className="mt-10 w-full flex gap-x-3.5 gap-y-3.5 flex-wrap">
-                    {blogs[0] &&
-                        numbers.map(num => {
-                            return (
-                                <button
-                                    key={num}
-                                    onClick={() => setSelectedNumber(num)}
-                                    className={`w-8 h-8 flex justify-center items-center font-medium text-base ${
-                                        selectedNumber === num
-                                            ? 'bg-as text-white'
-                                            : 'bg-gray-200 text-black/80'
-                                    }`}>
-                                    {num}
-                                </button>
-                            )
-                        })}
+                <div className="mt-10 w-full flex justify-between gap-x-5 gap-y-5 flex-wrap">
+                    <div className="w-max gap-x-3.5 gap-y-3.5 flex flex-wrap">
+                        {blogs[0] &&
+                            numbers.map(num => {
+                                return (
+                                    <button
+                                        key={num}
+                                        onClick={() => setSelectedNumber(num)}
+                                        className={`w-8 h-8 flex justify-center items-center font-medium text-base ${
+                                            selectedNumber === num
+                                                ? 'bg-as text-white'
+                                                : 'bg-gray-200 text-black/80'
+                                        }`}>
+                                        {num}
+                                    </button>
+                                )
+                            })}
+                    </div>
+                    <Link
+                        href="https://blog.analogueshifts.com"
+                        className="flex justify-center w-max items-center rounded px-5 gap-2 bg-as text-white py-2 text-base font-semibold">
+                        View All Blog
+                        <i className="fas fa-arrow-right"></i>
+                    </Link>
                 </div>
             </div>
         </>

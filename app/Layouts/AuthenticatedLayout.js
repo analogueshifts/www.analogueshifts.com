@@ -271,7 +271,7 @@ export default function Authenticated({ user, header, children }) {
                             user={user}
                             close={() => setMobileOpen(false)}
                             handleLogout={() => {
-                                toggleMenu('hide')
+                                toggleDrawer()
                                 setOpen(true)
                             }}
                         />
