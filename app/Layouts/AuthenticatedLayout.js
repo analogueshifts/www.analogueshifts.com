@@ -17,14 +17,10 @@ export default function Authenticated({ user, header, children }) {
         const url = process.env.NEXT_PUBLIC_BACKEND_URL + '/logout'
         let config = {
             method: 'post',
-            maxBodyLength: Infinity,
             url: url,
             headers: {
                 Accept: 'application/json',
-                'Content-Type': 'application/json',
                 Authorization: 'Bearer ' + user.token,
-                Cookie:
-                    'analogueshifts_session=eyJpdiI6Ijk2OWprRDdzZEZWMDVoZldkbHVDUkE9PSIsInZhbHVlIjoiZkJRckt0QW02ZEU0NHcwdEZ6TkdMYlZGaXJNOFpnM3JyL3BieXJFaERHNlNva09qRm9rRHpMWkNieWI4TWVnMUdMK1RraXNENjZiUnZkMVhYM0hLQkp6bk1SaHBNSUpRajRDZDdQZWRVNmxLK0gvTVJFS2JhbnI1OVVnM0Zqa0siLCJtYWMiOiI3ZmMzMmQ5YjY2NjhiNGE0OGJiM2FmMWQ0OTg5NTA5NDMzMGRjYmJiNGNjMDliMjYyMTZkODExMzJmODk1MjM5IiwidGFnIjoiIn0%3D',
             },
         }
         setLoading(true)

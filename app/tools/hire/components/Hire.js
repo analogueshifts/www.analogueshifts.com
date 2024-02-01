@@ -49,8 +49,6 @@ export default function HirePageDetails() {
                 headers: {
                     Authorization: `Bearer ${user.token}`,
                     'Content-Type': 'application/json',
-                    Cookie:
-                        'analogueshifts_session=eyJpdiI6Ijk2OWprRDdzZEZWMDVoZldkbHVDUkE9PSIsInZhbHVlIjoiZkJRckt0QW02ZEU0NHcwdEZ6TkdMYlZGaXJNOFpnM3JyL3BieXJFaERHNlNva09qRm9rRHpMWkNieWI4TWVnMUdMK1RraXNENjZiUnZkMVhYM0hLQkp6bk1SaHBNSUpRajRDZDdQZWRVNmxLK0gvTVJFS2JhbnI1OVVnM0Zqa0siLCJtYWMiOiI3ZmMzMmQ5YjY2NjhiNGE0OGJiM2FmMWQ0OTg5NTA5NDMzMGRjYmJiNGNjMDliMjYyMTZkODExMzJmODk1MjM5IiwidGFnIjoiIn0%3D',
                 },
             })
             await fetchJobs()

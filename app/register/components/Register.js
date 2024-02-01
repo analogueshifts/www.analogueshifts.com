@@ -105,7 +105,7 @@ export default function Register() {
                                         } w-full rounded-2xl h-full pl-12 pr-4  outline-none text-base font-normal text-gray-400`}
                                         placeholder="Name"
                                         value={name}
-                                        type="name"
+                                        type="text"
                                         onChange={e => setName(e.target.value)}
                                         required
                                     />
