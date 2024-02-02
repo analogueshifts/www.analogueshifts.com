@@ -228,7 +228,6 @@ export default function Authenticated({ user, header, children }) {
                     <li>
                         <button
                             onClick={() => {
-                                toggleMenu('hide')
                                 setOpen(true)
                             }}
                             className="logout">

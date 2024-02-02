@@ -30,11 +30,11 @@ export default function ViewId({ id }) {
                 .get(`/jobs/${display}`)
                 .then(res => {
                     const data = res.data
-                    console.log(res.data)
                     setJob(data)
                     setLoading(false)
                 })
                 .catch(error => {
+                    console.log(error)
                     toast.error(error.message, {
                         position: 'top-right',
                         autoClose: 3000,

@@ -13,6 +13,11 @@ export default axios
 
 const axiosBlog = Axios.create({
     baseURL: process.env.NEXT_PUBLIC_WORDPRESS_URL,
+    headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+    },
+    withCredentials: true,
 })
 
 export { axiosBlog }
