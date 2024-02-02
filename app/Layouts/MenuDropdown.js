@@ -16,7 +16,7 @@ export default function MenuDropDown({ user, close, handleLogout }) {
         <div
             style={{ transform: bgPos }}
             className="fixed duration-500 w-full top-0 left-0 h-[100dvh] bg-white z-50 ">
-            <div className="absolute bg-transparent  w-full h-[calc(100%-80px)] top-[80px] z-60 flex flex-col pt-10 pl-7 gap-10">
+            <div className="absolute bg-transparent  w-full h-[calc(100%-80px)] top-[80px] z-60 flex flex-col justify-center items-center gap-10">
                 <Link
                     style={{ opacity: textOpacity, transitionDelay: '0.5s' }}
                     href="/dashboard"
