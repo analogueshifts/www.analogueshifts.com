@@ -8,6 +8,7 @@ import LocationIcon from '@/public/icons/location-icon.png'
 import Link from 'next/link'
 import LoadingTwo from '../Loading'
 import ShareJob from '../shareJobModal'
+import { toast } from 'react-toastify'
 
 //gsap.registerPlugin(ScrollTrigger)
 
@@ -15,24 +16,29 @@ export default function ViewId({ id }) {
     const router = useRouter()
     const pathname = usePathname()
 
-    const [job, setJob] = useState()
+    const [job, setJob] = useState(null)
     const [loading, setLoading] = useState(false)
     const [shareJobModal, setShareJobModal] = useState(false)
     const [linkToShare, setLinkToShare] = useState('')
 
     const display = id
     useEffect(() => {
+        console.log(id)
         if (display) {
             setLoading(true)
             axios
                 .get(`/jobs/${display}`)
                 .then(res => {
                     const data = res.data
+                    console.log(res.data)
                     setJob(data)
                     setLoading(false)
                 })
                 .catch(error => {
-                    alert(error)
+                    toast.error(error.message, {
+                        position: 'top-right',
+                        autoClose: 3000,
+                    })
                     setLoading(false)
                 })
         }
@@ -68,7 +74,7 @@ export default function ViewId({ id }) {
                             <header className="pt-5 max-[500px]:pt-2 mb-20 max-[500px]:mb-14">
                                 {/* Post title */}
                                 <h1 className="font-medium text-black/90 text-2xl md:text-4xl fade-in pb-4">
-                                    {job.role}
+                                    {job.title}
                                 </h1>
                                 <div className="flex gap-6 items-center pl-20 max-[500px]:pl-5 max-[500px]:gap-5 flex-wrap">
                                     <div className="flex items-center gap-2">
@@ -78,19 +84,25 @@ export default function ViewId({ id }) {
                                             className="w-4"
                                         />
                                         <p className="text-sm font-medium text-black/80">
-                                            {job.hire_type}
+                                            {job.employmentType}
                                         </p>
                                     </div>
                                     <div className="flex items-center gap-2">
                                         <p className="text-sm font-semibold text-black/80">
-                                            Duration:
+                                            Valid Through:
                                         </p>
                                         <p className="text-sm font-medium text-black/80">
-                                            {job.duration}
+                                            {job.validThrough}
                                         </p>
                                     </div>
                                     <p className="text-sm font-medium text-black/80">
-                                        {job.range}
+                                        {job.baseSalary.value.value +
+                                            ' ' +
+                                            job.baseSalary.currency +
+                                            ' ' +
+                                            'Per' +
+                                            ' ' +
+                                            job.baseSalary.value.unitText}
                                     </p>
                                 </div>
                             </header>
@@ -101,15 +113,15 @@ export default function ViewId({ id }) {
                                 <button className="px-2.5 py-2 w-max text-black/90 text-lg font-medium border-b border-black/90">
                                     Job details
                                 </button>
-                                {job.application === '' ? (
+                                {job.apply === '' ? (
                                     <Link
-                                        href={`/job/apply/${job.display}`}
+                                        href={`/job/apply/${job.slug}`}
                                         className="bg-as text-white w-max lg:w-fit py-2 px-4 fade-in">
                                         Apply here
                                     </Link>
                                 ) : (
                                     <Link
-                                        href={job.application}
+                                        href={job.apply}
                                         className="bg-as text-white w-max lg:w-fit py-2 px-4 fade-in">
                                         Apply here
                                     </Link>
@@ -134,7 +146,7 @@ export default function ViewId({ id }) {
                         {job && (
                             <section className="w-full px-8 pt-6 h-max flex gap-5 flex-wrap">
                                 <a
-                                    href={job.application}
+                                    href={job.apply}
                                     className="bg-as text-white rounded lg:w-fit py-2.5 duration-300 hover:-translate-y-1 px-14">
                                     Apply here
                                 </a>

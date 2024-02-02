@@ -255,15 +255,15 @@ export default function Authenticated({ user, header, children }) {
                         onClick={toggleDrawer}>
                         <span
                             className={`hamburger-top ${
-                                mobileOpen ? 'bg-[#f1f1f1]' : 'bg-[#342e37]'
+                                mobileOpen ? 'bg-black/80' : 'bg-[#342e37]'
                             }`}></span>
                         <span
                             className={`hamburger-middle ${
-                                mobileOpen ? 'bg-[#f1f1f1]' : 'bg-[#342e37]'
+                                mobileOpen ? 'bg-black/80' : 'bg-[#342e37]'
                             }`}></span>
                         <span
                             className={`hamburger-bottom ${
-                                mobileOpen ? 'bg-[#f1f1f1]' : 'bg-[#342e37]'
+                                mobileOpen ? 'bg-black/80' : 'bg-[#342e37]'
                             }`}></span>
                     </button>
                     {mobileOpen && (

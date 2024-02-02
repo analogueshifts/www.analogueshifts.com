@@ -20,11 +20,10 @@ const MasonryGrid = ({ posts }) => {
                 setBreakPointColumnsObj(3)
             }
         }
-    }, [])
-
-    useEffect(() => {
         if (window.innerWidth <= 500) {
             setBreakPointColumnsObj(1)
+        } else if (window.innerWidth < 1281) {
+            setBreakPointColumnsObj(2)
         } else {
             setBreakPointColumnsObj(3)
         }

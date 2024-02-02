@@ -7,6 +7,7 @@ import Image from 'next/image'
 import Job3 from '@/public/images/jobs/3.jpg'
 import { useInView } from 'react-intersection-observer'
 import LoadingTwo from '../Loading'
+import { toast } from 'react-toastify'
 
 export default function JobView() {
     const [jobs, setJobs] = useState([])
@@ -30,7 +31,10 @@ export default function JobView() {
             })
             .catch(error => {
                 setLoading(false)
-                alert(error)
+                toast.error(error.message, {
+                    position: 'top-right',
+                    autoClose: 3000,
+                })
             })
 
         // Initialize GSAP and ScrollTrigger
@@ -93,7 +97,7 @@ export default function JobView() {
                                 <div className="grid lg:col-span-6 p-7 lg:p-14">
                                     <div id="intro" className="grid gap-5">
                                         <div className="flex justify-start mb-2">
-                                            <span className="bg-as text-white text-xs font-bold rounded-full py-1 px-3">
+                                            <span className="bg-as text-white text-xs font-bold rounded-full py-2 px-5">
                                                 Jobs
                                             </span>
                                         </div>
@@ -137,17 +141,17 @@ export default function JobView() {
                     </div>
 
                     <div className="grid lg:grid-cols-2 gap-3 mb-3">
-                        {jobs &&
+                        {jobs[0] &&
                             jobs
                                 .filter(job =>
-                                    job.role
+                                    job.title
                                         .toLowerCase()
                                         .includes(searchFilter.toLowerCase()),
                                 )
                                 .map((job, index) => (
                                     <Link
-                                        href={`/jobs/${job.display}`}
-                                        as={`/jobs/${job.display}`}
+                                        href={`/jobs/${job.slug}`}
+                                        as={`/jobs/${job.slug}`}
                                         // as={`/jobs/${job.role.replace(
                                         //     /\s+/g,
                                         //     '-',
@@ -156,29 +160,48 @@ export default function JobView() {
                                         key={index}>
                                         <div className="bg-white h-full shadow border-0">
                                             <div className="p-7">
-                                                <div className="flex flex-wrap gap-2">
-                                                    <span className="inline-block bg-yellow-500 text-white text-xs font-bold rounded-full py-1 px-3">
+                                                <h5 className=" overflow-hidden text-lg mb-4">
+                                                    <b>
+                                                        {' '}
+                                                        {
+                                                            job
+                                                                .hiringOrganization
+                                                                .name
+                                                        }
+                                                    </b>{' '}
+                                                    -{' '}
+                                                    <span className="text-sm">
+                                                        {job.title}
+                                                    </span>
+                                                </h5>
+                                                <div className="flex flex-wrap gap-2 mb-4">
+                                                    <span className="inline-block bg-yellow-500 text-white text-xs font-bold rounded-full py-2 px-5">
                                                         Job
                                                     </span>
-                                                    <span className="inline-block bg-yellow-500 text-white text-xs font-bold rounded-full py-1 px-3">
-                                                        Location:{' '}
-                                                        {job.hire_type}
+                                                    <span className="inline-block bg-yellow-500 text-white text-xs font-bold rounded-full py-2 px-5">
+                                                        Employment Type:{' '}
+                                                        {job.jobLocationType}
                                                     </span>
-                                                    <span className="inline-block bg-yellow-500 text-white text-xs font-bold rounded-full py-1 px-3">
-                                                        Experience:{' '}
-                                                        {job.experience}
+
+                                                    <span className="inline-block bg-yellow-500 text-white text-xs font-bold rounded-full py-2 px-5">
+                                                        Salary:{' '}
+                                                        {job.baseSalary.value
+                                                            .value +
+                                                            ' ' +
+                                                            job.baseSalary
+                                                                .currency +
+                                                            ' ' +
+                                                            'Per' +
+                                                            ' ' +
+                                                            job.baseSalary.value
+                                                                .unitText}
                                                     </span>
-                                                    <span className="inline-block bg-yellow-500 text-white text-xs font-bold rounded-full py-1 px-3">
-                                                        Salary: {job.range}
-                                                    </span>
-                                                    <span className="inline-block bg-yellow-500 text-white text-xs font-bold rounded-full py-1 px-3">
-                                                        Duration: {job.duration}
+                                                    <span className="inline-block bg-yellow-500 text-white text-xs font-bold rounded-full py-2 px-5">
+                                                        Valid Through:{' '}
+                                                        {job.validThrough}
                                                     </span>
                                                 </div>
 
-                                                <h5 className="h-16 overflow-hidden font-bold text-lg mt-3.5 mb-1.5">
-                                                    {job.role}
-                                                </h5>
                                                 <div className="h-fit mb-0 overflow-hidden">
                                                     <p
                                                         dangerouslySetInnerHTML={{
@@ -186,7 +209,15 @@ export default function JobView() {
                                                                 job.description.substring(
                                                                     0,
                                                                     350,
-                                                                ) + '...',
+                                                                ) +
+                                                                `${
+                                                                    job
+                                                                        .description
+                                                                        .length >=
+                                                                    350
+                                                                        ? '...'
+                                                                        : ''
+                                                                }`,
                                                         }}
                                                     />
                                                 </div>

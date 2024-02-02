@@ -88,7 +88,7 @@ export default function Edit({ slug }) {
                 addressCountry: '',
             },
         },
-        jobLocationType: 'TELECOMMUTE',
+        jobLocationType: '',
         applicantLocationRequirements: [],
         baseSalary: {
             '@type': 'MonetaryAmount',
@@ -185,7 +185,7 @@ export default function Edit({ slug }) {
                 employmentType: initialData.employmentType,
                 hiringOrganization: initialData.hiringOrganization,
                 jobLocation: initialData.jobLocation,
-                jobLocationType: 'TELECOMMUTE',
+                jobLocationType: initialData.jobLocationType,
                 applicantLocationRequirements:
                     initialData.applicantLocationRequirements,
                 baseSalary: initialData.baseSalary,
@@ -341,6 +341,24 @@ export default function Edit({ slug }) {
                             </div>
                             <div className="mb-1 ">
                                 <label className="block text-sm font-medium text-gray-900">
+                                    Job Location Type
+                                </label>
+                                <input
+                                    type="text"
+                                    required
+                                    value={data.jobLocationType}
+                                    onChange={e =>
+                                        setData(prev => ({
+                                            ...prev,
+                                            jobLocationType: e.target.value,
+                                        }))
+                                    }
+                                    className="w-full py-3 px-5 border border-l-4 border-as outline-none text-black/70"
+                                    placeholder="TELECOMMUTE"
+                                />
+                            </div>
+                            <div className="mb-1 ">
+                                <label className="block text-sm font-medium text-gray-900">
                                     Valid Through*
                                 </label>
                                 <input
@@ -409,6 +427,7 @@ export default function Edit({ slug }) {
                                 </label>
                                 <input
                                     type="number"
+                                    min={0}
                                     value={data.baseSalary.value.value}
                                     onChange={e =>
                                         setData(prev => ({

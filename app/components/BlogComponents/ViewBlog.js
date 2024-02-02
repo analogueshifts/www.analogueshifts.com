@@ -5,6 +5,7 @@ import LoadingTwo from '../Loading'
 import Link from 'next/link'
 import Image from 'next/image'
 import Author from '@/public/author.png'
+import { toast } from 'react-toastify'
 
 // import Image from 'next/image'
 
@@ -24,7 +25,10 @@ export default function ViewBlog({ slug }) {
                 setLoading(false)
             })
             .catch(error => {
-                alert(error)
+                toast.error(error.message, {
+                    position: 'top-right',
+                    autoClose: 3000,
+                })
                 setLoading(false)
             })
     }, [])

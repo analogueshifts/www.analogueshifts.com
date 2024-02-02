@@ -185,13 +185,12 @@ export default function HirePageDetails() {
                     <Link
                         href="/tools/hire/create"
                         className="py-3 w-52 text-white/80 font-semibold text-base bg-tremor-background-lightYellow rounded-xl flex items-center justify-center gap-2">
-                        Hire Talents
-                        <i className="fas fa-plus"></i>
+                        <i className="fas fa-plus"></i> Hire Talents
                     </Link>
                 </div>
 
                 <div>
-                    <div className="mt-6 border-t border-gray-100">
+                    <div className="mt-6 border-gray-100">
                         {data &&
                             data.map(item => {
                                 return (

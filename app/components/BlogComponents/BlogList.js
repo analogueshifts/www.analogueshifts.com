@@ -7,6 +7,7 @@ import SearchIcon from '@/public/images/search-icon.png'
 import LoadingTwo from '../Loading'
 import MasonryGrid from './MansoryGrid'
 import Link from 'next/link'
+import { toast } from 'react-toastify'
 // import { data } from 'autoprefixer'
 
 export default function BlogList() {
@@ -28,7 +29,10 @@ export default function BlogList() {
                 setLoading(false)
             })
             .catch(error => {
-                alert(error)
+                toast.error(error.message, {
+                    position: 'top-right',
+                    autoClose: 3000,
+                })
                 setLoading(false)
             })
     }, [])
