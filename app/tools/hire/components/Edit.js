@@ -32,6 +32,8 @@ export default function Edit({ slug }) {
                 )[0]
                 if (filteredData) {
                     setInitialData(filteredData)
+                } else {
+                    router.push('/404')
                 }
                 setLoading(false)
             })

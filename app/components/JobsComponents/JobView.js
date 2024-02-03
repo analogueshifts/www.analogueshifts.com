@@ -27,6 +27,7 @@ export default function JobView() {
             .then(res => {
                 const data = res.data.jobs
                 setJobs(data)
+                console.log(data)
                 setLoading(false)
             })
             .catch(error => {
@@ -97,7 +98,7 @@ export default function JobView() {
                                 <div className="grid lg:col-span-6 p-7 lg:p-14">
                                     <div id="intro" className="grid gap-5">
                                         <div className="flex justify-start mb-2">
-                                            <span className="bg-as text-white text-xs font-bold rounded-full py-2 px-5">
+                                            <span className="bg-yellow-500 text-white text-xs font-bold rounded-full py-2 px-5">
                                                 Jobs
                                             </span>
                                         </div>
@@ -140,109 +141,83 @@ export default function JobView() {
                         />
                     </div>
 
-                    <div className="grid lg:grid-cols-2 gap-3 mb-3">
-                        {jobs[0] &&
-                            jobs
+                    {jobs[0] && (
+                        <div className="w-full pt-9 flex flex-col gap-6">
+                            {jobs
                                 .filter(job =>
                                     job.title
                                         .toLowerCase()
                                         .includes(searchFilter.toLowerCase()),
                                 )
-                                .map((job, index) => (
-                                    <Link
-                                        href={`/jobs/${job.slug}`}
-                                        as={`/jobs/${job.slug}`}
-                                        // as={`/jobs/${job.role.replace(
-                                        //     /\s+/g,
-                                        //     '-',
-                                        // )}/${job.id}`}
-                                        className="mb-5 animate-fade-in-job"
-                                        key={index}>
-                                        <div className="bg-white h-full shadow border-0">
-                                            <div className="p-7">
-                                                <h5 className=" overflow-hidden text-lg mb-4">
-                                                    <b>
-                                                        {' '}
+                                .map((job, index) => {
+                                    return (
+                                        <div
+                                            key={index}
+                                            className="w-full border-b flex flex-wrap pb-5 justify-between items-center gap-y-2">
+                                            <div className="flex gap-2 flex-wrap items-center">
+                                                <img
+                                                    src={
+                                                        job.hiringOrganization
+                                                            .logo
+                                                            ? job
+                                                                  .hiringOrganization
+                                                                  .logo
+                                                            : 'https://via.placeholder.com/80'
+                                                    }
+                                                    alt="LOGO"
+                                                    className="w-20 h-20"
+                                                />
+                                                <div className="flex flex-col gap-1.5">
+                                                    <p className="text-xs font-normal text-black/40">
                                                         {
                                                             job
                                                                 .hiringOrganization
                                                                 .name
                                                         }
-                                                    </b>{' '}
-                                                    -{' '}
-                                                    <span className="text-sm">
+                                                    </p>
+                                                    <p className="text-sm font-semibold text-black/80">
                                                         {job.title}
-                                                    </span>
-                                                </h5>
-                                                <div className="flex flex-wrap gap-2 mb-4">
-                                                    <span className="inline-block bg-yellow-500 text-white text-xs font-bold rounded-full py-2 px-5">
-                                                        Job
-                                                    </span>
-                                                    <span className="inline-block bg-yellow-500 text-white text-xs font-bold rounded-full py-2 px-5">
-                                                        Employment Type:{' '}
-                                                        {job.jobLocationType}
-                                                    </span>
-
-                                                    <span className="inline-block bg-yellow-500 text-white text-xs font-bold rounded-full py-2 px-5">
-                                                        Salary:{' '}
-                                                        {job.baseSalary.value
-                                                            .value +
-                                                            ' ' +
-                                                            job.baseSalary
-                                                                .currency +
-                                                            ' ' +
-                                                            'Per' +
-                                                            ' ' +
-                                                            job.baseSalary.value
-                                                                .unitText}
-                                                    </span>
-                                                    <span className="inline-block bg-yellow-500 text-white text-xs font-bold rounded-full py-2 px-5">
-                                                        Valid Through:{' '}
-                                                        {job.validThrough}
-                                                    </span>
-                                                </div>
-
-                                                <div className="h-fit mb-0 overflow-hidden">
-                                                    <p
-                                                        dangerouslySetInnerHTML={{
-                                                            __html:
-                                                                job.description.substring(
-                                                                    0,
-                                                                    350,
-                                                                ) +
-                                                                `${
-                                                                    job
-                                                                        .description
-                                                                        .length >=
-                                                                    350
-                                                                        ? '...'
-                                                                        : ''
-                                                                }`,
-                                                        }}
-                                                    />
-                                                </div>
-                                            </div>
-                                            <div className="p-4 pt-0 bg-transparent border-t-0">
-                                                <div className="flex items-end justify-start">
-                                                    <div className="flex gap-5 items-center">
-                                                        {/* You can add user and created_at information here */}
-                                                        {/* Example: <img className="object-cover rounded-full h-11 w-11" src="/images/assets/blankuser.png" alt="..." /> */}
-                                                        <div className="small">
-                                                            {/* Replace these placeholders with actual user and date information */}
-                                                            <div className="font-bold">
-                                                                {/* {job.user.name} */}
-                                                            </div>
-                                                            <div className="text-gray-500">
-                                                                {/* {job.created_at} (diffForHumans()) */}
-                                                            </div>
+                                                    </p>
+                                                    <div className="flex gap-1.5 flex-wrap">
+                                                        <div className="px-5 bg-[#f2f2f2] rounded py-1 text-black/80 text-[10px] font-normal">
+                                                            {job.baseSalary
+                                                                .value.value +
+                                                                ' ' +
+                                                                job.baseSalary
+                                                                    .currency +
+                                                                ' ' +
+                                                                'Per' +
+                                                                ' ' +
+                                                                job.baseSalary
+                                                                    .value
+                                                                    .unitText}
+                                                        </div>
+                                                        <div className="px-5 bg-[#f2f2f2] rounded py-1 text-black/80 text-[10px] font-normal">
+                                                            {
+                                                                job.jobLocationType
+                                                            }
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
+                                            <div className="flex gap-2 items-center">
+                                                <Link
+                                                    href={job.apply}
+                                                    className={`w-24 lg:w-28 py-2 hover:scale-105 rounded-full text-xs font-bold duration-300 text-white bg-yellow-500 flex justify-center`}>
+                                                    Apply
+                                                </Link>
+                                                <Link
+                                                    href={`/jobs/${job.slug}`}
+                                                    as={`/jobs/${job.slug}`}
+                                                    className="text-xs font-normal text-black/60">
+                                                    Read More
+                                                </Link>
+                                            </div>
                                         </div>
-                                    </Link>
-                                ))}
-                    </div>
+                                    )
+                                })}
+                        </div>
+                    )}
 
                     {/* Call to action */}
                     <aside className="flex justify-center py-16">
