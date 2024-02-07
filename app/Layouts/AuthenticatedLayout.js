@@ -25,7 +25,7 @@ export default function Authenticated({ user, header, children }) {
             url: url,
             headers: {
                 Accept: 'application/json',
-                Authorization: `Bearer ${user.token}`,
+                Authorization: 'Bearer ' + user.token,
             },
         }
         setLoading(true)
