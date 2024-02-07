@@ -77,7 +77,6 @@ export default function Create() {
             url: url,
             headers: {
                 Accept: 'application/json',
-                'Content-Type': 'application/json',
                 Authorization: 'Bearer ' + user.token,
             },
             data: data,

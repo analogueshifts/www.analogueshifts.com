@@ -46,9 +46,9 @@ export default function HirePageDetails() {
         setLoading(true)
         try {
             await axios.delete(url, {
+                maxBodyLength: Infinity,
                 headers: {
                     Authorization: `Bearer ${user.token}`,
-                    'Content-Type': 'application/json',
                 },
             })
             await fetchJobs()

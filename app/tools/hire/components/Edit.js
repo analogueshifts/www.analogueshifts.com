@@ -22,7 +22,9 @@ export default function Edit({ slug }) {
         setLoading(true)
         axiosDashboardJob
             .get('/hire/dashboard', {
+                maxBodyLength: Infinity,
                 headers: {
+                    Accept: 'application/json',
                     Authorization: 'Bearer ' + user.token,
                 },
             })
