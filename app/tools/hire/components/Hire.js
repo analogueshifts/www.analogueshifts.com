@@ -22,8 +22,9 @@ export default function HirePageDetails() {
         setLoading(true)
         axiosDashboardJob
             .get('/hire/dashboard', {
+                maxBodyLength: Infinity,
                 headers: {
-                    Authorization: 'Bearer ' + user.token,
+                    Authorization: `Bearer ${user.token}`,
                 },
             })
             .then(res => {

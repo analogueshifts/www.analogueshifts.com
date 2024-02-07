@@ -25,7 +25,7 @@ export default function Edit({ slug }) {
                 maxBodyLength: Infinity,
                 headers: {
                     Accept: 'application/json',
-                    Authorization: 'Bearer ' + user.token,
+                    Authorization: `Bearer ${user.token}`,
                 },
             })
             .then(res => {
@@ -117,8 +117,7 @@ export default function Edit({ slug }) {
             url: url,
             headers: {
                 Accept: 'application/json',
-                'Content-Type': 'application/json',
-                Authorization: 'Bearer ' + user.token,
+                Authorization: `Bearer ${user.token}`,
             },
             data: data,
         }
