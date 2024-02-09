@@ -17,7 +17,7 @@ export default function Dashboard() {
             window.localStorage.getItem('analogueshifts'),
         )
         if (storedData) {
-            setUser(storedData[0].user)
+            setUser(storedData[0])
         }
     }, [])
 

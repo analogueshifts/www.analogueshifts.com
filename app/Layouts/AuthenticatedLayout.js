@@ -27,6 +27,7 @@ export default function Authenticated({ user, header, children }) {
                 Authorization: 'Bearer ' + user.token,
             },
         }
+        console.log(user)
         setLoading(true)
         try {
             await axios.request(config)
@@ -212,7 +213,7 @@ export default function Authenticated({ user, header, children }) {
                             </span>
                         </Link>
                     </li>
-                    {user?.role == 'admin' && (
+                    {user?.user.role == 'admin' && (
                         <li className={`${pathname === '' ? 'active' : ''}`}>
                             <Link href="" className="nav-link">
                                 <i className="fas fa-users"></i>
