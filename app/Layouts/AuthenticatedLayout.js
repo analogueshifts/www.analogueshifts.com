@@ -21,6 +21,7 @@ export default function Authenticated({ user, header, children }) {
         const url = process.env.NEXT_PUBLIC_BACKEND_URL + '/logout'
         let config = {
             method: 'post',
+            maxBodyLength: Infinity,
             url: url,
             headers: {
                 Accept: 'application/json',

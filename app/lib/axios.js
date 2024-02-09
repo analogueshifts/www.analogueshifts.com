@@ -2,22 +2,22 @@ import Axios from 'axios'
 
 const axios = Axios.create({
     baseURL: process.env.NEXT_PUBLIC_BACKEND_URL,
+    maxBodyLength: Infinity,
     headers: {
         Accept: 'application/json',
-        'Content-Type': 'application/json',
     },
-    withCredentials: true,
+    // withCredentials: true,
 })
 
 export default axios
 
 const axiosBlog = Axios.create({
     baseURL: process.env.NEXT_PUBLIC_WORDPRESS_URL,
+    maxBodyLength: Infinity,
     headers: {
         Accept: 'application/json',
-        'Content-Type': 'application/json',
     },
-    withCredentials: true,
+    // withCredentials: true,
 })
 
 export { axiosBlog }
