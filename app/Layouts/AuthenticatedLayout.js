@@ -28,7 +28,7 @@ export default function Authenticated({ user, header, children }) {
                 Authorization: 'Bearer ' + user.token,
             },
         }
-        console.log(user)
+
         setLoading(true)
         try {
             await axios.request(config)
