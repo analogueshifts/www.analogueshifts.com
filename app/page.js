@@ -27,6 +27,9 @@ export const metadata = {
     alternates: {
         canonical: '/',
     },
+    verification: {
+        google: '12u7pme580a5gcUmuy5wNxbzRTg7arTjrSLo4NpwLdc',
+    },
 }
 
 export default function Page() {
