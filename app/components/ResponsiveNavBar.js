@@ -17,7 +17,9 @@ export default function ResponsiveNavBar() {
                 <ResponsiveNavLink href="/" active={pathname === '/'}>
                     Home
                 </ResponsiveNavLink>
-                <ResponsiveNavLink href="/blog" active={pathname === '/blog'}>
+                <ResponsiveNavLink
+                    href="https://blog.analogueshifts.com"
+                    active={pathname === '/blog'}>
                     Blog
                 </ResponsiveNavLink>
                 <ResponsiveNavLink href="/jobs" active={pathname === '/jobs'}>

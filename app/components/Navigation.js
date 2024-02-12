@@ -38,7 +38,9 @@ const Navigation = () => {
                             <NavLink href="/" active={pathname === '/'}>
                                 Home
                             </NavLink>
-                            <NavLink href="/blog" active={pathname === '/blog'}>
+                            <NavLink
+                                href="https://blog.analogueshifts.com"
+                                active={pathname === '/blog'}>
                                 Blog
                             </NavLink>
                             <NavLink href="/jobs" active={pathname === '/jobs'}>
