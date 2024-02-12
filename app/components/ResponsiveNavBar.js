@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import ResponsiveNavLink from './ResponsiveNavLink'
 import { usePathname } from 'next/navigation'
 
-export default function ResponsiveNavBar() {
+export default function ResponsiveNavBar({ handleBlogNavigation }) {
     const [opacity, setOpacity] = useState(0)
     const pathname = usePathname()
 
@@ -17,11 +17,12 @@ export default function ResponsiveNavBar() {
                 <ResponsiveNavLink href="/" active={pathname === '/'}>
                     Home
                 </ResponsiveNavLink>
-                <ResponsiveNavLink
+                <a
+                    onClick={handleBlogNavigation}
                     href="https://blog.analogueshifts.com"
-                    active={pathname === '/blog'}>
+                    className={`block pl-4 pr-4 py-3 border-l-4 text-base font-medium leading-5 focus:outline-none transition duration-150 ease-in-out border-transparent text-gray-600 hover:text-gray-800 hover:bg-gray-50 hover:border-gray-300 focus:text-gray-800 focus:bg-gray-50 focus:border-gray-300`}>
                     Blog
-                </ResponsiveNavLink>
+                </a>
                 <ResponsiveNavLink href="/jobs" active={pathname === '/jobs'}>
                     Jobs
                 </ResponsiveNavLink>
