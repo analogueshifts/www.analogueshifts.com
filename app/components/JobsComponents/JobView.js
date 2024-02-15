@@ -22,15 +22,26 @@ export default function JobView() {
     useEffect(() => {
         setLoading(true)
         // Fetch job data from your API
-        axios
-            .get('/jobs')
+        fetch(process.env.NEXT_PUBLIC_BACKEND_URL + '/jobs', {
+            method: 'GET',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+            },
+            credentials: 'same-origin',
+        })
             .then(res => {
-                const data = res.data.jobs
-                setJobs(data)
-                console.log(data)
+                // const data = res.data.jobs
+                // setJobs(data)
                 setLoading(false)
+                if (!res.ok) {
+                    console.log(res)
+                } else {
+                    console.log(res.json())
+                }
             })
             .catch(error => {
+                console.log(error)
                 setLoading(false)
                 toast.error(error.message, {
                     position: 'top-right',
