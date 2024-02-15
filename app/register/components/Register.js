@@ -52,11 +52,11 @@ export default function Register() {
             .catch(error => {
                 console.log(error)
                 setLoading(false)
-                toast.error('Invalid email or password', {
+                toast.error(error.message, {
                     position: 'top-right',
                     autoClose: 3000,
                 })
-                setErrorMessage('Invalid email or password')
+                setErrorMessage(error.message)
             })
     }
     useEffect(() => {

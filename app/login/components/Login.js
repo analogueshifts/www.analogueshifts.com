@@ -48,12 +48,12 @@ export default function Login() {
             })
             .catch(error => {
                 setLoading(false)
-                toast.error('Invalid email or password', {
+                toast.error(error.message, {
                     position: 'top-right',
                     autoClose: 3000,
                 })
                 console.log(error)
-                setErrorMessage('Invalid email or password')
+                setErrorMessage(error.message)
             })
     }
 
