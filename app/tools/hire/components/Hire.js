@@ -18,18 +18,23 @@ export default function HirePageDetails() {
     const [data, setData] = useState([])
     const [loading, setLoading] = useState(false)
 
+    //Fetch Jobs
     const fetchJobs = () => {
         setLoading(true)
-        axiosDashboardJob
-            .get('/hire/dashboard', {
-                maxBodyLength: Infinity,
-                headers: {
-                    Authorization: 'Bearer ' + user.token,
-                },
-            })
+        fetch(process.env.NEXT_PUBLIC_BACKEND_URL + '/hire/dashboard', {
+            method: 'GET',
+            maxBodyLength: Infinity,
+            headers: {
+                Accept: 'application/json',
+                Authorization: 'Bearer ' + user.token,
+            },
+            credentials: 'same-origin',
+        })
             .then(res => {
                 setLoading(false)
-                setData(res.data.hires)
+                if (res.ok) {
+                    setData(res.data.hires)
+                }
             })
             .catch(error => {
                 setLoading(false)
@@ -40,32 +45,41 @@ export default function HirePageDetails() {
             })
     }
 
+    // Delete A Job Post by using the Job Id
     const deleteJobPost = async () => {
-        const axios = require('axios')
         const url =
             process.env.NEXT_PUBLIC_BACKEND_URL + '/hire/' + idToBeDeleted
         setLoading(true)
-        try {
-            await axios.delete(url, {
-                maxBodyLength: Infinity,
-                headers: {
-                    Authorization: `Bearer ${user.token}`,
-                },
+        fetch(url, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        })
+            .then(res => {
+                if (res.ok) {
+                    fetchJobs()
+                    toast.success('Job Deleted Successfully', {
+                        position: 'top-right',
+                        autoClose: 3000,
+                    })
+                    setIdToBeDeleted(null)
+                } else {
+                    setLoading(false)
+                    toast.error('Error Deleting Job', {
+                        position: 'top-right',
+                        autoClose: 3000,
+                    })
+                }
             })
-            await fetchJobs()
-            toast.success('Job Deleted Successfully', {
-                position: 'top-right',
-                autoClose: 3000,
+            .catch(err => {
+                console.log(err)
+                toast.error('Error Deleting Job', {
+                    position: 'top-right',
+                    autoClose: 3000,
+                })
+                setLoading(false)
             })
-            setIdToBeDeleted(null)
-        } catch (error) {
-            console.log(error)
-            toast.error('Error Deleting Job', {
-                position: 'top-right',
-                autoClose: 3000,
-            })
-            setLoading(false)
-        }
     }
 
     const cancelButtonRef = useRef(null)
@@ -75,7 +89,7 @@ export default function HirePageDetails() {
             window.localStorage.getItem('analogueshifts'),
         )
         if (storedData) {
-            setUser(storedData[0])
+            setUser(storedData)
         }
     }, [])
 

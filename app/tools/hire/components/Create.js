@@ -22,7 +22,7 @@ export default function Create() {
             window.localStorage.getItem('analogueshifts'),
         )
         if (storedData) {
-            setUser(storedData[0])
+            setUser(storedData)
         }
     }, [])
 
@@ -72,25 +72,25 @@ export default function Create() {
         e.preventDefault()
         const axios = require('axios')
         let config = {
-            method: 'post',
+            method: 'POST',
             maxBodyLength: Infinity,
-            url: url,
             headers: {
                 Accept: 'application/json',
                 Authorization: 'Bearer ' + user.token,
             },
-            data: data,
+            body: JSON.stringify(data),
         }
         setLoading(true)
-        axios
-            .request(config)
+        fetch(url, config)
             .then(response => {
                 setLoading(false)
-                toast.success('Your Hire Request Has Been Sent', {
-                    position: 'top-right',
-                    autoClose: 3000,
-                })
-                router.push('/tools/hire')
+                if (response.ok) {
+                    toast.success('Your Hire Request Has Been Sent', {
+                        position: 'top-right',
+                        autoClose: 3000,
+                    })
+                    router.push('/tools/hire')
+                }
             })
             .catch(error => {
                 console.log(error)

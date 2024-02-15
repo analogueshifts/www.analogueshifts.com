@@ -17,32 +17,32 @@ export default function Authenticated({ user, header, children }) {
     const [navAnimationClass, setNavAnimationClass] = useState('')
     const [loading, setLoading] = useState(false)
     async function logout() {
-        const axios = require('axios')
         const url = process.env.NEXT_PUBLIC_BACKEND_URL + '/logout'
         let config = {
-            method: 'post',
+            method: 'POST',
             maxBodyLength: Infinity,
-            url: url,
             headers: {
                 Accept: 'application/json',
-                Authorization: 'Bearer ' + user.token,
             },
         }
 
         setLoading(true)
-        try {
-            await axios.request(config)
-            localStorage.removeItem('analogueshifts')
-            setLoading(false)
-            window.location.href = '/login'
-        } catch (error) {
-            console.log(error)
-            toast.error('Error Logging Out', {
-                position: 'top-right',
-                autoClose: 3000,
+        fetch(url, config)
+            .then(res => {
+                if (res.ok) {
+                    localStorage.removeItem('analogueshifts')
+                    window.location.href = '/login'
+                }
+                setLoading(false)
             })
-            setLoading(false)
-        }
+            .catch(error => {
+                console.log(error)
+                toast.error('Error Logging Out', {
+                    position: 'top-right',
+                    autoClose: 3000,
+                })
+                setLoading(false)
+            })
     }
     const pathname = usePathname()
 
@@ -214,7 +214,7 @@ export default function Authenticated({ user, header, children }) {
                             </span>
                         </Link>
                     </li>
-                    {user?.user.role == 'admin' && (
+                    {user?.role == 'admin' && (
                         <li className={`${pathname === '' ? 'active' : ''}`}>
                             <Link href="" className="nav-link">
                                 <i className="fas fa-users"></i>

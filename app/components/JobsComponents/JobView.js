@@ -26,7 +26,6 @@ export default function JobView() {
             method: 'GET',
             headers: {
                 Accept: 'application/json',
-                'Content-Type': 'application/json',
             },
             credentials: 'same-origin',
         })
@@ -34,11 +33,7 @@ export default function JobView() {
                 // const data = res.data.jobs
                 // setJobs(data)
                 setLoading(false)
-                if (!res.ok) {
-                    console.log(res)
-                } else {
-                    console.log(res.json())
-                }
+                console.log(res.json())
             })
             .catch(error => {
                 console.log(error)

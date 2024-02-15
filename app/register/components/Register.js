@@ -19,7 +19,6 @@ export default function Register() {
 
     function submit(e) {
         e.preventDefault()
-        const axios = require('axios')
         let data = JSON.stringify({
             name: name,
             email: email,
@@ -28,27 +27,27 @@ export default function Register() {
         })
 
         let config = {
-            method: 'post',
+            method: 'POST',
             maxBodyLength: Infinity,
-            url: url,
             headers: {
                 Accept: 'application/json',
                 'Content-Type': 'application/json',
             },
-            data: data,
+            body: data,
         }
         setLoading(true)
-        axios
-            .request(config)
-            .then(async response => {
-                const userData = JSON.stringify(response.data)
-                localStorage.setItem('analogueshifts', userData)
+        fetch(url, config)
+            .then(response => {
+                if (response.ok) {
+                    const userData = JSON.stringify(response.data[0].user)
+                    localStorage.setItem('analogueshifts', userData)
+                    toast.success('Account Created Successfully', {
+                        position: 'top-right',
+                        autoClose: 3000,
+                    })
+                    window.location.href = '/dashboard'
+                }
                 setLoading(false)
-                toast.success('Account Created Successfully', {
-                    position: 'top-right',
-                    autoClose: 3000,
-                })
-                window.location.href = '/dashboard'
             })
             .catch(error => {
                 console.log(error)

@@ -20,22 +20,24 @@ export default function Edit({ slug }) {
 
     const fetchJobs = () => {
         setLoading(true)
-        axiosDashboardJob
-            .get('/hire/dashboard', {
-                maxBodyLength: Infinity,
-                headers: {
-                    Accept: 'application/json',
-                    Authorization: 'Bearer ' + user.token,
-                },
-            })
+        fetch(process.env.NEXT_PUBLIC_BACKEND_URL + '/hire/dashboard', {
+            method: 'GET',
+            maxBodyLength: Infinity,
+            headers: {
+                Accept: 'application/json',
+            },
+            credentials: 'same-origin',
+        })
             .then(res => {
-                let filteredData = res.data.hires.filter(
-                    item => item.slug === slug,
-                )[0]
-                if (filteredData) {
-                    setInitialData(filteredData)
-                } else {
-                    router.push('/404')
+                if (res.ok) {
+                    let filteredData = res.data.hires.filter(
+                        item => item.slug === slug,
+                    )[0]
+                    if (filteredData) {
+                        setInitialData(filteredData)
+                    } else {
+                        router.push('/404')
+                    }
                 }
                 setLoading(false)
             })
@@ -54,7 +56,7 @@ export default function Edit({ slug }) {
             window.localStorage.getItem('analogueshifts'),
         )
         if (storedData) {
-            setUser(storedData[0])
+            setUser(storedData)
         }
     }, [])
 
@@ -112,26 +114,26 @@ export default function Edit({ slug }) {
         const url =
             process.env.NEXT_PUBLIC_BACKEND_URL + '/hire/' + initialData.id
         let config = {
-            method: 'put',
+            method: 'PUT',
             maxBodyLength: Infinity,
-            url: url,
             headers: {
                 Accept: 'application/json',
                 'Content-Type': 'application/json',
                 Authorization: 'Bearer ' + user.token,
             },
-            data: data,
+            body: JSON.stringify(data),
         }
         setLoading(true)
-        axios
-            .request(config)
+        fetch(url, config)
             .then(response => {
                 setLoading(false)
-                toast.success('Your Post Has Been Edited Successfully', {
-                    position: 'top-right',
-                    autoClose: 3000,
-                })
-                router.push('/tools/hire')
+                if (response.ok) {
+                    toast.success('Your Post Has Been Edited Successfully', {
+                        position: 'top-right',
+                        autoClose: 3000,
+                    })
+                    router.push('/tools/hire')
+                }
             })
             .catch(error => {
                 console.log(error)
