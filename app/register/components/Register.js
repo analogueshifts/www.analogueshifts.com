@@ -19,6 +19,7 @@ export default function Register() {
 
     function submit(e) {
         e.preventDefault()
+        const axios = require('axios')
         let data = JSON.stringify({
             name: name,
             email: email,
@@ -27,36 +28,36 @@ export default function Register() {
         })
 
         let config = {
-            method: 'POST',
+            method: 'post',
             maxBodyLength: Infinity,
+            url: url,
             headers: {
                 Accept: 'application/json',
                 'Content-Type': 'application/json',
             },
-            body: data,
+            data: data,
         }
+
         setLoading(true)
-        fetch(url, config)
-            .then(response => {
-                if (response.ok) {
-                    const userData = JSON.stringify(response.data[0].user)
-                    localStorage.setItem('analogueshifts', userData)
-                    toast.success('Account Created Successfully', {
-                        position: 'top-right',
-                        autoClose: 3000,
-                    })
-                    window.location.href = '/dashboard'
-                }
+        axios
+            .request(config)
+            .then(async response => {
+                const userData = JSON.stringify(response.data.user)
+                localStorage.setItem('analogueshifts', userData)
                 setLoading(false)
+                toast.success('Account Created Successfully', {
+                    position: 'top-right',
+                    autoClose: 3000,
+                })
+                window.location.href = '/dashboard'
             })
             .catch(error => {
                 console.log(error)
                 setLoading(false)
-                toast.error(error.message, {
+                toast.error('Invalid email or password', {
                     position: 'top-right',
                     autoClose: 3000,
                 })
-                setErrorMessage(error.message)
             })
     }
     useEffect(() => {

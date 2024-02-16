@@ -17,32 +17,23 @@ export default function Authenticated({ user, header, children }) {
     const [navAnimationClass, setNavAnimationClass] = useState('')
     const [loading, setLoading] = useState(false)
     async function logout() {
-        const url = process.env.NEXT_PUBLIC_BACKEND_URL + '/logout'
-        let config = {
-            method: 'POST',
-            maxBodyLength: Infinity,
-            headers: {
-                Accept: 'application/json',
-            },
-        }
+        // const axios = require('axios')
+        // const url = process.env.NEXT_PUBLIC_BACKEND_URL + '/logout'
+        // let config = {
+        //     method: 'post',
+        //     url: url,
+        //     headers: {
+        //         Accept: 'application/json',
+        //         'Content-Type': 'application/json',
+        //     },
+        // }
+        // setLoading(true)
 
-        setLoading(true)
-        fetch(url, config)
-            .then(res => {
-                if (res.ok) {
-                    localStorage.removeItem('analogueshifts')
-                    window.location.href = '/login'
-                }
-                setLoading(false)
-            })
-            .catch(error => {
-                console.log(error)
-                toast.error('Error Logging Out', {
-                    position: 'top-right',
-                    autoClose: 3000,
-                })
-                setLoading(false)
-            })
+        // axios
+        //     .request(config)
+
+        localStorage.removeItem('analogueshifts')
+        window.location.href = '/login'
     }
     const pathname = usePathname()
 
