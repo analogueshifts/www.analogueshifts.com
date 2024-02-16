@@ -36,7 +36,7 @@ export default function Login() {
         fetch(url, config)
             .then(response => {
                 if (response.ok) {
-                    const userData = JSON.stringify(response.data[0].user)
+                    const userData = JSON.stringify(response.data.user)
                     localStorage.setItem('analogueshifts', userData)
                     toast.success('Login Successful', {
                         position: 'top-right',
