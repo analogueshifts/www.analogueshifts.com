@@ -7,6 +7,7 @@ import ApplicationLogo from '@/app/components/ApplicationLogo'
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { toast } from 'react-toastify'
+import Cookies from 'js-cookie'
 
 export default function Login() {
     const [email, setEmail] = useState('')
@@ -39,7 +40,7 @@ export default function Login() {
             .request(config)
             .then(async response => {
                 const userData = JSON.stringify(response.data.user)
-                localStorage.setItem('analogueshifts', userData)
+                Cookies.set('analogueshifts', userData)
                 toast.success('Login Successful', {
                     position: 'top-right',
                     autoClose: 3000,
@@ -59,7 +60,7 @@ export default function Login() {
     }
 
     useEffect(() => {
-        const auth = localStorage.getItem('analogueshifts')
+        const auth = Cookies.get('analogueshifts')
         if (auth) {
             window.location.href = '/dashboard'
             return null

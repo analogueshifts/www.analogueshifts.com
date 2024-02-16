@@ -7,6 +7,7 @@ import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import LoadingTwo from '@/app/components/Loading'
 import { toast } from 'react-toastify'
+import Cookies from 'js-cookie'
 
 export default function Register() {
     const [name, setName] = useState('')
@@ -43,7 +44,7 @@ export default function Register() {
             .request(config)
             .then(async response => {
                 const userData = JSON.stringify(response.data.user)
-                localStorage.setItem('analogueshifts', userData)
+                Cookies.set('analogueshifts', userData)
                 setLoading(false)
                 toast.success('Account Created Successfully', {
                     position: 'top-right',
@@ -61,7 +62,7 @@ export default function Register() {
             })
     }
     useEffect(() => {
-        const auth = localStorage.getItem('analogueshifts')
+        const auth = Cookies.get('analogueshifts')
         if (auth) {
             window.location.href = '/dashboard'
             return null

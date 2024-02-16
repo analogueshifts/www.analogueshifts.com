@@ -6,6 +6,7 @@ import Link from 'next/link'
 import { Menu, Transition, Dialog } from '@headlessui/react'
 import DashboardLoader from '@/app/components/DashboardLoader'
 import { toast } from 'react-toastify'
+import Cookies from 'js-cookie'
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
@@ -85,9 +86,7 @@ export default function HirePageDetails() {
     const cancelButtonRef = useRef(null)
 
     useEffect(() => {
-        let storedData = JSON.parse(
-            window.localStorage.getItem('analogueshifts'),
-        )
+        let storedData = JSON.parse(Cookies.get('analogueshifts'))
         if (storedData) {
             setUser(storedData)
         }

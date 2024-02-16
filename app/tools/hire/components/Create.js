@@ -7,6 +7,7 @@ import Tiptap from '@/app/components/utilities/Tiptap'
 import { toast } from 'react-toastify'
 import { useRouter } from 'next/navigation'
 import DashboardLoader from '@/app/components/DashboardLoader'
+import Cookies from 'js-cookie'
 
 export default function Create() {
     const [user, setUser] = useState(null)
@@ -18,9 +19,7 @@ export default function Create() {
     const url = process.env.NEXT_PUBLIC_BACKEND_URL + '/hire/store'
 
     useEffect(() => {
-        let storedData = JSON.parse(
-            window.localStorage.getItem('analogueshifts'),
-        )
+        let storedData = JSON.parse(Cookies.get('analogueshifts'))
         if (storedData) {
             setUser(storedData)
         }

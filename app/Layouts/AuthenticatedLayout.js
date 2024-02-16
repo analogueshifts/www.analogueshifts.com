@@ -6,6 +6,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { Transition, Dialog } from '@headlessui/react'
 import { toast } from 'react-toastify'
+import Cookies from 'js-cookie'
 import DashboardLoader from '../components/DashboardLoader'
 import ApplicationLogo from '../components/ApplicationLogo'
 import MenuDropDown from './MenuDropdown'
@@ -31,8 +32,7 @@ export default function Authenticated({ user, header, children }) {
 
         // axios
         //     .request(config)
-
-        localStorage.removeItem('analogueshifts')
+        Cookies.remove('analogueshifts')
         window.location.href = '/login'
     }
     const pathname = usePathname()
@@ -58,7 +58,7 @@ export default function Authenticated({ user, header, children }) {
     }
 
     useEffect(() => {
-        const auth = localStorage.getItem('analogueshifts')
+        const auth = Cookies.get('analogueshifts')
         if (auth === null || auth === undefined) {
             window.location.href = '/login'
             return null

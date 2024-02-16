@@ -8,6 +8,7 @@ import { toast } from 'react-toastify'
 import { useRouter } from 'next/navigation'
 import DashboardLoader from '@/app/components/DashboardLoader'
 import { axiosDashboardJob } from '@/app/lib/axios'
+import Cookies from 'js-cookie'
 
 export default function Edit({ slug }) {
     const [user, setUser] = useState(null)
@@ -52,9 +53,7 @@ export default function Edit({ slug }) {
     }
 
     useEffect(() => {
-        let storedData = JSON.parse(
-            window.localStorage.getItem('analogueshifts'),
-        )
+        let storedData = JSON.parse(Cookies.get('analogueshifts'))
         if (storedData) {
             setUser(storedData)
         }

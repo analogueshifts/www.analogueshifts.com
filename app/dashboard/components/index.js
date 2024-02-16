@@ -4,6 +4,7 @@ import Image from 'next/image'
 import Authenticated from '@/app/Layouts/AuthenticatedLayout'
 import Curve from '@/public/images/curve.png'
 import DummyUser from '@/public/images/dummy_user.png'
+import Cookies from 'js-cookie'
 
 //Data
 import { modesDummyData } from './data'
@@ -13,9 +14,7 @@ export default function Dashboard() {
     const [user, setUser] = useState(null)
 
     useEffect(() => {
-        let storedData = JSON.parse(
-            window.localStorage.getItem('analogueshifts'),
-        )
+        let storedData = JSON.parse(Cookies.get('analogueshifts'))
         if (storedData) {
             setUser(storedData)
         }
