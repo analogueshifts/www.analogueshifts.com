@@ -38,15 +38,15 @@ export default function Login() {
         axios
             .request(config)
             .then(async response => {
-                console.log(response)
                 const userData = JSON.stringify(response.data.user)
                 localStorage.setItem('analogueshifts', userData)
-                setLoading(false)
                 toast.success('Login Successful', {
                     position: 'top-right',
                     autoClose: 3000,
                 })
                 window.location.href = '/dashboard'
+
+                setLoading(false)
             })
             .catch(error => {
                 setLoading(false)
