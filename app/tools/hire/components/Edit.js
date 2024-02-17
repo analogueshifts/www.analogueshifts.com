@@ -20,26 +20,32 @@ export default function Edit({ slug }) {
     const router = useRouter()
 
     const fetchJobs = () => {
+        let url = process.env.NEXT_PUBLIC_BACKEND_URL + '/hire/dashboard'
         setLoading(true)
-        fetch(process.env.NEXT_PUBLIC_BACKEND_URL + '/hire/dashboard', {
-            method: 'GET',
+        const axios = require('axios')
+        let config = {
+            method: 'get',
             maxBodyLength: Infinity,
+            url: url,
             headers: {
                 Accept: 'application/json',
+                Authorization: 'Bearer ' + user.token,
+                'Content-Type': 'application/json',
             },
             credentials: 'same-origin',
-        })
+        }
+        axios
+            .request(config)
             .then(res => {
-                if (res.ok) {
-                    let filteredData = res.data.hires.filter(
-                        item => item.slug === slug,
-                    )[0]
-                    if (filteredData) {
-                        setInitialData(filteredData)
-                    } else {
-                        router.push('/404')
-                    }
+                let filteredData = res.data.hires.filter(
+                    item => item.slug === slug,
+                )[0]
+                if (filteredData) {
+                    setInitialData(filteredData)
+                } else {
+                    router.push('/404')
                 }
+
                 setLoading(false)
             })
             .catch(error => {
@@ -75,7 +81,7 @@ export default function Edit({ slug }) {
         },
         datePosted: new Date().toISOString(),
         validThrough: '',
-        employmentType: 'CONTRACTOR',
+        employmentType: 'FULL_TIME',
         hiringOrganization: {
             '@type': 'Organization',
             name: '',
@@ -93,7 +99,7 @@ export default function Edit({ slug }) {
                 addressCountry: '',
             },
         },
-        jobLocationType: '',
+        jobLocationType: 'TELECOMMUTE',
         applicantLocationRequirements: [],
         baseSalary: {
             '@type': 'MonetaryAmount',
@@ -109,33 +115,34 @@ export default function Edit({ slug }) {
 
     const submit = e => {
         e.preventDefault()
-        const axios = require('axios')
         const url =
             process.env.NEXT_PUBLIC_BACKEND_URL + '/hire/' + initialData.id
+        const axios = require('axios')
         let config = {
-            method: 'PUT',
+            method: 'put',
+            url: url,
             maxBodyLength: Infinity,
             headers: {
                 Accept: 'application/json',
-                'Content-Type': 'application/json',
                 Authorization: 'Bearer ' + user.token,
+                'Content-Type': 'application/json',
             },
-            body: JSON.stringify(data),
+            credentials: 'same-origin',
+            data: data,
         }
+
         setLoading(true)
-        fetch(url, config)
+        axios
+            .request(config)
             .then(response => {
                 setLoading(false)
-                if (response.ok) {
-                    toast.success('Your Post Has Been Edited Successfully', {
-                        position: 'top-right',
-                        autoClose: 3000,
-                    })
-                    router.push('/tools/hire')
-                }
+                toast.success('Your Post Has Been Edited Successfully', {
+                    position: 'top-right',
+                    autoClose: 3000,
+                })
+                router.push('/tools/hire')
             })
             .catch(error => {
-                console.log(error)
                 toast.error('Error Editing Job', {
                     position: 'top-right',
                     autoClose: 3000,
@@ -348,9 +355,7 @@ export default function Edit({ slug }) {
                                 <label className="block text-sm font-medium text-gray-900">
                                     Job Location Type
                                 </label>
-                                <input
-                                    type="text"
-                                    required
+                                <select
                                     value={data.jobLocationType}
                                     onChange={e =>
                                         setData(prev => ({
@@ -359,8 +364,11 @@ export default function Edit({ slug }) {
                                         }))
                                     }
                                     className="w-full py-3 px-5 border border-l-4 border-as outline-none text-black/70"
-                                    placeholder="TELECOMMUTE"
-                                />
+                                    required>
+                                    <option value="TELECOMMUTE">
+                                        TELECOMMUTE
+                                    </option>
+                                </select>
                             </div>
                             <div className="mb-1 ">
                                 <label className="block text-sm font-medium text-gray-900">

@@ -35,7 +35,7 @@ export default function Create() {
         },
         datePosted: new Date().toISOString(),
         validThrough: '',
-        employmentType: 'CONTRACTOR',
+        employmentType: 'FULL_TIME',
         hiringOrganization: {
             '@type': 'Organization',
             name: '',
@@ -53,7 +53,7 @@ export default function Create() {
                 addressCountry: '',
             },
         },
-        jobLocationType: '',
+        jobLocationType: 'TELECOMMUTE',
         applicantLocationRequirements: [],
         baseSalary: {
             '@type': 'MonetaryAmount',
@@ -288,9 +288,7 @@ export default function Create() {
                                 <label className="block text-sm font-medium text-gray-900">
                                     Job Location Type
                                 </label>
-                                <input
-                                    type="text"
-                                    required
+                                <select
                                     value={data.jobLocationType}
                                     onChange={e =>
                                         setData(prev => ({
@@ -299,8 +297,11 @@ export default function Create() {
                                         }))
                                     }
                                     className="w-full py-3 px-5 border border-l-4 border-as outline-none text-black/70"
-                                    placeholder="TELECOMMUTE"
-                                />
+                                    required>
+                                    <option value="TELECOMMUTE">
+                                        TELECOMMUTE
+                                    </option>
+                                </select>
                             </div>
                             <div className="mb-1 ">
                                 <label className="block text-sm font-medium text-gray-900">
