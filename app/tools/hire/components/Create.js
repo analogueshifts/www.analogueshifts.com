@@ -71,29 +71,32 @@ export default function Create() {
         e.preventDefault()
         const axios = require('axios')
         let config = {
-            method: 'POST',
+            method: 'post',
+            url: url,
             maxBodyLength: Infinity,
             headers: {
                 Accept: 'application/json',
                 Authorization: 'Bearer ' + user.token,
+                'Content-Type': 'application/json',
             },
-            body: JSON.stringify(data),
+            credentials: 'same-origin',
+            data: data,
         }
         setLoading(true)
-        fetch(url, config)
+        axios
+            .request(config)
             .then(response => {
                 setLoading(false)
-                if (response.ok) {
-                    toast.success('Your Hire Request Has Been Sent', {
-                        position: 'top-right',
-                        autoClose: 3000,
-                    })
-                    router.push('/tools/hire')
-                }
+                toast.success('Your Hire Request Has Been Sent', {
+                    position: 'top-right',
+                    autoClose: 3000,
+                })
+                console.log(response)
+                router.push('/tools/hire')
             })
             .catch(error => {
                 console.log(error)
-                toast.error(error, {
+                toast.error(error.message, {
                     position: 'top-right',
                     autoClose: 3000,
                 })

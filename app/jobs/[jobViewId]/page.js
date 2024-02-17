@@ -7,16 +7,29 @@ export async function generateMetadata({ params }) {
     // read route params
     const slug = params.jobViewId
 
+    // Axios Config
+    const axios = require('axios')
+    let config = {
+        method: 'get',
+        maxBodyLength: Infinity,
+        url: process.env.NEXT_PUBLIC_BACKEND_URL + '/jobs',
+        headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+        },
+    }
+
     // fetch data
     const job = await axios
-        .get('/jobs/' + slug)
-        .then(res => {
-            const data = res.data
-            return data
+        .request(config)
+        .then(response => {
+            let filteredData = response.data.jobs.filter(
+                item => item.slug === slug,
+            )[0]
+
+            return filteredData
         })
-        .catch(error => {
-            console.log(error)
-        })
+        .catch(error => {})
 
     return {
         '@context': 'https://schema.org/',

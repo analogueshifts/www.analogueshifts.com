@@ -36,6 +36,7 @@ export default function Register() {
                 Accept: 'application/json',
                 'Content-Type': 'application/json',
             },
+            credentials: 'same-origin',
             data: data,
         }
 
@@ -43,7 +44,10 @@ export default function Register() {
         axios
             .request(config)
             .then(async response => {
-                const userData = JSON.stringify(response.data.user)
+                const userData = JSON.stringify({
+                    ...response.data.user,
+                    token: response.data.token,
+                })
                 Cookies.set('analogueshifts', userData)
                 setLoading(false)
                 toast.success('Account Created Successfully', {

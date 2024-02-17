@@ -32,6 +32,7 @@ export default function Login() {
                 Accept: 'application/json',
                 'Content-Type': 'application/json',
             },
+            credentials: 'same-origin',
             data: data,
         }
         setLoading(true)
@@ -39,7 +40,10 @@ export default function Login() {
         axios
             .request(config)
             .then(async response => {
-                const userData = JSON.stringify(response.data.user)
+                const userData = JSON.stringify({
+                    ...response.data.user,
+                    token: response.data.token,
+                })
                 Cookies.set('analogueshifts', userData)
                 toast.success('Login Successful', {
                     position: 'top-right',

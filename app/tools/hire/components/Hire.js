@@ -18,28 +18,33 @@ export default function HirePageDetails() {
     const [idToBeDeleted, setIdToBeDeleted] = useState(null)
     const [data, setData] = useState([])
     const [loading, setLoading] = useState(false)
+    let url = process.env.NEXT_PUBLIC_BACKEND_URL + '/hire/dashboard'
 
     //Fetch Jobs
     const fetchJobs = () => {
-        setLoading(true)
-        fetch(process.env.NEXT_PUBLIC_BACKEND_URL + '/hire/dashboard', {
-            method: 'GET',
+        const axios = require('axios')
+        let config = {
+            method: 'get',
             maxBodyLength: Infinity,
+            url: url,
             headers: {
                 Accept: 'application/json',
                 Authorization: 'Bearer ' + user.token,
+                'Content-Type': 'application/json',
             },
             credentials: 'same-origin',
-        })
-            .then(res => {
+        }
+        // Fetch job data from your API
+        setLoading(true)
+        axios
+            .request(config)
+            .then(response => {
+                setData(response.data.hires)
                 setLoading(false)
-                if (res.ok) {
-                    setData(res.data.hires)
-                }
             })
             .catch(error => {
                 setLoading(false)
-                toast.error('Error Getting Jobs', {
+                toast.error(error.message, {
                     position: 'top-right',
                     autoClose: 3000,
                 })
@@ -50,28 +55,31 @@ export default function HirePageDetails() {
     const deleteJobPost = async () => {
         const url =
             process.env.NEXT_PUBLIC_BACKEND_URL + '/hire/' + idToBeDeleted
-        setLoading(true)
-        fetch(url, {
-            method: 'DELETE',
+        const axios = require('axios')
+        let config = {
+            method: 'delete',
+            maxBodyLength: Infinity,
+            url: url,
             headers: {
+                Accept: 'application/json',
+                Authorization: 'Bearer ' + user.token,
                 'Content-Type': 'application/json',
             },
-        })
+            credentials: 'same-origin',
+        }
+        setLoading(true)
+        axios
+            .request(config)
             .then(res => {
-                if (res.ok) {
-                    fetchJobs()
-                    toast.success('Job Deleted Successfully', {
-                        position: 'top-right',
-                        autoClose: 3000,
-                    })
-                    setIdToBeDeleted(null)
-                } else {
-                    setLoading(false)
-                    toast.error('Error Deleting Job', {
-                        position: 'top-right',
-                        autoClose: 3000,
-                    })
-                }
+                console.log(res)
+                fetchJobs()
+                toast.success('Job Deleted Successfully', {
+                    position: 'top-right',
+                    autoClose: 3000,
+                })
+                setIdToBeDeleted(null)
+
+                setLoading(false)
             })
             .catch(err => {
                 console.log(err)

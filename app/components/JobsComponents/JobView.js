@@ -13,6 +13,7 @@ export default function JobView() {
     const [jobs, setJobs] = useState([])
     const [searchFilter, setSearchFilter] = useState('')
     const [loading, setLoading] = useState(false)
+    const url = process.env.NEXT_PUBLIC_BACKEND_URL + '/jobs'
 
     const [ref, inView] = useInView({
         triggerOnce: true,
@@ -20,23 +21,25 @@ export default function JobView() {
     })
 
     useEffect(() => {
-        setLoading(true)
-        // Fetch job data from your API
-        fetch(process.env.NEXT_PUBLIC_BACKEND_URL + '/jobs', {
-            method: 'GET',
+        const axios = require('axios')
+        let config = {
+            method: 'get',
+            maxBodyLength: Infinity,
+            url: url,
             headers: {
                 Accept: 'application/json',
+                'Content-Type': 'application/json',
             },
-            credentials: 'same-origin',
-        })
-            .then(res => {
-                // const data = res.data.jobs
-                // setJobs(data)
+        }
+        // Fetch job data from your API
+        setLoading(true)
+        axios
+            .request(config)
+            .then(response => {
+                setJobs(response.data.jobs)
                 setLoading(false)
-                console.log(res.json())
             })
             .catch(error => {
-                console.log(error)
                 setLoading(false)
                 toast.error(error.message, {
                     position: 'top-right',
@@ -171,7 +174,7 @@ export default function JobView() {
                                                             : 'https://via.placeholder.com/80'
                                                     }
                                                     alt="LOGO"
-                                                    className="w-20 h-20"
+                                                    className="w-20 h-20 object-contain"
                                                 />
                                                 <div className="flex flex-col gap-1.5">
                                                     <p className="text-xs font-normal text-black/40">
