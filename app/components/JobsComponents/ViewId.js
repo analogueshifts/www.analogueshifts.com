@@ -121,7 +121,9 @@ export default function ViewId({ id }) {
                                             job.applicantLocationRequirements.map(
                                                 item => {
                                                     return (
-                                                        <p className="text-sm font-medium text-black/80 ml-2">
+                                                        <p
+                                                            key={crypto.randomUUID()}
+                                                            className="text-sm font-medium text-black/80 ml-2">
                                                             • {item.name}
                                                         </p>
                                                     )
