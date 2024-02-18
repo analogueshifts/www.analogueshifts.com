@@ -119,7 +119,7 @@ export default function Edit({ slug }) {
             process.env.NEXT_PUBLIC_BACKEND_URL + '/hire/' + initialData.id
         const axios = require('axios')
         let config = {
-            method: 'put',
+            method: 'PUT',
             url: url,
             maxBodyLength: Infinity,
             headers: {
@@ -127,6 +127,7 @@ export default function Edit({ slug }) {
                 Authorization: 'Bearer ' + user.token,
                 'Content-Type': 'application/json',
             },
+            withCredentials: true,
             credentials: 'same-origin',
             data: data,
         }
