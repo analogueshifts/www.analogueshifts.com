@@ -117,7 +117,7 @@ export default function JobView() {
                             </p>{' '}
                         </div>
                         <h3
-                            className={`md:font-bold max-w-full w-max md:text-4xl leading-10 text-xl font-bold mb-4 md:mb-8 text-tremor-brand-madras`}>
+                            className={`md:font-bold max-w-[95%] text-center w-max md:text-4xl leading-10 text-xl font-bold mb-4 md:mb-8 text-tremor-brand-madras`}>
                             Jobs of your kind are here for you
                         </h3>
                         <p
