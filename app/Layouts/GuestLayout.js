@@ -4,7 +4,7 @@ import Navigation from '../components/Navigation'
 
 export default function GuestLayout({ children }) {
     return (
-        <section className="bg-slate-50">
+        <section className="bg-[#F3F4F6]">
             <Navigation />
             {children}
             <Footer />

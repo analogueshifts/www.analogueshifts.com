@@ -11,6 +11,10 @@ module.exports = {
     theme: {
         extend: {
             zIndex: { 60: 60 },
+            width: {
+                navBarWidth: '1074px',
+                containerWidth: '1280px',
+            },
             colors: {
                 as: '#E5BE39',
                 tremor: {
@@ -21,6 +25,8 @@ module.exports = {
                         DEFAULT: '#3b82f6', // blue-500
                         emphasis: '#1d4ed8', // blue-700
                         inverted: '#ffffff', // white
+                        boulder: '#7B7B7B',
+                        madras: '#423306',
                     },
                     background: {
                         muted: '#f9fafb', // gray-50
@@ -57,5 +63,6 @@ module.exports = {
             opacity: ['disabled'],
         },
     },
-    plugins: [require('@tailwindcss/forms')],
+    plugins: [],
+    // plugins: [require('@tailwindcss/forms')],
 }
