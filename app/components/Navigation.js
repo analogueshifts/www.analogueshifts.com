@@ -101,12 +101,13 @@ const Navigation = () => {
                 </div>
 
                 {/* Responsive Navigation Menu */}
-                {open && (
+               
+            </nav>
+            {open && (
                     <ResponsiveNavBar
                         handleBlogNavigation={() => setOpen(false)}
                     />
                 )}
-            </nav>
         </div>
     )
 }
