@@ -110,14 +110,14 @@ export default function JobView() {
                         : 'opacity-0 translate-y-2'
                 }`}>
                 <section className="w-containerWidth max-w-[95%] mx-auto">
-                    <div className="w-full px-3 flex flex-col items-center pt-16 md:pt-20 pb-8">
+                    <div className="w-full flex flex-col items-center pt-16 md:pt-20 pb-8">
                         <div className="w-[59px] h-[28px] rounded-full flex mb-4 md:mb-8 justify-center items-center bg-tremor-background-darkYellow/10">
                             <p className="text-[10px] font-normal text-tremor-background-darkYellow">
                                 Jobs
                             </p>{' '}
                         </div>
                         <h3
-                            className={`md:font-bold w-max md:text-4xl leading-10 text-xl font-bold mb-4 md:mb-8 text-tremor-brand-madras`}>
+                            className={`md:font-bold max-w-full w-max md:text-4xl leading-10 text-xl font-bold mb-4 md:mb-8 text-tremor-brand-madras`}>
                             Jobs of your kind are here for you
                         </h3>
                         <p
