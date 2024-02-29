@@ -110,7 +110,7 @@ export default function JobView() {
                         : 'opacity-0 translate-y-2'
                 }`}>
                 <section className="w-containerWidth max-w-[95%] mx-auto">
-                    <div className="w-full flex flex-col items-center pt-20 pb-8">
+                    <div className="w-full px-3 flex flex-col items-center pt-16 md:pt-20 pb-8">
                         <div className="w-[59px] h-[28px] rounded-full flex mb-4 md:mb-8 justify-center items-center bg-tremor-background-darkYellow/10">
                             <p className="text-[10px] font-normal text-tremor-background-darkYellow">
                                 Jobs
@@ -316,10 +316,10 @@ export default function JobView() {
                         className="w-full rounded-[32px] bg-[#D3A121] flex justify-center items-center mt-10 pb-5 pt-14">
                         <div className="w-[85%] md:w-[80%] desktop:w-[820px] flex flex-col items-center">
                             <p
-                                className={`text-base md:text-3xl font-semibold md:leading-9 text-center mb-5 text-white`}>
+                                className={`text-lg md:text-3xl font-semibold md:leading-9 text-center mb-5 text-white`}>
                                 New Products delivered to you
                             </p>
-                            <p className="font-normal text-xl mb-7 text-white/70">
+                            <p className="font-normal text-base md:text-xl mb-7 text-white/70">
                                 Kindly, sign up to out jobsletter for the latest
                                 updates
                             </p>
@@ -336,7 +336,7 @@ export default function JobView() {
                                     Subscribe
                                 </button>
                             </form>
-                            <p className="font-normal text-base mb-7 text-white/50">
+                            <p className="font-normal text-sm md:text-base mb-7 text-white/50">
                                 We are about privacy and we will never share
                                 your data
                             </p>
