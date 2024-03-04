@@ -70,7 +70,6 @@ export default function JobDetails() {
 
     // Make request
     const editJob = data => {
-        e.preventDefault()
         const url = process.env.NEXT_PUBLIC_BACKEND_URL + '/hire/' + editID
         const axios = require('axios')
         let config = {
