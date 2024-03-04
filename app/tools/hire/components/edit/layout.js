@@ -39,6 +39,52 @@ export default function EditJobLayout({ children }) {
                 )[0]
                 if (filteredData) {
                     setInitialData(filteredData)
+                    Cookies.set(
+                        'jobEditIngData',
+                        JSON.stringify({
+                            jobInformation: {
+                                title: filteredData.title,
+                                description: filteredData.description,
+                                identifierName: filteredData.identifier.name,
+                                identifierValue: filteredData.identifier.value,
+                                datePosted: filteredData.datePosted,
+                                validThrough: filteredData.validThrough,
+                            },
+                            organizationInformation: {
+                                organizationName:
+                                    filteredData.hiringOrganization.name,
+                                organizationUrl:
+                                    filteredData.hiringOrganization.sameAs,
+                                organizationLogo:
+                                    filteredData.hiringOrganization.logo,
+                            },
+                            jobLocation: {
+                                ...filteredData.jobLocation.address,
+                                jobLocationType: filteredData.jobLocationType,
+                                stateRequirements: [
+                                    ...filteredData.applicantLocationRequirements.filter(
+                                        item => item['@type'] === 'State',
+                                    ),
+                                ],
+                                countryRequirements: [
+                                    ...filteredData.applicantLocationRequirements.filter(
+                                        item => item['@type'] === 'Country',
+                                    ),
+                                ],
+                            },
+                            jobDetails: {
+                                employmentType: filteredData.employmentType,
+                                apply: filteredData.apply,
+                                salaryCurrency:
+                                    filteredData.baseSalary.currency,
+                                salaryValue:
+                                    filteredData.baseSalary.value.value,
+                                salaryUnitText:
+                                    filteredData.baseSalary.value.unitText,
+                            },
+                            editId: filteredData.id,
+                        }),
+                    )
                 } else {
                     toast.error('Error Getting Jobs', {
                         position: 'top-right',
@@ -71,51 +117,6 @@ export default function EditJobLayout({ children }) {
             setUser(storedData)
         }
     }, [])
-
-    useEffect(() => {
-        if (initialData) {
-            Cookies.set(
-                'jobEditIngData',
-                JSON.stringify({
-                    jobInformation: {
-                        title: initialData.title,
-                        description: initialData.description,
-                        identifierName: initialData.identifier.name,
-                        identifierValue: initialData.identifier.value,
-                        datePosted: initialData.datePosted,
-                        validThrough: initialData.validThrough,
-                    },
-                    organizationInformation: {
-                        organizationName: initialData.hiringOrganization.name,
-                        organizationUrl: initialData.hiringOrganization.sameAs,
-                        organizationLogo: initialData.hiringOrganization.logo,
-                    },
-                    jobLocation: {
-                        ...initialData.jobLocation.address,
-                        jobLocationType: initialData.jobLocationType,
-                        stateRequirements: [
-                            ...initialData.applicantLocationRequirements.filter(
-                                item => item['@type'] === 'State',
-                            ),
-                        ],
-                        countryRequirements: [
-                            ...initialData.applicantLocationRequirements.filter(
-                                item => item['@type'] === 'Country',
-                            ),
-                        ],
-                    },
-                    jobDetails: {
-                        employmentType: initialData.employmentType,
-                        apply: initialData.apply,
-                        salaryCurrency: initialData.baseSalary.currency,
-                        salaryValue: initialData.baseSalary.value.value,
-                        salaryUnitText: initialData.baseSalary.value.unitText,
-                    },
-                    editId: initialData.id,
-                }),
-            )
-        }
-    }, [initialData])
 
     useEffect(() => {
         if (pathname.endsWith('job-information')) {
