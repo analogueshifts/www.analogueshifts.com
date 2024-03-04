@@ -27,6 +27,7 @@ export default function JobLocation() {
 
     useEffect(() => {
         let storedData = Cookies.get('jobEditIngData')
+        console.log(storedData)
         if (storedData) {
             if (JSON.parse(storedData).jobLocation) {
                 var jobLocationData = JSON.parse(storedData).jobLocation

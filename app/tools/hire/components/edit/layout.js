@@ -39,7 +39,6 @@ export default function EditJobLayout({ children }) {
                 )[0]
                 if (filteredData) {
                     setInitialData(filteredData)
-                    console.log(filteredData)
                 } else {
                     toast.error('Error Getting Jobs', {
                         position: 'top-right',
