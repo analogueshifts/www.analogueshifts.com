@@ -1,12 +1,12 @@
 'use client'
-import { axiosDashboardJob } from '@/app/lib/axios'
 import React, { useState, Fragment, useRef, useEffect } from 'react'
 import Authenticated from '@/app/Layouts/AuthenticatedLayout'
 import Link from 'next/link'
-import { Menu, Transition, Dialog } from '@headlessui/react'
+import { Menu, Transition } from '@headlessui/react'
 import DashboardLoader from '@/app/components/DashboardLoader'
 import { toast } from 'react-toastify'
 import Cookies from 'js-cookie'
+import IdiomProof from '@/app/Layouts/IdiomProof'
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
@@ -14,7 +14,7 @@ function classNames(...classes) {
 
 export default function HirePageDetails() {
     const [user, setUser] = useState(null)
-    const [open, setOpen] = useState(null)
+    const [idiomModal, setIdiomModal] = useState(false)
     const [idToBeDeleted, setIdToBeDeleted] = useState(null)
     const [data, setData] = useState([])
     const [loading, setLoading] = useState(false)
@@ -24,15 +24,11 @@ export default function HirePageDetails() {
     const fetchJobs = () => {
         const axios = require('axios')
         let config = {
-            method: 'get',
-            maxBodyLength: Infinity,
+            method: 'GET',
             url: url,
             headers: {
-                Accept: 'application/json',
                 Authorization: 'Bearer ' + user.token,
-                'Content-Type': 'application/json',
             },
-            credentials: 'same-origin',
         }
         // Fetch job data from your API
         setLoading(true)
@@ -57,15 +53,11 @@ export default function HirePageDetails() {
             process.env.NEXT_PUBLIC_BACKEND_URL + '/hire/' + idToBeDeleted
         const axios = require('axios')
         let config = {
-            method: 'delete',
-            maxBodyLength: Infinity,
+            method: 'DELETE',
             url: url,
             headers: {
-                Accept: 'application/json',
                 Authorization: 'Bearer ' + user.token,
-                'Content-Type': 'application/json',
             },
-            credentials: 'same-origin',
         }
         setLoading(true)
         axios
@@ -91,8 +83,6 @@ export default function HirePageDetails() {
             })
     }
 
-    const cancelButtonRef = useRef(null)
-
     useEffect(() => {
         let storedData = JSON.parse(Cookies.get('analogueshifts'))
         if (storedData) {
@@ -106,12 +96,6 @@ export default function HirePageDetails() {
         }
     }, [user])
 
-    useEffect(() => {
-        if (idToBeDeleted) {
-            deleteJobPost()
-        }
-    }, [idToBeDeleted])
-
     return (
         <Authenticated
             user={user}
@@ -121,87 +105,22 @@ export default function HirePageDetails() {
                 </h2>
             }>
             {loading && <DashboardLoader />}
-            <Transition.Root show={open !== null} as={Fragment}>
-                <Dialog
-                    as="div"
-                    className="relative z-10"
-                    initialFocus={cancelButtonRef}
-                    onClose={setOpen}>
-                    <Transition.Child
-                        as={Fragment}
-                        enter="ease-out duration-300"
-                        enterFrom="opacity-0"
-                        enterTo="opacity-100"
-                        leave="ease-in duration-200"
-                        leaveFrom="opacity-100"
-                        leaveTo="opacity-0">
-                        <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
-                    </Transition.Child>
+            <IdiomProof
+                title={'Delete Post'}
+                action={() => {
+                    deleteJobPost()
+                    setIdiomModal(false)
+                }}
+                close={() => {
+                    setIdToBeDeleted(null)
+                    setIdiomModal(false)
+                }}
+                description={
+                    'Are you sure you want to delete this Post? This  Job Post will not be  visible to Talents anymore. This actio cannot be undone.'
+                }
+                open={idiomModal}
+            />
 
-                    <div className="fixed inset-0 z-10 w-screen overflow-y-auto">
-                        <div className="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
-                            <Transition.Child
-                                as={Fragment}
-                                enter="ease-out duration-300"
-                                enterFrom="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-                                enterTo="opacity-100 translate-y-0 sm:scale-100"
-                                leave="ease-in duration-200"
-                                leaveFrom="opacity-100 translate-y-0 sm:scale-100"
-                                leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95">
-                                <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
-                                    <div className="bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
-                                        <div className="sm:flex sm:items-start">
-                                            <div className="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-red-100 sm:mx-0 sm:h-10 sm:w-10">
-                                                <i
-                                                    className=" text-red-600 fas fa-triangle-exclamation"
-                                                    aria-hidden="true"></i>
-                                            </div>
-                                            <div className="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left">
-                                                <Dialog.Title
-                                                    as="h3"
-                                                    className="text-base font-semibold leading-6 text-gray-900">
-                                                    Delete Post
-                                                </Dialog.Title>
-                                                <div className="mt-2">
-                                                    <p className="text-sm text-gray-500">
-                                                        Are you sure you want to
-                                                        delete this Post? This
-                                                        Job Post won't be
-                                                        visible to Talents
-                                                        anymore. This action
-                                                        cannot be undone.
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
-                                        <button
-                                            type="button"
-                                            className="inline-flex w-full justify-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 sm:ml-3 sm:w-auto"
-                                            onClick={() => {
-                                                setIdToBeDeleted(open)
-                                                setOpen(null)
-                                            }}>
-                                            Delete
-                                        </button>
-                                        <button
-                                            type="button"
-                                            className="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto"
-                                            onClick={() => {
-                                                setIdToBeDeleted(null)
-                                                setOpen(null)
-                                            }}
-                                            ref={cancelButtonRef}>
-                                            Cancel
-                                        </button>
-                                    </div>
-                                </Dialog.Panel>
-                            </Transition.Child>
-                        </div>
-                    </div>
-                </Dialog>
-            </Transition.Root>
             <div className="w-full min-w-[300px] min-h-[calc(100dvh-80px)] lg:min-h-[calc(100dvh-112px)] pt-5">
                 <div className="flex justify-center">
                     <Link
@@ -254,7 +173,7 @@ export default function HirePageDetails() {
                                                                     active,
                                                                 }) => (
                                                                     <Link
-                                                                        href={`/tools/hire/edit/${item.slug}/job-information`}
+                                                                        href={`/tools/hire/edit/${item.slug}`}
                                                                         className={classNames(
                                                                             active
                                                                                 ? 'bg-gray-100 text-gray-900'
@@ -290,8 +209,11 @@ export default function HirePageDetails() {
                                                                 }) => (
                                                                     <button
                                                                         onClick={() => {
-                                                                            setOpen(
+                                                                            setIdToBeDeleted(
                                                                                 item.id,
+                                                                            )
+                                                                            setIdiomModal(
+                                                                                true,
                                                                             )
                                                                         }}
                                                                         className={classNames(

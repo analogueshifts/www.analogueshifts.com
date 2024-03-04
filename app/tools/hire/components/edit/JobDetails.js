@@ -52,7 +52,7 @@ export default function JobDetails() {
                         item => item.name === jobDetailsData.salaryUnitText,
                     )[0],
                 )
-                setEditId(jobDetailsData.editId)
+                setEditId(JSON.parse(storedData).editId)
             }
         } else if (
             !storedData ||
@@ -75,14 +75,10 @@ export default function JobDetails() {
         let config = {
             method: 'PUT',
             url: url,
-            maxBodyLength: Infinity,
             headers: {
                 Accept: 'application/json',
                 Authorization: 'Bearer ' + user.token,
-                'Content-Type': 'application/json',
             },
-            withCredentials: true,
-            credentials: 'same-origin',
             data: data,
         }
 
@@ -98,7 +94,7 @@ export default function JobDetails() {
                 router.push('/tools/hire')
             })
             .catch(error => {
-                toast.error('Error Editing Job', {
+                toast.error(error.message, {
                     position: 'top-right',
                     autoClose: 3000,
                 })

@@ -19,21 +19,17 @@ export default function Login() {
     function submit(e) {
         e.preventDefault()
         const axios = require('axios')
-        let data = JSON.stringify({
-            email: email,
-            password: password,
-        })
 
         let config = {
-            method: 'post',
-            maxBodyLength: Infinity,
+            method: 'POST',
             url: url,
             headers: {
-                Accept: 'application/json',
                 'Content-Type': 'application/json',
             },
-            credentials: 'same-origin',
-            data: data,
+            data: JSON.stringify({
+                email: email,
+                password: password,
+            }),
         }
         setLoading(true)
 
@@ -55,11 +51,10 @@ export default function Login() {
             })
             .catch(error => {
                 setLoading(false)
-                toast.error('Invalid email or password', {
+                toast.error(error.message, {
                     position: 'top-right',
                     autoClose: 3000,
                 })
-                console.log(error)
             })
     }
 

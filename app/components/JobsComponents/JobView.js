@@ -31,13 +31,8 @@ export default function JobView() {
     useEffect(() => {
         const axios = require('axios')
         let config = {
-            method: 'get',
-            maxBodyLength: Infinity,
+            method: 'GET',
             url: url,
-            headers: {
-                Accept: 'application/json',
-                'Content-Type': 'application/json',
-            },
         }
         // Fetch job data from your API
         setLoading(true)

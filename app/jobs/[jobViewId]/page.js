@@ -10,23 +10,15 @@ export async function generateMetadata({ params }) {
     // Axios Config
     const axios = require('axios')
     let config = {
-        method: 'get',
-        maxBodyLength: Infinity,
-        url: process.env.NEXT_PUBLIC_BACKEND_URL + '/jobs',
-        headers: {
-            Accept: 'application/json',
-            'Content-Type': 'application/json',
-        },
+        method: 'GET',
+        url: process.env.NEXT_PUBLIC_BACKEND_URL + '/job/' + slug,
     }
 
     // fetch data
     const job = await axios
         .request(config)
         .then(response => {
-            let filteredData = response.data.jobs.filter(
-                item => item.slug === slug,
-            )[0]
-
+            let filteredData = response.data
             return filteredData
         })
         .catch(error => {})

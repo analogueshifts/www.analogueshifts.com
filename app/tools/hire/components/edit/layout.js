@@ -3,8 +3,6 @@ import { usePathname } from 'next/navigation'
 import { useState, useEffect } from 'react'
 import Cookies from 'js-cookie'
 import Authenticated from '@/app/Layouts/AuthenticatedLayout'
-import DashboardLoader from '@/app/components/DashboardLoader'
-import { toast } from 'react-toastify'
 import { useRouter } from 'next/navigation'
 
 export default function EditJobLayout({ children }) {
@@ -12,109 +10,18 @@ export default function EditJobLayout({ children }) {
     const [user, setUser] = useState(null)
     const [fieldForms, setFieldForms] = useState(['job-information'])
     const [initialData, setInitialData] = useState(null)
-    const [loading, setLoading] = useState(false)
     const router = useRouter()
-    let slug = pathname.slice(17, pathname.length).split('/')[0]
-
-    const fetchJobs = () => {
-        let url = process.env.NEXT_PUBLIC_BACKEND_URL + '/hire/dashboard'
-        setLoading(true)
-        const axios = require('axios')
-        let config = {
-            method: 'get',
-            maxBodyLength: Infinity,
-            url: url,
-            headers: {
-                Accept: 'application/json',
-                Authorization: 'Bearer ' + user.token,
-                'Content-Type': 'application/json',
-            },
-            credentials: 'same-origin',
-        }
-        axios
-            .request(config)
-            .then(res => {
-                let filteredData = res.data.hires.filter(
-                    item => item.slug === slug,
-                )[0]
-                if (filteredData) {
-                    setInitialData(filteredData)
-                    Cookies.set(
-                        'jobEditIngData',
-                        JSON.stringify({
-                            jobInformation: {
-                                title: filteredData.title,
-                                description: filteredData.description,
-                                identifierName: filteredData.identifier.name,
-                                identifierValue: filteredData.identifier.value,
-                                datePosted: filteredData.datePosted,
-                                validThrough: filteredData.validThrough,
-                            },
-                            organizationInformation: {
-                                organizationName:
-                                    filteredData.hiringOrganization.name,
-                                organizationUrl:
-                                    filteredData.hiringOrganization.sameAs,
-                                organizationLogo:
-                                    filteredData.hiringOrganization.logo,
-                            },
-                            jobLocation: {
-                                ...filteredData.jobLocation.address,
-                                jobLocationType: filteredData.jobLocationType,
-                                stateRequirements: [
-                                    ...filteredData.applicantLocationRequirements.filter(
-                                        item => item['@type'] === 'State',
-                                    ),
-                                ],
-                                countryRequirements: [
-                                    ...filteredData.applicantLocationRequirements.filter(
-                                        item => item['@type'] === 'Country',
-                                    ),
-                                ],
-                            },
-                            jobDetails: {
-                                employmentType: filteredData.employmentType,
-                                apply: filteredData.apply,
-                                salaryCurrency:
-                                    filteredData.baseSalary.currency,
-                                salaryValue:
-                                    filteredData.baseSalary.value.value,
-                                salaryUnitText:
-                                    filteredData.baseSalary.value.unitText,
-                            },
-                            editId: filteredData.id,
-                        }),
-                    )
-                } else {
-                    toast.error('Error Getting Jobs', {
-                        position: 'top-right',
-                        autoClose: 3000,
-                    })
-                    router.push('/404')
-                }
-
-                setLoading(false)
-            })
-            .catch(error => {
-                setLoading(false)
-                router.push('/404')
-                toast.error('Error Getting Jobs', {
-                    position: 'top-right',
-                    autoClose: 3000,
-                })
-            })
-    }
-
-    useEffect(() => {
-        if (user) {
-            fetchJobs()
-        }
-    }, [user])
 
     useEffect(() => {
         let storedData = JSON.parse(Cookies.get('analogueshifts'))
+        let jobEditIngData = Cookies.get('jobEditIngData')
         if (storedData) {
             setUser(storedData)
+        }
+        if (!jobEditIngData) {
+            router.push('tools/hire')
+        } else {
+            setInitialData(JSON.parse(jobEditIngData))
         }
     }, [])
 
@@ -147,7 +54,6 @@ export default function EditJobLayout({ children }) {
                     Hire Talents
                 </h2>
             }>
-            {loading && <DashboardLoader />}
             <section className="bg-[#FEFEFE] mt-2 border border-[#E7E7E7] h-max px-4 lg:px-7 py-10 rounded-3xl">
                 <div className="w-full mb-12 flex gap-y-2 gap-x-3 flex-wrap items-center">
                     <button

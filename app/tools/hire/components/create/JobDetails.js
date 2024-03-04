@@ -57,18 +57,13 @@ export default function JobDetails() {
     const createJob = data => {
         const axios = require('axios')
         let config = {
-            method: 'post',
+            method: 'POST',
             url: url,
-            maxBodyLength: Infinity,
             headers: {
-                Accept: 'application/json',
                 Authorization: 'Bearer ' + user.token,
-                'Content-Type': 'application/json',
             },
-            credentials: 'same-origin',
             data: data,
         }
-        console.log(data)
         setLoading(true)
         axios
             .request(config)

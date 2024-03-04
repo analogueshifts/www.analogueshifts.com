@@ -21,27 +21,19 @@ export default function ViewId({ id }) {
     const [shareJobModal, setShareJobModal] = useState(false)
     const [linkToShare, setLinkToShare] = useState('')
 
-    const url = process.env.NEXT_PUBLIC_BACKEND_URL + '/jobs'
+    const url = process.env.NEXT_PUBLIC_BACKEND_URL + '/job/' + id
     useEffect(() => {
         const axios = require('axios')
         let config = {
-            method: 'get',
-            maxBodyLength: Infinity,
+            method: 'GET',
             url: url,
-            headers: {
-                Accept: 'application/json',
-                'Content-Type': 'application/json',
-            },
         }
         // Fetch job data from your API
         setLoading(true)
         axios
             .request(config)
             .then(response => {
-                // Filtering The jobs data
-                let filteredData = response.data.jobs.filter(
-                    item => item.slug === id,
-                )[0]
+                let filteredData = response.data
                 setJob(filteredData)
                 console.log(filteredData)
                 setLoading(false)

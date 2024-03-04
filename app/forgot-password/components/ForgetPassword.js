@@ -5,13 +5,53 @@ import Image from 'next/image'
 import ApplicationLogo from '@/app/components/ApplicationLogo'
 import { useState } from 'react'
 import Link from 'next/link'
+import LoadingTwo from '@/app/components/Loading'
+import { toast } from 'react-toastify'
 
 export default function ForgotPassword() {
     const [email, setEmail] = useState('')
     const [errorMessage, setErrorMessage] = useState('')
+    const [loading, setLoading] = useState(false)
+    const url = process.env.NEXT_PUBLIC_BACKEND_URL + '/forgot-password'
+
+    function submit(e) {
+        e.preventDefault()
+        const axios = require('axios')
+        let data = JSON.stringify({
+            email: email,
+        })
+
+        let config = {
+            method: 'POST',
+            url: url,
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            data: data,
+        }
+
+        setLoading(true)
+        axios
+            .request(config)
+            .then(response => {
+                setLoading(false)
+                toast.success('We sent you Password Reset Link', {
+                    position: 'top-right',
+                    autoClose: 3000,
+                })
+            })
+            .catch(error => {
+                setLoading(false)
+                toast.error(error.message, {
+                    position: 'top-right',
+                    autoClose: 3000,
+                })
+            })
+    }
 
     return (
         <main className="w-full h-max min-h-screen mx-auto flex justify-center items-center px-5 py-10">
+            {loading && <LoadingTwo />}
             <section className="max-w-full lg:w-[1000px] md:w-[800px] md:flex-row flex-col flex justify-between items-center">
                 <div className="lg:w-[450px] md:w-[350px] relative hidden md:flex justify-center items-center">
                     <Image src={Group} alt="" className="absolute" />
@@ -19,7 +59,10 @@ export default function ForgotPassword() {
                 </div>
                 <div className="lg:w-[450px] md:w-[350px] flex flex-col">
                     <ApplicationLogo />
-                    <form method="post" className="pt-11 w-full flex flex-col">
+                    <form
+                        onSubmit={submit}
+                        method="post"
+                        className="pt-11 w-full flex flex-col">
                         <p className="font-medium text-lg text-tremor-content-grayText pb-4">
                             Forgot your Password?
                         </p>
