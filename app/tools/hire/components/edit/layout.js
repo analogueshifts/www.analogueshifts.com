@@ -11,50 +11,7 @@ export default function EditJobLayout({ children }) {
     const pathname = usePathname()
     const [user, setUser] = useState(null)
     const [fieldForms, setFieldForms] = useState(['job-information'])
-    const [initialData, setInitialData] = useState({
-        title: 'Front',
-        description: 'This',
-        identifier: {
-            '@type': 'PropertyValue',
-            name: 'Google',
-            value: '123456',
-        },
-        datePosted: new Date(),
-        validThrough: new Date(),
-        employmentType: 'FULL_TIME',
-        hiringOrganization: {
-            '@type': 'Organization',
-            name: 'AnalogueShifts',
-            sameAs: 'https://www.analogueshifts.com',
-            logo: 'https://',
-        },
-        jobLocation: {
-            '@type': 'Place',
-            address: {
-                '@type': 'PostalAddress',
-                streetAddress: 'no',
-                addressLocality: 'na',
-                addressRegion: 'no',
-                postalCode: 'no',
-                addressCountry: 'na',
-            },
-        },
-        jobLocationType: 'TELECOMMUTE',
-        applicantLocationRequirements: [
-            { '@type': 'Country', name: 'Nigeria' },
-            { '@type': 'State', name: 'Lagos' },
-        ],
-        baseSalary: {
-            '@type': 'MonetaryAmount',
-            currency: 'USD',
-            value: {
-                '@type': 'QuantitativeValue',
-                value: 0,
-                unitText: 'HOUR',
-            },
-        },
-        apply: 'yo',
-    })
+    const [initialData, setInitialData] = useState(null)
     const [loading, setLoading] = useState(false)
     const router = useRouter()
     let slug = pathname.slice(17, pathname.length).split('/')[0]
@@ -83,6 +40,10 @@ export default function EditJobLayout({ children }) {
                 if (filteredData) {
                     setInitialData(filteredData)
                 } else {
+                    toast.error('Error Getting Jobs', {
+                        position: 'top-right',
+                        autoClose: 3000,
+                    })
                     router.push('/404')
                 }
 
@@ -90,7 +51,7 @@ export default function EditJobLayout({ children }) {
             })
             .catch(error => {
                 setLoading(false)
-                console.log(error)
+                router.push('/404')
                 toast.error('Error Getting Jobs', {
                     position: 'top-right',
                     autoClose: 3000,
