@@ -12,8 +12,11 @@ const MenuBar = ({ valueChanged }) => {
     editor.setOptions({
         editorProps: {
             attributes: {
-                class:
-                    'px-3 z-30 h-auto min-h-[100px] w-full border border-l-4 border-as outline-none',
+                class: editor.isFocused
+                    ? 'border-tremor-background-darkYellow outline-1 border-2 ' +
+                      'px-3 z-30 pt-2 text-sm max-h-[130px] text-tremor-brand-boulder950 min-h-[130px] overflow-y-auto w-full rounded-b-2xl outline-none '
+                    : 'border-tremor-brand-boulder200 border ' +
+                      'px-3 z-30 pt-2 text-sm max-h-[130px] text-tremor-brand-boulder950 min-h-[130px] overflow-y-auto w-full rounded-b-2xl outline-none ',
             },
         },
     })
@@ -27,63 +30,77 @@ const MenuBar = ({ valueChanged }) => {
     }
 
     return (
-        <div className="flex w-full overflow-x-auto gap-x-3 gap-y-3 px-3 py-3 sticky top-0 z-40 bg-white border border-l-4 border-as border-b-0">
+        <div
+            className={`flex w-full overflow-x-auto gap-x-3 gap-y-3 px-3 py-3  top-0 z-40 bg-white  rounded-t-2xl border-b-0 ${
+                editor.isFocused
+                    ? 'border-tremor-background-darkYellow outline-1 border-2'
+                    : 'border-tremor-brand-boulder200 border'
+            }`}>
             <button
+                type="button"
                 onClick={() => editor.chain().focus().toggleBold().run()}
                 disabled={!editor.can().chain().focus().toggleBold().run()}
                 className={`${
-                    editor.isActive('bold') ? 'border-black/80' : 'border-white'
+                    editor.isActive('bold')
+                        ? 'border-tremor-brand-boulder950'
+                        : 'border-white'
                 } px-3 py-1 rounded-lg border`}>
-                <i className="fas fa-bold"></i>
+                <i className="text-tremor-brand-boulder950 fas fa-bold"></i>
             </button>
             <button
+                type="button"
                 onClick={() => editor.chain().focus().toggleItalic().run()}
                 disabled={!editor.can().chain().focus().toggleItalic().run()}
                 className={`${
                     editor.isActive('italic')
-                        ? 'border-black/80'
+                        ? 'border-tremor-brand-boulder950'
                         : 'border-white'
                 } px-3 py-1 rounded-lg border`}>
-                <i className="fas fa-italic"></i>
+                <i className="text-tremor-brand-boulder950 fas fa-italic"></i>
             </button>
             <button
+                type="button"
                 onClick={() => editor.chain().focus().setParagraph().run()}
                 className={`${
                     editor.isActive('paragraph')
-                        ? 'border-black/80'
+                        ? 'border-tremor-brand-boulder950'
                         : 'border-white'
                 } px-3 py-1 rounded-lg border`}>
-                <i className="fas fa-p"></i>
+                <i className="text-tremor-brand-boulder950 fas fa-p"></i>
             </button>
 
             <button
+                type="button"
                 onClick={() => editor.chain().focus().toggleBulletList().run()}
                 className={`${
                     editor.isActive('bulletList')
-                        ? 'border-black/80'
+                        ? 'border-tremor-brand-boulder950'
                         : 'border-white'
                 } px-3 py-1 rounded-lg border`}>
-                <i className="fas fa-list-ul"></i>
+                <i className="text-tremor-brand-boulder950 fas fa-list-ul"></i>
             </button>
             <button
+                type="button"
                 onClick={() => editor.chain().focus().toggleOrderedList().run()}
                 className={`${
                     editor.isActive('orderedList')
-                        ? 'border-black/80'
+                        ? 'border-tremor-brand-boulder950'
                         : 'border-white'
                 } px-3 py-1 rounded-lg border`}>
-                <i className="fas fa-list-ol"></i>
+                <i className="text-tremor-brand-boulder950 fas fa-list-ol"></i>
             </button>
 
             <button
+                type="button"
                 onClick={() => editor.chain().focus().undo().run()}
                 disabled={!editor.can().chain().focus().undo().run()}>
-                <i className="fas fa-undo"></i>
+                <i className="text-tremor-brand-boulder950 fas fa-undo"></i>
             </button>
             <button
+                type="button"
                 onClick={() => editor.chain().focus().redo().run()}
                 disabled={!editor.can().chain().focus().redo().run()}>
-                <i className="fas fa-redo"></i>
+                <i className="text-tremor-brand-boulder950 fas fa-redo"></i>
             </button>
         </div>
     )

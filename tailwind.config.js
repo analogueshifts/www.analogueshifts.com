@@ -26,6 +26,11 @@ module.exports = {
                         emphasis: '#1d4ed8', // blue-700
                         inverted: '#ffffff', // white
                         boulder: '#7B7B7B',
+                        boulder200: '#D1D1D1',
+                        boulder300: '#B0B0B0',
+                        boulder400: '#7B7B7B',
+                        boulder900: '#3D3D3D',
+                        boulder950: '#262626',
                         madras: '#423306',
                     },
                     background: {

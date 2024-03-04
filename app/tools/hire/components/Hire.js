@@ -205,7 +205,7 @@ export default function HirePageDetails() {
             <div className="w-full min-w-[300px] min-h-[calc(100dvh-80px)] lg:min-h-[calc(100dvh-112px)] pt-5">
                 <div className="flex justify-center">
                     <Link
-                        href="/tools/hire/create"
+                        href="/tools/hire/create/job-information"
                         className="py-3 w-52 text-white/80 font-semibold text-base bg-tremor-background-lightYellow rounded-xl flex items-center justify-center gap-2">
                         <i className="fas fa-plus"></i> Hire Talents
                     </Link>
@@ -254,7 +254,7 @@ export default function HirePageDetails() {
                                                                     active,
                                                                 }) => (
                                                                     <Link
-                                                                        href={`/tools/hire/edit/${item.slug}`}
+                                                                        href={`/tools/hire/edit/${item.slug}/job-information`}
                                                                         className={classNames(
                                                                             active
                                                                                 ? 'bg-gray-100 text-gray-900'

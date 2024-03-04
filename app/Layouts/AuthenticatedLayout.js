@@ -270,7 +270,9 @@ export default function Authenticated({ user, header, children }) {
                     )}
                 </nav>
 
-                <main className="lg:p-7 p-3">{children}</main>
+                <main className="p-7 h-[calc(100dvh-56px)] overflow-y-auto">
+                    {children}
+                </main>
             </section>
         </main>
     )

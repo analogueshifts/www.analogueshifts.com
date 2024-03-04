@@ -107,7 +107,7 @@ export default function Register() {
                                             errorMessage.length > 0
                                                 ? 'border border-[#FF0000]'
                                                 : 'border border-black/10'
-                                        } w-full rounded-2xl h-full pl-12 pr-4  outline-none text-base font-normal text-gray-400`}
+                                        } w-full rounded-2xl outline-1 outline-tremor-background-darkYellow h-full pl-12 pr-4  text-base font-normal text-gray-400`}
                                         placeholder="Name"
                                         value={name}
                                         type="text"
@@ -129,7 +129,7 @@ export default function Register() {
                                             errorMessage.length > 0
                                                 ? 'border border-[#FF0000]'
                                                 : 'border border-black/10'
-                                        } w-full rounded-2xl h-full pl-12 pr-4  outline-none text-base font-normal text-gray-400`}
+                                        } w-full rounded-2xl outline-1 outline-tremor-background-darkYellow h-full pl-12 pr-4  text-base font-normal text-gray-400`}
                                         placeholder="Enter Email"
                                         value={email}
                                         type="email"
@@ -151,7 +151,7 @@ export default function Register() {
                                             errorMessage.length > 0
                                                 ? 'border border-[#FF0000]'
                                                 : 'border border-black/10'
-                                        } w-full rounded-2xl h-full pl-12 pr-4  outline-none text-base font-normal text-gray-400`}
+                                        } w-full rounded-2xl outline-1 outline-tremor-background-darkYellow h-full pl-12 pr-4  text-base font-normal text-gray-400`}
                                         placeholder="Enter Password"
                                         value={password}
                                         type="password"
@@ -175,7 +175,7 @@ export default function Register() {
                                             errorMessage.length > 0
                                                 ? 'border border-[#FF0000]'
                                                 : 'border border-black/10'
-                                        } w-full rounded-2xl h-full pl-12 pr-4  outline-none text-base font-normal text-gray-400`}
+                                        } w-full rounded-2xl outline-1 outline-tremor-background-darkYellow h-full pl-12 pr-4  text-base font-normal text-gray-400`}
                                         placeholder="Confirm Password"
                                         value={confirm_password}
                                         type="password"
