@@ -103,9 +103,9 @@ export default function Edit({ slug }) {
     }, [user])
 
     useEffect(() => {
-        let storedData = JSON.parse(Cookies.get('analogueshifts'))
+        let storedData = Cookies.get('analogueshifts')
         if (storedData) {
-            setUser(storedData)
+            setUser(JSON.parse(Cookies.get('analogueshifts')))
         }
     }, [])
 

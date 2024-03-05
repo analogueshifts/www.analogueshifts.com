@@ -14,9 +14,9 @@ export default function Dashboard() {
     const [user, setUser] = useState(null)
 
     useEffect(() => {
-        let storedData = JSON.parse(Cookies.get('analogueshifts'))
+        let storedData = Cookies.get('analogueshifts')
         if (storedData) {
-            setUser(storedData)
+            setUser(JSON.parse(Cookies.get('analogueshifts')))
         }
     }, [])
 

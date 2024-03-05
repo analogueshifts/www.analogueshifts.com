@@ -84,9 +84,9 @@ export default function HirePageDetails() {
     }
 
     useEffect(() => {
-        let storedData = JSON.parse(Cookies.get('analogueshifts'))
+        let storedData = Cookies.get('analogueshifts')
         if (storedData) {
-            setUser(storedData)
+            setUser(JSON.parse(Cookies.get('analogueshifts')))
         }
     }, [])
 
@@ -137,7 +137,7 @@ export default function HirePageDetails() {
                                 return (
                                     <div
                                         key={crypto.randomUUID()}
-                                        className="px-4 py-6 flex border-b justify-between items-start">
+                                        className="md:px-4 py-6 flex border-b justify-between items-start">
                                         <div className="w-6/12 justify-between flex flex-wrap gap-x-3 gap-y-1.5">
                                             <p className="text-sm font-semibold leading-6 text-gray-900">
                                                 {item.title}
@@ -146,7 +146,7 @@ export default function HirePageDetails() {
                                                 {item.employmentType}
                                             </p>
                                         </div>
-                                        <div className="w-6/12 pr-5 flex justify-end">
+                                        <div className="w-6/12 md:pr-5 flex justify-end">
                                             <Menu
                                                 as="div"
                                                 className="relative inline-block text-left">

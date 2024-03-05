@@ -10,9 +10,9 @@ export default function CreateJobLayout({ children }) {
     const [fieldForms, setFieldForms] = useState(['job-information'])
 
     useEffect(() => {
-        let storedData = JSON.parse(Cookies.get('analogueshifts'))
+        let storedData = Cookies.get('analogueshifts')
         if (storedData) {
-            setUser(storedData)
+            setUser(JSON.parse(Cookies.get('analogueshifts')))
         }
     }, [])
 
