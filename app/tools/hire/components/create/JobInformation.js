@@ -6,13 +6,28 @@ import Tiptap from '@/app/components/utilities/Tiptap'
 import { useRouter } from 'next/navigation'
 
 export default function JobInformation() {
+    const currentDate = new Date()
     const router = useRouter()
     const [title, setTitle] = useState('')
     const [description, setDescription] = useState(null)
     const [identifierName, setIdentifierName] = useState('')
     const [identifierValue, setIdentifierValue] = useState('')
-    const [datePosted, setDatePosted] = useState('')
-    const [validThrough, setValidThrough] = useState('')
+    const [datePosted, setDatePosted] = useState(
+        `${currentDate.getFullYear()}-${(currentDate.getMonth() + 1)
+            .toString()
+            .padStart(2, '0')}-${currentDate
+            .getDate()
+            .toString()
+            .padStart(2, '0')}`,
+    )
+    const [validThrough, setValidThrough] = useState(
+        `${currentDate.getFullYear()}-${(currentDate.getMonth() + 1)
+            .toString()
+            .padStart(2, '0')}-${currentDate
+            .getDate()
+            .toString()
+            .padStart(2, '0')}`,
+    )
     const [allFieldEntered, setAllFieldEnter] = useState(true)
     const submitButtonRef = useRef()
 
@@ -27,6 +42,7 @@ export default function JobInformation() {
                 setIdentifierValue(jobInformationData.identifierValue)
                 setDatePosted(jobInformationData.datePosted)
                 setValidThrough(jobInformationData.validThrough)
+                console.log(jobInformationData.datePosted)
             } else {
                 setDescription('')
             }

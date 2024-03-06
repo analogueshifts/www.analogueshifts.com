@@ -4,6 +4,7 @@ import Masonry from 'react-masonry-css'
 import Data from './Utilities/BuildTeamData.json'
 import { useInView } from 'react-intersection-observer'
 import Image from 'next/image'
+import Link from 'next/link'
 
 function BuildTeam() {
     const [breakpointColumnsObj, setBreakPointColumnsObj] = useState(1)
@@ -14,9 +15,9 @@ function BuildTeam() {
     })
 
     function handleResize() {
-        if (window.innerWidth <= 500) {
+        if (window.innerWidth <= 768) {
             setBreakPointColumnsObj(1)
-        } else if (window.innerWidth < 1281) {
+        } else if (window.innerWidth > 768 && window.innerWidth < 1024) {
             setBreakPointColumnsObj(2)
         } else {
             setBreakPointColumnsObj(3)
@@ -47,13 +48,13 @@ function BuildTeam() {
                 </p>
                 <Masonry
                     breakpointCols={breakpointColumnsObj}
-                    className="flex w-full"
-                    columnClassName="px-3"
+                    className="flex w-full gap-5"
+                    columnClassName=""
                     ref={masonryRef}>
                     {Data.BuildTeamData.map(el => (
-                        <a
+                        <Link
                             key={el.title}
-                            href="https://app.analogueshifts.com"
+                            href={el.url}
                             className="bg-white duration-300 mb-6 h-max rounded-3xl p-5 flex flex-col gap-5 motion-safe:hover:scale-[1.02] transition-all duration-250">
                             <Image
                                 className="w-full max-w-full rounded-2xl"
@@ -71,7 +72,7 @@ function BuildTeam() {
                                     {el.datails}
                                 </p>
                             </div>
-                        </a>
+                        </Link>
                     ))}
                 </Masonry>
             </div>

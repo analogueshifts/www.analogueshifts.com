@@ -104,6 +104,13 @@ export default function JobDetails() {
 
     const submit = e => {
         e.preventDefault()
+        if (isNaN(salaryValue)) {
+            toast.error('Error! Salary value must be a valid number', {
+                position: 'top-right',
+                autoClose: 3000,
+            })
+            return
+        }
         let storedData = Cookies.get('jobEditIngData')
         let jobDetailsData = {
             employmentType: employmentType,

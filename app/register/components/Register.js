@@ -51,7 +51,10 @@ export default function Register() {
                     position: 'top-right',
                     autoClose: 3000,
                 })
-                window.location.href = '/dashboard'
+                let redirectionLink = Cookies.get('RedirectionLink')
+                window.location.href = redirectionLink.trim().length
+                    ? redirectionLink
+                    : '/dashboard'
             })
             .catch(error => {
                 setLoading(false)

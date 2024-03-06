@@ -61,6 +61,10 @@ export const salaryCurrencyData = [
         id: 3,
         name: 'GBP',
     },
+    {
+        id: 4,
+        name: 'NGN',
+    },
 ]
 
 export const salaryUnitTextData = [

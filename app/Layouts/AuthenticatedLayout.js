@@ -68,6 +68,7 @@ export default function Authenticated({ user, header, children }) {
     useEffect(() => {
         const auth = Cookies.get('analogueshifts')
         if (auth === null || auth === undefined) {
+            Cookies.set('RedirectionLink', pathname)
             window.location.href = '/login'
             return null
         }

@@ -45,7 +45,10 @@ export default function Login() {
                     position: 'top-right',
                     autoClose: 3000,
                 })
-                window.location.href = '/dashboard'
+                let redirectionLink = Cookies.get('RedirectionLink')
+                window.location.href = redirectionLink.trim().length
+                    ? redirectionLink
+                    : '/dashboard'
 
                 setLoading(false)
             })

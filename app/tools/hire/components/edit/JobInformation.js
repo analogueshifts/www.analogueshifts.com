@@ -6,14 +6,29 @@ import Tiptap from '@/app/components/utilities/Tiptap'
 import { usePathname, useRouter } from 'next/navigation'
 
 export default function JobInformation() {
+    const currentDate = new Date()
     const router = useRouter()
     const pathname = usePathname()
     const [title, setTitle] = useState('')
     const [description, setDescription] = useState(null)
     const [identifierName, setIdentifierName] = useState('')
     const [identifierValue, setIdentifierValue] = useState('')
-    const [datePosted, setDatePosted] = useState('')
-    const [validThrough, setValidThrough] = useState('')
+    const [datePosted, setDatePosted] = useState(
+        `${currentDate.getFullYear()}-${(currentDate.getMonth() + 1)
+            .toString()
+            .padStart(2, '0')}-${currentDate
+            .getDate()
+            .toString()
+            .padStart(2, '0')}`,
+    )
+    const [validThrough, setValidThrough] = useState(
+        `${currentDate.getFullYear()}-${(currentDate.getMonth() + 1)
+            .toString()
+            .padStart(2, '0')}-${currentDate
+            .getDate()
+            .toString()
+            .padStart(2, '0')}`,
+    )
     const [allFieldEntered, setAllFieldEnter] = useState(true)
     const submitButtonRef = useRef()
     let slug = pathname.slice(17, pathname.length).split('/')[0]
