@@ -17,7 +17,7 @@ function Landing() {
                         ? 'opacity-1 translate-y-0'
                         : 'opacity-0 translate-y-2'
                 }`}>
-                <div className="container mx-auto py-5 px-3 md:px-9 xl:px-20">
+                <div className="container mx-auto py-5 px-5 md:px-9 xl:px-20">
                     <div className="bg-white border-0 shadow rounded-lg overflow-hidden">
                         <div className="grid lg:grid-cols-12">
                             <div className="grid lg:col-span-6 p-7 lg:p-14">

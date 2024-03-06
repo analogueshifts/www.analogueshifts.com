@@ -6,7 +6,7 @@ function Testimonials() {
         <div>
             {/* Testimonial section */}
             <div className="bg-white">
-                <div className="container mx-auto py-20 px-3 md:px-9 xl:px-20">
+                <div className="container mx-auto py-20 px-5 md:px-9 xl:px-20">
                     <div className="flex justify-center">
                         <div className="w-[800px]">
                             <div className="text-center">

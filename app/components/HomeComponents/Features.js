@@ -42,15 +42,14 @@ function Features() {
         <div ref={ref}>
             {/* Page Content */}
             <section
+                ref={titleRef}
                 className={`md:py-9 duration-500 ${
                     inView
                         ? 'opacity-1 translate-y-0'
                         : 'opacity-0 translate-y-2'
                 }`}>
-                <div className="container mx-auto py-5 px-3 md:px-9 xl:px-20 flex flex-col items-center">
-                    <div
-                        ref={titleRef}
-                        className="w-[59px] h-7 rounded-full flex mb-3 md:mb-5 justify-center items-center bg-tremor-background-darkYellow/10">
+                <div className="container mx-auto py-5 px-5 md:px-9 xl:px-20 flex flex-col items-center">
+                    <div className="w-[59px] h-7 rounded-full flex mb-3 md:mb-5 justify-center items-center bg-tremor-background-darkYellow/10">
                         <p className="text-[10px] font-normal text-tremor-background-darkYellow">
                             O
                         </p>
@@ -59,7 +58,7 @@ function Features() {
                         className={`text-2xl md:text-[32px] text-center font-normal mb-10 text-black`}>
                         Our Features
                     </p>
-                    <div className="sticky top-28 w-621 flex-wrap mb-20 max-w-full min-h-[68px] h-max py-2 border border-tremor-brand-boulder50 rounded-full bg-tremor-background-white300/80 px-3.5 md:px-5 flex items-center justify-center">
+                    <div className="sticky top-28 w-621 flex-wrap mb-20 max-w-full min-h-[68px] h-max py-2 border border-tremor-brand-boulder50 rounded-full bg-tremor-background-white300/80 px-3.5 md:px-5 hidden md:flex items-center justify-center">
                         <button
                             onClick={() =>
                                 titleRef.current.scrollIntoView({
