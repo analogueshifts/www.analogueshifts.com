@@ -16,6 +16,7 @@ import UserFive from '@/public/images/jobs/job-review-5.png'
 import StarRating from '@/public/images/jobs/ratings-star.png'
 import SearchGlass from '@/public/images/jobs/search-glass.png'
 import NoJob from '@/public/images/jobs/no-job.png'
+import NewsLetterCard from '../NewsLetterCard'
 
 export default function JobView() {
     const [jobs, setJobs] = useState([])
@@ -49,50 +50,7 @@ export default function JobView() {
                     autoClose: 3000,
                 })
             })
-
-        // Initialize GSAP and ScrollTrigger
-        // gsap.registerPlugin(ScrollTrigger)
-
-        // Add GSAP animation to the "Head" card
-        /*gsap.from('.animate-fade-in-head', {
-            opacity: 0,
-            y: 20,
-            duration: 0.5,
-            scrollTrigger: {
-                trigger: '.animate-fade-in-head',
-                start: 'top 80%',
-                end: 'bottom 20%',
-                scrub: true,
-            },
-        })*/
-
-        // Animation for the job description section
-        /*gsap.from('#intro', {
-            opacity: 0,
-            y: 50,
-            duration: 1,
-            delay: 1,
-            stagger: 0.2,
-        })*/
-
-        // Add GSAP animation to the job cards as they enter the viewport
-        /* gsap.from('.animate-fade-in-job', {
-            opacity: 0,
-            y: 20,
-            duration: 0.5,
-            stagger: 0.2,
-            scrollTrigger: {
-                trigger: '.animate-fade-in-job',
-                start: 'top 80%',
-                end: 'bottom 20%',
-                scrub: true,
-            },
-        })*/
     }, [])
-
-    const handleSubscribe = e => {
-        e.preventDefault()
-    }
 
     return (
         <>
@@ -304,39 +262,7 @@ export default function JobView() {
                 </div>
                 {/* Call to action */}
                 <aside className="flex mx-auto w-containerWidth max-w-[95%] justify-center pt-9 pb-16">
-                    <div
-                        style={{
-                            backgroundImage: 'url(/images/rectangle.png)',
-                        }}
-                        className="w-full rounded-[32px] bg-[#D3A121] flex justify-center items-center mt-10 pb-5 pt-14">
-                        <div className="w-[85%] md:w-[80%] desktop:w-[820px] flex flex-col items-center">
-                            <p
-                                className={`text-lg md:text-3xl font-semibold md:leading-9 text-center mb-5 text-white`}>
-                                New Products delivered to you
-                            </p>
-                            <p className="font-normal text-base md:text-xl mb-7 text-white/70">
-                                Kindly, sign up to out jobsletter for the latest
-                                updates
-                            </p>
-                            <form
-                                onSubmit={handleSubscribe}
-                                className="w-[298px] mb-12 flex h-[48px] overflow-x-hidden rounded-full border border-white ">
-                                <input
-                                    placeholder="Enter email"
-                                    className="w-[55%] px-5 h-full rounded-full border-none outline-none text-sm placeholder:text-white/50 text-white bg-transparent "
-                                />
-                                <button
-                                    type="submit"
-                                    className="text-xs text-[#D3A121] rounded-full text-center w-[50%] bg-white">
-                                    Subscribe
-                                </button>
-                            </form>
-                            <p className="font-normal text-sm md:text-base mb-7 text-white/50">
-                                We are about privacy and we will never share
-                                your data
-                            </p>
-                        </div>
-                    </div>
+                    <NewsLetterCard />
                 </aside>
             </section>
         </>

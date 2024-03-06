@@ -1,3 +1,6 @@
+'use client'
+import NewsLetterCard from '../NewsLetterCard'
+
 function Testimonials() {
     return (
         <div>
@@ -7,7 +10,7 @@ function Testimonials() {
                     <div className="flex justify-center">
                         <div className="w-[800px]">
                             <div className="text-center">
-                                <div className="text-sm lg:text-2xl mb-4 italic">
+                                <div className="text-sm text-tremor-brand-boulder950  lg:text-2xl mb-6 italic">
                                     "Your Success in Recruitment and Technical
                                     Support is our Priority. Welcome to Analogue
                                     Shifts, where we blend the expertise of
@@ -22,9 +25,9 @@ function Testimonials() {
                                     <img
                                         className="object-cover rounded-full h-11 w-11"
                                         src="/images/team/ceo.jpeg"
-                                        alt="..."
+                                        alt="An Image of CEO"
                                     />
-                                    <div className="font-bold">
+                                    <div className="font-bold text-tremor-brand-boulder950">
                                         Kenneth Malaka
                                         <span className="bold text-as mx-1">
                                             /
@@ -38,37 +41,7 @@ function Testimonials() {
 
                     {/* Call to action */}
                     <aside className="flex justify-center py-16">
-                        <div className="bg-yellow-500 grid lg:flex items-center justify-center gap-5 w-full p-9 rounded-lg">
-                            <div className="grid gap-5 text-center lg:text-start">
-                                <div className="text-2xl font-bold text-white">
-                                    New products, delivered to you.
-                                </div>
-                                <div className="text-gray-100 text-sm">
-                                    Sign up for our Jobsletter for the latest
-                                    updates.
-                                </div>
-                            </div>
-                            <div className="grid gap-5 text-center lg:text-start">
-                                <form className="flex mb-2 min-w-full">
-                                    <input
-                                        className="text-sm lg:text-md placeholder:text-sm outline-none w-full py-2 px-5 rounded-l-md"
-                                        type="email"
-                                        placeholder="Email address..."
-                                        aria-label="Email address..."
-                                        aria-describedby="button-Jobsletter"
-                                    />
-                                    <button
-                                        className="bg-transparent text-sm border outline-none w-full py-2 px-5 rounded-r-md"
-                                        type="button">
-                                        Sign up
-                                    </button>
-                                </form>
-                                <div className="text-gray-100 text-sm">
-                                    We care about privacy, and will never share
-                                    your data.
-                                </div>
-                            </div>
-                        </div>
+                        <NewsLetterCard />
                     </aside>
                 </div>
             </div>

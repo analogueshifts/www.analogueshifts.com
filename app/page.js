@@ -1,5 +1,6 @@
 import GuestLayout from './Layouts/GuestLayout'
 import BuildTeam from './components/HomeComponents/BuildTeam'
+import Features from './components/HomeComponents/Features'
 import Landing from './components/HomeComponents/Landing'
 import Services from './components/HomeComponents/Services'
 import Testimonials from './components/HomeComponents/Testimonials'
@@ -36,6 +37,7 @@ export default function Page() {
     return (
         <GuestLayout>
             <Landing />
+            <Features />
             <Services />
             <BuildTeam />
             <Testimonials />

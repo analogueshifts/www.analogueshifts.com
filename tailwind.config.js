@@ -14,6 +14,7 @@ module.exports = {
             width: {
                 navBarWidth: '1074px',
                 containerWidth: '1280px',
+                621: '621px',
             },
             colors: {
                 as: '#E5BE39',
@@ -26,9 +27,11 @@ module.exports = {
                         emphasis: '#1d4ed8', // blue-700
                         inverted: '#ffffff', // white
                         boulder: '#7B7B7B',
+                        boulder50: '#F6F6F6',
                         boulder200: '#D1D1D1',
                         boulder300: '#B0B0B0',
                         boulder400: '#7B7B7B',
+                        boulder500: '#6D6D6D',
                         boulder900: '#3D3D3D',
                         boulder950: '#262626',
                         madras: '#423306',
@@ -39,8 +42,10 @@ module.exports = {
                         DEFAULT: '#ffffff', // white
                         emphasis: '#374151', // gray-700
                         darkYellow: '#FFBB0A', // yellow - 800
+                        yellow700: '#EAB308',
                         brown: '#876307',
                         lightYellow: '#D5AE35',
+                        white300: '#FEFEFE',
                     },
                     border: {
                         DEFAULT: '#e5e7eb', // gray-200

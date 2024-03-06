@@ -10,16 +10,7 @@ const MasonryGrid = ({ posts }) => {
     const [breakpointColumnsObj, setBreakPointColumnsObj] = useState(3)
     const masonryRef = useRef(null)
 
-    useEffect(() => {
-        window.onresize = function () {
-            if (window.innerWidth <= 500) {
-                setBreakPointColumnsObj(1)
-            } else if (window.innerWidth < 1281) {
-                setBreakPointColumnsObj(2)
-            } else {
-                setBreakPointColumnsObj(3)
-            }
-        }
+    function handleResize() {
         if (window.innerWidth <= 500) {
             setBreakPointColumnsObj(1)
         } else if (window.innerWidth < 1281) {
@@ -27,6 +18,11 @@ const MasonryGrid = ({ posts }) => {
         } else {
             setBreakPointColumnsObj(3)
         }
+    }
+
+    useEffect(() => {
+        window.addEventListener('resize', handleResize)
+        handleResize()
     }, [])
 
     return (
