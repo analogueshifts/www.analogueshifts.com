@@ -137,7 +137,7 @@ export default function Question({ data, setNewVetData }) {
                         onClick={addOption}
                         type="button"
                         className="text-sm font-normal text-tremor-brand-boulder400 mr-auto">
-                        Add another
+                        Add {options.length > 0 ? 'another' : 'option'}
                     </button>
                 </div>
             )}

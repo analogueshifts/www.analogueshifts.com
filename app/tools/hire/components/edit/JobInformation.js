@@ -56,27 +56,13 @@ export default function JobInformation() {
     // Check if all inputs have been filled
     useEffect(() => {
         var returnValue = false
-        ;[
-            title,
-            description,
-            identifierName,
-            identifierValue,
-            datePosted,
-            validThrough,
-        ].forEach(item => {
+        ;[title, description, datePosted, validThrough].forEach(item => {
             if (item === '') {
                 returnValue = true
             }
         })
         setAllFieldEnter(returnValue)
-    }, [
-        title,
-        description,
-        identifierName,
-        identifierValue,
-        datePosted,
-        validThrough,
-    ])
+    }, [title, description, datePosted, validThrough])
 
     const submit = e => {
         e.preventDefault()
@@ -155,7 +141,6 @@ export default function JobInformation() {
                     </div>
                     <div className="w-full md:w-1/2">
                         <input
-                            required
                             type="text"
                             value={identifierName}
                             onChange={e => setIdentifierName(e.target.value)}
@@ -177,7 +162,6 @@ export default function JobInformation() {
                     <div className="w-full md:w-1/2">
                         <input
                             type="text"
-                            required
                             value={identifierValue}
                             onChange={e => setIdentifierValue(e.target.value)}
                             placeholder="e.g “123456”"
