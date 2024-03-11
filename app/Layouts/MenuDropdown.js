@@ -33,7 +33,7 @@ export default function MenuDropDown({ user, close, handleLogout }) {
                 </Link>
                 <Link
                     style={{ opacity: textOpacity, transitionDelay: '0.9s' }}
-                    href="/tools/vetting"
+                    href="/tools/vet"
                     className={` text-base duration-500 font-semibold flex items-center gap-2`}>
                     <span className="text-black/80">Vetting System</span>{' '}
                     <i className="fa-brands fa-teamspeak text-black/80 text-sm"></i>

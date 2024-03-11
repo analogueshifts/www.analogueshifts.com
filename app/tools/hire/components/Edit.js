@@ -113,7 +113,7 @@ export default function Edit({ slug }) {
         <Authenticated
             header={
                 <h2 className="font-semibold text-lg text-gray-500 leading-tight">
-                    Hire Talents
+                    Hire
                 </h2>
             }>
             {' '}

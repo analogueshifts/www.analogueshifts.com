@@ -14,9 +14,9 @@ const MenuBar = ({ valueChanged }) => {
             attributes: {
                 class: editor.isFocused
                     ? 'border-tremor-background-darkYellow outline-1 border-2 ' +
-                      'px-3 z-30 pt-2 text-sm max-h-[130px] text-tremor-brand-boulder950 min-h-[130px] overflow-y-auto w-full rounded-b-2xl outline-none '
+                      'px-3 z-30 pt-2 text-sm max-h-[120px] text-tremor-brand-boulder950 min-h-[130px] overflow-y-auto w-full rounded-b-2xl outline-none '
                     : 'border-tremor-brand-boulder200 border ' +
-                      'px-3 z-30 pt-2 text-sm max-h-[130px] text-tremor-brand-boulder950 min-h-[130px] overflow-y-auto w-full rounded-b-2xl outline-none ',
+                      'px-3 z-30 pt-2 text-sm max-h-[120px] text-tremor-brand-boulder950 min-h-[130px] overflow-y-auto w-full rounded-b-2xl outline-none ',
             },
         },
     })

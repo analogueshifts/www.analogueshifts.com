@@ -142,9 +142,9 @@ export default function Authenticated({ user, header, children }) {
                     </li>
                     <li
                         className={`${
-                            pathname === '/tools/vetting' ? 'active' : ''
+                            pathname.startsWith('/tools/vet') ? 'active' : ''
                         }`}>
-                        <Link href="/tools/vetting" className="nav-link">
+                        <Link href="/tools/vet" className="nav-link">
                             <i className="fa-brands fa-teamspeak"></i>
                             <span className="text hidden sm:flex">
                                 Vetting System

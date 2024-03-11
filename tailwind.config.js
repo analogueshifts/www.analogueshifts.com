@@ -35,6 +35,8 @@ module.exports = {
                         boulder900: '#3D3D3D',
                         boulder950: '#262626',
                         madras: '#423306',
+                        activeLink: '#0F2942',
+                        inActiveLink: '#BDBDBD',
                     },
                     background: {
                         muted: '#f9fafb', // gray-50

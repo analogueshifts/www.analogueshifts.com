@@ -101,7 +101,7 @@ export default function HirePageDetails() {
             user={user}
             header={
                 <h2 className="font-semibold text-lg text-gray-500 leading-tight">
-                    Hire Talents
+                    Hire
                 </h2>
             }>
             {loading && <DashboardLoader />}
@@ -124,7 +124,7 @@ export default function HirePageDetails() {
             <div className="w-full min-w-[300px] min-h-[calc(100dvh-80px)] lg:min-h-[calc(100dvh-112px)] pt-5">
                 <div className="flex justify-center">
                     <Link
-                        href="/tools/hire/create/job-information"
+                        href="/tools/hire/create"
                         className="py-3 w-52 text-white/80 font-semibold text-base bg-tremor-background-lightYellow rounded-xl flex items-center justify-center gap-2">
                         <i className="fas fa-plus"></i> Hire Talents
                     </Link>

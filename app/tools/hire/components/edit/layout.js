@@ -51,7 +51,7 @@ export default function EditJobLayout({ children }) {
             user={user}
             header={
                 <h2 className="font-semibold text-lg text-gray-500 leading-tight">
-                    Hire Talents
+                    Hire
                 </h2>
             }>
             <section className="bg-[#FEFEFE] mt-2 border border-[#E7E7E7] h-max px-4 lg:px-7 py-10 rounded-3xl">
