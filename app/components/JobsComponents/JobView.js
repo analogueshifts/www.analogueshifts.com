@@ -150,17 +150,20 @@ export default function JobView() {
                     </div>
 
                     {jobs[0] && (
-                        <div className="w-full pt-9 flex flex-col gap-6">
+                        <div className="w-full pt-9 flex flex-wrap gap-6">
                             {jobs.filter(job =>
                                 job.title
                                     .toLowerCase()
                                     .includes(searchFilter.toLowerCase()),
                             ).length === 0 && (
-                                <Image
-                                    src={NoJob}
-                                    alt="No Job Found"
-                                    className="mx-auto"
-                                />
+                                // <Image
+                                //     src={NoJob}
+                                //     alt="No Job Found"
+                                //     className="mx-auto"
+                                // />
+                                <h3 className='text-xl font-semibold text-black/90" mx-auto'>
+                                    No Job Found
+                                </h3>
                             )}
                             {jobs
                                 .filter(job =>
@@ -172,7 +175,7 @@ export default function JobView() {
                                     return (
                                         <div
                                             key={index}
-                                            className="w-full h-max min-h-[205px] border-b flex flex-wrap pb-5 justify-between items-center gap-y-2">
+                                            className="w-full h-max md:w-[calc(50%-12px)] min-h-[205px] border-b md:border-none flex flex-wrap pb-5 justify-between items-center gap-y-2">
                                             <div className="flex gap-5 flex-wrap items-start">
                                                 <img
                                                     src={
@@ -184,7 +187,7 @@ export default function JobView() {
                                                             : 'https://via.placeholder.com/80'
                                                     }
                                                     alt="LOGO"
-                                                    className="md:w-[266px] md:h-[185px] object-contain w-[206px] h-[125px]"
+                                                    className={`md:w-max md:h-[185px] object-contain w-[206px] h-[125px]`}
                                                 />
                                                 <div className="flex flex-col gap-1.5">
                                                     <p className="text-sm font-normal text-[#B0B0B0]">
@@ -236,7 +239,7 @@ export default function JobView() {
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div className="flex gap-2 items-center">
+                                            <div className="flex gap-2 items-center md:mt-2">
                                                 <Link
                                                     href={job.apply}
                                                     className={`w-24 lg:w-28 py-2 hover:scale-105 rounded-full text-xs font-bold duration-300 text-white bg-yellow-500 flex justify-center`}>
@@ -252,11 +255,11 @@ export default function JobView() {
                                         </div>
                                     )
                                 })}
-                            <Link
+                            {/* <Link
                                 className="h-9 w-[221px] mx-auto mt-5 flex justify-center items-center rounded-full border border-[#EAB308]/20 text-[#EAB308] mb-7 md:mb-12 text-sm font-normal"
                                 href="#">
                                 Explore More
-                            </Link>
+                            </Link> */}
                         </div>
                     )}
                 </div>
