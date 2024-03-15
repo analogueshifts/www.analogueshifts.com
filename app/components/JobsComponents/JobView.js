@@ -176,7 +176,7 @@ export default function JobView() {
                                         <div
                                             key={index}
                                             className="w-full h-max md:w-[calc(50%-12px)] min-h-[205px] border-b md:border-none flex flex-wrap pb-5 justify-between items-center gap-y-2">
-                                            <div className="flex gap-5 flex-wrap items-start">
+                                            <div className="flex gap-5 flex-wrap items-start md:justify-center">
                                                 <img
                                                     src={
                                                         job.hiringOrganization
@@ -189,7 +189,7 @@ export default function JobView() {
                                                     alt="LOGO"
                                                     className={`md:w-max md:h-[185px] object-contain w-[206px] h-[125px]`}
                                                 />
-                                                <div className="flex flex-col gap-1.5">
+                                                <div className="flex flex-col gap-1.5 md:items-center">
                                                     <p className="text-sm font-normal text-[#B0B0B0]">
                                                         {
                                                             job
@@ -201,7 +201,7 @@ export default function JobView() {
                                                         {job.title}
                                                     </p>
                                                     <p
-                                                        className="text-[15px] font-normal text-[#7B7B7B]"
+                                                        className="text-[15px] font-normal text-[#7B7B7B] md:text-center"
                                                         dangerouslySetInnerHTML={{
                                                             __html:
                                                                 job.description
@@ -239,7 +239,7 @@ export default function JobView() {
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div className="flex gap-2 items-center md:mt-2">
+                                            <div className="flex gap-2 items-center md:mt-2 md:mx-auto">
                                                 <Link
                                                     href={job.apply}
                                                     className={`w-24 lg:w-28 py-2 hover:scale-105 rounded-full text-xs font-bold duration-300 text-white bg-yellow-500 flex justify-center`}>

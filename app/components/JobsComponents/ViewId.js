@@ -18,8 +18,6 @@ export default function ViewId({ id }) {
 
     const [job, setJob] = useState(null)
     const [loading, setLoading] = useState(false)
-    const [shareJobModal, setShareJobModal] = useState(false)
-    const [linkToShare, setLinkToShare] = useState('')
 
     const url = process.env.NEXT_PUBLIC_BACKEND_URL + '/job/' + id
     useEffect(() => {
@@ -47,12 +45,6 @@ export default function ViewId({ id }) {
             })
     }, [id])
 
-    useEffect(() => {
-        if (linkToShare.length > 0) {
-            setShareJobModal(true)
-        }
-    }, [linkToShare])
-
     if (router.isFallback) {
         return <div>Loading...</div>
     }
@@ -60,21 +52,13 @@ export default function ViewId({ id }) {
     return (
         <>
             {loading && <LoadingTwo />}
-            {shareJobModal && (
-                <ShareJob
-                    cancel={() => {
-                        setShareJobModal(false)
-                        setLinkToShare('')
-                    }}
-                    link={linkToShare}
-                />
-            )}
-            <div className="container mx-auto py-5 px-3 md:px-9 xl:px-28">
+
+            <div className="container mx-auto pt-5 pb-14 px-3 md:px-9 xl:px-28">
                 <div className="grid gap-5 h-full lg:w-[900px]">
                     <article>
                         {/* Post header */}
                         {job && (
-                            <header className="pt-5 max-[500px]:pt-2 mb-20 max-[500px]:mb-14">
+                            <header className="pt-5 max-[500px]:pt-2 mb-12 max-[500px]:mb-8">
                                 {/* Company */}
 
                                 <div className="w-full flex items-start mb-7 gap-3">
@@ -87,19 +71,19 @@ export default function ViewId({ id }) {
                                                     : 'https://via.placeholder.com/80'
                                             }
                                             alt="LOGO"
-                                            className="w-20 h-20 object-contain"
+                                            className="w-28 h-28 object-contain"
                                         />
                                     </a>
                                 </div>
 
                                 {/* Post title */}
-                                <h1 className="font-medium text-black/90 text-2xl md:text-4xl fade-in pb-4">
+                                <h1 className="font-medium text-tremor-brand-boulder950 text-xl md:text-2xl fade-in pb-4">
                                     {job.title} -{' '}
-                                    <span className="md:text-2xl text-xl">
+                                    <span className="md:text-xl text-lg text-tremor-brand-boulder500">
                                         {job.hiringOrganization.name}
                                     </span>
                                 </h1>
-                                <div className="flex gap-6 items-center pl-20 max-[500px]:pl-5 max-[500px]:gap-5 flex-wrap">
+                                <div className="flex gap-6 items-center pl-5 max-[500px]:gap-5 flex-wrap">
                                     <div className="flex items-center gap-2 flex-wrap">
                                         <Image
                                             src={LocationIcon}
@@ -174,21 +158,23 @@ export default function ViewId({ id }) {
                         )}
 
                         {job && (
-                            <section className="w-full h-auto px-8 max-[500px]:px-5">
-                                <p className="font-normal text-black/90 text-2xl md:text-3xl fade-in pb-5">
+                            <section className="w-full h-auto ">
+                                <p className="font-medium text-tremor-brand-boulder950 text-xl md:text-2xl fade-in pb-5">
                                     Job description
                                 </p>
-                                <h2
-                                    className="h-max text-black/90 text-lg font-medium"
-                                    dangerouslySetInnerHTML={{
-                                        __html: job.description,
-                                    }}
-                                />
+                                <div className="pl-5">
+                                    <span
+                                        className="h-max text-tremor-brand-boulder900 text-base font-normal"
+                                        dangerouslySetInnerHTML={{
+                                            __html: job.description,
+                                        }}
+                                    />
+                                </div>
                             </section>
                         )}
 
                         {job && (
-                            <section className="w-full px-8 pt-6 h-max flex gap-5 flex-wrap">
+                            <section className="w-full pt-6 h-max flex gap-5 flex-wrap">
                                 <a
                                     href={job.apply}
                                     className="bg-as text-white rounded lg:w-fit py-2.5 duration-300 hover:-translate-y-1 px-14">
@@ -196,12 +182,35 @@ export default function ViewId({ id }) {
                                 </a>
 
                                 <button
-                                    onClick={() =>
-                                        setLinkToShare(
-                                            'https://www.analogueshifts.com' +
-                                                pathname,
-                                        )
-                                    }
+                                    onClick={async () => {
+                                        if (navigator.share) {
+                                            try {
+                                                await navigator.share({
+                                                    title: job.title,
+                                                    text: '',
+                                                    url:
+                                                        'https://www.analogueshifts.com' +
+                                                        pathname,
+                                                })
+                                            } catch (error) {
+                                                toast.error(
+                                                    'Error sharing content:',
+                                                    {
+                                                        position: 'top-right',
+                                                        autoClose: 3000,
+                                                    },
+                                                )
+                                            }
+                                        } else {
+                                            toast.error(
+                                                'Sharing not supported on this device.',
+                                                {
+                                                    position: 'top-right',
+                                                    autoClose: 3000,
+                                                },
+                                            )
+                                        }
+                                    }}
                                     className="border-as border text-as duration-300 hover:-translate-y-1 rounded lg:w-fit py-2.5 px-14">
                                     Share Job
                                 </button>

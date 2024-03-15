@@ -5,12 +5,19 @@
 @import '/scss/_footer.scss';
 
 :root {
-    --light: #f9f9f9;
+    --light: #fefefe;
     --as: #e5be39;
     --grey: #eee;
     --dark-grey: #aaaaaa;
     --dark: #342e37;
     --red: #db504a;
+}
+
+body {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 body::-webkit-scrollbar {
@@ -526,4 +533,27 @@ body::-webkit-scrollbar-thumb:hover {
 
 .open .hamburger-bottom {
     transform: rotate(-45deg) translateY(6px) translateX(-6px);
+}
+
+/* Switch Style */
+.switch {
+    width: 60px;
+    height: 30px;
+    background-color: var(--grey);
+    display: flex;
+    justify-content: flex-start;
+    border-radius: 50px;
+    padding: 5px;
+    cursor: pointer;
+}
+
+.switch[data-isOn='true'] {
+    justify-content: flex-end;
+}
+
+.handle {
+    width: 20px;
+    height: 20px;
+    background-color: white;
+    border-radius: 40px;
 }

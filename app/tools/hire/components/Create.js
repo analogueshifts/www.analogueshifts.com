@@ -2,14 +2,9 @@
 import { useEffect } from 'react'
 import Authenticated from '@/app/Layouts/AuthenticatedLayout'
 import { useRouter } from 'next/navigation'
-import Cookies from 'js-cookie'
 
 export default function Create() {
     const router = useRouter()
-
-    const clearSavedData = () => {
-        Cookies.remove('jobEditIngData')
-    }
 
     useEffect(() => {
         clearSavedData()

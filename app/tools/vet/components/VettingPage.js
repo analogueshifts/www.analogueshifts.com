@@ -1,6 +1,6 @@
 'use client'
 import { useState, useEffect } from 'react'
-import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 import DashboardLoader from '@/app/components/DashboardLoader'
 import { toast } from 'react-toastify'
 import Cookies from 'js-cookie'
@@ -8,6 +8,7 @@ import Authenticated from '@/app/Layouts/AuthenticatedLayout'
 
 export default function VettingPage() {
     const [user, setUser] = useState(null)
+    const router = useRouter()
 
     useEffect(() => {
         let storedData = Cookies.get('analogueshifts')
@@ -15,6 +16,11 @@ export default function VettingPage() {
             setUser(JSON.parse(Cookies.get('analogueshifts')))
         }
     }, [])
+
+    const handleCreateNewVet = () => {
+        Cookies.remove('vetCreationData')
+        router.push('/tools/vet/create')
+    }
 
     return (
         <Authenticated
@@ -29,12 +35,13 @@ export default function VettingPage() {
                     <span className="font-medium md:text-lg text-base text-tremor-brand-boulder950">
                         Your Vetting Forms
                     </span>
-                    <Link
-                        href={'/tools/vet/create'}
-                        className="h-10 rounded-full px-8 flex justify-center items-center gap-3 border border-tremor-background-darkYellow font-normal md:text-base text-sm bg-transparent text-tremor-background-darkYellow">
+                    <button
+                        onClick={handleCreateNewVet}
+                        type="button"
+                        className="h-10 bg-none outline-none rounded-full px-8 flex justify-center items-center gap-3 border border-tremor-background-darkYellow font-normal md:text-base text-sm bg-transparent text-tremor-background-darkYellow">
                         Create New
                         <i className="fas fa-plus"></i>
-                    </Link>
+                    </button>
                 </div>
             </div>
         </Authenticated>

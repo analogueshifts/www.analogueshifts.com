@@ -1,5 +1,5 @@
 'use client'
-import React, { useState, Fragment, useRef, useEffect } from 'react'
+import React, { useState, Fragment, useEffect } from 'react'
 import Authenticated from '@/app/Layouts/AuthenticatedLayout'
 import Link from 'next/link'
 import { Menu, Transition } from '@headlessui/react'
@@ -7,6 +7,7 @@ import DashboardLoader from '@/app/components/DashboardLoader'
 import { toast } from 'react-toastify'
 import Cookies from 'js-cookie'
 import IdiomProof from '@/app/Layouts/IdiomProof'
+import { useRouter } from 'next/navigation'
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
@@ -18,6 +19,7 @@ export default function HirePageDetails() {
     const [idToBeDeleted, setIdToBeDeleted] = useState(null)
     const [data, setData] = useState([])
     const [loading, setLoading] = useState(false)
+    const router = useRouter()
     let url = process.env.NEXT_PUBLIC_BACKEND_URL + '/hire/dashboard'
 
     //Fetch Jobs
@@ -83,6 +85,11 @@ export default function HirePageDetails() {
             })
     }
 
+    const handleCreatePost = () => {
+        Cookies.remove('jobPostData')
+        router.push('/tools/hire/create/job-information')
+    }
+
     useEffect(() => {
         let storedData = Cookies.get('analogueshifts')
         if (storedData) {
@@ -123,11 +130,11 @@ export default function HirePageDetails() {
 
             <div className="w-full min-w-[300px] min-h-[calc(100dvh-80px)] lg:min-h-[calc(100dvh-112px)] pt-5">
                 <div className="flex justify-center">
-                    <Link
-                        href="/tools/hire/create"
-                        className="py-3 w-52 text-white/80 font-semibold text-base bg-tremor-background-lightYellow rounded-xl flex items-center justify-center gap-2">
+                    <button
+                        onClick={handleCreatePost}
+                        className="py-3 outline-none border-none w-52 text-white/80 font-semibold text-base bg-tremor-background-lightYellow rounded-xl flex items-center justify-center gap-2">
                         <i className="fas fa-plus"></i> Hire Talents
-                    </Link>
+                    </button>
                 </div>
 
                 <div>

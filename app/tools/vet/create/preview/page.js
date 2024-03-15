@@ -1,7 +1,7 @@
-import HirePageDetails from './components/Home'
+import PreviewVet from '../../components/create/Preview'
 
 export const metadata = {
-    title: 'Hire Talents | AnalogueShifts',
+    title: 'Vetting System | AnalogueShifts',
     description:
         'Looking for the best tech talent worldwide? Analogueshifts is the recruitment agency for you. Our team of experts can help you streamline recruitment and find the perfect talent for your organization. ',
     openGraph: {
@@ -26,5 +26,5 @@ export const metadata = {
 }
 
 export default function Page() {
-    return <HirePageDetails />
+    return <PreviewVet />
 }
