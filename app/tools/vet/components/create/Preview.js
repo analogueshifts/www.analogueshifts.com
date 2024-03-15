@@ -55,7 +55,7 @@ export default function PreviewVet() {
                         {newVetData.vet_questions.map(item => {
                             return (
                                 <div
-                                    id={item.id}
+                                    key={item.id}
                                     className="w-full pb-6 border-b border-tremor-brand-boulder200 flex flex-col md:justify-between md:flex-row gap-y-4">
                                     <div className="w-full md:w-1/2 flex flex-col gap-4 md:pr-5">
                                         <p className="text-sm font-normal text-tremor-brand-boulder400">
@@ -83,7 +83,7 @@ export default function PreviewVet() {
                                                 {item.options.map(option => {
                                                     return (
                                                         <label
-                                                            id={option.id}
+                                                            key={option.id}
                                                             className="flex items-center gap-3">
                                                             <input
                                                                 name={
@@ -104,7 +104,7 @@ export default function PreviewVet() {
                                                 {item.options.map(option => {
                                                     return (
                                                         <label
-                                                            id={option.id}
+                                                            key={option.id}
                                                             className="flex items-center gap-3">
                                                             <input type="checkbox" />
                                                             <span className="text-sm font-normal text-tremor-brand-boulder400">

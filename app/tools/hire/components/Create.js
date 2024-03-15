@@ -7,7 +7,6 @@ export default function Create() {
     const router = useRouter()
 
     useEffect(() => {
-        clearSavedData()
         router.push('/tools/hire/create/job-information')
     }, [])
 
