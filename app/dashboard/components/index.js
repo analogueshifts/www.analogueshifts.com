@@ -1,9 +1,7 @@
 'use client'
 import { useEffect, useState } from 'react'
-import Image from 'next/image'
 import Authenticated from '@/app/Layouts/AuthenticatedLayout'
 import Curve from '@/public/images/curve.png'
-import DummyUser from '@/public/images/dummy_user.png'
 import Cookies from 'js-cookie'
 
 //Data
@@ -34,8 +32,9 @@ export default function Dashboard() {
                 </div>
                 <div className="bg-white -translate-y-12 ml-5 h-max w-[calc(100%-40px)] px-5 pb-5 rounded-xl flex flex-col">
                     {/* Profile Overview */}
-                    <Image
-                        src={DummyUser}
+
+                    <img
+                        src="https://via.placeholder.com/80"
                         alt="Profile"
                         className="rounded-full h-28 w-28 -translate-y-12"
                     />

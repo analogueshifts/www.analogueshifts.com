@@ -15,7 +15,6 @@ import UserFour from '@/public/images/jobs/job-review-4.png'
 import UserFive from '@/public/images/jobs/job-review-5.png'
 import StarRating from '@/public/images/jobs/ratings-star.png'
 import SearchGlass from '@/public/images/jobs/search-glass.png'
-import NoJob from '@/public/images/jobs/no-job.png'
 import NewsLetterCard from '../NewsLetterCard'
 
 export default function JobView() {
