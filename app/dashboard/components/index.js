@@ -2,6 +2,7 @@
 import { useEffect, useState } from 'react'
 import Authenticated from '@/app/Layouts/AuthenticatedLayout'
 import Curve from '@/public/images/curve.png'
+import Image from 'next/image'
 import Cookies from 'js-cookie'
 
 //Data
