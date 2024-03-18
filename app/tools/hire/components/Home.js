@@ -65,7 +65,6 @@ export default function HirePageDetails() {
         axios
             .request(config)
             .then(res => {
-                console.log(res)
                 fetchJobs()
                 toast.success('Job Deleted Successfully', {
                     position: 'top-right',
@@ -76,7 +75,6 @@ export default function HirePageDetails() {
                 setLoading(false)
             })
             .catch(err => {
-                console.log(err)
                 toast.error('Error Deleting Job', {
                     position: 'top-right',
                     autoClose: 3000,
@@ -123,7 +121,7 @@ export default function HirePageDetails() {
                     setIdiomModal(false)
                 }}
                 description={
-                    'Are you sure you want to delete this Post? This  Job Post will not be  visible to Talents anymore. This actio cannot be undone.'
+                    'Are you sure you want to delete this Post? This  Job Post will not be  visible to Talents anymore. This action cannot be undone.'
                 }
                 open={idiomModal}
             />

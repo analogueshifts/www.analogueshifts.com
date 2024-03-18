@@ -8,6 +8,7 @@ import Question from './Question'
 import { Reorder } from 'framer-motion'
 import DashboardLoader from '@/app/components/DashboardLoader'
 import { toast } from 'react-toastify'
+import { useRouter } from 'next/navigation'
 
 export default function CreateVet() {
     let currentDate = new Date()
@@ -15,6 +16,8 @@ export default function CreateVet() {
     const [loading, setLoading] = useState(false)
     const [vetQuestions, setVetQuestions] = useState(null)
     const [newVetData, setNewVetData] = useState(null)
+    const router = useRouter()
+    const url = process.env.NEXT_PUBLIC_BACKEND_URL + '/tools/vetting/store_vet'
 
     useEffect(() => {
         setNewVetData(prev => {
@@ -22,6 +25,7 @@ export default function CreateVet() {
         })
     }, [vetQuestions])
 
+    // Check for user's session and existing vetCreationData
     useEffect(() => {
         let storedData = Cookies.get('analogueshifts')
         let vetCreationData = Cookies.get('vetCreationData')
@@ -102,7 +106,37 @@ export default function CreateVet() {
                 return
             }
         }
+
         //   Make Request to Api
+        const axios = require('axios')
+        let config = {
+            method: 'POST',
+            url: url,
+            headers: {
+                Authorization: 'Bearer ' + user.token,
+            },
+            data: newVetData,
+        }
+        setLoading(true)
+        axios
+            .request(config)
+            .then(response => {
+                setLoading(false)
+                toast.success('Your Vet Request Has Been Sent', {
+                    position: 'top-right',
+                    autoClose: 3000,
+                })
+                Cookies.remove('vetCreationData')
+                router.push('/tools/vet')
+            })
+            .catch(error => {
+                console.log(error)
+                toast.error(error.message, {
+                    position: 'top-right',
+                    autoClose: 3000,
+                })
+                setLoading(false)
+            })
     }
 
     return (
@@ -140,7 +174,7 @@ export default function CreateVet() {
 
             <div className="w-full mt-6   flex-wrap gap-5 flex justify-center md:justify-between items-center bg-[#FEFEFE] border border-[#E7E7E7] h-max px-4 lg:px-10 py-5 rounded-3xl">
                 <span className="font-medium md:text-lg text-base text-tremor-brand-boulder950">
-                    Vetting Form
+                    Vet Questions
                 </span>
                 <button
                     onClick={addVetQuestion}

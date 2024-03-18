@@ -13,6 +13,7 @@ export default function Question({
     setVetQuestions,
     newVetData,
     vetQuestions,
+    updateType,
 }) {
     const [question, setQuestion] = useState(data.question)
     const [answer, setAnswer] = useState(data.answer)
@@ -95,7 +96,7 @@ export default function Question({
 
     useEffect(() => {
         Cookies.set(
-            'vetCreationData',
+            `${updateType === 'edit' ? 'vetEditingData' : 'vetCreationData'}`,
             JSON.stringify({
                 ...newVetData,
                 vet_questions: vetQuestions,

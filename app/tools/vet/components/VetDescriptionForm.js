@@ -5,7 +5,12 @@ import { motion } from 'framer-motion'
 import { toast } from 'react-toastify'
 import Cookies from 'js-cookie'
 
-export default function VetDescriptionForm({ data, setData, newVetData }) {
+export default function VetDescriptionForm({
+    data,
+    setData,
+    newVetData,
+    type,
+}) {
     const [title, setTitle] = useState(data.title)
     const [description, setDescription] = useState(data.description)
     const [multiResponseSwitch, setMultiResponseSwitch] = useState(
@@ -19,7 +24,7 @@ export default function VetDescriptionForm({ data, setData, newVetData }) {
         e.preventDefault()
 
         Cookies.set(
-            'vetCreationData',
+            `${type === 'edit' ? 'vetEditingData' : 'vetCreationData'}`,
             JSON.stringify({
                 ...newVetData,
                 multi_response: multiResponseSwitch,
