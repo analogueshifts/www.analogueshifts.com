@@ -68,7 +68,7 @@ export default function ViewId({ id }) {
                                                 job.hiringOrganization.logo
                                                     ? job.hiringOrganization
                                                           .logo
-                                                    : 'https://via.placeholder.com/80'
+                                                    : '/images/company_logo.JPG'
                                             }
                                             alt="LOGO"
                                             className="w-28 h-28 object-contain"
