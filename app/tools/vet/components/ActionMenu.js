@@ -6,12 +6,14 @@ export default function ActionMenu({
     handleDelete,
     handlePreview,
     handleShare,
+    handleVetResponse,
 }) {
     const [isOpen, setIsOpen] = useState(false)
     let list = [
         { name: 'Preview Vet', action: handlePreview },
         { name: 'Edit Vet', action: handleEdit },
         { name: 'Share Vet', action: handleShare },
+        { name: 'Vet Response', action: handleVetResponse },
         { name: 'Delete Vet', action: handleDelete },
     ]
 

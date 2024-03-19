@@ -4,6 +4,7 @@ import Authenticated from '@/app/Layouts/AuthenticatedLayout'
 import Curve from '@/public/images/curve.png'
 import Image from 'next/image'
 import Cookies from 'js-cookie'
+import ProfileImage from '@/public/images/profile.png'
 
 //Data
 import { modesDummyData } from './data'
@@ -34,8 +35,8 @@ export default function Dashboard() {
                 <div className="bg-white -translate-y-12 ml-5 h-max w-[calc(100%-40px)] px-5 pb-5 rounded-xl flex flex-col">
                     {/* Profile Overview */}
 
-                    <img
-                        src="https://via.placeholder.com/80"
+                    <Image
+                        src={ProfileImage}
                         alt="Profile"
                         className="rounded-full h-28 w-28 -translate-y-12"
                     />
