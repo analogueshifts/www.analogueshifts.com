@@ -68,7 +68,7 @@ export default function ViewId({ id }) {
                                                 job.hiringOrganization.logo
                                                     ? job.hiringOrganization
                                                           .logo
-                                                    : '/images/company_logo.JPG'
+                                                    : '/images/jobs/company_logo.JPG'
                                             }
                                             alt="LOGO"
                                             className="w-28 h-28 object-contain"
