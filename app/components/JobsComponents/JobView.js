@@ -183,7 +183,7 @@ export default function JobView() {
                                                             ? job
                                                                   .hiringOrganization
                                                                   .logo
-                                                            : '/logo.png'
+                                                            : '/images/jobs/compay_logo.JPG'
                                                     }
                                                     alt="LOGO"
                                                     className={`md:w-max md:h-[185px] object-contain w-[206px] h-[125px]`}
