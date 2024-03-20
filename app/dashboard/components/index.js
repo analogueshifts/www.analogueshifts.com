@@ -4,7 +4,7 @@ import Authenticated from '@/app/Layouts/AuthenticatedLayout'
 import Curve from '@/public/images/curve.png'
 import Image from 'next/image'
 import Cookies from 'js-cookie'
-import ProfileImage from '@/public/images/profile_avatar.jpg'
+import ProfileImage from '@/public/images/profile_avatar.JPG'
 
 //Data
 import { modesDummyData } from './data'
