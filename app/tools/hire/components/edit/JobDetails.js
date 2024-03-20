@@ -49,7 +49,7 @@ export default function JobDetails() {
                 setSalaryUnitText(jobDetailsData.salaryUnitText)
             }
         } else if (!storedData || !JSON.parse(storedData).jobInformation) {
-            router.push('/tools/hire/create/job-information')
+            router.push(`/tools/hire/edit/${slug}/job-information`)
         }
     }, [])
 
