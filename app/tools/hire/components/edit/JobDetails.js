@@ -38,7 +38,7 @@ export default function JobDetails() {
     }, [salaryValue, apply])
 
     useEffect(() => {
-        let storedData = Cookies.get('jobEditingData')
+        let storedData = Cookies.get('jobEditIngData')
         if (storedData) {
             if (JSON.parse(storedData).jobDetails) {
                 var jobDetailsData = JSON.parse(storedData).jobDetails

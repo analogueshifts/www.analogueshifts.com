@@ -174,19 +174,21 @@ export default function JobView() {
                                     return (
                                         <div
                                             key={index}
-                                            className="w-full h-max md:w-[calc(50%-12px)] min-h-[205px] border-b md:border-none flex flex-wrap pb-5 justify-between items-center gap-y-2">
-                                            <div className="flex gap-5 flex-wrap items-start md:justify-center">
+                                            className="w-full h-max md:w-[calc(50%-12px)] min-h-[205px] border-b md:border-none flex flex-wrap pb-5 justify-between md:flex-col items-center gap-y-2">
+                                            <div className="flex gap-5 flex-wrap md:flex-col items-start md:items-center">
                                                 <img
                                                     src={
+                                                        job.hiringOrganization
+                                                            .logo &&
                                                         job.hiringOrganization
                                                             .logo[0]
                                                             ? job
                                                                   .hiringOrganization
-                                                                  .logo
+                                                                  .logo[0]
                                                             : '/images/jobs/company_logo.JPG'
                                                     }
                                                     alt="LOGO"
-                                                    className={`md:w-max md:h-[185px] object-contain w-[206px] h-[125px]`}
+                                                    className={`md:w-max md:h-[185px] object-contain w-[206px] h-[150px]`}
                                                 />
                                                 <div className="flex flex-col gap-1.5 md:items-center">
                                                     <p className="text-sm font-normal text-[#B0B0B0]">

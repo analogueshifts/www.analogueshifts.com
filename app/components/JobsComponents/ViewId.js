@@ -65,9 +65,10 @@ export default function ViewId({ id }) {
                                     <a href={job.hiringOrganization.sameAs}>
                                         <img
                                             src={
+                                                job.hiringOrganization.logo &&
                                                 job.hiringOrganization.logo[0]
                                                     ? job.hiringOrganization
-                                                          .logo
+                                                          .logo[0]
                                                     : '/images/jobs/company_logo.JPG'
                                             }
                                             alt="LOGO"
