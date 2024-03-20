@@ -40,7 +40,7 @@ export default function JobLocation() {
         } else if (
             !storedData ||
             !JSON.parse(storedData).jobInformation ||
-            !JSON.parse(storedData).organizationInformation
+            !JSON.parse(storedData).jobDetails
         ) {
             router.push('/tools/hire/create/job-information')
         }
@@ -149,7 +149,7 @@ export default function JobLocation() {
                 }),
             )
         }
-        router.push('/tools/hire/create/job-details')
+        router.push('/tools/hire/create/organization-information')
     }
 
     return (
@@ -371,7 +371,7 @@ export default function JobLocation() {
             </form>
             <div className="flex w-full justify-between">
                 <Link
-                    href={'/tools/hire/create/organization-information'}
+                    href={'/tools/hire/create/job-details'}
                     className={`px-6 text-tremor-background-darkYellow text-base border duration-300 hover:scale-105 font-normal flex items-center gap-2 h-10 bg-transparent border-tremor-background-darkYellow rounded-full`}>
                     <i className="fas fa-arrow-left "></i> Previous
                 </Link>
@@ -385,5 +385,3 @@ export default function JobLocation() {
         </CreateJobLayout>
     )
 }
-
-// { '@type': type, name: name }

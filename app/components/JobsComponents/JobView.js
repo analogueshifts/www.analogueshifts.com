@@ -179,11 +179,11 @@ export default function JobView() {
                                                 <img
                                                     src={
                                                         job.hiringOrganization
-                                                            .logo
+                                                            .logo[0]
                                                             ? job
                                                                   .hiringOrganization
                                                                   .logo
-                                                            : '/logo.png'
+                                                            : '/images/jobs/company_logo.JPG'
                                                     }
                                                     alt="LOGO"
                                                     className={`md:w-max md:h-[185px] object-contain w-[206px] h-[125px]`}

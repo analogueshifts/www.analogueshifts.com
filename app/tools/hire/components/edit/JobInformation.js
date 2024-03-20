@@ -85,7 +85,7 @@ export default function JobInformation() {
             }),
         )
 
-        router.push(`/tools/hire/edit/${slug}/organization-information`)
+        router.push(`/tools/hire/edit/${slug}/job-details`)
     }
 
     return (

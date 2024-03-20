@@ -32,11 +32,13 @@ module.exports = {
                         boulder300: '#B0B0B0',
                         boulder400: '#7B7B7B',
                         boulder500: '#6D6D6D',
+                        boulder700: '#4F4F4F',
                         boulder900: '#3D3D3D',
                         boulder950: '#262626',
                         madras: '#423306',
                         activeLink: '#0F2942',
                         inActiveLink: '#BDBDBD',
+                        success: '#039855',
                     },
                     background: {
                         muted: '#f9fafb', // gray-50

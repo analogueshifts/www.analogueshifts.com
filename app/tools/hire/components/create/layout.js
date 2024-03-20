@@ -19,22 +19,18 @@ export default function CreateJobLayout({ children }) {
     useEffect(() => {
         if (pathname.slice(19, pathname.length) === 'job-information') {
             setFieldForms(['job-information'])
+        } else if (pathname.slice(19, pathname.length) === 'job-details') {
+            setFieldForms(['job-information', 'job-details'])
+        } else if (pathname.slice(19, pathname.length) === 'job-location') {
+            setFieldForms(['job-information', 'job-details', 'job-location'])
         } else if (
             pathname.slice(19, pathname.length) === 'organization-information'
         ) {
-            setFieldForms(['job-information', 'organization-information'])
-        } else if (pathname.slice(19, pathname.length) === 'job-location') {
             setFieldForms([
                 'job-information',
-                'organization-information',
-                'job-location',
-            ])
-        } else if (pathname.slice(19, pathname.length) === 'job-details') {
-            setFieldForms([
-                'job-information',
-                'organization-information',
-                'job-location',
                 'job-details',
+                'job-location',
+                'organization-information',
             ])
         }
     }, [pathname])
@@ -65,12 +61,13 @@ export default function CreateJobLayout({ children }) {
                         }`}></i>
                     <button
                         className={`text-sm font-medium ${
-                            fieldForms.includes('organization-information')
+                            fieldForms.includes('job-details')
                                 ? 'text-tremor-brand-boulder950'
                                 : 'text-tremor-brand-boulder200'
                         }`}>
-                        Organization Information
+                        Job Details
                     </button>
+
                     <i
                         className={`fas fa-angle-right text-sm font-medium ${
                             fieldForms.includes('job-location')
@@ -91,13 +88,14 @@ export default function CreateJobLayout({ children }) {
                                 ? 'text-tremor-brand-boulder950'
                                 : 'text-tremor-brand-boulder200'
                         }`}></i>
+
                     <button
                         className={`text-sm font-medium ${
-                            fieldForms.includes('job-details')
+                            fieldForms.includes('organization-information')
                                 ? 'text-tremor-brand-boulder950'
                                 : 'text-tremor-brand-boulder200'
                         }`}>
-                        Job Details
+                        Organization Information
                     </button>
                 </div>
                 {children}
@@ -105,12 +103,3 @@ export default function CreateJobLayout({ children }) {
         </Authenticated>
     )
 }
-
-// Cookies.set(
-//     "userData",
-//     JSON.stringify({
-//       ...JSON.parse(storedData),
-//       contactData: data,
-//     }),
-//     { expires: 7 }
-//   );

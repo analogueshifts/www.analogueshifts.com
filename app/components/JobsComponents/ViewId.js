@@ -65,10 +65,10 @@ export default function ViewId({ id }) {
                                     <a href={job.hiringOrganization.sameAs}>
                                         <img
                                             src={
-                                                job.hiringOrganization.logo
+                                                job.hiringOrganization.logo[0]
                                                     ? job.hiringOrganization
                                                           .logo
-                                                    : 'https://via.placeholder.com/80'
+                                                    : '/images/jobs/company_logo.JPG'
                                             }
                                             alt="LOGO"
                                             className="w-28 h-28 object-contain"

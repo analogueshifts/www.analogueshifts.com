@@ -89,7 +89,7 @@ export default function JobInformation() {
                 { expires: 7 },
             )
         }
-        router.push('/tools/hire/create/organization-information')
+        router.push('/tools/hire/create/job-details')
     }
 
     return (

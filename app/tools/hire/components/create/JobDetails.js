@@ -13,23 +13,19 @@ import {
     salaryUnitTextData,
 } from '../data'
 import { toast } from 'react-toastify'
-import DashboardLoader from '@/app/components/DashboardLoader'
 
 export default function JobDetails() {
-    const [user, setUser] = useState(null)
+    const [allFieldEntered, setAllFieldEnter] = useState(true)
     const [employmentType, setEmploymentType] = useState(employmentTypesData[0])
     const [salaryCurrency, setSalaryCurrency] = useState(salaryCurrencyData[0])
     const [salaryValue, setSalaryValue] = useState('')
     const [salaryUnitText, setSalaryUnitText] = useState(salaryUnitTextData[0])
-    const [loading, setLoading] = useState(false)
     const [apply, setApply] = useState('')
     const router = useRouter()
     const submitButtonRef = useRef()
-    const url = process.env.NEXT_PUBLIC_BACKEND_URL + '/hire/store'
 
     useEffect(() => {
         let storedData = Cookies.get('jobPostData')
-        let authData = JSON.parse(Cookies.get('analogueshifts'))
         if (storedData) {
             if (JSON.parse(storedData).jobDetails) {
                 var jobDetailsData = JSON.parse(storedData).jobDetails
@@ -39,52 +35,21 @@ export default function JobDetails() {
                 setSalaryValue(jobDetailsData.salaryValue)
                 setSalaryUnitText(jobDetailsData.salaryUnitText)
             }
-        } else if (
-            !storedData ||
-            !JSON.parse(storedData).jobInformation ||
-            !JSON.parse(storedData).organizationInformation ||
-            !JSON.parse(storedData).jobLocation
-        ) {
+        } else if (!storedData || !JSON.parse(storedData).jobInformation) {
             router.push('/tools/hire/create/job-information')
-        }
-
-        if (authData) {
-            setUser(authData)
         }
     }, [])
 
-    // Make request
-    const createJob = data => {
-        const axios = require('axios')
-        let config = {
-            method: 'POST',
-            url: url,
-            headers: {
-                Authorization: 'Bearer ' + user.token,
-            },
-            data: data,
-        }
-        setLoading(true)
-        axios
-            .request(config)
-            .then(response => {
-                setLoading(false)
-                toast.success('Your Hire Request Has Been Sent', {
-                    position: 'top-right',
-                    autoClose: 3000,
-                })
-                Cookies.remove('jobPostData')
-                router.push('/tools/hire')
-            })
-            .catch(error => {
-                console.log(error)
-                toast.error(error.message, {
-                    position: 'top-right',
-                    autoClose: 3000,
-                })
-                setLoading(false)
-            })
-    }
+    // Check if all inputs have been filled
+    useEffect(() => {
+        var returnValue = false
+        ;[salaryValue, apply].forEach(item => {
+            if (item === '') {
+                returnValue = true
+            }
+        })
+        setAllFieldEnter(returnValue)
+    }, [salaryValue, apply])
 
     const submit = e => {
         e.preventDefault()
@@ -104,57 +69,21 @@ export default function JobDetails() {
             salaryUnitText: salaryUnitText,
         }
 
-        let existingItem = JSON.parse(storedData)
-        let data = {
-            title: existingItem.jobInformation.title,
-            description: existingItem.jobInformation.description,
-            identifier: {
-                '@type': 'PropertyValue',
-                name: existingItem.jobInformation.identifierName,
-                value: existingItem.jobInformation.identifierValue,
-            },
-            datePosted: existingItem.jobInformation.datePosted,
-            validThrough: existingItem.jobInformation.validThrough,
-            employmentType: jobDetailsData.employmentType.name,
-            hiringOrganization: {
-                '@type': 'Organization',
-                name: existingItem.organizationInformation.organizationName,
-                sameAs: existingItem.organizationInformation.organizationUrl,
-                logo: existingItem.organizationInformation.organizationLogo,
-            },
-            jobLocation: {
-                '@type': 'Place',
-                address: {
-                    '@type': 'PostalAddress',
-                    streetAddress: existingItem.jobLocation.streetAddress,
-                    addressLocality: existingItem.jobLocation.addressLocality,
-                    addressRegion: existingItem.jobLocation.addressRegion,
-                    postalCode: existingItem.jobLocation.postalCode,
-                    addressCountry: existingItem.jobLocation.addressCountry,
-                },
-            },
-            jobLocationType: existingItem.jobLocation.jobLocationType.name,
-            applicantLocationRequirements: [
-                ...existingItem.jobLocation.stateRequirements,
-                ...existingItem.jobLocation.countryRequirements,
-            ],
-            baseSalary: {
-                '@type': 'MonetaryAmount',
-                currency: jobDetailsData.salaryCurrency.name,
-                value: {
-                    '@type': 'QuantitativeValue',
-                    value: jobDetailsData.salaryValue,
-                    unitText: jobDetailsData.salaryUnitText.name,
-                },
-            },
-            apply: jobDetailsData.apply,
+        if (storedData) {
+            let existingItem = JSON.parse(storedData)
+            Cookies.set(
+                'jobPostData',
+                JSON.stringify({
+                    ...existingItem,
+                    jobDetails: jobDetailsData,
+                }),
+            )
         }
-        createJob(data)
+        router.push('/tools/hire/create/job-location')
     }
 
     return (
         <CreateJobLayout>
-            {loading && <DashboardLoader />}
             <form onSubmit={submit} className="w-full flex flex-col gap-6">
                 <div className="w-full pb-6 border-b border-tremor-brand-boulder200 flex flex-col md:justify-between md:flex-row gap-y-4">
                     <div className="w-full md:w-1/2 flex flex-col gap-4 md:pr-5">
@@ -243,7 +172,7 @@ export default function JobDetails() {
                     <div className="w-full md:w-1/2">
                         <input
                             required
-                            type="text"
+                            type="url"
                             value={apply}
                             onChange={e => setApply(e.target.value)}
                             placeholder="e.g “https://www.analogueshifts.com”"
@@ -260,15 +189,18 @@ export default function JobDetails() {
             </form>
             <div className="flex w-full justify-between">
                 <Link
-                    href={'/tools/hire/create/job-location'}
+                    href={'/tools/hire/create/job-information'}
                     className={`px-6 text-tremor-background-darkYellow text-base border duration-300 hover:scale-105 font-normal flex items-center gap-2 h-10 bg-transparent border-tremor-background-darkYellow rounded-full`}>
                     <i className="fas fa-arrow-left "></i> Previous
                 </Link>
                 <button
+                    disabled={allFieldEntered}
                     onClick={() => submitButtonRef.current.click()}
                     type="button"
-                    className={`px-6 text-[#FEFEFE] text-base duration-300 hover:scale-105 font-normal flex items-center gap-2 h-10 bg-tremor-background-darkYellow rounded-full border-none`}>
-                    Create Job
+                    className={`px-6 text-[#FEFEFE] text-base duration-300 hover:scale-105 font-normal flex items-center gap-2 h-10 bg-tremor-background-darkYellow rounded-full border-none ${
+                        allFieldEntered ? 'opacity-50' : 'opacity-100'
+                    }`}>
+                    Next <i className="fas fa-arrow-right "></i>
                 </button>
             </div>
         </CreateJobLayout>
