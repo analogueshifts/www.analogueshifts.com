@@ -55,7 +55,7 @@ export default function CreateJobLayout({ children }) {
                     </button>
                     <i
                         className={`fas fa-angle-right text-sm font-medium ${
-                            fieldForms.includes('organization-information')
+                            fieldForms.includes('job-details')
                                 ? 'text-tremor-brand-boulder950'
                                 : 'text-tremor-brand-boulder200'
                         }`}></i>
@@ -82,9 +82,10 @@ export default function CreateJobLayout({ children }) {
                         }`}>
                         Job Location
                     </button>
+
                     <i
                         className={`fas fa-angle-right text-sm font-medium ${
-                            fieldForms.includes('job-details')
+                            fieldForms.includes('organization-information')
                                 ? 'text-tremor-brand-boulder950'
                                 : 'text-tremor-brand-boulder200'
                         }`}></i>
