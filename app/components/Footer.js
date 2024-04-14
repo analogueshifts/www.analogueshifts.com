@@ -15,7 +15,7 @@ function Footer() {
                     <div className="space-y-12">
                         <a href="/" className="logo flex gap-5">
                             <img
-                                src="logo.png"
+                                src="/logo.png"
                                 className="w-20 md:w-12"
                                 alt=""
                             />
