@@ -7,7 +7,6 @@ import Image from 'next/image'
 import LocationIcon from '@/public/icons/location-icon.png'
 import Link from 'next/link'
 import LoadingTwo from '../Loading'
-import ShareJob from '../shareJobModal'
 import { toast } from 'react-toastify'
 
 //gsap.registerPlugin(ScrollTrigger)
@@ -31,7 +30,8 @@ export default function ViewId({ id }) {
         axios
             .request(config)
             .then(response => {
-                let filteredData = response.data
+                let filteredData = response.data.data.job
+
                 setJob(filteredData)
                 setLoading(false)
             })

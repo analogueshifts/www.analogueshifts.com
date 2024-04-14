@@ -18,7 +18,7 @@ export async function generateMetadata({ params }) {
     const job = await axios
         .request(config)
         .then(response => {
-            let filteredData = response.data
+            let filteredData = response.data.data.job
             return filteredData
         })
         .catch(error => {})
