@@ -481,7 +481,7 @@ export default function Page({ params }) {
     return (
         <Authenticated
             header={
-                <h2 className="font-semibold text-lg text-gray-500 leading-tight">
+                <h2 className="text-xl font-bold text-gray-800 leading-tight">
                     Hire Talents
                 </h2>
             }></Authenticated>

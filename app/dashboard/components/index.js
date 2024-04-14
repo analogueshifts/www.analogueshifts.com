@@ -24,7 +24,7 @@ export default function Dashboard() {
         <Authenticated
             user={user}
             header={
-                <h2 className="font-semibold text-lg text-gray-500 leading-tight">
+                <h2 className="text-xl font-bold text-gray-800 leading-tight">
                     Dashboard
                 </h2>
             }>

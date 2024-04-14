@@ -1,21 +1,38 @@
 'use client'
 import { useState, useEffect } from 'react'
-import { useRouter } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 import DashboardLoader from '@/app/components/DashboardLoader'
 import { toast } from 'react-toastify'
 import Cookies from 'js-cookie'
 import Authenticated from '@/app/Layouts/AuthenticatedLayout'
-import ActionMenu from './ActionMenu'
+
 import IdiomProof from '@/app/Layouts/IdiomProof'
+
+import {
+    Pagination,
+    PaginationContent,
+    PaginationEllipsis,
+    PaginationItem,
+    PaginationLink,
+    PaginationNext,
+    PaginationPrevious,
+} from '@/components/ui/pagination'
+import VetColumn from './vetColumn'
 
 export default function VettingPage() {
     const [idiomModal, setIdiomModal] = useState(false)
+    const pageQuery = useSearchParams().getAll('page')
+    const [currentPageInfo, setCurrentPageInfo] = useState({})
     const [idToBeDeleted, setIdToBeDeleted] = useState(null)
     const [user, setUser] = useState(null)
     const [data, setData] = useState([])
     const [loading, setLoading] = useState(false)
     const router = useRouter()
-    let getVetsUrl = process.env.NEXT_PUBLIC_BACKEND_URL + '/tools/vetting'
+    const [getVetsUrl, setGetVetsUrl] = useState(
+        `${process.env.NEXT_PUBLIC_BACKEND_URL}/tools/vetting${
+            pageQuery.length ? `?page=${pageQuery[0]}` : ''
+        }`,
+    )
 
     //Fetch Vets
     const fetchVets = () => {
@@ -32,7 +49,8 @@ export default function VettingPage() {
         axios
             .request(config)
             .then(response => {
-                setData(response.data.vetting)
+                setCurrentPageInfo(response.data.data.vetting)
+                setData(response.data.data.vetting.data)
                 setLoading(false)
             })
             .catch(error => {
@@ -101,7 +119,7 @@ export default function VettingPage() {
         <Authenticated
             user={user}
             header={
-                <h2 className="font-semibold text-lg text-gray-500 leading-tight">
+                <h2 className="text-xl font-bold text-gray-800 leading-tight">
                     Vetting
                 </h2>
             }>
@@ -120,74 +138,107 @@ export default function VettingPage() {
                     'Are you sure you want to delete this Vet? This action cannot be undone.'
                 }
                 open={idiomModal}
-            />
-            <div className="bg-[#FEFEFE] min-w-[800px] w-full  mt-2 border border-[#E7E7E7] h-max  py-5 rounded-3xl">
-                <div className="w-full px-4 lg:px-10 my-5  gap-5 flex justify-between  items-center">
-                    <span className="font-medium md:text-lg text-base text-tremor-brand-boulder950">
-                        Your Vetting Forms
-                    </span>
-                    <button
-                        onClick={handleCreateNewVet}
-                        type="button"
-                        className="h-10 bg-none outline-none rounded-full px-8 flex justify-center items-center gap-3 border border-tremor-background-darkYellow font-normal md:text-base text-sm bg-transparent text-tremor-background-darkYellow">
-                        Create New
-                        <i className="fas fa-plus"></i>
-                    </button>
+            />{' '}
+            <div className="w-full overflow-x-auto h-max scrollbar-hidden">
+                <div className="bg-[#FEFEFE] min-w-[800px] w-full  border border-[#E7E7E7] h-max  py-5 rounded-3xl">
+                    <div className="w-full px-4 lg:px-10 my-5  gap-5 flex justify-between  items-center">
+                        <span className="font-semibold md:text-lg text-base text-tremor-brand-boulder950">
+                            Your Vetting Forms
+                        </span>
+                        <button
+                            onClick={handleCreateNewVet}
+                            type="button"
+                            className="h-10 bg-none outline-none rounded-full px-8 flex justify-center items-center gap-3 border border-tremor-background-darkYellow font-normal md:text-base text-sm bg-transparent text-tremor-background-darkYellow">
+                            Create New
+                            <i className="fas fa-plus"></i>
+                        </button>
+                    </div>
+                    <table className="w-full">
+                        <thead className="h-[72px] w-full bg-[#56669F]/5">
+                            <tr className="w-full">
+                                <th className="pl-4 lg:pl-10 max-w-[30%]  font-light text-base text-tremor-brand-activeLink text-start">
+                                    Name
+                                </th>
+                                <th className="font-light text-base max-w-1/5  text-tremor-brand-activeLink text-center">
+                                    Deadline
+                                </th>
+                                <th className="font-light text-base max-w-1/5 text-tremor-brand-activeLink text-center">
+                                    Duration
+                                </th>
+                                <th className="pr-4 lg:pr-10 max-w-[30%] font-light text-base text-tremor-brand-activeLink text-end">
+                                    Action
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody className="w-full bg-transparent">
+                            {data[0] &&
+                                data.map(item => {
+                                    return (
+                                        <VetColumn
+                                            item={item}
+                                            key={item.id}
+                                            handleDelete={() => {
+                                                setIdToBeDeleted(item.id)
+                                                setIdiomModal(true)
+                                            }}
+                                        />
+                                    )
+                                })}
+                        </tbody>
+                    </table>
                 </div>
-                <table className="w-full">
-                    <thead className="h-[72px] w-full bg-[#56669F]/5">
-                        <tr className="w-full">
-                            <th className="pl-4 lg:pl-10 max-w-[30%]  font-light text-lg text-tremor-brand-activeLink text-start">
-                                Name
-                            </th>
-                            <th className="font-light text-lg max-w-1/5  text-tremor-brand-activeLink text-center">
-                                Deadline
-                            </th>
-                            <th className="font-light text-lg max-w-1/5 text-tremor-brand-activeLink text-center">
-                                Duration
-                            </th>
-                            <th className="pr-4 lg:pr-10 max-w-[30%] font-light text-lg text-tremor-brand-activeLink text-end">
-                                Action
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody className="w-full bg-transparent">
-                        {data[0] &&
-                            data.map(item => {
-                                return (
-                                    <tr
-                                        key={item.id}
-                                        className="w-full h-[72px]">
-                                        <td className="pl-4 lg:pl-10 max-w-[30%]  font-normal text-tremor-brand-boulder950 text-base text-start">
-                                            {item.title}
-                                        </td>
-                                        <td className="font-normal text-tremor-brand-boulder950 text-base max-w-1/5 text-center">
-                                            {item.deadline}
-                                        </td>
-                                        <td className="font-normal text-tremor-brand-boulder950 text-base max-w-1/5 text-center">
-                                            {item.timeout}mins
-                                        </td>
-                                        <td className="pr-4 lg:pr-10 max-w-[30%] font-normal text-tremor-brand-boulder950 text-base text-end">
-                                            <ActionMenu
-                                                handleEdit={() => {
-                                                    Cookies.remove(
-                                                        'vetEditingData',
-                                                    )
-                                                    router.push(
-                                                        `/tools/vet/edit/${item.slug}`,
-                                                    )
-                                                }}
-                                                handleDelete={() => {
-                                                    setIdToBeDeleted(item.id)
-                                                    setIdiomModal(true)
-                                                }}
-                                            />
-                                        </td>
-                                    </tr>
-                                )
-                            })}
-                    </tbody>
-                </table>
+            </div>
+            <div className="bg-[#FEFEFE] w-full mt-5 border border-[#E7E7E7] p-5 rounded-3xl">
+                <Pagination>
+                    <PaginationContent>
+                        <PaginationItem>
+                            <PaginationPrevious
+                                href={
+                                    currentPageInfo?.prev_page_url
+                                        ? currentPageInfo.prev_page_url.slice(
+                                              34,
+                                          )
+                                        : ''
+                                }
+                            />
+                        </PaginationItem>
+
+                        {currentPageInfo?.links &&
+                            currentPageInfo.links
+                                .slice(1, currentPageInfo.links.length - 1)
+                                .map(item => {
+                                    return (
+                                        <PaginationItem
+                                            key={crypto.randomUUID()}>
+                                            <PaginationLink
+                                                isActive={item.active}
+                                                href={
+                                                    item.url
+                                                        ? item.url.slice(34)
+                                                        : ''
+                                                }>
+                                                {item.label}
+                                            </PaginationLink>
+                                        </PaginationItem>
+                                    )
+                                })}
+
+                        <PaginationItem>
+                            <PaginationEllipsis />
+                        </PaginationItem>
+                        <PaginationItem>
+                            <PaginationNext
+                                href={
+                                    currentPageInfo?.next_page_url
+                                        ? currentPageInfo.next_page_url.slice(
+                                              34,
+                                          )
+                                        : ''
+                                }
+                            />
+                        </PaginationItem>
+                    </PaginationContent>
+                </Pagination>
             </div>
         </Authenticated>
     )

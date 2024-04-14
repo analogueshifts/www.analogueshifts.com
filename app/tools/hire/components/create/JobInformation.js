@@ -42,7 +42,6 @@ export default function JobInformation() {
                 setIdentifierValue(jobInformationData.identifierValue)
                 setDatePosted(jobInformationData.datePosted)
                 setValidThrough(jobInformationData.validThrough)
-                console.log(jobInformationData.datePosted)
             } else {
                 setDescription('')
             }

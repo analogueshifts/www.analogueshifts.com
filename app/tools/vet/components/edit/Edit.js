@@ -16,7 +16,8 @@ export default function EditVet({ slug }) {
     const [vetQuestions, setVetQuestions] = useState(null)
     const [newVetData, setNewVetData] = useState(null)
     const router = useRouter()
-    const getVetUrl = process.env.NEXT_PUBLIC_BACKEND_URL + '/tools/vetting'
+    const getVetUrl =
+        process.env.NEXT_PUBLIC_BACKEND_URL + '/tools/vetting/show/' + slug
     const url =
         process.env.NEXT_PUBLIC_BACKEND_URL + `/tools/vetting/edit/${slug}`
 
@@ -58,9 +59,8 @@ export default function EditVet({ slug }) {
         axios
             .request(config)
             .then(response => {
-                let filteredData = response.data.vetting.filter(
-                    item => item.slug === slug,
-                )[0]
+                let filteredData = response.data.vet
+
                 let existingData = Cookies.get('vetEditingData')
                 if (existingData) {
                     let storedData = JSON.parse(existingData)
@@ -169,7 +169,7 @@ export default function EditVet({ slug }) {
         <Authenticated
             user={user}
             header={
-                <h2 className="font-semibold text-lg text-gray-500 leading-tight">
+                <h2 className="text-xl font-bold text-gray-800 leading-tight">
                     Vetting
                 </h2>
             }>

@@ -33,7 +33,6 @@ export default function ViewId({ id }) {
             .then(response => {
                 let filteredData = response.data
                 setJob(filteredData)
-                console.log(filteredData)
                 setLoading(false)
             })
             .catch(error => {

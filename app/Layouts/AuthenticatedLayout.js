@@ -31,7 +31,6 @@ export default function Authenticated({ user, header, children }) {
         axios
             .request(config)
             .then(res => {
-                console.log(res)
                 Cookies.remove('analogueshifts')
                 window.location.href = '/login'
             })

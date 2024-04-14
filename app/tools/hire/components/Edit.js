@@ -112,7 +112,7 @@ export default function Edit({ slug }) {
     return (
         <Authenticated
             header={
-                <h2 className="font-semibold text-lg text-gray-500 leading-tight">
+                <h2 className="text-xl font-bold text-gray-800 leading-tight">
                     Hire
                 </h2>
             }>

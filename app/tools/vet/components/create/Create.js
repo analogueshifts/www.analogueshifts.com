@@ -130,7 +130,6 @@ export default function CreateVet() {
                 router.push('/tools/vet')
             })
             .catch(error => {
-                console.log(error)
                 toast.error(error.message, {
                     position: 'top-right',
                     autoClose: 3000,
@@ -143,7 +142,7 @@ export default function CreateVet() {
         <Authenticated
             user={user}
             header={
-                <h2 className="font-semibold text-lg text-gray-500 leading-tight">
+                <h2 className="text-xl font-bold text-gray-800 leading-tight">
                     Vetting
                 </h2>
             }>

@@ -82,7 +82,6 @@ export default function OrganizationInformation() {
                 router.push('/tools/hire')
             })
             .catch(error => {
-                console.log(error)
                 toast.error(error.message, {
                     position: 'top-right',
                     autoClose: 3000,
