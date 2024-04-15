@@ -2,17 +2,11 @@
 import React, { useState, Fragment, useEffect } from 'react'
 import Authenticated from '@/app/Layouts/AuthenticatedLayout'
 import Link from 'next/link'
-import { Menu, Transition } from '@headlessui/react'
 import DashboardLoader from '@/app/components/DashboardLoader'
 import { toast } from 'react-toastify'
 import Cookies from 'js-cookie'
 import IdiomProof from '@/app/Layouts/IdiomProof'
 import { useRouter } from 'next/navigation'
-import JobColumn from './jobColumn'
-
-function classNames(...classes) {
-    return classes.filter(Boolean).join(' ')
-}
 
 export default function HirePageDetails() {
     const [user, setUser] = useState(null)
