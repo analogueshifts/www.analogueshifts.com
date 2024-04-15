@@ -42,8 +42,8 @@ export default function Register() {
             .request(config)
             .then(async response => {
                 const userData = JSON.stringify({
-                    ...response.data.user,
-                    token: response.data.token,
+                    ...response.data[0].user,
+                    token: response.data[0].token,
                 })
                 Cookies.set('analogueshifts', userData)
                 setLoading(false)
