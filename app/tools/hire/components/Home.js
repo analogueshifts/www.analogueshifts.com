@@ -127,9 +127,9 @@ export default function HirePageDetails() {
                 open={idiomModal}
             />
 
-            <div className="w-full overflow-x-auto h-max scrollbar-hidden">
-                <div className="bg-[#FEFEFE] min-w-[800px] w-full  border border-[#E7E7E7] h-max  py-5 rounded-3xl">
-                    <div className="w-full px-4 lg:px-10 my-5  gap-5 flex justify-between  items-center">
+            <div className="w-full h-max pb-3 border border-[#E7E7E7]  bg-white rounded-3xl">
+                <div className="bg-[#FEFEFE]   w-full   h-max  py-5 rounded-3xl">
+                    <div className="w-full px-4 lg:px-10 mb-5 mt-3 flex-wrap  gap-5 flex justify-between  items-center">
                         <span className="font-semibold md:text-lg text-base text-tremor-brand-boulder950">
                             Your Hires
                         </span>
@@ -141,37 +141,39 @@ export default function HirePageDetails() {
                             <i className="fas fa-plus"></i>
                         </button>
                     </div>
-                    <table className="w-full">
-                        <thead className="h-[72px] w-full bg-[#56669F]/5">
-                            <tr className="w-full">
-                                <th className="pl-4 lg:pl-10  max-w-[45%]  font-light text-base text-tremor-brand-activeLink text-start">
-                                    Job Title
-                                </th>
-                                <th className="font-light text-base max-w-[35%]  text-tremor-brand-activeLink text-center">
-                                    Organization Name
-                                </th>
+                    <div className="w-full overflow-x-auto">
+                        <table className="w-full min-w-[800px]">
+                            <thead className="h-[72px] w-full bg-[#56669F]/5">
+                                <tr className="w-full">
+                                    <th className="pl-4 lg:pl-10  max-w-[45%]  font-light text-base text-tremor-brand-activeLink text-start">
+                                        Job Title
+                                    </th>
+                                    <th className="font-light text-base max-w-[35%]  text-tremor-brand-activeLink text-center">
+                                        Organization Name
+                                    </th>
 
-                                <th className="pr-4 lg:pr-10 max-w-1/5 font-light text-base text-tremor-brand-activeLink text-end">
-                                    Action
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody className="w-full bg-transparent">
-                            {data &&
-                                data.map(item => {
-                                    return (
-                                        <JobColumn
-                                            item={item}
-                                            key={item.id}
-                                            handleDelete={() => {
-                                                setIdToBeDeleted(item.id)
-                                                setIdiomModal(true)
-                                            }}
-                                        />
-                                    )
-                                })}
-                        </tbody>
-                    </table>
+                                    <th className="pr-4 lg:pr-10 max-w-1/5 font-light text-base text-tremor-brand-activeLink text-end">
+                                        Action
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody className="w-full bg-transparent">
+                                {data &&
+                                    data.map(item => {
+                                        return (
+                                            <JobColumn
+                                                item={item}
+                                                key={item.id}
+                                                handleDelete={() => {
+                                                    setIdToBeDeleted(item.id)
+                                                    setIdiomModal(true)
+                                                }}
+                                            />
+                                        )
+                                    })}
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </Authenticated>
