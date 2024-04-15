@@ -127,54 +127,92 @@ export default function HirePageDetails() {
                 open={idiomModal}
             />
 
-            <div className="w-full h-max pb-3 border border-[#E7E7E7]  bg-white rounded-3xl">
-                <div className="bg-[#FEFEFE]   w-full   h-max  py-5 rounded-3xl">
-                    <div className="w-full px-4 lg:px-10 mb-5 mt-3 flex-wrap  gap-5 flex justify-between  items-center">
-                        <span className="font-semibold md:text-lg text-base text-tremor-brand-boulder950">
-                            Your Hires
-                        </span>
-                        <button
-                            onClick={handleCreatePost}
-                            type="button"
-                            className="h-10 bg-none outline-none rounded-full px-8 flex justify-center items-center gap-3 border border-tremor-background-darkYellow font-normal md:text-base text-sm bg-transparent text-tremor-background-darkYellow">
-                            Hire Talents
-                            <i className="fas fa-plus"></i>
-                        </button>
-                    </div>
-                    <div className="w-full overflow-x-auto">
-                        <table className="w-full min-w-[800px]">
-                            <thead className="h-[72px] w-full bg-[#56669F]/5">
-                                <tr className="w-full">
-                                    <th className="pl-4 lg:pl-10  max-w-[45%]  font-light text-base text-tremor-brand-activeLink text-start">
-                                        Job Title
-                                    </th>
-                                    <th className="font-light text-base max-w-[35%]  text-tremor-brand-activeLink text-center">
-                                        Organization Name
-                                    </th>
+            <button
+                onClick={handleCreatePost}
+                type="button"
+                className="h-10 bg-none mx-auto outline-none rounded-full px-8 flex justify-center items-center gap-3 border border-tremor-background-darkYellow font-normal md:text-base text-sm bg-transparent text-tremor-background-darkYellow">
+                Hire Talents
+                <i className="fas fa-plus"></i>
+            </button>
 
-                                    <th className="pr-4 lg:pr-10 max-w-1/5 font-light text-base text-tremor-brand-activeLink text-end">
-                                        Action
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody className="w-full bg-transparent">
-                                {data &&
-                                    data.map(item => {
-                                        return (
-                                            <JobColumn
-                                                item={item}
-                                                key={item.id}
-                                                handleDelete={() => {
-                                                    setIdToBeDeleted(item.id)
-                                                    setIdiomModal(true)
-                                                }}
-                                            />
-                                        )
-                                    })}
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
+            <div className="w-full pt-9 flex flex-wrap gap-6 ">
+                {data &&
+                    data.map(item => {
+                        return (
+                            <div
+                                key={item.id}
+                                className="w-full h-max md:w-[calc(50%-12px)] min-h-[205px] border-b md:border-none flex flex-wrap pb-5 justify-between  md:flex-col items-center gap-y-2">
+                                <div className="flex gap-5 flex-wrap md:flex-col items-center justify-center md:items-center">
+                                    <img
+                                        src={
+                                            item.hiringOrganization.logo &&
+                                            item.hiringOrganization.logo[0]
+                                                ? item.hiringOrganization
+                                                      .logo[0]
+                                                : '/images/jobs/company_logo.JPG'
+                                        }
+                                        alt="LOGO"
+                                        className={`md:w-max md:h-[100px] object-contain w-[156px] h-[100px]`}
+                                    />
+                                    <div className="flex flex-col gap-1.5 items-center md:items-center">
+                                        <p className="text-sm font-normal text-[#B0B0B0]">
+                                            {item.hiringOrganization.name}
+                                        </p>
+                                        <p className="text-xl font-semibold text-black/90">
+                                            {item.title}
+                                        </p>
+                                        <p
+                                            className="text-[15px] font-normal text-[#7B7B7B] md:text-center"
+                                            dangerouslySetInnerHTML={{
+                                                __html:
+                                                    item.description.length >
+                                                    100
+                                                        ? item.description
+                                                              .slice(0, 100)
+                                                              .concat('...')
+                                                        : item.description,
+                                            }}></p>
+                                        <div className="flex gap-1.5 flex-wrap">
+                                            <div className="px-5 bg-[#E2E2E2] rounded py-1 text-black/80 text-[10px] font-normal">
+                                                {item.baseSalary.value.value +
+                                                    ' ' +
+                                                    item.baseSalary.currency +
+                                                    ' ' +
+                                                    'Per' +
+                                                    ' ' +
+                                                    item.baseSalary.value
+                                                        .unitText}
+                                            </div>
+                                            <div className="px-5 bg-[#E2E2E2] rounded py-1 text-black/80 text-[10px] font-normal">
+                                                {item.jobLocationType}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="flex gap-2 mx-auto items-center md:mt-2 md:mx-auto">
+                                    <Link
+                                        href={`/tools/hire/edit/${item.slug}`}
+                                        className={`w-24 lg:w-28 py-2 hover:scale-105 rounded-full text-xs font-bold duration-300 text-white bg-yellow-500 flex justify-center`}>
+                                        Edit
+                                    </Link>
+                                    <Link
+                                        href={item.apply}
+                                        as={item.apply}
+                                        className="text-xs font-normal text-black/60">
+                                        View
+                                    </Link>
+                                    <button
+                                        onClick={() => {
+                                            setIdToBeDeleted(item.id)
+                                            setIdiomModal(true)
+                                        }}
+                                        className="text-xs font-normal text-red-500">
+                                        Delete
+                                    </button>
+                                </div>
+                            </div>
+                        )
+                    })}
             </div>
         </Authenticated>
     )
