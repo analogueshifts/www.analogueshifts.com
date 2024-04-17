@@ -38,6 +38,9 @@ export const metadata = {
     alternates: {
         canonical: 'https://www.analogueshifts.com',
     },
+    verification: {
+        google: 'SyAAgxsXes-UzPmZubsHldcLFGqyvtB2Spen8LZxR9k',
+    },
 }
 
 export default function RootLayout({ children }) {
