@@ -37,8 +37,8 @@ export default function Login() {
             .request(config)
             .then(async response => {
                 const userData = JSON.stringify({
-                    ...response.data.user,
-                    token: response.data.token,
+                    ...response.data.data.user,
+                    token: response.data.data.token,
                 })
                 Cookies.set('analogueshifts', userData)
                 toast.success('Login Successful', {
