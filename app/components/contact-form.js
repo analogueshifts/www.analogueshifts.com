@@ -2,7 +2,7 @@
 import { useState } from 'react'
 import LoadingTwo from './loading'
 // import axios from '../lib/axios'
-import SuccessPopup from './'
+import SuccessPopup from './success-popup'
 
 export default function ContactForm() {
     const [loading, setLoading] = useState(false)
