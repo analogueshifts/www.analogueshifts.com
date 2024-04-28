@@ -4,7 +4,7 @@ import CreateJobLayout from './layout'
 import Cookies from 'js-cookie'
 import { useRouter, usePathname } from 'next/navigation'
 import Link from 'next/link'
-import DropdownMenu from '../DropdownMenu'
+import DropdownMenu from '../dropdown-menu'
 
 import { jobLocationTypes } from '../data'
 import { toast } from 'react-toastify'

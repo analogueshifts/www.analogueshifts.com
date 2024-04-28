@@ -1,4 +1,4 @@
-import OrganizationInformation from '../../../components/edit/OrganizationInformation'
+import OrganizationInformation from '../../../components/edit/organization-information'
 export const metadata = {
     title: 'Hire Talents | AnalogueShifts',
     description:

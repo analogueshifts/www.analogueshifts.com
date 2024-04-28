@@ -1,7 +1,7 @@
 'use client'
 import { useEffect } from 'react'
 import { useRouter } from 'next/navigation'
-import GuestLayout from '@/app/Layouts/GuestLayout'
+import GuestLayout from '@/app/layouts/guest-layout'
 // import ViewBlog from '@/app/components/BlogComponents/ViewBlog'
 // import { axiosBlog } from '@/app/lib/axios'
 

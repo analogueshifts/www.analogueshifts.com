@@ -1,8 +1,8 @@
 'use client'
 import { useState } from 'react'
-import LoadingTwo from './Loading'
+import LoadingTwo from './loading'
 // import axios from '../lib/axios'
-import SuccessPopup from './SuccessPopup'
+import SuccessPopup from './'
 
 export default function ContactForm() {
     const [loading, setLoading] = useState(false)

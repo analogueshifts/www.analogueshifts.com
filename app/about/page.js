@@ -1,5 +1,5 @@
-import GuestLayout from '../Layouts/GuestLayout'
-import PageContent from '../components/AboutComponents/PageContent'
+import GuestLayout from '../layouts/guest-layout'
+import PageContent from '../components/about-page/content'
 // import SeoController from '../lib/SeoController'
 
 export const metadata = {

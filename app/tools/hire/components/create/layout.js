@@ -2,7 +2,7 @@
 import { usePathname } from 'next/navigation'
 import { useState, useEffect } from 'react'
 import Cookies from 'js-cookie'
-import Authenticated from '@/app/Layouts/AuthenticatedLayout'
+import Authenticated from '@/app/layouts/authenticated-layout'
 
 export default function CreateJobLayout({ children }) {
     const pathname = usePathname()

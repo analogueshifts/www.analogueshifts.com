@@ -1,13 +1,14 @@
 'use client'
 import Group from '@/public/images/login/group.png'
 import Avatar from '@/public/images/login/avatar.png'
-import LoadingTwo from '@/app/components/Loading'
+import LoadingTwo from '@/app/components/loading'
 import Image from 'next/image'
-import ApplicationLogo from '@/app/components/ApplicationLogo'
+import ApplicationLogo from '@/app/components/application-logo'
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { toast } from 'react-toastify'
 import Cookies from 'js-cookie'
+import { toastConfig } from '@/utils/toast-config'
 
 export default function Login() {
     const [email, setEmail] = useState('')
@@ -40,11 +41,9 @@ export default function Login() {
                     ...response.data.data.user,
                     token: response.data.data.token,
                 })
+                console.log(response)
                 Cookies.set('analogueshifts', userData)
-                toast.success('Login Successful', {
-                    position: 'top-right',
-                    autoClose: 3000,
-                })
+                toast.success('Login Successful', toastConfig)
                 let redirectionLink = Cookies.get('RedirectionLink')
                 window.location.href = redirectionLink.trim().length
                     ? redirectionLink
@@ -54,10 +53,7 @@ export default function Login() {
             })
             .catch(error => {
                 setLoading(false)
-                toast.error(error.message, {
-                    position: 'top-right',
-                    autoClose: 3000,
-                })
+                toast.error(error.message, toastConfig)
             })
     }
 

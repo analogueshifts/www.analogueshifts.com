@@ -1,8 +1,8 @@
 'use client'
 import { useState, useEffect } from 'react'
 import { axiosBlog } from '../../lib/axios'
-import LoadingTwo from '../../components/Loading'
-import GuestLayout from '@/app/Layouts/GuestLayout'
+import LoadingTwo from '../../components/loading'
+import GuestLayout from '@/app/layouts/guest-layout'
 
 export default function page() {
     const [dataRes, setDataRes] = useState()

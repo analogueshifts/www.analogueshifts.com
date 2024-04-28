@@ -1,13 +1,13 @@
 'use client'
 import { useState, useEffect } from 'react'
 //import { gsap, ScrollTrigger } from 'gsap'
-import axios from '@/app/lib/axios'
 import { useRouter, usePathname } from 'next/navigation'
 import Image from 'next/image'
 import LocationIcon from '@/public/icons/location-icon.png'
 import Link from 'next/link'
-import LoadingTwo from '../Loading'
+import LoadingTwo from '../loading'
 import { toast } from 'react-toastify'
+import { toastConfig } from '@/utils/toast-config'
 
 //gsap.registerPlugin(ScrollTrigger)
 
@@ -37,10 +37,7 @@ export default function ViewId({ id }) {
             })
             .catch(error => {
                 setLoading(false)
-                toast.error(error.message, {
-                    position: 'top-right',
-                    autoClose: 3000,
-                })
+                toast.error(error.message, toastConfig)
             })
     }, [id])
 

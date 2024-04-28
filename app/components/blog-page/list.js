@@ -4,10 +4,11 @@ import { axiosBlog } from '../../lib/axios'
 import Image from 'next/image'
 import A4 from '@/public/images/blogHero.jpg'
 import SearchIcon from '@/public/images/search-icon.png'
-import LoadingTwo from '../Loading'
-import MasonryGrid from './MansoryGrid'
+import LoadingTwo from '../loading'
+import MasonryGrid from './mansory-grid'
 import Link from 'next/link'
 import { toast } from 'react-toastify'
+import { toastConfig } from '@/utils/toast-config'
 // import { data } from 'autoprefixer'
 
 export default function BlogList() {
@@ -29,10 +30,7 @@ export default function BlogList() {
                 setLoading(false)
             })
             .catch(error => {
-                toast.error(error.message, {
-                    position: 'top-right',
-                    autoClose: 3000,
-                })
+                toast.error(error.message, toastConfig)
                 setLoading(false)
             })
     }, [])

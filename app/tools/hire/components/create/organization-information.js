@@ -2,31 +2,30 @@
 import { useState, useEffect, useRef } from 'react'
 import CreateJobLayout from './layout'
 import Cookies from 'js-cookie'
-import { usePathname, useRouter } from 'next/navigation'
+import { useRouter } from 'next/navigation'
 import Link from 'next/link'
-import DashboardLoader from '@/app/components/DashboardLoader'
-import FileInput from '@/app/components/FileInput'
 import { motion } from 'framer-motion'
+import FileInput from '@/app/components/file-input'
 import { toast } from 'react-toastify'
+import DashboardLoader from '@/app/components/dashboard-loader'
+import { toastConfig } from '@/utils/toast-config'
 
 export default function OrganizationInformation() {
-    const pathname = usePathname()
-    const router = useRouter()
     const [user, setUser] = useState(null)
+    const router = useRouter()
     const [loading, setLoading] = useState(false)
     const [organizationName, setOrganizationName] = useState('')
     const [organizationUrl, setOrganizationUrl] = useState('')
+    const [allFieldEntered, setAllFieldEnter] = useState(true)
     const [logoFile, setLogoFile] = useState(null)
     const [logoUrl, setLogoUrl] = useState('')
     const [isUrlType, setIsUrlType] = useState(false)
-    const [allFieldEntered, setAllFieldEnter] = useState(true)
-    const [editID, setEditId] = useState(0)
+    const url = process.env.NEXT_PUBLIC_BACKEND_URL + '/hire/store'
     const submitButtonRef = useRef()
-    let slug = pathname.slice(17, pathname.length).split('/')[0]
 
     useEffect(() => {
+        let storedData = Cookies.get('jobPostData')
         let authData = JSON.parse(Cookies.get('analogueshifts'))
-        let storedData = Cookies.get('jobEditIngData')
         if (storedData) {
             if (JSON.parse(storedData).organizationInformation) {
                 var organizationInformationData = JSON.parse(storedData)
@@ -36,14 +35,13 @@ export default function OrganizationInformation() {
                 )
                 setOrganizationUrl(organizationInformationData.organizationUrl)
             }
-            setEditId(JSON.parse(storedData).editId)
         } else if (
             !storedData ||
             !JSON.parse(storedData).jobInformation ||
             !JSON.parse(storedData).jobDetails ||
             !JSON.parse(storedData).jobLocation
         ) {
-            router.push(`/tools/hire/edit/${slug}/job-information`)
+            router.push('/tools/hire/create/job-information')
         }
         if (authData) {
             setUser(authData)
@@ -62,42 +60,34 @@ export default function OrganizationInformation() {
     }, [organizationName])
 
     // Make request
-    const editJob = data => {
-        const url = process.env.NEXT_PUBLIC_BACKEND_URL + '/hire/' + editID
+    const createJob = data => {
         const axios = require('axios')
         let config = {
-            method: 'PUT',
+            method: 'POST',
             url: url,
             headers: {
-                Accept: 'application/json',
                 Authorization: 'Bearer ' + user.token,
             },
             data: data,
         }
-
         setLoading(true)
         axios
             .request(config)
             .then(response => {
                 setLoading(false)
-                toast.success('Your Post Has Been Edited Successfully', {
-                    position: 'top-right',
-                    autoClose: 3000,
-                })
+                toast.success('Your Hire Request Has Been Sent', toastConfig)
+                Cookies.remove('jobPostData')
                 router.push('/tools/hire')
             })
             .catch(error => {
-                toast.error(error.message, {
-                    position: 'top-right',
-                    autoClose: 3000,
-                })
+                toast.error(error.message, toastConfig)
                 setLoading(false)
             })
     }
 
     const submit = e => {
         e.preventDefault()
-        let storedData = Cookies.get('jobEditIngData')
+        let storedData = Cookies.get('jobPostData')
         let existingItem = JSON.parse(storedData)
         let data = {
             title: existingItem.jobInformation.title,
@@ -143,7 +133,7 @@ export default function OrganizationInformation() {
             },
             apply: existingItem.jobDetails.apply,
         }
-        editJob(data)
+        createJob(data)
     }
 
     return (
@@ -245,7 +235,7 @@ export default function OrganizationInformation() {
             </form>
             <div className="flex w-full justify-between">
                 <Link
-                    href={`/tools/hire/edit/${slug}/job-location`}
+                    href={'/tools/hire/create/job-location'}
                     className={`px-6 text-tremor-background-darkYellow text-base border duration-300 hover:scale-105 font-normal flex items-center gap-2 h-10 bg-transparent border-tremor-background-darkYellow rounded-full`}>
                     <i className="fas fa-arrow-left "></i> Previous
                 </Link>
@@ -256,7 +246,7 @@ export default function OrganizationInformation() {
                     className={`px-6 text-[#FEFEFE] text-base duration-300 hover:scale-105 font-normal flex items-center gap-2 h-10 bg-tremor-background-darkYellow rounded-full border-none ${
                         allFieldEntered ? 'opacity-50' : 'opacity-100'
                     }`}>
-                    Edit Job
+                    Create Job
                 </button>
             </div>
         </CreateJobLayout>

@@ -1,4 +1,4 @@
-import ForgotPassword from './components/ForgetPassword'
+import ForgotPassword from './components/content'
 
 export const metadata = {
     title: 'Forgotten Password | AnalogueShifts',

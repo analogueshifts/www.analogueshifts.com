@@ -1,6 +1,6 @@
 'use client'
 import { useEffect, useState } from 'react'
-import Authenticated from '@/app/Layouts/AuthenticatedLayout'
+import Authenticated from '@/app/layouts/authenticated-layout'
 import { useRouter } from 'next/navigation'
 import Cookies from 'js-cookie'
 

@@ -1,81 +1,79 @@
 'use client'
-import React, { useState, Fragment, useEffect } from 'react'
-import Authenticated from '@/app/Layouts/AuthenticatedLayout'
+import React, { useState, useEffect } from 'react'
+import Authenticated from '@/app/layouts/authenticated-layout'
 import Link from 'next/link'
-import DashboardLoader from '@/app/components/DashboardLoader'
+import DashboardLoader from '@/app/components/dashboard-loader'
 import { toast } from 'react-toastify'
 import Cookies from 'js-cookie'
-import IdiomProof from '@/app/Layouts/IdiomProof'
-import { useRouter } from 'next/navigation'
+import IdiomProof from '@/app/layouts/idiom-proof'
+import { useRouter, useSearchParams } from 'next/navigation'
+import { fetchJobPosts } from '@/utils/fetch-job-posts'
+import { deletePost } from '@/utils/delete-post'
+import { toastConfig } from '@/utils/toast-config'
+
+import {
+    Pagination,
+    PaginationContent,
+    PaginationEllipsis,
+    PaginationItem,
+    PaginationLink,
+    PaginationNext,
+    PaginationPrevious,
+} from '@/components/ui/pagination'
 
 export default function HirePageDetails() {
     const [user, setUser] = useState(null)
+    const pageQuery = useSearchParams().getAll('page')
+    const [currentPageInfo, setCurrentPageInfo] = useState({})
     const [idiomModal, setIdiomModal] = useState(false)
     const [idToBeDeleted, setIdToBeDeleted] = useState(null)
     const [data, setData] = useState([])
     const [loading, setLoading] = useState(false)
     const router = useRouter()
-    let url = process.env.NEXT_PUBLIC_BACKEND_URL + '/hire/dashboard'
+    let allJobsURL = `${process.env.NEXT_PUBLIC_BACKEND_URL}/hire/dashboard${
+        pageQuery.length ? `?page=${pageQuery[0]}` : ''
+    }`
 
     //Fetch Jobs
     const fetchJobs = () => {
-        const axios = require('axios')
-        let config = {
-            method: 'GET',
-            url: url,
-            headers: {
-                Authorization: 'Bearer ' + user.token,
-            },
-        }
-        // Fetch job data from your API
         setLoading(true)
-        axios
-            .request(config)
-            .then(response => {
-                setData(response.data.hires)
+
+        // Fetch Jobs
+        fetchJobPosts(
+            allJobsURL,
+            user.token,
+            response => {
+                setData(response.data.data.hires.data)
+                setCurrentPageInfo(response.data.data.hires)
+                console.log(response)
                 setLoading(false)
-            })
-            .catch(error => {
+            },
+            error => {
                 setLoading(false)
-                toast.error(error.message, {
-                    position: 'top-right',
-                    autoClose: 3000,
-                })
-            })
+                toast.error(error.message, toastConfig)
+            },
+        )
     }
 
     // Delete A Job Post by using the Job Id
     const deleteJobPost = async () => {
         const url =
             process.env.NEXT_PUBLIC_BACKEND_URL + '/hire/' + idToBeDeleted
-        const axios = require('axios')
-        let config = {
-            method: 'DELETE',
-            url: url,
-            headers: {
-                Authorization: 'Bearer ' + user.token,
-            },
-        }
         setLoading(true)
-        axios
-            .request(config)
-            .then(res => {
+        deletePost(
+            url,
+            user.token,
+            () => {
                 fetchJobs()
-                toast.success('Job Deleted Successfully', {
-                    position: 'top-right',
-                    autoClose: 3000,
-                })
+                toast.success('Job Deleted Successfully', toastConfig)
                 setIdToBeDeleted(null)
-
                 setLoading(false)
-            })
-            .catch(err => {
-                toast.error('Error Deleting Job', {
-                    position: 'top-right',
-                    autoClose: 3000,
-                })
+            },
+            err => {
+                toast.error('Error Deleting Job', toastConfig)
                 setLoading(false)
-            })
+            },
+        )
     }
 
     const handleCreatePost = () => {
@@ -98,7 +96,6 @@ export default function HirePageDetails() {
 
     return (
         <Authenticated
-            user={user}
             header={
                 <h2 className="text-xl font-bold text-gray-800 leading-tight">
                     Hire
@@ -207,6 +204,58 @@ export default function HirePageDetails() {
                             </div>
                         )
                     })}
+            </div>
+            <div className="w-max mx-auto overflow-x-hidden h-max rounded-full scrollbar-hidden">
+                <Pagination className=" w-max">
+                    <PaginationContent className="bg-transparent h-full">
+                        <PaginationItem>
+                            <PaginationPrevious
+                                href={
+                                    currentPageInfo?.prev_page_url
+                                        ? currentPageInfo.prev_page_url.slice(
+                                              34,
+                                          )
+                                        : ''
+                                }
+                            />
+                        </PaginationItem>
+
+                        {currentPageInfo?.links &&
+                            currentPageInfo.links
+                                .slice(1, currentPageInfo.links.length - 1)
+                                .map(item => {
+                                    return (
+                                        <PaginationItem
+                                            key={crypto.randomUUID()}>
+                                            <PaginationLink
+                                                isActive={item.active}
+                                                href={
+                                                    item.url
+                                                        ? item.url.slice(34)
+                                                        : ''
+                                                }>
+                                                {item.label}
+                                            </PaginationLink>
+                                        </PaginationItem>
+                                    )
+                                })}
+
+                        <PaginationItem>
+                            <PaginationEllipsis />
+                        </PaginationItem>
+                        <PaginationItem>
+                            <PaginationNext
+                                href={
+                                    currentPageInfo?.next_page_url
+                                        ? currentPageInfo.next_page_url.slice(
+                                              34,
+                                          )
+                                        : ''
+                                }
+                            />
+                        </PaginationItem>
+                    </PaginationContent>
+                </Pagination>
             </div>
         </Authenticated>
     )

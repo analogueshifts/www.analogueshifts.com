@@ -34,6 +34,7 @@
     "lucide-react": "^0.368.0",
     "next": "14.0.3",
     "next-seo": "^6.1.0",
+    "next-themes": "^0.3.0",
     "nodemailer": "^6.9.7",
     "react": "^18",
     "react-dom": "^18",
@@ -43,6 +44,7 @@
     "react-toastify": "^10.0.3",
     "sass": "^1.69.5",
     "sharp": "^0.33.0",
+    "sonner": "^1.4.41",
     "swr": "^1.3.0",
     "tailwind-merge": "^2.2.2",
     "tailwindcss-animate": "^1.0.7"

@@ -1,10 +1,11 @@
 'use client'
 import { useEffect, useState } from 'react'
-import Authenticated from '@/app/Layouts/AuthenticatedLayout'
+import Authenticated from '@/app/layouts/authenticated-layout'
 import { toast } from 'react-toastify'
 import { useRouter } from 'next/navigation'
-import DashboardLoader from '@/app/components/DashboardLoader'
+import DashboardLoader from '@/app/components/dashboard-loader'
 import Cookies from 'js-cookie'
+import { toastConfig } from '@/utils/toast-config'
 
 export default function Edit({ slug }) {
     const router = useRouter()
@@ -89,10 +90,7 @@ export default function Edit({ slug }) {
             .catch(error => {
                 setLoading(false)
                 router.push('/404')
-                toast.error('Error Getting Jobs', {
-                    position: 'top-right',
-                    autoClose: 3000,
-                })
+                toast.error('Error Getting Jobs', toastConfig)
             })
     }
 

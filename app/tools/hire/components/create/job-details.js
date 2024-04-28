@@ -2,9 +2,9 @@
 import { useState, useEffect, useRef } from 'react'
 import CreateJobLayout from './layout'
 import Cookies from 'js-cookie'
-import { useRouter, usePathname } from 'next/navigation'
+import { useRouter } from 'next/navigation'
 import Link from 'next/link'
-import DropdownMenu from '../DropdownMenu'
+import DropdownMenu from '../dropdown-menu'
 
 // Datas
 import {
@@ -16,7 +16,6 @@ import { toast } from 'react-toastify'
 
 export default function JobDetails() {
     const [allFieldEntered, setAllFieldEnter] = useState(true)
-    const pathname = usePathname()
     const [employmentType, setEmploymentType] = useState(employmentTypesData[0])
     const [salaryCurrency, setSalaryCurrency] = useState(salaryCurrencyData[0])
     const [salaryValue, setSalaryValue] = useState('')
@@ -24,7 +23,22 @@ export default function JobDetails() {
     const [apply, setApply] = useState('')
     const router = useRouter()
     const submitButtonRef = useRef()
-    let slug = pathname.slice(17, pathname.length).split('/')[0]
+
+    useEffect(() => {
+        let storedData = Cookies.get('jobPostData')
+        if (storedData) {
+            if (JSON.parse(storedData).jobDetails) {
+                var jobDetailsData = JSON.parse(storedData).jobDetails
+                setApply(jobDetailsData.apply)
+                setEmploymentType(jobDetailsData.employmentType)
+                setSalaryCurrency(jobDetailsData.salaryCurrency)
+                setSalaryValue(jobDetailsData.salaryValue)
+                setSalaryUnitText(jobDetailsData.salaryUnitText)
+            }
+        } else if (!storedData || !JSON.parse(storedData).jobInformation) {
+            router.push('/tools/hire/create/job-information')
+        }
+    }, [])
 
     // Check if all inputs have been filled
     useEffect(() => {
@@ -37,22 +51,6 @@ export default function JobDetails() {
         setAllFieldEnter(returnValue)
     }, [salaryValue, apply])
 
-    useEffect(() => {
-        let storedData = Cookies.get('jobEditIngData')
-        if (storedData) {
-            if (JSON.parse(storedData).jobDetails) {
-                var jobDetailsData = JSON.parse(storedData).jobDetails
-                setApply(jobDetailsData.apply)
-                setEmploymentType(jobDetailsData.employmentType)
-                setSalaryCurrency(jobDetailsData.salaryCurrency)
-                setSalaryValue(jobDetailsData.salaryValue)
-                setSalaryUnitText(jobDetailsData.salaryUnitText)
-            }
-        } else if (!storedData || !JSON.parse(storedData).jobInformation) {
-            router.push(`/tools/hire/edit/${slug}/job-information`)
-        }
-    }, [])
-
     const submit = e => {
         e.preventDefault()
         if (isNaN(salaryValue)) {
@@ -62,25 +60,26 @@ export default function JobDetails() {
             })
             return
         }
-        let storedData = Cookies.get('jobEditIngData')
+        let storedData = Cookies.get('jobPostData')
+        let jobDetailsData = {
+            employmentType: employmentType,
+            apply: apply,
+            salaryCurrency: salaryCurrency,
+            salaryValue: salaryValue,
+            salaryUnitText: salaryUnitText,
+        }
 
         if (storedData) {
             let existingItem = JSON.parse(storedData)
             Cookies.set(
-                'jobEditingData',
+                'jobPostData',
                 JSON.stringify({
                     ...existingItem,
-                    jobDetails: {
-                        employmentType: employmentType,
-                        apply: apply,
-                        salaryCurrency: salaryCurrency,
-                        salaryValue: salaryValue,
-                        salaryUnitText: salaryUnitText,
-                    },
+                    jobDetails: jobDetailsData,
                 }),
             )
         }
-        router.push(`/tools/hire/edit/${slug}/job-location`)
+        router.push('/tools/hire/create/job-location')
     }
 
     return (
@@ -173,7 +172,7 @@ export default function JobDetails() {
                     <div className="w-full md:w-1/2">
                         <input
                             required
-                            type="text"
+                            type="url"
                             value={apply}
                             onChange={e => setApply(e.target.value)}
                             placeholder="e.g “https://www.analogueshifts.com”"
@@ -190,7 +189,7 @@ export default function JobDetails() {
             </form>
             <div className="flex w-full justify-between">
                 <Link
-                    href={`/tools/hire/edit/${slug}/job-information`}
+                    href={'/tools/hire/create/job-information'}
                     className={`px-6 text-tremor-background-darkYellow text-base border duration-300 hover:scale-105 font-normal flex items-center gap-2 h-10 bg-transparent border-tremor-background-darkYellow rounded-full`}>
                     <i className="fas fa-arrow-left "></i> Previous
                 </Link>

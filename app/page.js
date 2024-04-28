@@ -1,5 +1,5 @@
-import GuestLayout from './Layouts/GuestLayout'
-import BuildTeam from './components/HomeComponents/BuildTeam'
+import GuestLayout from './layouts/guest-layout'
+import BuildTeam from './components/HomeComponents/build-team'
 import Features from './components/HomeComponents/Features'
 import Landing from './components/HomeComponents/Landing'
 import Services from './components/HomeComponents/Services'

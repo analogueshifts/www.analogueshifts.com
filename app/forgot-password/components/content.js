@@ -2,11 +2,12 @@
 import Group from '@/public/images/login/group.png'
 import Avatar from '@/public/images/login/avatar.png'
 import Image from 'next/image'
-import ApplicationLogo from '@/app/components/ApplicationLogo'
+import ApplicationLogo from '@/app/components/application-logo'
 import { useState } from 'react'
 import Link from 'next/link'
-import LoadingTwo from '@/app/components/Loading'
+import LoadingTwo from '@/app/components/loading'
 import { toast } from 'react-toastify'
+import { toastConfig } from '@/utils/toast-config'
 
 export default function ForgotPassword() {
     const [email, setEmail] = useState('')
@@ -35,17 +36,11 @@ export default function ForgotPassword() {
             .request(config)
             .then(response => {
                 setLoading(false)
-                toast.success('We sent you Password Reset Link', {
-                    position: 'top-right',
-                    autoClose: 3000,
-                })
+                toast.success('We sent you Password Reset Link', toastConfig)
             })
             .catch(error => {
                 setLoading(false)
-                toast.error(error.message, {
-                    position: 'top-right',
-                    autoClose: 3000,
-                })
+                toast.error(error.message, toastConfig)
             })
     }
 

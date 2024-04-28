@@ -1,12 +1,12 @@
 'use client'
 import { useState, useEffect } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
-import DashboardLoader from '@/app/components/DashboardLoader'
+import DashboardLoader from '@/app/components/dashboard-loader'
 import { toast } from 'react-toastify'
 import Cookies from 'js-cookie'
-import Authenticated from '@/app/Layouts/AuthenticatedLayout'
+import Authenticated from '@/app/layouts/authenticated-layout'
 
-import IdiomProof from '@/app/Layouts/IdiomProof'
+import IdiomProof from '@/app/layouts/idiom-proof'
 
 import {
     Pagination,
@@ -18,6 +18,9 @@ import {
     PaginationPrevious,
 } from '@/components/ui/pagination'
 import VetColumn from './vetColumn'
+import { toastConfig } from '@/utils/toast-config'
+import { fetchVetPosts } from '@/utils/fetch-vets'
+import { deletePost } from '@/utils/delete-post'
 
 export default function VettingPage() {
     const [idiomModal, setIdiomModal] = useState(false)
@@ -29,37 +32,30 @@ export default function VettingPage() {
     const [loading, setLoading] = useState(false)
     const router = useRouter()
     const [getVetsUrl, setGetVetsUrl] = useState(
-        `${process.env.NEXT_PUBLIC_BACKEND_URL}/tools/vetting${
+        `${process.env.NEXT_PUBLIC_BACKEND_URL}/tools/form${
             pageQuery.length ? `?page=${pageQuery[0]}` : ''
         }`,
     )
 
     //Fetch Vets
     const fetchVets = () => {
-        const axios = require('axios')
-        let config = {
-            method: 'GET',
-            url: getVetsUrl,
-            headers: {
-                Authorization: 'Bearer ' + user.token,
-            },
-        }
-        // Fetch vet data from your API
         setLoading(true)
-        axios
-            .request(config)
-            .then(response => {
-                setCurrentPageInfo(response.data.data.vetting)
-                setData(response.data.data.vetting.data)
+
+        // Fetch vet data from your API
+        fetchVetPosts(
+            getVetsUrl,
+            user.token,
+            response => {
+                setCurrentPageInfo(response.data.data.forms)
+                console.log(response)
+                setData(response.data.data.forms.data)
                 setLoading(false)
-            })
-            .catch(error => {
+            },
+            error => {
                 setLoading(false)
-                toast.error(error.message, {
-                    position: 'top-right',
-                    autoClose: 3000,
-                })
-            })
+                toast.error(error.message, toastConfig)
+            },
+        )
     }
 
     // Clear the existing vetCreationData and navigate to the new Vet Page
@@ -70,34 +66,23 @@ export default function VettingPage() {
 
     // Delete A Vet by using the Vet Id
     const deleteVet = async () => {
-        const axios = require('axios')
-        let config = {
-            method: 'DELETE',
-            url: getVetsUrl + `/${idToBeDeleted}`,
-            headers: {
-                Authorization: 'Bearer ' + user.token,
-            },
-        }
         setLoading(true)
-        axios
-            .request(config)
-            .then(res => {
+
+        deletePost(
+            getVetsUrl + `/${idToBeDeleted}`,
+            user.token,
+            () => {
                 fetchVets()
-                toast.success('Vet Deleted Successfully', {
-                    position: 'top-right',
-                    autoClose: 3000,
-                })
+                toast.success('Vet Deleted Successfully', toastConfig)
                 setIdToBeDeleted(null)
 
                 setLoading(false)
-            })
-            .catch(err => {
-                toast.error('Error Deleting Vet', {
-                    position: 'top-right',
-                    autoClose: 3000,
-                })
+            },
+            () => {
+                toast.error('Error Deleting Vet', toastConfig)
                 setLoading(false)
-            })
+            },
+        )
     }
 
     // Check for user session

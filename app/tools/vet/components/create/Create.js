@@ -1,14 +1,15 @@
 'use client'
 import Link from 'next/link'
 import Cookies from 'js-cookie'
-import Authenticated from '@/app/Layouts/AuthenticatedLayout'
+import Authenticated from '@/app/layouts/authenticated-layout'
 import { useEffect, useState } from 'react'
 import VetDescriptionForm from '../VetDescriptionForm'
 import Question from './Question'
 import { Reorder } from 'framer-motion'
-import DashboardLoader from '@/app/components/DashboardLoader'
+import DashboardLoader from '@/app/components/dashboard-loader'
 import { toast } from 'react-toastify'
 import { useRouter } from 'next/navigation'
+import { toastConfig } from '@/utils/toast-config'
 
 export default function CreateVet() {
     let currentDate = new Date()
@@ -87,10 +88,7 @@ export default function CreateVet() {
         if (newVetData.title === '') {
             toast.error(
                 'Each vet must have a title! kindly fill out the description form above.',
-                {
-                    position: 'top-right',
-                    autoClose: 3000,
-                },
+                toastConfig,
             )
             return
         }
@@ -122,18 +120,12 @@ export default function CreateVet() {
             .request(config)
             .then(response => {
                 setLoading(false)
-                toast.success('Your Vet Request Has Been Sent', {
-                    position: 'top-right',
-                    autoClose: 3000,
-                })
+                toast.success('Your Vet Request Has Been Sent', toastConfig)
                 Cookies.remove('vetCreationData')
                 router.push('/tools/vet')
             })
             .catch(error => {
-                toast.error(error.message, {
-                    position: 'top-right',
-                    autoClose: 3000,
-                })
+                toast.error(error.message, toastConfig)
                 setLoading(false)
             })
     }

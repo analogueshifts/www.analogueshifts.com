@@ -1,10 +1,10 @@
 'use client'
-import ApplicationLogo from './ApplicationLogo'
+import ApplicationLogo from './application-logo'
 import Link from 'next/link'
-import NavLink from './NavLink'
+import NavLink from './navlink'
 import { useEffect, useState } from 'react'
 import { usePathname } from 'next/navigation'
-import ResponsiveNavBar from './ResponsiveNavBar'
+import ResponsiveNavBar from './responsive-navbar'
 
 const Navigation = () => {
     const pathname = usePathname()

@@ -1,9 +1,10 @@
 'use client'
 
-import ActionMenu from '@/app/components/ActionMenu'
+import ActionMenu from '@/app/components/action-menu'
 import { toast } from 'react-toastify'
 import Cookies from 'js-cookie'
 import { useRouter } from 'next/navigation'
+import { toastConfig } from '@/utils/toast-config'
 
 export default function VetColumn({ item, handleDelete }) {
     const router = useRouter()
@@ -22,10 +23,7 @@ export default function VetColumn({ item, handleDelete }) {
                     url: 'https://www.analogueshifts.com/vet/show/' + item.slug,
                 })
             } catch (error) {
-                toast.error('Error sharing content:', {
-                    position: 'top-right',
-                    autoClose: 3000,
-                })
+                toast.error('Error sharing content:', toastConfig)
             }
         } else {
             toast.error('Sharing not supported on this device.', {

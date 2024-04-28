@@ -1,11 +1,12 @@
 'use client'
 import { useState, useEffect } from 'react'
 import { axiosBlog } from '../../lib/axios'
-import LoadingTwo from '../Loading'
+import LoadingTwo from '../loading'
 import Link from 'next/link'
 import Image from 'next/image'
 import Author from '@/public/author.png'
 import { toast } from 'react-toastify'
+import { toastConfig } from '@/utils/toast-config'
 
 // import Image from 'next/image'
 
@@ -25,10 +26,7 @@ export default function ViewBlog({ slug }) {
                 setLoading(false)
             })
             .catch(error => {
-                toast.error(error.message, {
-                    position: 'top-right',
-                    autoClose: 3000,
-                })
+                toast.error(error.message, toastConfig)
                 setLoading(false)
             })
     }, [])

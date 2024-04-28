@@ -1,4 +1,4 @@
-import Edit from '../../components/Edit'
+import Edit from '../../components/edit'
 
 export const metadata = {
     title: 'Hire Talents | AnalogueShifts',

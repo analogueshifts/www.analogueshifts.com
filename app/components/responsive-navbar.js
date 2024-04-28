@@ -1,6 +1,6 @@
 'use client'
 import { useEffect, useState } from 'react'
-import ResponsiveNavLink from './ResponsiveNavLink'
+import ResponsiveNavLink from './responsive-navlink'
 import { usePathname } from 'next/navigation'
 
 export default function ResponsiveNavBar({ handleBlogNavigation }) {

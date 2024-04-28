@@ -1,5 +1,5 @@
-import GuestLayout from '../Layouts/GuestLayout'
-import JobView from '../components/JobsComponents/JobView'
+import GuestLayout from '../layouts/guest-layout'
+import JobView from '../components/jobs-page/job-view'
 // import SeoController from '../lib/SeoController'
 
 export const metadata = {

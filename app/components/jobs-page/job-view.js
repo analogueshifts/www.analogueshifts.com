@@ -3,13 +3,13 @@ import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { useSearchParams } from 'next/navigation'
 import { useInView } from 'react-intersection-observer'
-import LoadingTwo from '../Loading'
+import LoadingTwo from '../loading'
 import { toast } from 'react-toastify'
 import Image from 'next/image'
 import SearchGlass from '@/public/images/jobs/search-glass.png'
-import NewsLetterCard from '../NewsLetterCard'
-import JobGridTile from './jobGridTile'
-import UserRatingStack from './ratingStack'
+import NewsLetterCard from '../news-letter-card'
+import JobGridTile from './grid-tile'
+import UserRatingStack from './rating-stack'
 import {
     Pagination,
     PaginationContent,
@@ -19,6 +19,8 @@ import {
     PaginationNext,
     PaginationPrevious,
 } from '@/components/ui/pagination'
+import { fetchJobs } from '@/utils/fetch-jobs'
+import { toastConfig } from '@/utils/toast-config'
 
 export default function JobView() {
     const [jobs, setJobs] = useState([])
@@ -38,29 +40,20 @@ export default function JobView() {
     })
 
     useEffect(() => {
-        const axios = require('axios')
-        let config = {
-            method: 'GET',
-            url: url,
-        }
         // Fetch job data from your API
         setLoading(true)
-        axios
-            .request(config)
-            .then(response => {
-                if (response.status === 200) {
-                    setJobs(response.data.data.jobs.data)
-                    setCurrentPageInfo(response.data.data.jobs)
-                    setLoading(false)
-                }
-            })
-            .catch(error => {
+        fetchJobs(
+            url,
+            response => {
+                setJobs(response.data.data.jobs.data)
+                setCurrentPageInfo(response.data.data.jobs)
                 setLoading(false)
-                toast.error(error.message, {
-                    position: 'top-right',
-                    autoClose: 3000,
-                })
-            })
+            },
+            error => {
+                setLoading(false)
+                toast.error(error.message, toastConfig)
+            },
+        )
     }, [])
 
     return (

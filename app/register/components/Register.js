@@ -2,12 +2,13 @@
 import Group from '@/public/images/login/group.png'
 import Avatar from '@/public/images/login/avatar.png'
 import Image from 'next/image'
-import ApplicationLogo from '@/app/components/ApplicationLogo'
+import ApplicationLogo from '@/app/components/application-logo'
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
-import LoadingTwo from '@/app/components/Loading'
+import LoadingTwo from '@/app/components/loading'
 import { toast } from 'react-toastify'
 import Cookies from 'js-cookie'
+import { toastConfig } from '@/utils/toast-config'
 
 export default function Register() {
     const [name, setName] = useState('')
@@ -45,23 +46,19 @@ export default function Register() {
                     ...response.data[0].data.user,
                     token: response.data[0].data.token,
                 })
-                Cookies.set('analogueshifts', userData)
+                console.log(response)
+                // Cookies.set('analogueshifts', userData)
                 setLoading(false)
-                toast.success('Account Created Successfully', {
-                    position: 'top-right',
-                    autoClose: 3000,
-                })
+                toast.success('Account Created Successfully', toastConfig)
                 let redirectionLink = Cookies.get('RedirectionLink')
-                window.location.href = redirectionLink.trim().length
-                    ? redirectionLink
-                    : '/dashboard'
+                // window.location.href = redirectionLink.trim().length
+                //     ? redirectionLink
+                //     : '/dashboard'
             })
             .catch(error => {
                 setLoading(false)
-                toast.error(error.message, {
-                    position: 'top-right',
-                    autoClose: 3000,
-                })
+                toast.error(error.message, toastConfig)
+                console.log(error)
             })
     }
     useEffect(() => {

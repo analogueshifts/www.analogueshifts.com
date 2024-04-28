@@ -1,14 +1,15 @@
 'use client'
 import Link from 'next/link'
 import Cookies from 'js-cookie'
-import Authenticated from '@/app/Layouts/AuthenticatedLayout'
+import Authenticated from '@/app/layouts/authenticated-layout'
 import { useEffect, useState } from 'react'
 import VetDescriptionForm from '../VetDescriptionForm'
 import Question from '../create/Question'
 import { Reorder } from 'framer-motion'
-import DashboardLoader from '@/app/components/DashboardLoader'
+import DashboardLoader from '@/app/components/dashboard-loader'
 import { toast } from 'react-toastify'
 import { useRouter } from 'next/navigation'
+import { toastConfig } from '@/utils/toast-config'
 
 export default function EditVet({ slug }) {
     const [user, setUser] = useState(null)
@@ -80,10 +81,7 @@ export default function EditVet({ slug }) {
             })
             .catch(error => {
                 setLoading(false)
-                toast.error(error.message, {
-                    position: 'top-right',
-                    autoClose: 3000,
-                })
+                toast.error(error.message, toastConfig)
             })
     }
 
@@ -119,19 +117,16 @@ export default function EditVet({ slug }) {
             .request(config)
             .then(response => {
                 setLoading(false)
-                toast.success('Your Vet has been edited successfully', {
-                    position: 'top-right',
-                    autoClose: 3000,
-                })
+                toast.success(
+                    'Your Vet has been edited successfully',
+                    toastConfig,
+                )
                 Cookies.remove('vetEditingData')
                 router.push('/tools/vet')
             })
             .catch(error => {
                 console.log(error)
-                toast.error(error.message, {
-                    position: 'top-right',
-                    autoClose: 3000,
-                })
+                toast.error(error.message, toastConfig)
                 setLoading(false)
             })
     }
@@ -141,10 +136,7 @@ export default function EditVet({ slug }) {
         if (newVetData.title === '') {
             toast.error(
                 'Each vet must have a title! kindly fill out the description form above.',
-                {
-                    position: 'top-right',
-                    autoClose: 3000,
-                },
+                toastConfig,
             )
             return
         }

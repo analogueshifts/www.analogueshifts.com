@@ -1,5 +1,5 @@
 'use client'
-import NewsLetterCard from '../NewsLetterCard'
+import NewsLetterCard from '../news-letter-card'
 
 function Testimonials() {
     return (

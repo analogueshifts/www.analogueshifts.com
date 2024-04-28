@@ -5,27 +5,35 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { toast } from 'react-toastify'
+import { Toaster } from '@/components/ui/sonner'
+import { customToast } from '@/components/ui/custom-toast'
 import Cookies from 'js-cookie'
-import DashboardLoader from '../components/DashboardLoader'
-import ApplicationLogo from '../components/ApplicationLogo'
-import MenuDropDown from './MenuDropdown'
-import IdiomProof from './IdiomProof'
+import DashboardLoader from '../components/dashboard-loader'
+import ApplicationLogo from '../components/application-logo'
+import MenuDropDown from './menu-dropdown'
+import IdiomProof from './idiom-proof'
+import { toastConfig } from '@/utils/toast-config'
 
-export default function Authenticated({ user, header, children }) {
+export default function Authenticated({ header, children }) {
+    const pathname = usePathname()
+    const [user, setUser] = useState(null)
     const [open, setOpen] = useState(false)
     const [mobileOpen, setMobileOpen] = useState(false)
     const [navAnimationClass, setNavAnimationClass] = useState('')
     const [loading, setLoading] = useState(false)
+
+    // Handle Logout
     async function logout() {
         const axios = require('axios')
         const url = process.env.NEXT_PUBLIC_BACKEND_URL + '/logout'
         let config = {
-            method: 'POST',
             url: url,
+            method: 'POST',
             headers: {
-                Authorization: 'Bearer ' + user.token,
+                Authorization: 'Bearer ' + user?.token,
             },
         }
+
         setLoading(true)
 
         axios
@@ -36,13 +44,36 @@ export default function Authenticated({ user, header, children }) {
             })
             .catch(error => {
                 setLoading(false)
-                toast.error(error.message, {
-                    position: 'top-right',
-                    autoClose: 3000,
-                })
+                toast.error(error.message, toastConfig)
             })
     }
-    const pathname = usePathname()
+
+    // Send Verification Email
+    function handleSendVerificationEmail() {
+        const axios = require('axios')
+        const url =
+            process.env.NEXT_PUBLIC_BACKEND_URL +
+            '/email/verification-notification'
+        let config = {
+            url: url,
+            method: 'POST',
+            headers: {
+                Authorization: 'Bearer ' + user?.token,
+            },
+        }
+
+        setLoading(true)
+
+        axios
+            .request(config)
+            .then(res => {
+                setLoading(false)
+            })
+            .catch(error => {
+                setLoading(false)
+                toast.error(error.message, toastConfig)
+            })
+    }
 
     //Toggle The Nav Bar
     const toggleMenu = value => {
@@ -65,12 +96,17 @@ export default function Authenticated({ user, header, children }) {
     }
 
     useEffect(() => {
+        // Redirect To Login if User is not Authenticated
         const auth = Cookies.get('analogueshifts')
         if (auth === null || auth === undefined) {
             Cookies.set('RedirectionLink', pathname)
             window.location.href = '/login'
             return null
+        } else {
+            setUser(JSON.parse(auth))
         }
+
+        // Handle Resize Event Listener
         const sideBar = document.querySelector('.sidebar')
         window.addEventListener('resize', () => {
             if (window.innerWidth < 768) {
@@ -90,6 +126,18 @@ export default function Authenticated({ user, header, children }) {
         })
     }, [])
 
+    // Display Unverified Email Banner if the user's email is unverified
+    useEffect(() => {
+        if (user && !user.is_verified) {
+            customToast(
+                'Unverified Email',
+                'Your email address is not verified',
+                'Verify Email',
+                handleSendVerificationEmail,
+            )
+        }
+    }, [user])
+
     return (
         <main className="body">
             {loading && <DashboardLoader />}
@@ -106,6 +154,7 @@ export default function Authenticated({ user, header, children }) {
                     'Are you sure you want to sign out of your account? You can always sign in at anytime.'
                 }
             />
+
             <section className="sidebar">
                 <div className="logo fixed sm:static">
                     <Link
@@ -219,6 +268,7 @@ export default function Authenticated({ user, header, children }) {
                     {children}
                 </main>
             </section>
+            <Toaster />
         </main>
     )
 }

@@ -1,7 +1,7 @@
 'use client'
 import Link from 'next/link'
 import Cookies from 'js-cookie'
-import Authenticated from '@/app/Layouts/AuthenticatedLayout'
+import Authenticated from '@/app/layouts/authenticated-layout'
 import { useEffect, useState } from 'react'
 
 export default function PreviewVet() {
