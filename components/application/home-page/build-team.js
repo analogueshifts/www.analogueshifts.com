@@ -1,7 +1,7 @@
 'use client'
 import { useState, useRef, useEffect } from 'react'
 import Masonry from 'react-masonry-css'
-import Data from './Utilities/BuildTeamData.json'
+import Data from './utilities/BuildTeamData.json'
 import { useInView } from 'react-intersection-observer'
 import Image from 'next/image'
 import Link from 'next/link'

@@ -1,7 +1,7 @@
 'use client'
 import { useState, useRef, useEffect } from 'react'
 import Image from 'next/image'
-import Data from './Utilities/FeaturesData.json'
+import Data from './utilities/FeaturesData.json'
 import { useInView } from 'react-intersection-observer'
 import PaymentGateway from '@/public/images/payment-gateway.png'
 import ResumeBuilder from '@/public/images/resume-builder.png'

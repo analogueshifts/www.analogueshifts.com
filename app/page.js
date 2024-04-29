@@ -3,7 +3,7 @@ import BuildTeam from '@/components/application/home-page/build-team'
 import Features from '@/components/application/home-page/features'
 import Landing from '@/components/application/home-page/landing'
 import Services from '@/components/application/home-page/services'
-import Testimonials from '@/components/application/home-page/testimonials'
+import Testimonials from '@/components/application/home-page/testimonials-section'
 
 export const metadata = {
     title: 'Tech Talent Recruitment and Acquisition | AnalogueShifts',
