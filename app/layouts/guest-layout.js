@@ -1,6 +1,6 @@
 'use client'
-import Footer from '../components/footer'
-import Navigation from '../components/navigation'
+import Footer from '@/components/application/footer'
+import Navigation from '@/components/application/navigation'
 
 export default function GuestLayout({ children }) {
     return (

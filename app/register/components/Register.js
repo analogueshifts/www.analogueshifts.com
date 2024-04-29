@@ -2,7 +2,7 @@
 import Group from '@/public/images/login/group.png'
 import Avatar from '@/public/images/login/avatar.png'
 import Image from 'next/image'
-import ApplicationLogo from '@/app/components/application-logo'
+import ApplicationLogo from '@/components/application/application-logo'
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import LoadingTwo from '@/components/ui/loading-spinner'

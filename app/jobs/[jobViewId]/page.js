@@ -1,5 +1,5 @@
 import GuestLayout from '@/app/layouts/guest-layout'
-import ViewId from '../../components/jobs-page/view-id'
+import ViewId from '@/components/application/jobs-page/view-id'
 import axios from 'axios'
 // import SeoController from '@/app/lib/SeoController'
 

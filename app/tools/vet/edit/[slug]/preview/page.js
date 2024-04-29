@@ -1,4 +1,4 @@
-import PreviewVet from '../../../components/edit/Preview'
+import PreviewVet from '../../../components/create/Preview'
 
 export const metadata = {
     title: 'Vetting System | AnalogueShifts',

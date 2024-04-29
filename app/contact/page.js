@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import Image1 from '@/public/images/contactHero.jpg'
-import ContactForm from '../components/contact-form'
+import ContactForm from '@/components/application/contact-form'
 import GuestLayout from '../layouts/guest-layout'
 // import SeoController from '../lib/SeoController'
 

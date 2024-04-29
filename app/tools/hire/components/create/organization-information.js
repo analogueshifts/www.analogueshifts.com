@@ -5,9 +5,9 @@ import Cookies from 'js-cookie'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
-import FileInput from '@/app/components/file-input'
+import FileInput from '@/components/application/file-input'
 import { toast } from 'react-toastify'
-import DashboardLoader from '@/app/components/dashboard-loader'
+import DashboardLoader from '@/components/application/dashboard-loader'
 import { toastConfig } from '@/utils/toast-config'
 
 export default function OrganizationInformation() {

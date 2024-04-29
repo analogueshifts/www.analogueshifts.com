@@ -1,6 +1,6 @@
 'use client'
 
-import ActionMenu from '@/app/components/action-menu'
+import ActionMenu from '@/components/application/action-menu'
 import { toast } from 'react-toastify'
 import Cookies from 'js-cookie'
 import { useRouter } from 'next/navigation'

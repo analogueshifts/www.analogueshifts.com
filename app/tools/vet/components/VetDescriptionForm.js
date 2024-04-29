@@ -1,5 +1,5 @@
 'use client'
-import Tiptap from '@/app/components/utilities/Tiptap'
+import Tiptap from '@/components/application/utilities/Tiptap'
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { toast } from 'react-toastify'

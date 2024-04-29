@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import Authenticated from '@/app/layouts/authenticated-layout'
 import { toast } from 'react-toastify'
 import { useRouter } from 'next/navigation'
-import DashboardLoader from '@/app/components/dashboard-loader'
+import DashboardLoader from '@/components/application/dashboard-loader'
 import Cookies from 'js-cookie'
 import { toastConfig } from '@/utils/toast-config'
 

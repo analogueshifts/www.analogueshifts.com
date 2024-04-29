@@ -1,6 +1,6 @@
 'use client'
 import { useState, useEffect } from 'react'
-import { axiosBlog } from '../../lib/axios'
+import { axiosBlog } from '@/app/lib/axios'
 import LoadingTwo from '@/components/ui/loading-spinner'
 import Link from 'next/link'
 import Image from 'next/image'

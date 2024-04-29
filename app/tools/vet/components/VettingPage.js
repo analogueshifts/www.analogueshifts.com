@@ -1,7 +1,7 @@
 'use client'
 import { useState, useEffect } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
-import DashboardLoader from '@/app/components/dashboard-loader'
+import DashboardLoader from '@/components/application/dashboard-loader'
 import { toast } from 'react-toastify'
 import Cookies from 'js-cookie'
 import Authenticated from '@/app/layouts/authenticated-layout'

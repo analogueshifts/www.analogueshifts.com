@@ -2,7 +2,7 @@
 import { useState, useEffect, useRef } from 'react'
 import EditJobLayout from './layout'
 import Cookies from 'js-cookie'
-import Tiptap from '@/app/components/utilities/Tiptap'
+import Tiptap from '@/components/application/utilities/Tiptap'
 import { usePathname, useRouter } from 'next/navigation'
 
 export default function JobInformation() {

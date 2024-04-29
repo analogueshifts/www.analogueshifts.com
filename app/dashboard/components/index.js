@@ -8,7 +8,7 @@ import ProfileImage from '@/public/images/profile_avatar.JPG'
 import { toast } from 'react-toastify'
 import { toastConfig } from '@/utils/toast-config'
 import { fetchJobPosts } from '@/utils/fetch-job-posts'
-import SkeletonCard from '@/app/components/skeleton-card'
+import SkeletonCard from '@/components/application/skeleton-card'
 import { fetchVetPosts } from '@/utils/fetch-vets'
 
 export default function Dashboard() {

@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react'
 import Authenticated from '@/app/layouts/authenticated-layout'
 import Link from 'next/link'
-import DashboardLoader from '@/app/components/dashboard-loader'
+import DashboardLoader from '@/components/application/dashboard-loader'
 import { toast } from 'react-toastify'
 import Cookies from 'js-cookie'
 import IdiomProof from '@/app/layouts/idiom-proof'
