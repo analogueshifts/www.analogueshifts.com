@@ -1,9 +1,9 @@
-import GuestLayout from './layouts/guest-layout'
-import BuildTeam from './components/HomeComponents/build-team'
-import Features from './components/HomeComponents/Features'
-import Landing from './components/HomeComponents/Landing'
-import Services from './components/HomeComponents/Services'
-import Testimonials from './components/HomeComponents/Testimonials'
+import GuestLayout from '@/app/layouts/guest-layout'
+import BuildTeam from '@/components/application/home-page/build-team'
+import Features from '@/components/application/home-page/features'
+import Landing from '@/components/application/home-page/landing'
+import Services from '@/components/application/home-page/services'
+import Testimonials from '@/components/application/home-page/testimonials'
 
 export const metadata = {
     title: 'Tech Talent Recruitment and Acquisition | AnalogueShifts',
