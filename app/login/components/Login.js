@@ -1,7 +1,7 @@
 'use client'
 import Group from '@/public/images/login/group.png'
 import Avatar from '@/public/images/login/avatar.png'
-import LoadingTwo from '@/app/components/loading'
+import LoadingTwo from '@/components/ui/loading-spinner'
 import Image from 'next/image'
 import ApplicationLogo from '@/app/components/application-logo'
 import { useEffect, useState } from 'react'

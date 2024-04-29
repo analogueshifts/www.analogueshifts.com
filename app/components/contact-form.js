@@ -1,6 +1,6 @@
 'use client'
 import { useState } from 'react'
-import LoadingTwo from './loading'
+import LoadingTwo from '@/components/ui/loading-spinner'
 // import axios from '../lib/axios'
 import SuccessPopup from './success-popup'
 

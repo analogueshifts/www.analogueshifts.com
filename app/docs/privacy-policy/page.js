@@ -1,7 +1,7 @@
 'use client'
 import { useState, useEffect } from 'react'
 import { axiosBlog } from '../../lib/axios'
-import LoadingTwo from '../../components/loading'
+import LoadingTwo from '@/components/ui/loading-spinner'
 import GuestLayout from '@/app/layouts/guest-layout'
 
 export default function page() {

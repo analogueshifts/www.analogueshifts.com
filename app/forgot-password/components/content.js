@@ -5,7 +5,7 @@ import Image from 'next/image'
 import ApplicationLogo from '@/app/components/application-logo'
 import { useState } from 'react'
 import Link from 'next/link'
-import LoadingTwo from '@/app/components/loading'
+import LoadingTwo from '@/components/ui/loading-spinner'
 import { toast } from 'react-toastify'
 import { toastConfig } from '@/utils/toast-config'
 

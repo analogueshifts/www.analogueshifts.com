@@ -5,7 +5,7 @@ import { useRouter, usePathname } from 'next/navigation'
 import Image from 'next/image'
 import LocationIcon from '@/public/icons/location-icon.png'
 import Link from 'next/link'
-import LoadingTwo from '../loading'
+import LoadingTwo from '@/components/ui/loading-spinner'
 import { toast } from 'react-toastify'
 import { toastConfig } from '@/utils/toast-config'
 
