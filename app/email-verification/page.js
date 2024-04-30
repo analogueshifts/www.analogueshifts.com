@@ -45,7 +45,6 @@ export default function Page() {
         // Redirect To Login if User is not Authenticated
         const auth = Cookies.get('analogueshifts')
         if (auth === null || auth === undefined) {
-            Cookies.set('RedirectionLink', pathname)
             window.location.href = '/login'
             return null
         } else {
