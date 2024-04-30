@@ -3,19 +3,20 @@ import React, { useState, useEffect } from 'react'
 import Logo from '@/public/logo.png'
 import Image from 'next/image'
 import Link from 'next/link'
-import { usePathname } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 import { toast } from 'react-toastify'
 import { Toaster } from '@/components/ui/sonner'
 import { customToast } from '@/components/ui/custom-toast'
 import Cookies from 'js-cookie'
 import DashboardLoader from '@/components/application/dashboard-loader'
 import ApplicationLogo from '@/components/application/application-logo'
-import MenuDropDown from './menu-dropdown'
-import IdiomProof from './idiom-proof'
+import MenuDropDown from '@/components/application/menu-dropdown'
+import IdiomProof from '@/components/application/idiom-proof'
 import { toastConfig } from '@/utils/toast-config'
 
 export default function Authenticated({ header, children }) {
     const pathname = usePathname()
+    const router = useRouter()
     const [user, setUser] = useState(null)
     const [open, setOpen] = useState(false)
     const [mobileOpen, setMobileOpen] = useState(false)
@@ -68,6 +69,7 @@ export default function Authenticated({ header, children }) {
             .request(config)
             .then(res => {
                 setLoading(false)
+                router.push('/email-verification')
             })
             .catch(error => {
                 setLoading(false)
@@ -128,6 +130,7 @@ export default function Authenticated({ header, children }) {
 
     // Display Unverified Email Banner if the user's email is unverified
     useEffect(() => {
+        console.log(user)
         if (user && !user.is_verified) {
             customToast(
                 'Unverified Email',

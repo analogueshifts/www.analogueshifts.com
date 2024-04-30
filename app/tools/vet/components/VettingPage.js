@@ -6,7 +6,7 @@ import { toast } from 'react-toastify'
 import Cookies from 'js-cookie'
 import Authenticated from '@/app/layouts/authenticated-layout'
 
-import IdiomProof from '@/app/layouts/idiom-proof'
+import IdiomProof from '@/components/application/idiom-proof'
 
 import {
     Pagination,

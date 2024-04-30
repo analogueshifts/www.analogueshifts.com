@@ -1,4 +1,4 @@
-import HirePageDetails from './components/hire-home'
+import HirePageDetails from './components/hire-home-home'
 
 export const metadata = {
     title: 'Hire Talents | AnalogueShifts',
