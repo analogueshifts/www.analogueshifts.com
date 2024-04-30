@@ -126,7 +126,7 @@ export default function Page() {
         <section className="w-full">
             {loading && <LoadingTwo />}
             <Navigation />
-            <div className="w-full flex justify-center mt-20">
+            <div className="w-full flex justify-center mt-20 px-5">
                 <form
                     onSubmit={handleSubmit}
                     className="w-max max-w-[400px] flex flex-col gap-4 items-start">
