@@ -131,7 +131,7 @@ export default function Authenticated({ header, children }) {
     // Display Unverified Email Banner if the user's email is unverified
     useEffect(() => {
         console.log(user)
-        if (user && !user.is_verified) {
+        if (user && !user.email_verified_at) {
             customToast(
                 'Unverified Email',
                 'Your email address is not verified',

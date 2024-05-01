@@ -8,8 +8,11 @@ import Link from 'next/link'
 import LoadingTwo from '@/components/ui/loading-spinner'
 import { toast } from 'react-toastify'
 import { toastConfig } from '@/utils/toast-config'
+import { useRouter } from 'next/navigation'
+import Cookies from 'js-cookie'
 
 export default function ForgotPassword() {
+    const router = useRouter()
     const [email, setEmail] = useState('')
     const [errorMessage, setErrorMessage] = useState('')
     const [loading, setLoading] = useState(false)
@@ -36,11 +39,15 @@ export default function ForgotPassword() {
             .request(config)
             .then(response => {
                 setLoading(false)
-                toast.success('We sent you Password Reset Link', toastConfig)
+                Cookies.set('rest-password-email', email)
+                router.push('/reset-password')
             })
             .catch(error => {
                 setLoading(false)
-                toast.error(error.message, toastConfig)
+                toast.error(
+                    'An Error Occured, Please try again later',
+                    toastConfig,
+                )
             })
     }
 

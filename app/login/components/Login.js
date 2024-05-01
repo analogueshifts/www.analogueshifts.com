@@ -41,7 +41,6 @@ export default function Login() {
                     ...response.data.data.user,
                     token: response.data.data.token,
                 })
-                console.log(response)
                 Cookies.set('analogueshifts', userData)
                 toast.success('Login Successful', toastConfig)
                 let redirectionLink = Cookies.get('RedirectionLink')

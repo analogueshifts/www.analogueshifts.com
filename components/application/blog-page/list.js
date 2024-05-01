@@ -1,6 +1,6 @@
 'use client'
 import { useState, useEffect } from 'react'
-import { axiosBlog } from '../../lib/axios'
+import { axiosBlog } from '@/app/lib/axios'
 import Image from 'next/image'
 import A4 from '@/public/images/blogHero.jpg'
 import SearchIcon from '@/public/images/search-icon.png'

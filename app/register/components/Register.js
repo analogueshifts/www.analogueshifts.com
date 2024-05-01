@@ -27,6 +27,8 @@ export default function Register() {
             email: email,
             password: password,
             password_confirmation: confirm_password,
+            device_token: crypto.randomUUID(),
+            device_type: 'web',
         })
 
         let config = {
@@ -47,13 +49,13 @@ export default function Register() {
                     token: response.data[0].data.token,
                 })
                 console.log(response)
-                // Cookies.set('analogueshifts', userData)
+                Cookies.set('analogueshifts', userData)
                 setLoading(false)
                 toast.success('Account Created Successfully', toastConfig)
                 let redirectionLink = Cookies.get('RedirectionLink')
-                // window.location.href = redirectionLink.trim().length
-                //     ? redirectionLink
-                //     : '/dashboard'
+                window.location.href = redirectionLink.trim().length
+                    ? redirectionLink
+                    : '/dashboard'
             })
             .catch(error => {
                 setLoading(false)
