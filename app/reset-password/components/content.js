@@ -109,8 +109,7 @@ export default function ResetPassword() {
         }
         try {
             const request = await axios.request(config)
-            if (request.data.success) {
-            } else {
+            if (!request.data.success) {
                 setLoading(false)
                 toast.error('Invalid OTP', toastConfig)
             }
@@ -152,7 +151,9 @@ export default function ResetPassword() {
             toast.success('Password Reset Successful', toastConfig)
             router.push('/login')
             setLoading(false)
-        } catch (error) {}
+        } catch (error) {
+            console.log(error)
+        }
     }
 
     return (
