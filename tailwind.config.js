@@ -20,6 +20,8 @@ module.exports = {
             width: {
                 navBarWidth: '1074px',
                 containerWidth: '1280px',
+                jobDescriptionSection: 'calc(100% - 424px)',
+                asideSection: '404px',
                 621: '621px',
             },
 
