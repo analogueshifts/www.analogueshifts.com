@@ -45,7 +45,6 @@ export default function HirePageDetails() {
             response => {
                 setData(response.data.data.hires.data)
                 setCurrentPageInfo(response.data.data.hires)
-                console.log(response)
                 setLoading(false)
             },
             error => {

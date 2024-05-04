@@ -10,6 +10,7 @@ import { toast } from 'react-toastify'
 import { toastConfig } from '@/utils/toast-config'
 import { useRouter } from 'next/navigation'
 import Cookies from 'js-cookie'
+import FormInput from '@/components/application/form-input'
 
 export default function ForgotPassword() {
     const router = useRouter()
@@ -71,27 +72,15 @@ export default function ForgotPassword() {
                         <p className="font-bold text-3xl text-[#292929] pb-5">
                             Enter your email address
                         </p>
-                        <div className="w-full pb-5 flex flex-col gap-2.5">
-                            <p className="text-base font-normal text-tremor-content-grayText">
-                                Email
-                            </p>
-                            <div
-                                className={`w-full relative flex items-center h-12`}>
-                                <i className="fa-solid absolute left-5 fa-envelope text-base text-tremor-content-grayText w-8"></i>
+                        <FormInput
+                            icon="fa-solid fa-envelope"
+                            type="email"
+                            onChange={e => setEmail(e.target.value)}
+                            label="Email"
+                            placeholder="Enter Email"
+                            value={email}
+                        />
 
-                                <input
-                                    className={`${
-                                        errorMessage.length > 0
-                                            ? 'border border-[#FF0000]'
-                                            : 'border border-black/10'
-                                    } w-full rounded-2xl h-full pl-12 pr-4  outline-none text-base font-normal text-gray-400`}
-                                    placeholder="Enter Email"
-                                    value={email}
-                                    type="email"
-                                    onChange={e => setEmail(e.target.value)}
-                                />
-                            </div>
-                        </div>
                         <button
                             type="submit"
                             className="w-full bg-tremor-background-lightYellow font-semibold text-base text-[#FDFAEF] flex items-center justify-center hover:bg-tremor-background-lightYellow/80 duration-300 h-12 rounded-2xl ">

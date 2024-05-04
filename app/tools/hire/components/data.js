@@ -11,6 +11,8 @@ export const employmentTypesData = [
     'OTHER',
 ]
 
+export const statusData = ['Online', 'Offline']
+
 export const salaryCurrencyData = ['USD', 'EUR', 'GBP', 'NGN']
 
 export const salaryUnitTextData = ['HOUR', 'DAY', 'WEEK', 'MONTH', 'YEAR']

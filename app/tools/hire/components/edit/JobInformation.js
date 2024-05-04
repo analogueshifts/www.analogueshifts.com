@@ -13,14 +13,6 @@ export default function JobInformation() {
     const [description, setDescription] = useState(null)
     const [identifierName, setIdentifierName] = useState('')
     const [identifierValue, setIdentifierValue] = useState('')
-    const [datePosted, setDatePosted] = useState(
-        `${currentDate.getFullYear()}-${(currentDate.getMonth() + 1)
-            .toString()
-            .padStart(2, '0')}-${currentDate
-            .getDate()
-            .toString()
-            .padStart(2, '0')}`,
-    )
     const [validThrough, setValidThrough] = useState(
         `${currentDate.getFullYear()}-${(currentDate.getMonth() + 1)
             .toString()
@@ -42,7 +34,6 @@ export default function JobInformation() {
                 setDescription(jobInformationData.description)
                 setIdentifierName(jobInformationData.identifierName)
                 setIdentifierValue(jobInformationData.identifierValue)
-                setDatePosted(jobInformationData.datePosted)
                 setValidThrough(jobInformationData.validThrough)
             } else {
                 setDescription('')
@@ -55,13 +46,13 @@ export default function JobInformation() {
     // Check if all inputs have been filled
     useEffect(() => {
         var returnValue = false
-        ;[title, description, datePosted, validThrough].forEach(item => {
+        ;[title, description, validThrough].forEach(item => {
             if (item === '') {
                 returnValue = true
             }
         })
         setAllFieldEnter(returnValue)
-    }, [title, description, datePosted, validThrough])
+    }, [title, description, validThrough])
 
     const submit = e => {
         e.preventDefault()
@@ -71,7 +62,6 @@ export default function JobInformation() {
             description: description,
             identifierName: identifierName,
             identifierValue: identifierValue,
-            datePosted: datePosted,
             validThrough: validThrough,
         }
 
@@ -168,25 +158,7 @@ export default function JobInformation() {
                         />
                     </div>
                 </div>
-                <div className="w-full pb-6 border-b border-tremor-brand-boulder200 flex flex-col md:justify-between md:flex-row gap-y-4">
-                    <div className="w-full md:w-1/2 flex flex-col gap-4 md:pr-5">
-                        <p className="text-sm font-normal text-tremor-brand-boulder400">
-                            Date Posted
-                        </p>
-                        <p className="font-light text-[13px] text-tremor-brand-boulder900">
-                            When the job was first made available.
-                        </p>
-                    </div>
-                    <div className="w-full md:w-1/2">
-                        <input
-                            type="date"
-                            required
-                            value={datePosted}
-                            onChange={e => setDatePosted(e.target.value)}
-                            className="max-w-full w-full h-14 rounded-2xl  px-5 border border-tremor-brand-boulder200 text-[13px] font-light placeholder:text-tremor-brand-boulder300 text-tremor-brand-boulder950 outline-1 outline-tremor-background-darkYellow"
-                        />
-                    </div>
-                </div>
+
                 <div className="w-full pb-6 border-b border-tremor-brand-boulder200 flex flex-col md:justify-between md:flex-row gap-y-4">
                     <div className="w-full md:w-1/2 flex flex-col gap-4 md:pr-5">
                         <p className="text-sm font-normal text-tremor-brand-boulder400">

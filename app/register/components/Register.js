@@ -9,13 +9,13 @@ import LoadingTwo from '@/components/ui/loading-spinner'
 import { toast } from 'react-toastify'
 import Cookies from 'js-cookie'
 import { toastConfig } from '@/utils/toast-config'
+import FormInput from '@/components/application/form-input'
 
 export default function Register() {
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [confirm_password, setConfirmPassword] = useState('')
-    const [errorMessage, setErrorMessage] = useState('')
     const [loading, setLoading] = useState(false)
     const url = process.env.NEXT_PUBLIC_BACKEND_URL + '/register'
 
@@ -48,7 +48,7 @@ export default function Register() {
                     ...response.data[0].data.user,
                     token: response.data[0].data.token,
                 })
-                console.log(response)
+
                 Cookies.set('analogueshifts', userData)
                 setLoading(false)
                 toast.success('Account Created Successfully', toastConfig)
@@ -60,7 +60,6 @@ export default function Register() {
             .catch(error => {
                 setLoading(false)
                 toast.error(error.message, toastConfig)
-                console.log(error)
             })
     }
     useEffect(() => {
@@ -92,103 +91,40 @@ export default function Register() {
                             <p className="font-bold text-3xl text-[#292929] pb-5">
                                 Join our Community
                             </p>
-                            <div className="w-full pb-5 flex flex-col gap-2.5">
-                                <p className="text-base font-normal text-tremor-content-grayText">
-                                    Name
-                                </p>
-                                <div
-                                    className={`w-full relative flex items-center h-12`}>
-                                    <i className="fa-solid absolute left-5 fa-signature text-base text-tremor-content-grayText w-8"></i>
-
-                                    <input
-                                        className={`${
-                                            errorMessage.length > 0
-                                                ? 'border border-[#FF0000]'
-                                                : 'border border-black/10'
-                                        } w-full rounded-2xl outline-1 outline-tremor-background-darkYellow h-full pl-12 pr-4  text-base font-normal text-gray-400`}
-                                        placeholder="Name"
-                                        value={name}
-                                        type="text"
-                                        onChange={e => setName(e.target.value)}
-                                        required
-                                    />
-                                </div>
-                            </div>
-                            <div className="w-full pb-5 flex flex-col gap-2.5">
-                                <p className="text-base font-normal text-tremor-content-grayText">
-                                    Email
-                                </p>
-                                <div
-                                    className={`w-full relative flex items-center h-12`}>
-                                    <i className="fa-solid absolute left-5 fa-envelope text-base text-tremor-content-grayText w-8"></i>
-
-                                    <input
-                                        className={`${
-                                            errorMessage.length > 0
-                                                ? 'border border-[#FF0000]'
-                                                : 'border border-black/10'
-                                        } w-full rounded-2xl outline-1 outline-tremor-background-darkYellow h-full pl-12 pr-4  text-base font-normal text-gray-400`}
-                                        placeholder="Enter Email"
-                                        value={email}
-                                        type="email"
-                                        onChange={e => setEmail(e.target.value)}
-                                        required
-                                    />
-                                </div>
-                            </div>
-                            <div className="w-full pb-5 flex flex-col gap-2.5">
-                                <p className="text-base font-normal text-tremor-content-grayText">
-                                    Password
-                                </p>
-                                <div
-                                    className={`w-full relative flex items-center h-12`}>
-                                    <i className="fa-solid absolute left-5 fa-lock text-base text-tremor-content-grayText w-8"></i>
-
-                                    <input
-                                        className={`${
-                                            errorMessage.length > 0
-                                                ? 'border border-[#FF0000]'
-                                                : 'border border-black/10'
-                                        } w-full rounded-2xl outline-1 outline-tremor-background-darkYellow h-full pl-12 pr-4  text-base font-normal text-gray-400`}
-                                        placeholder="Enter Password"
-                                        value={password}
-                                        type="password"
-                                        onChange={e =>
-                                            setPassword(e.target.value)
-                                        }
-                                        required
-                                    />
-                                </div>
-                            </div>
-                            <div className="w-full pb-5 flex flex-col gap-2.5">
-                                <p className="text-base font-normal text-tremor-content-grayText">
-                                    Confirm Password
-                                </p>
-                                <div
-                                    className={`w-full relative flex items-center h-12`}>
-                                    <i className="fa-solid absolute left-5 fa-lock text-base text-tremor-content-grayText w-8"></i>
-
-                                    <input
-                                        className={`${
-                                            errorMessage.length > 0
-                                                ? 'border border-[#FF0000]'
-                                                : 'border border-black/10'
-                                        } w-full rounded-2xl outline-1 outline-tremor-background-darkYellow h-full pl-12 pr-4  text-base font-normal text-gray-400`}
-                                        placeholder="Confirm Password"
-                                        value={confirm_password}
-                                        type="password"
-                                        onChange={e =>
-                                            setConfirmPassword(e.target.value)
-                                        }
-                                        required
-                                    />
-                                </div>
-                                {errorMessage.length > 0 && (
-                                    <p className="text-base font-normal text-[#ff0000]">
-                                        {errorMessage}
-                                    </p>
-                                )}
-                            </div>
+                            <FormInput
+                                icon="fa-solid fa-signature"
+                                type="text"
+                                onChange={e => setName(e.target.value)}
+                                label="Name"
+                                placeholder="Name"
+                                value={name}
+                            />
+                            <FormInput
+                                icon="fa-solid fa-envelope"
+                                type="email"
+                                onChange={e => setEmail(e.target.value)}
+                                label="Email"
+                                placeholder="Enter Email"
+                                value={email}
+                            />
+                            <FormInput
+                                icon="fa-solid fa-lock"
+                                type="password"
+                                onChange={e => setPassword(e.target.value)}
+                                label="Password"
+                                placeholder="Enter Password"
+                                value={password}
+                            />
+                            <FormInput
+                                icon="fa-solid fa-lock"
+                                type="password"
+                                onChange={e =>
+                                    setConfirmPassword(e.target.value)
+                                }
+                                label="Confirm Password"
+                                placeholder="Enter Password"
+                                value={confirm_password}
+                            />
                             <button
                                 type="submit"
                                 className="w-full bg-tremor-background-lightYellow font-semibold text-base text-[#FDFAEF] flex items-center justify-center hover:bg-tremor-background-lightYellow/80 duration-300 h-12 rounded-2xl ">

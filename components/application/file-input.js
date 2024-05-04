@@ -17,17 +17,17 @@ export default function FileInput({ value, setValue }) {
             return
         }
         if (selectedFile) {
-            setUploadState('Success')
+            setValue(selectedFile)
         } else {
             setUploadState('')
-            toast.error('Error Uploading File', {
-                position: 'top-right',
-                autoClose: 3000,
-            })
         }
-
-        setValue(selectedFile)
     }
+
+    useEffect(() => {
+        if (value) {
+            setUploadState('Success')
+        }
+    }, [value])
 
     return (
         <section>
@@ -70,7 +70,7 @@ export default function FileInput({ value, setValue }) {
                             <i className="fas fa-circle-check text-sm"></i>
                         </p>
                         <p className="font-light text-[13px] text-tremor-brand-success mb-1">
-                            {value.name}
+                            {value?.name}
                         </p>
                     </>
                 )}

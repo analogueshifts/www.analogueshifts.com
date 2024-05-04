@@ -17,25 +17,16 @@ export default function OrganizationInformation() {
     const [organizationName, setOrganizationName] = useState('')
     const [organizationUrl, setOrganizationUrl] = useState('')
     const [allFieldEntered, setAllFieldEnter] = useState(true)
-    const [logoFile, setLogoFile] = useState(null)
     const [logoUrl, setLogoUrl] = useState('')
+    const [logoFileUrl, setLogoFileUrl] = useState('')
+    const [logoFile, setLogoFile] = useState(null)
     const [isUrlType, setIsUrlType] = useState(false)
-    const url = process.env.NEXT_PUBLIC_BACKEND_URL + '/hire/store'
     const submitButtonRef = useRef()
 
     useEffect(() => {
         let storedData = Cookies.get('jobPostData')
         let authData = JSON.parse(Cookies.get('analogueshifts'))
-        if (storedData) {
-            if (JSON.parse(storedData).organizationInformation) {
-                var organizationInformationData = JSON.parse(storedData)
-                    .organizationInformation
-                setOrganizationName(
-                    organizationInformationData.organizationName,
-                )
-                setOrganizationUrl(organizationInformationData.organizationUrl)
-            }
-        } else if (
+        if (
             !storedData ||
             !JSON.parse(storedData).jobInformation ||
             !JSON.parse(storedData).jobDetails ||
@@ -61,11 +52,14 @@ export default function OrganizationInformation() {
 
     // Make request
     const createJob = data => {
+        console.log(data)
+        const url = process.env.NEXT_PUBLIC_BACKEND_URL + '/hire/store'
         const axios = require('axios')
         let config = {
             method: 'POST',
             url: url,
             headers: {
+                'Content-Type': 'application/json',
                 Authorization: 'Bearer ' + user.token,
             },
             data: data,
@@ -82,7 +76,37 @@ export default function OrganizationInformation() {
             .catch(error => {
                 toast.error(error.message, toastConfig)
                 setLoading(false)
+                console.log(error)
             })
+    }
+
+    // Upload File
+    const uploadFile = async value => {
+        const url = process.env.NEXT_PUBLIC_BACKEND_URL + '/upload'
+        const axios = require('axios')
+        const formData = new FormData()
+        formData.append('upload', value)
+        formData.append('type', 'image')
+        let config = {
+            method: 'POST',
+            url: url,
+            headers: {
+                'Content-Type': 'multipart/form-data',
+                Authorization: 'Bearer ' + user.token,
+            },
+            data: formData,
+        }
+
+        setLoading(true)
+        try {
+            const data = await axios.request(config)
+            setLogoFileUrl(data.data.data.path)
+            setLogoFile(value)
+            setLoading(false)
+        } catch (error) {
+            setLoading(false)
+            toast.error('Error Uploading Logo', toastConfig)
+        }
     }
 
     const submit = e => {
@@ -97,14 +121,13 @@ export default function OrganizationInformation() {
                 name: existingItem.jobInformation.identifierName,
                 value: existingItem.jobInformation.identifierValue,
             },
-            datePosted: existingItem.jobInformation.datePosted,
             validThrough: existingItem.jobInformation.validThrough,
-            employmentType: existingItem.jobDetails.employmentType.name,
+            employmentType: existingItem.jobDetails.employmentType,
             hiringOrganization: {
                 '@type': 'Organization',
                 name: organizationName,
                 sameAs: organizationUrl,
-                logo: isUrlType ? logoUrl : logoFile,
+                logo: isUrlType ? logoUrl : logoFileUrl,
             },
             jobLocation: {
                 '@type': 'Place',
@@ -117,21 +140,23 @@ export default function OrganizationInformation() {
                     addressCountry: existingItem.jobLocation.addressCountry,
                 },
             },
-            jobLocationType: existingItem.jobLocation.jobLocationType.name,
+            jobLocationType: existingItem.jobLocation.jobLocationType,
             applicantLocationRequirements: [
                 ...existingItem.jobLocation.stateRequirements,
                 ...existingItem.jobLocation.countryRequirements,
             ],
             baseSalary: {
                 '@type': 'MonetaryAmount',
-                currency: existingItem.jobDetails.salaryCurrency.name,
+                currency: existingItem.jobDetails.salaryCurrency,
                 value: {
                     '@type': 'QuantitativeValue',
                     value: existingItem.jobDetails.salaryValue,
-                    unitText: existingItem.jobDetails.salaryUnitText.name,
+                    unitText: existingItem.jobDetails.salaryUnitText,
                 },
             },
             apply: existingItem.jobDetails.apply,
+            directApply: existingItem.jobDetails.apply,
+            status: existingItem.jobDetails.status,
         }
         createJob(data)
     }
@@ -211,10 +236,7 @@ export default function OrganizationInformation() {
                     </div>
                     <div className="w-full md:w-1/2">
                         {!isUrlType ? (
-                            <FileInput
-                                value={logoFile}
-                                setValue={value => setLogoFile(value)}
-                            />
+                            <FileInput value={logoFile} setValue={uploadFile} />
                         ) : (
                             <input
                                 type="url"

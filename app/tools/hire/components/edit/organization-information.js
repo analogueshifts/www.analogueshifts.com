@@ -105,14 +105,13 @@ export default function OrganizationInformation() {
                 name: existingItem.jobInformation.identifierName,
                 value: existingItem.jobInformation.identifierValue,
             },
-            datePosted: existingItem.jobInformation.datePosted,
             validThrough: existingItem.jobInformation.validThrough,
-            employmentType: existingItem.jobDetails.employmentType.name,
+            employmentType: existingItem.jobDetails.employmentType,
             hiringOrganization: {
                 '@type': 'Organization',
                 name: organizationName,
                 sameAs: organizationUrl,
-                logo: isUrlType ? logoUrl : logoFile,
+                logo: '', //isUrlType ? logoUrl : logoFile,
             },
             jobLocation: {
                 '@type': 'Place',
@@ -125,21 +124,23 @@ export default function OrganizationInformation() {
                     addressCountry: existingItem.jobLocation.addressCountry,
                 },
             },
-            jobLocationType: existingItem.jobLocation.jobLocationType.name,
+            jobLocationType: existingItem.jobLocation.jobLocationType,
             applicantLocationRequirements: [
                 ...existingItem.jobLocation.stateRequirements,
                 ...existingItem.jobLocation.countryRequirements,
             ],
             baseSalary: {
                 '@type': 'MonetaryAmount',
-                currency: existingItem.jobDetails.salaryCurrency.name,
+                currency: existingItem.jobDetails.salaryCurrency,
                 value: {
                     '@type': 'QuantitativeValue',
                     value: existingItem.jobDetails.salaryValue,
-                    unitText: existingItem.jobDetails.salaryUnitText.name,
+                    unitText: existingItem.jobDetails.salaryUnitText,
                 },
             },
             apply: existingItem.jobDetails.apply,
+            status: existingItem.jobDetails.status,
+            directApply: existingItem.jobDetails.apply,
         }
         editJob(data)
     }
