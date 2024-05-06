@@ -52,7 +52,6 @@ export default function OrganizationInformation() {
 
     // Make request
     const createJob = data => {
-        console.log(data)
         const url = process.env.NEXT_PUBLIC_BACKEND_URL + '/hire/store'
         const axios = require('axios')
         let config = {
@@ -64,6 +63,7 @@ export default function OrganizationInformation() {
             },
             data: data,
         }
+
         setLoading(true)
         axios
             .request(config)
@@ -155,7 +155,7 @@ export default function OrganizationInformation() {
                 },
             },
             apply: existingItem.jobDetails.apply,
-            directApply: existingItem.jobDetails.apply,
+            directApply: existingItem.jobDetails.directApply,
             status: existingItem.jobDetails.status,
         }
         createJob(data)

@@ -13,7 +13,7 @@ export default function Edit({ slug }) {
     const [loading, setLoading] = useState(false)
 
     const fetchJobs = () => {
-        let url = process.env.NEXT_PUBLIC_BACKEND_URL + '/hire/dashboard/'
+        let url = process.env.NEXT_PUBLIC_BACKEND_URL + '/hire/edit/' + slug
         setLoading(true)
         const axios = require('axios')
         let config = {
@@ -26,54 +26,59 @@ export default function Edit({ slug }) {
         axios
             .request(config)
             .then(res => {
-                let filteredData = res.data.hires.filter(
-                    item => item.slug === slug,
-                )[0]
-                if (filteredData) {
+                let jobData = res.data.data.hire
+                if (jobData) {
                     Cookies.set(
                         'jobEditIngData',
                         JSON.stringify({
                             jobInformation: {
-                                title: filteredData.title,
-                                description: filteredData.description,
-                                identifierName: filteredData.identifier.name,
-                                identifierValue: filteredData.identifier.value,
-                                datePosted: filteredData.datePosted,
-                                validThrough: filteredData.validThrough,
+                                title: jobData.title,
+                                description: jobData.description,
+                                identifierName: jobData.identifier.name
+                                    ? jobData.identifier.name
+                                    : '',
+                                identifierValue: jobData.identifier.value
+                                    ? jobData.identifier.value
+                                    : '',
+                                validThrough: jobData.validThrough,
                             },
                             organizationInformation: {
                                 organizationName:
-                                    filteredData.hiringOrganization.name,
-                                organizationUrl:
-                                    filteredData.hiringOrganization.sameAs,
-                                organizationLogo:
-                                    filteredData.hiringOrganization.logo,
+                                    jobData.hiringOrganization.name,
+                                organizationUrl: jobData.hiringOrganization
+                                    .sameAs
+                                    ? jobData.hiringOrganization.sameAs
+                                    : '',
+                                organizationLogo: jobData.hiringOrganization
+                                    .logo
+                                    ? jobData.hiringOrganization.logo
+                                    : '',
                             },
                             jobLocation: {
-                                ...filteredData.jobLocation.address,
-                                jobLocationType: filteredData.jobLocationType,
+                                ...jobData.jobLocation.address,
+                                jobLocationType: jobData.jobLocationType,
                                 stateRequirements: [
-                                    ...filteredData.applicantLocationRequirements.filter(
+                                    ...jobData.applicantLocationRequirements.filter(
                                         item => item['@type'] === 'State',
                                     ),
                                 ],
                                 countryRequirements: [
-                                    ...filteredData.applicantLocationRequirements.filter(
+                                    ...jobData.applicantLocationRequirements.filter(
                                         item => item['@type'] === 'Country',
                                     ),
                                 ],
                             },
                             jobDetails: {
-                                employmentType: filteredData.employmentType,
-                                apply: filteredData.apply,
-                                salaryCurrency:
-                                    filteredData.baseSalary.currency,
-                                salaryValue:
-                                    filteredData.baseSalary.value.value,
+                                employmentType: jobData.employmentType,
+                                apply: jobData.apply,
+                                directApply: jobData.directApply,
+                                status: jobData.status,
+                                salaryCurrency: jobData.baseSalary.currency,
+                                salaryValue: jobData.baseSalary.value.value,
                                 salaryUnitText:
-                                    filteredData.baseSalary.value.unitText,
+                                    jobData.baseSalary.value.unitText,
                             },
-                            editId: filteredData.id,
+                            editId: jobData.id,
                         }),
                     )
                     router.push(`/tools/hire/edit/${slug}/job-information`)

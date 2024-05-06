@@ -17,6 +17,7 @@ export default function OrganizationInformation() {
     const [loading, setLoading] = useState(false)
     const [organizationName, setOrganizationName] = useState('')
     const [organizationUrl, setOrganizationUrl] = useState('')
+    const [logoFileUrl, setLogoFileUrl] = useState('')
     const [logoFile, setLogoFile] = useState(null)
     const [logoUrl, setLogoUrl] = useState('')
     const [isUrlType, setIsUrlType] = useState(false)
@@ -36,6 +37,7 @@ export default function OrganizationInformation() {
                     organizationInformationData.organizationName,
                 )
                 setOrganizationUrl(organizationInformationData.organizationUrl)
+                setIsUrlType(true)
             }
             setEditId(JSON.parse(storedData).editId)
         } else if (
@@ -93,6 +95,35 @@ export default function OrganizationInformation() {
             })
     }
 
+    // Upload File
+    const uploadFile = async value => {
+        const url = process.env.NEXT_PUBLIC_BACKEND_URL + '/upload'
+        const axios = require('axios')
+        const formData = new FormData()
+        formData.append('upload', value)
+        formData.append('type', 'image')
+        let config = {
+            method: 'POST',
+            url: url,
+            headers: {
+                'Content-Type': 'multipart/form-data',
+                Authorization: 'Bearer ' + user.token,
+            },
+            data: formData,
+        }
+
+        setLoading(true)
+        try {
+            const data = await axios.request(config)
+            setLogoFileUrl(data.data.data.path)
+            setLogoFile(value)
+            setLoading(false)
+        } catch (error) {
+            setLoading(false)
+            toast.error('Error Uploading Logo', toastConfig)
+        }
+    }
+
     const submit = e => {
         e.preventDefault()
         let storedData = Cookies.get('jobEditIngData')
@@ -111,7 +142,7 @@ export default function OrganizationInformation() {
                 '@type': 'Organization',
                 name: organizationName,
                 sameAs: organizationUrl,
-                logo: '', //isUrlType ? logoUrl : logoFile,
+                logo: isUrlType ? logoUrl : logoFileUrl,
             },
             jobLocation: {
                 '@type': 'Place',
@@ -139,8 +170,8 @@ export default function OrganizationInformation() {
                 },
             },
             apply: existingItem.jobDetails.apply,
+            directApply: existingItem.jobDetails.directApply,
             status: existingItem.jobDetails.status,
-            directApply: existingItem.jobDetails.apply,
         }
         editJob(data)
     }
@@ -220,10 +251,7 @@ export default function OrganizationInformation() {
                     </div>
                     <div className="w-full md:w-1/2">
                         {!isUrlType ? (
-                            <FileInput
-                                value={logoFile}
-                                setValue={value => setLogoFile(value)}
-                            />
+                            <FileInput value={logoFile} setValue={uploadFile} />
                         ) : (
                             <input
                                 type="url"

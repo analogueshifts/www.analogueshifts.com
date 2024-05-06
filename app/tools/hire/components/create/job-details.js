@@ -11,6 +11,7 @@ import {
     employmentTypesData,
     salaryCurrencyData,
     salaryUnitTextData,
+    directApplyData,
     statusData,
 } from '../data'
 import { toast } from 'react-toastify'
@@ -19,6 +20,7 @@ export default function JobDetails() {
     const [allFieldEntered, setAllFieldEnter] = useState(true)
     const [employmentType, setEmploymentType] = useState(employmentTypesData[0])
     const [status, setStatus] = useState(statusData[0])
+    const [directApply, setDirectApply] = useState(directApplyData[0])
     const [salaryCurrency, setSalaryCurrency] = useState(salaryCurrencyData[0])
     const [salaryValue, setSalaryValue] = useState('')
     const [salaryUnitText, setSalaryUnitText] = useState(salaryUnitTextData[0])
@@ -32,7 +34,8 @@ export default function JobDetails() {
             if (JSON.parse(storedData).jobDetails) {
                 var jobDetailsData = JSON.parse(storedData).jobDetails
                 setApply(jobDetailsData.apply)
-                setStatus(jobDetailsData.status)
+                setDirectApply(jobDetailsData.directApply)
+                setStatus(jobDetailsData.status === '0' ? 'Offline' : 'Online')
                 setEmploymentType(jobDetailsData.employmentType)
                 setSalaryCurrency(jobDetailsData.salaryCurrency)
                 setSalaryValue(jobDetailsData.salaryValue)
@@ -67,7 +70,8 @@ export default function JobDetails() {
         let jobDetailsData = {
             employmentType: employmentType,
             apply: apply,
-            status: status,
+            directApply: directApply,
+            status: status === 'Offline' ? '0' : '1',
             salaryCurrency: salaryCurrency,
             salaryValue: salaryValue,
             salaryUnitText: salaryUnitText,
@@ -178,6 +182,23 @@ export default function JobDetails() {
                             value={salaryUnitText}
                             onChange={setSalaryUnitText}
                             list={salaryUnitTextData}
+                        />
+                    </div>
+                </div>
+                <div className="w-full pb-6 border-b border-tremor-brand-boulder200 flex flex-col md:justify-between md:flex-row gap-y-4">
+                    <div className="w-full md:w-1/2 flex flex-col gap-4 md:pr-5">
+                        <p className="text-sm font-normal text-tremor-brand-boulder400">
+                            DIRECT APPLY
+                        </p>
+                        <p className="font-light text-[13px] text-tremor-brand-boulder900">
+                            The Job Application link type
+                        </p>
+                    </div>
+                    <div className="w-full md:w-1/2">
+                        <DropdownMenu
+                            value={directApply}
+                            onChange={setDirectApply}
+                            list={directApplyData}
                         />
                     </div>
                 </div>

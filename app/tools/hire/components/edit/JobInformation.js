@@ -28,6 +28,7 @@ export default function JobInformation() {
     useEffect(() => {
         let storedData = Cookies.get('jobEditIngData')
         if (storedData) {
+            console.log(JSON.parse(storedData))
             if (JSON.parse(storedData).jobInformation) {
                 var jobInformationData = JSON.parse(storedData).jobInformation
                 setTitle(jobInformationData.title)

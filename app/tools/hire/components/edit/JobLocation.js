@@ -30,11 +30,31 @@ export default function JobLocation() {
         if (storedData) {
             if (JSON.parse(storedData).jobLocation) {
                 var jobLocationData = JSON.parse(storedData).jobLocation
-                setStreetAddress(jobLocationData.streetAddress)
-                setAddressLocality(jobLocationData.addressLocality)
-                setAddressRegion(jobLocationData.addressRegion)
-                setPostalCode(jobLocationData.postalCode)
-                setAddressCountry(jobLocationData.addressCountry)
+                setStreetAddress(
+                    jobLocationData.streetAddress
+                        ? jobLocationData.streetAddress
+                        : '',
+                )
+                setAddressLocality(
+                    jobLocationData.addressLocality
+                        ? jobLocationData.addressLocality
+                        : '',
+                )
+                setAddressRegion(
+                    jobLocationData.addressRegion
+                        ? jobLocationData.addressRegion
+                        : '',
+                )
+                setPostalCode(
+                    jobLocationData.postalCode
+                        ? jobLocationData.postalCode
+                        : '',
+                )
+                setAddressCountry(
+                    jobLocationData.addressCountry
+                        ? jobLocationData.addressCountry
+                        : '',
+                )
                 setJobLocationType(jobLocationData.jobLocationType)
                 setStateRequirements(jobLocationData.stateRequirements)
                 setCountryRequirements(jobLocationData.countryRequirements)

@@ -181,7 +181,7 @@ export default function HirePageDetails() {
                                 </div>
                                 <div className="flex gap-2 mx-auto items-center md:mt-2 md:mx-auto">
                                     <Link
-                                        href={`/tools/hire/edit/${item.slug}`}
+                                        href={`/tools/hire/edit/${item.uuid}`}
                                         className={`w-24 lg:w-28 py-2 hover:scale-105 rounded-full text-xs font-bold duration-300 text-white bg-yellow-500 flex justify-center`}>
                                         Edit
                                     </Link>

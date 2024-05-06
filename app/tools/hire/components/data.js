@@ -13,6 +13,8 @@ export const employmentTypesData = [
 
 export const statusData = ['Online', 'Offline']
 
+export const directApplyData = ['true', 'false']
+
 export const salaryCurrencyData = ['USD', 'EUR', 'GBP', 'NGN']
 
 export const salaryUnitTextData = ['HOUR', 'DAY', 'WEEK', 'MONTH', 'YEAR']
