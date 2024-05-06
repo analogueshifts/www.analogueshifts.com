@@ -10,50 +10,71 @@ import SearchGlass from '@/public/images/jobs/search-glass.png'
 import NewsLetterCard from '../news-letter-card'
 import JobGridTile from './grid-tile'
 import UserRatingStack from './rating-stack'
-import {
-    Pagination,
-    PaginationContent,
-    PaginationEllipsis,
-    PaginationItem,
-    PaginationLink,
-    PaginationNext,
-    PaginationPrevious,
-} from '@/components/ui/pagination'
-import { fetchJobs } from '@/utils/fetch-jobs'
+
+import { fetchJobs, searchJob } from '@/utils/fetch-jobs'
 import { toastConfig } from '@/utils/toast-config'
+import JobsPagination from './jobs-pagination'
 
 export default function JobView() {
     const [jobs, setJobs] = useState([])
     const pageQuery = useSearchParams().getAll('page')
+    const keywordQuery = useSearchParams().getAll('keywords')
     const [currentPageInfo, setCurrentPageInfo] = useState({})
-    const [searchFilter, setSearchFilter] = useState('')
-    const [loading, setLoading] = useState(false)
-    const [url, setUrl] = useState(
-        `${process.env.NEXT_PUBLIC_BACKEND_URL}/jobs${
-            pageQuery.length ? `?page=${pageQuery[0]}` : ''
-        }`,
+    const [searchFilter, setSearchFilter] = useState(
+        keywordQuery[0] ? keywordQuery[0] : '',
     )
+    const [loading, setLoading] = useState(false)
 
     const [ref, inView] = useInView({
         triggerOnce: true,
         rootMargin: '0px', //triggers when the div is -50px up
     })
 
+    // Handle Search Job
+    const handleSearch = e => {
+        e.preventDefault()
+        if (searchFilter.length >= 255) {
+            toast.error('Search keywords must not exceed 255', toastConfig)
+            return
+        }
+        window.location.href = '/jobs?page=1&keywords=' + searchFilter
+    }
+
     useEffect(() => {
-        // Fetch job data from your API
-        setLoading(true)
-        fetchJobs(
-            url,
-            response => {
-                setJobs(response.data.data.jobs.data)
-                setCurrentPageInfo(response.data.data.jobs)
-                setLoading(false)
-            },
-            error => {
-                setLoading(false)
-                toast.error(error.message, toastConfig)
-            },
-        )
+        if (keywordQuery[0]) {
+            setLoading(true)
+            searchJob(
+                process.env.NEXT_PUBLIC_BACKEND_URL +
+                    `/job/search${pageQuery[0] ? '?page=' + pageQuery[0] : ''}`,
+                keywordQuery[0],
+                response => {
+                    setJobs(response.data.data.jobs.data)
+                    setCurrentPageInfo(response.data.data.jobs)
+                    setLoading(false)
+                },
+                error => {
+                    setLoading(false)
+                    toast.error(error.message, toastConfig)
+                },
+                'POST',
+            )
+        } else {
+            // Fetch job data from your API
+            setLoading(true)
+            fetchJobs(
+                process.env.NEXT_PUBLIC_BACKEND_URL +
+                    `/jobs${pageQuery[0] ? '?page=' + pageQuery[0] : ''}`,
+                response => {
+                    setJobs(response.data.data.jobs.data)
+                    setCurrentPageInfo(response.data.data.jobs)
+                    setLoading(false)
+                },
+                error => {
+                    setLoading(false)
+                    toast.error(error.message, toastConfig)
+                },
+            )
+        }
     }, [])
 
     return (
@@ -97,90 +118,41 @@ export default function JobView() {
             <section className="w-full">
                 <div
                     className={`mx-auto w-containerWidth px-3 lg:px-16 max-w-[95%] mt-5 duration-500`}>
-                    <div className="flex w-full relative mt-6 mb-12">
-                        <Image
-                            src={SearchGlass}
-                            alt="Search Glass"
-                            className="absolute top-[22px] left-5"
-                        />
+                    <form
+                        onSubmit={handleSearch}
+                        className="flex w-full relative mt-6 mb-12">
+                        <button
+                            type="submit"
+                            className="absolute top-[22px] right-5 outline-none border-none bg-transparent">
+                            <Image
+                                src={SearchGlass}
+                                alt="Search Glass"
+                                className=""
+                            />
+                        </button>
                         <input
                             placeholder="Search..."
                             value={searchFilter}
                             onChange={e => setSearchFilter(e.target.value)}
-                            className="w-full h-[60px] bg-transparent outline-none border placeholder:text-[#D1D1D1] border-[#D2D2D2] text-lg text-tremor-brand-boulder rounded-3xl pr-5 pl-[48px] py-2"
+                            className="w-full h-[60px] bg-transparent outline-none border placeholder:text-[#D1D1D1] border-[#D2D2D2] text-lg text-tremor-brand-boulder rounded-3xl pl-5 pr-[48px] py-2"
                         />
-                    </div>
+                    </form>
                     <div className="w-full pt-9 flex flex-wrap gap-6">
-                        {jobs.filter(job =>
-                            job.title
-                                .toLowerCase()
-                                .includes(searchFilter.toLowerCase()),
-                        ).length === 0 && (
-                            <h3 className='text-xl font-semibold text-black/90" mx-auto'>
+                        {jobs.length === 0 && (
+                            <h3 className='text-xl font-semibold text-black/90" mx-auto mb-10'>
                                 No Job Found
                             </h3>
                         )}
-                        {jobs
-                            .filter(job =>
-                                job.title
-                                    .toLowerCase()
-                                    .includes(searchFilter.toLowerCase()),
-                            )
-                            .map((job, index) => {
-                                return <JobGridTile job={job} key={index} />
-                            })}
+                        {jobs.map((job, index) => {
+                            return <JobGridTile job={job} key={index} />
+                        })}
                     </div>
 
                     {/* PAGINATION */}
-                    <Pagination>
-                        <PaginationContent>
-                            <PaginationItem>
-                                <PaginationPrevious
-                                    href={
-                                        currentPageInfo?.prev_page_url
-                                            ? currentPageInfo.prev_page_url.slice(
-                                                  34,
-                                              )
-                                            : ''
-                                    }
-                                />
-                            </PaginationItem>
-                            {currentPageInfo?.links &&
-                                currentPageInfo.links
-                                    .slice(1, currentPageInfo.links.length - 1)
-                                    .map(item => {
-                                        return (
-                                            <PaginationItem
-                                                key={crypto.randomUUID()}>
-                                                <PaginationLink
-                                                    isActive={item.active}
-                                                    href={
-                                                        item.url
-                                                            ? item.url.slice(34)
-                                                            : ''
-                                                    }>
-                                                    {item.label}
-                                                </PaginationLink>
-                                            </PaginationItem>
-                                        )
-                                    })}
-
-                            <PaginationItem>
-                                <PaginationEllipsis />
-                            </PaginationItem>
-                            <PaginationItem>
-                                <PaginationNext
-                                    href={
-                                        currentPageInfo?.next_page_url
-                                            ? currentPageInfo.next_page_url.slice(
-                                                  34,
-                                              )
-                                            : ''
-                                    }
-                                />
-                            </PaginationItem>
-                        </PaginationContent>
-                    </Pagination>
+                    <JobsPagination
+                        currentPageInfo={currentPageInfo}
+                        keywordQuery={keywordQuery}
+                    />
                 </div>
 
                 {/* Call to action */}
