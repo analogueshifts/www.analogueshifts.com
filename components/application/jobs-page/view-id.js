@@ -78,9 +78,9 @@ export default function ViewId({ id }) {
                     <div className="w-full flex items-start gap-6 mb-5">
                         <Image
                             src={
-                                job?.hiringOrganization.logo &&
-                                job.hiringOrganization.logo[0]
-                                    ? job.hiringOrganization.logo[0]
+                                job?.hiringOrganization?.logo &&
+                                job.hiringOrganization.logo
+                                    ? job.hiringOrganization.logo
                                     : '/images/jobs/company_logo.JPG'
                             }
                             width={48}
@@ -93,7 +93,7 @@ export default function ViewId({ id }) {
                                 {job?.title}
                             </h1>
                             <span className="text-tremor-brand-boulder900 text-base font-medium">
-                                {job?.hiringOrganization.name}
+                                {job?.hiringOrganization?.name}
                             </span>
                         </div>
                     </div>
@@ -102,7 +102,7 @@ export default function ViewId({ id }) {
                             <Tag text={job.jobLocationType} />
                         )}
 
-                        {job?.applicantLocationRequirements[0] && (
+                        {job?.applicantLocationRequirements && (
                             <>
                                 {' '}
                                 <p className="text-tremor-brand-boulder900 flex items-center text-sm font-medium gap-2">
@@ -124,22 +124,25 @@ export default function ViewId({ id }) {
                             Salary{' '}
                             <i className="fas fa-arrow-right text-xs"></i>
                         </p>
-                        <Tag
-                            text={
-                                job?.baseSalary.value.value +
-                                ' ' +
-                                `${
-                                    job?.baseSalary.currency
-                                        ? job.baseSalary.currency + ' '
-                                        : ''
-                                }` +
-                                `${
-                                    job?.baseSalary.value.unitText
-                                        ? 'Per ' + job.baseSalary.value.unitText
-                                        : ''
-                                }`
-                            }
-                        />
+                        {job?.baseSalary && (
+                            <Tag
+                                text={
+                                    job?.baseSalary.value.value +
+                                    ' ' +
+                                    `${
+                                        job?.baseSalary.currency
+                                            ? job.baseSalary.currency + ' '
+                                            : ''
+                                    }` +
+                                    `${
+                                        job?.baseSalary.value.unitText
+                                            ? 'Per ' +
+                                              job.baseSalary.value.unitText
+                                            : ''
+                                    }`
+                                }
+                            />
+                        )}
 
                         {job?.validThrough && (
                             <>
@@ -198,10 +201,9 @@ export default function ViewId({ id }) {
                                     <div className="w-full items-start flex gap-4">
                                         <Image
                                             src={
-                                                job?.hiringOrganization.logo &&
-                                                job.hiringOrganization.logo[0]
-                                                    ? job.hiringOrganization
-                                                          .logo[0]
+                                                item?.hiringOrganization?.logo
+                                                    ? item.hiringOrganization
+                                                          .logo
                                                     : '/images/jobs/company_logo.JPG'
                                             }
                                             width={48}
@@ -211,16 +213,16 @@ export default function ViewId({ id }) {
                                         />
                                         <div className="min-h-12 flex flex-col justify-between">
                                             <h3 className="text-base text-black font-semibold">
-                                                {job?.title}
+                                                {item?.title}
                                             </h3>
                                             <span className="text-black/70 text-sm font-normal">
-                                                {job?.hiringOrganization.name}
+                                                {item?.hiringOrganization?.name}
                                             </span>
                                         </div>
                                     </div>
                                     <div className="w-full flex gap-2 sm:pl-16 flex-wrap mt-4">
-                                        {job?.jobLocationType && (
-                                            <Tag text={job.jobLocationType} />
+                                        {item?.jobLocationType && (
+                                            <Tag text={item.jobLocationType} />
                                         )}
                                     </div>
                                 </Link>
