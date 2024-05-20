@@ -1,13 +1,15 @@
 'use client'
 import Group from '@/public/images/login/group.png'
 import Avatar from '@/public/images/login/avatar.png'
-import LoadingTwo from '@/app/components/Loading'
+import LoadingTwo from '@/components/ui/loading-spinner'
 import Image from 'next/image'
-import ApplicationLogo from '@/app/components/ApplicationLogo'
+import ApplicationLogo from '@/components/application/application-logo'
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { toast } from 'react-toastify'
 import Cookies from 'js-cookie'
+import { toastConfig } from '@/utils/toast-config'
+import FormInput from '@/components/application/form-input'
 
 export default function Login() {
     const [email, setEmail] = useState('')
@@ -19,21 +21,17 @@ export default function Login() {
     function submit(e) {
         e.preventDefault()
         const axios = require('axios')
-        let data = JSON.stringify({
-            email: email,
-            password: password,
-        })
 
         let config = {
-            method: 'post',
-            maxBodyLength: Infinity,
+            method: 'POST',
             url: url,
             headers: {
-                Accept: 'application/json',
                 'Content-Type': 'application/json',
             },
-            credentials: 'same-origin',
-            data: data,
+            data: JSON.stringify({
+                email: email,
+                password: password,
+            }),
         }
         setLoading(true)
 
@@ -41,25 +39,21 @@ export default function Login() {
             .request(config)
             .then(async response => {
                 const userData = JSON.stringify({
-                    ...response.data.user,
-                    token: response.data.token,
+                    ...response.data.data.user,
+                    token: response.data.data.token,
                 })
                 Cookies.set('analogueshifts', userData)
-                toast.success('Login Successful', {
-                    position: 'top-right',
-                    autoClose: 3000,
-                })
-                window.location.href = '/dashboard'
+                toast.success('Login Successful', toastConfig)
+                let redirectionLink = Cookies.get('RedirectionLink')
+                window.location.href = redirectionLink.trim().length
+                    ? redirectionLink
+                    : '/dashboard'
 
                 setLoading(false)
             })
             .catch(error => {
                 setLoading(false)
-                toast.error('Invalid email or password', {
-                    position: 'top-right',
-                    autoClose: 3000,
-                })
-                console.log(error)
+                toast.error(error.message, toastConfig)
             })
     }
 
@@ -91,57 +85,24 @@ export default function Login() {
                             <p className="font-bold text-3xl text-[#292929] pb-5">
                                 Sign Into Your Account
                             </p>
-                            {errorMessage.length > 0 && (
-                                <p className="text-base font-normal text-[#ff0000]">
-                                    {errorMessage}
-                                </p>
-                            )}
-                            <div className="w-full pb-5 flex flex-col gap-2.5">
-                                <p className="text-base font-normal text-tremor-content-grayText">
-                                    Email
-                                </p>
-                                <div
-                                    className={`w-full relative flex items-center h-12`}>
-                                    <i className="fa-solid absolute left-5 fa-envelope text-base text-tremor-content-grayText w-8"></i>
 
-                                    <input
-                                        className={`${
-                                            errorMessage.length > 0
-                                                ? 'border border-[#FF0000]'
-                                                : 'border border-black/10'
-                                        } w-full rounded-2xl h-full pl-12 pr-4  outline-none text-base font-normal text-gray-400`}
-                                        placeholder="Enter Email"
-                                        value={email}
-                                        type="email"
-                                        onChange={e => setEmail(e.target.value)}
-                                        required
-                                    />
-                                </div>
-                            </div>
-                            <div className="w-full pb-5 flex flex-col gap-2.5">
-                                <p className="text-base font-normal text-tremor-content-grayText">
-                                    Password
-                                </p>
-                                <div
-                                    className={`w-full relative flex items-center h-12`}>
-                                    <i className="fa-solid absolute left-5 fa-lock text-base text-tremor-content-grayText w-8"></i>
+                            <FormInput
+                                icon="fa-solid fa-envelope"
+                                type="email"
+                                onChange={e => setEmail(e.target.value)}
+                                label="Email"
+                                placeholder="Enter Email"
+                                value={email}
+                            />
 
-                                    <input
-                                        className={`${
-                                            errorMessage.length > 0
-                                                ? 'border border-[#FF0000]'
-                                                : 'border border-black/10'
-                                        } w-full rounded-2xl h-full pl-12 pr-4  outline-none text-base font-normal text-gray-400`}
-                                        placeholder="Enter Password"
-                                        value={password}
-                                        type="password"
-                                        onChange={e =>
-                                            setPassword(e.target.value)
-                                        }
-                                        required
-                                    />
-                                </div>
-                            </div>
+                            <FormInput
+                                icon="fa-solid fa-lock"
+                                type="password"
+                                onChange={e => setPassword(e.target.value)}
+                                label="Password"
+                                placeholder="Enter Password"
+                                value={password}
+                            />
                             <button
                                 type="submit"
                                 className="w-full bg-tremor-background-lightYellow font-semibold text-base text-[#FDFAEF] flex items-center justify-center hover:bg-tremor-background-lightYellow/80 duration-300 h-12 rounded-2xl ">

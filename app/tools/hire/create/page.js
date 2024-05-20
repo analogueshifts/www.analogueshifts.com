@@ -1,4 +1,4 @@
-import Create from '../components/Create'
+import Create from '../components/create-page'
 
 export const metadata = {
     title: 'Hire Talents | AnalogueShifts',

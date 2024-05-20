@@ -1,0 +1,23 @@
+{
+    "FeaturesData" : [
+        {
+            "image": "/images/payment-gateway.png",
+            "title": "Payment Gateway",
+            "datails": "Your financial information is safeguarded, ensuring peace of mind as you invest in your future. Experience hassle-free payments and unlock access to premium services with confidence.",
+            "url": "https://pay.analogueshifts.com"
+        },
+        {
+            "image": "/images/vetting-system.png",
+            "title": "Vetting System",
+            "datails": "  We ensure every candidate aligns with your standards, providing peace of mind in your hiring process. Trust our rigorous screening to deliver top-tier talent tailored to your needs.",
+            "url": "https://www.analogueshifts.com/tools/vet"
+        },
+       
+        {
+            "image": "/images/resume-builder.png",
+            "title": "Resume Builder",
+            "datails": "Tailored templates, intuitive design, and expert guidance empower you to showcase your skills and experiences with confidence. Take the first step towards your dream career today!",
+            "url": "https://resume.analogueshifts.com"
+        }    
+    ]
+}

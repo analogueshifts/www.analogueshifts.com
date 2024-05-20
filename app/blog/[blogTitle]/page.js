@@ -1,8 +1,8 @@
 'use client'
 import { useEffect } from 'react'
 import { useRouter } from 'next/navigation'
-import GuestLayout from '@/app/Layouts/GuestLayout'
-// import ViewBlog from '@/app/components/BlogComponents/ViewBlog'
+import GuestLayout from '@/app/layouts/guest-layout'
+// import ViewBlog from '@/components/application/BlogComponents/ViewBlog'
 // import { axiosBlog } from '@/app/lib/axios'
 
 // export async function generateMetadata({ params }) {

@@ -1,4 +1,4 @@
-import ResetPassword from './components/ResetPassword'
+import ResetPassword from './components/content'
 
 export const metadata = {
     title: 'Reset Password | AnalogueShifts',

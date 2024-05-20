@@ -3,6 +3,8 @@ import './globals.css'
 import './scss/app.scss'
 import Script from 'next/script'
 
+import { cn } from '@/lib/utils'
+
 //Toastify
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
@@ -36,6 +38,9 @@ export const metadata = {
     alternates: {
         canonical: 'https://www.analogueshifts.com',
     },
+    verification: {
+        google: 'SyAAgxsXes-UzPmZubsHldcLFGqyvtB2Spen8LZxR9k',
+    },
 }
 
 export default function RootLayout({ children }) {
@@ -48,7 +53,7 @@ export default function RootLayout({ children }) {
                     sizes="any"
                 />
             </head>
-            <body className={lexend.className}>
+            <body className={cn('', lexend.className)}>
                 {' '}
                 <ToastContainer position="top-center" />
                 {children}

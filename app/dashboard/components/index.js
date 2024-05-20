@@ -1,30 +1,72 @@
 'use client'
 import { useEffect, useState } from 'react'
-import Image from 'next/image'
-import Authenticated from '@/app/Layouts/AuthenticatedLayout'
+import Authenticated from '@/app/layouts/authenticated-layout'
 import Curve from '@/public/images/curve.png'
-import DummyUser from '@/public/images/dummy_user.png'
+import Image from 'next/image'
 import Cookies from 'js-cookie'
-
-//Data
-import { modesDummyData } from './data'
+import ProfileImage from '@/public/images/profile_avatar.JPG'
+import { toast } from 'react-toastify'
+import { toastConfig } from '@/utils/toast-config'
+import { fetchJobPosts } from '@/utils/fetch-job-posts'
+import SkeletonCard from '@/components/application/skeleton-card'
+import { fetchVetPosts } from '@/utils/fetch-vets'
 
 export default function Dashboard() {
     const [selectedMode, setSelectedMode] = useState('Buy')
+    const [loading, setLoading] = useState(true)
+    const [totalJobs, setTotalJobs] = useState(0)
+    const [totalVets, setTotalVets] = useState(0)
     const [user, setUser] = useState(null)
 
+    // Fetch Jobs and Vets
+    const getDatas = () => {
+        const jobsUrl = process.env.NEXT_PUBLIC_BACKEND_URL + '/hire/dashboard'
+        const vetsUrl = process.env.NEXT_PUBLIC_BACKEND_URL + '/tools/form'
+        try {
+            fetchJobPosts(
+                jobsUrl,
+                user.token,
+                response => {
+                    setTotalJobs(response.data.data.hires.total)
+                    fetchVetPosts(
+                        vetsUrl,
+                        user.token,
+                        response => {
+                            setTotalVets(response.data.data.forms.total)
+                            setLoading(false)
+                        },
+                        err => {
+                            setLoading(false)
+                        },
+                    )
+                },
+                err => {
+                    setLoading(false)
+                },
+            )
+        } catch (error) {
+            setLoading(false)
+            toast.error('Error Fetching Data', toastConfig)
+        }
+    }
+
     useEffect(() => {
-        let storedData = JSON.parse(Cookies.get('analogueshifts'))
+        let storedData = Cookies.get('analogueshifts')
         if (storedData) {
-            setUser(storedData)
+            setUser(JSON.parse(Cookies.get('analogueshifts')))
         }
     }, [])
 
+    useEffect(() => {
+        if (user) {
+            getDatas()
+        }
+    }, [user])
+
     return (
         <Authenticated
-            user={user}
             header={
-                <h2 className="font-semibold text-lg text-gray-500 leading-tight">
+                <h2 className="text-xl font-bold text-gray-800 leading-tight">
                     Dashboard
                 </h2>
             }>
@@ -34,8 +76,9 @@ export default function Dashboard() {
                 </div>
                 <div className="bg-white -translate-y-12 ml-5 h-max w-[calc(100%-40px)] px-5 pb-5 rounded-xl flex flex-col">
                     {/* Profile Overview */}
+
                     <Image
-                        src={DummyUser}
+                        src={ProfileImage}
                         alt="Profile"
                         className="rounded-full h-28 w-28 -translate-y-12"
                     />
@@ -48,43 +91,59 @@ export default function Dashboard() {
                     </div>
                     {/* Metric Overview */}
 
-                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 ">
                         {/* Metric Card 1 */}
-                        <div className="bg-white p-4 rounded-xl shadow-xl">
-                            <p className="text-base truncate lg:text-xl font-bold text-blue-600">
-                                Hire Talents
-                            </p>
-                            <p className="text-gray-600">500+</p>
-                        </div>
+                        {loading ? (
+                            <SkeletonCard />
+                        ) : (
+                            <div className="bg-white p-4 rounded-xl shadow-xl">
+                                <p className="text-base truncate lg:text-xl font-bold text-blue-600">
+                                    Hire Talents
+                                </p>
+                                <p className="text-gray-600">{totalJobs}</p>
+                            </div>
+                        )}
 
                         {/* Metric Card 2 */}
-                        <div className="bg-white p-4 rounded-xl shadow-xl">
-                            <p className="text-base truncate lg:text-xl font-bold text-green-600">
-                                Vetting System
-                            </p>
-                            <p className="text-gray-600">25</p>
-                        </div>
+                        {loading ? (
+                            <SkeletonCard />
+                        ) : (
+                            <div className="bg-white p-4 rounded-xl shadow-xl">
+                                <p className="text-base truncate lg:text-xl font-bold text-green-600">
+                                    Vetting System
+                                </p>
+                                <p className="text-gray-600">{totalVets}</p>
+                            </div>
+                        )}
 
                         {/* Metric Card 3 */}
-                        <div className="bg-white p-4 rounded-xl shadow-xl">
-                            <p className="text-base truncate lg:text-xl font-bold text-yellow-600">
-                                Recommendations
-                            </p>
-                            <p className="text-gray-600">12</p>
-                        </div>
+                        {loading ? (
+                            <SkeletonCard />
+                        ) : (
+                            <div className="bg-white p-4 rounded-xl shadow-xl">
+                                <p className="text-base truncate lg:text-xl font-bold text-yellow-600">
+                                    Recommendations
+                                </p>
+                                <p className="text-gray-600">12</p>
+                            </div>
+                        )}
 
                         {/* Metric Card 4 */}
-                        <div className="bg-white p-4 rounded-xl shadow-xl">
-                            <p className="text-base truncate lg:text-xl font-bold text-red-600">
-                                Projects
-                            </p>
-                            <p className="text-gray-600">8</p>
-                        </div>
+                        {loading ? (
+                            <SkeletonCard />
+                        ) : (
+                            <div className="bg-white p-4 rounded-xl shadow-xl">
+                                <p className="text-base truncate lg:text-xl font-bold text-red-600">
+                                    Projects
+                                </p>
+                                <p className="text-gray-600">8</p>
+                            </div>
+                        )}
                     </div>
 
                     {/* Modes Button Row */}
                     <div className="flex flex-col pt-12">
-                        <p className="w-full text-center font-medium text-[#D2D2D2] text-[13px]">
+                        {/* <p className="w-full text-center font-medium text-[#D2D2D2] text-[13px]">
                             YOUR MODES
                         </p>
                         <div className="w-full flex pt-8 justify-center gap-1.5">
@@ -106,8 +165,8 @@ export default function Dashboard() {
                                 }`}>
                                 Sell
                             </button>
-                        </div>
-                        <div className="w-full pt-9 flex flex-col gap-6">
+                        </div> */}
+                        {/* <div className="w-full pt-9 flex flex-col gap-6">
                             {selectedMode === 'Buy'
                                 ? modesDummyData.buy.map(data => {
                                       return (
@@ -187,7 +246,7 @@ export default function Dashboard() {
                                           </div>
                                       )
                                   })}
-                        </div>
+                        </div> */}
                     </div>
                 </div>
                 <div className="flex flex-col overflow-hidden"></div>
