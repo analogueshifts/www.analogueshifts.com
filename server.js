@@ -5,7 +5,7 @@ const dir = path.join(__dirname)
 process.env.NODE_ENV = 'production'
 process.chdir(__dirname)
 
-const currentPort = parseInt(process.env.PORT, 10) || 3000
+const currentPort = parseInt(process.env.PORT, 10) || 9001
 const hostname = process.env.HOSTNAME || '0.0.0.0'
 
 let keepAliveTimeout = parseInt(process.env.KEEP_ALIVE_TIMEOUT, 10)
