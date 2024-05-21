@@ -1,4 +1,4 @@
-// File: C:\Users\tesli\Desktop\projects\web\ANALOGUESHIFTS\www\app\tools\vet\show\page.js
+// File: C:\Users\tesli\Desktop\projects\web\analogueshifts\www\app\tools\vet\show\page.js
 import * as entry from '../../../../../../app/tools/vet/show/page.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 
