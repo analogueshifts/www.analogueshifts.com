@@ -1,42 +1,46 @@
-const path = require('path')
+const { createServer } = require('http')
+const { parse } = require('url')
 const next = require('next')
-const { startServer } = require('next/dist/server/lib/start-server')
 
-const dir = path.join(__dirname)
+const dev = process.env.NODE_ENV !== 'production'
+const hostname = process.env.HOSTNAME || 'localhost'
+const port = parseInt(process.env.PORT, 10) || 3210
 
-process.env.NODE_ENV = 'production'
-process.chdir(__dirname)
+const app = next({ dev, hostname, port })
+const handle = app.getRequestHandler()
 
-const currentPort = parseInt(process.env.PORT, 10) || 9001
-const hostname = process.env.HOSTNAME || '0.0.0.0'
+app.prepare()
+    .then(() => {
+        createServer(async (req, res) => {
+            try {
+                const parsedUrl = parse(req.url, true)
+                const { pathname, query } = parsedUrl
 
-let keepAliveTimeout = parseInt(process.env.KEEP_ALIVE_TIMEOUT, 10)
-if (
-    Number.isNaN(keepAliveTimeout) ||
-    !Number.isFinite(keepAliveTimeout) ||
-    keepAliveTimeout < 0
-) {
-    keepAliveTimeout = undefined
-}
-
-const nextConfig = {
-    // Your existing config
-}
-
-process.env.__NEXT_PRIVATE_STANDALONE_CONFIG = JSON.stringify(nextConfig)
-
-startServer({
-    dir,
-    isDev: false,
-    config: nextConfig,
-    hostname,
-    port: currentPort,
-    allowRetry: false,
-    keepAliveTimeout,
-}).catch(err => {
-    console.error('Failed to start server:', err)
-    process.exit(1)
-})
+                if (pathname === '/a') {
+                    await app.render(req, res, '/a', query)
+                } else if (pathname === '/b') {
+                    await app.render(req, res, '/b', query)
+                } else {
+                    await handle(req, res, parsedUrl)
+                }
+            } catch (err) {
+                console.error('Error occurred handling', req.url, err)
+                res.statusCode = 500
+                res.end('Internal Server Error')
+            }
+        })
+            .once('error', err => {
+                console.error('Server error:', err)
+                process.exit(1)
+            })
+            .listen(port, () => {
+                console.log(`> Ready on http://${hostname}:${port}`)
+            })
+    })
+    .catch(err => {
+        console.error('Error during app preparation:', err)
+        process.exit(1)
+    })
 
 // Additional logging
 process.on('uncaughtException', err => {
