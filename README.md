@@ -1,6 +1,2 @@
-# AnalogueShifts - Next.js Edition 🏝️
-
-## AnalogueShifts website
-# AnalogueShifts - Next.js Edition 🏝️
-
-## AnalogueShifts website
+# ANALOGUESHIFTS - Next.js Edition 🏝️
+## ANALOGUESHIFTS https://www.analogueshifts.com
