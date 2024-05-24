@@ -45,7 +45,7 @@ export default function Login() {
                 Cookies.set('analogueshifts', userData)
                 toast.success('Login Successful', toastConfig)
                 let redirectionLink = Cookies.get('RedirectionLink')
-                window.location.href = redirectionLink.trim().length
+                window.location.href = redirectionLink?.trim().length
                     ? redirectionLink
                     : '/dashboard'
 

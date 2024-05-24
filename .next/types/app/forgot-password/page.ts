@@ -1,4 +1,4 @@
-// File: C:\Users\tesli\Desktop\projects\web\analogueshifts\www\app\forgot-password\page.js
+// File: C:\Users\USER\Promise\AnalogueShifts\analogueshifts.com\app\forgot-password\page.js
 import * as entry from '../../../../app/forgot-password/page.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 

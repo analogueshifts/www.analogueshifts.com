@@ -1,7 +1,5 @@
 'use client'
 import React, { useState, useEffect } from 'react'
-import Logo from '@/public/logo.png'
-import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
 import { toast } from 'react-toastify'
@@ -13,6 +11,8 @@ import ApplicationLogo from '@/components/application/application-logo'
 import MenuDropDown from '@/components/application/menu-dropdown'
 import IdiomProof from '@/components/application/idiom-proof'
 import { toastConfig } from '@/utils/toast-config'
+import SidebarMenu from '@/components/application/side-bar-menu'
+import NotificationSection from '@/components/application/notifications-section'
 
 export default function Authenticated({ header, children }) {
     const pathname = usePathname()
@@ -130,7 +130,6 @@ export default function Authenticated({ header, children }) {
 
     // Display Unverified Email Banner if the user's email is unverified
     useEffect(() => {
-        console.log(user)
         if (user && !user.email_verified_at) {
             customToast(
                 'Unverified Email',
@@ -158,86 +157,20 @@ export default function Authenticated({ header, children }) {
                 }
             />
 
-            <section className="sidebar">
-                <div className="logo fixed sm:static">
-                    <Link
-                        href="https://www.analogueshifts.com"
-                        className="icon sm:flex hidden">
-                        <Image src={Logo} alt="Logo" className="w-6 h-6" />
-                    </Link>
-                    <div className="text pt-1.5">{header}</div>
-                </div>
-
-                <ul className="side-menu top">
-                    <li
-                        className={`${
-                            pathname === '/dashboard' ? 'active' : ''
-                        }`}>
-                        <Link href="/dashboard" className="nav-link">
-                            <i className="fas fa-border-all"></i>
-                            <span className="text hidden sm:flex">
-                                Dashboard
-                            </span>
-                        </Link>
-                    </li>
-                    <li
-                        className={`${
-                            pathname.startsWith('/tools/hire') ? 'active' : ''
-                        }`}>
-                        <Link href="/tools/hire" className="nav-link">
-                            <i className="fas fa-users"></i>
-                            <span className="text hidden sm:flex">
-                                Hire Talents
-                            </span>
-                        </Link>
-                    </li>
-                    <li
-                        className={`${
-                            pathname.startsWith('/tools/vet') ? 'active' : ''
-                        }`}>
-                        <Link href="/tools/vet" className="nav-link">
-                            <i className="fa-brands fa-teamspeak"></i>
-                            <span className="text hidden sm:flex">
-                                Vetting System
-                            </span>
-                        </Link>
-                    </li>
-                    {user?.role == 'admin' && (
-                        <li className={`${pathname === '' ? 'active' : ''}`}>
-                            <Link href="" className="nav-link">
-                                <i className="fas fa-users"></i>
-                                <span className="text hidden sm:flex">
-                                    Users
-                                </span>
-                            </Link>
-                        </li>
-                    )}
-                </ul>
-
-                <ul className="side-menu">
-                    <li>
-                        <button
-                            onClick={() => {
-                                setOpen(true)
-                            }}
-                            className="logout">
-                            <i className="fas fa-right-from-bracket"></i>
-                            <span className="text hidden sm:flex">Logout</span>
-                        </button>
-                    </li>
-                </ul>
-            </section>
+            {/* SideBar Menu */}
+            <SidebarMenu
+                header={header}
+                user={user}
+                handleLogout={() => {
+                    setOpen(true)
+                }}
+            />
 
             <section className="content">
                 <nav className=" justify-between z-50">
                     <i
                         onClick={() => toggleMenu('hide')}
                         className="fas fa-bars menu-btn"></i>
-                    <Link
-                        href="https://www.analogueshifts.com"
-                        className="sm:hidden flex">
-                        <ApplicationLogo />
-                    </Link>
                     <button
                         className={`${navAnimationClass} block z-60 hamburger sm:hidden outline-none`}
                         type="button"
@@ -255,6 +188,13 @@ export default function Authenticated({ header, children }) {
                                 mobileOpen ? 'bg-black/80' : 'bg-[#342e37]'
                             }`}></span>
                     </button>
+                    <Link
+                        href="https://www.analogueshifts.com"
+                        className="sm:hidden flex">
+                        <ApplicationLogo />
+                    </Link>
+                    <NotificationSection user={user} />
+
                     {mobileOpen && (
                         <MenuDropDown
                             user={user}

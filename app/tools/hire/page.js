@@ -1,3 +1,5 @@
+import { Suspense } from 'react'
+import LoadingTwo from '@/components/ui/loading-spinner'
 import HirePageDetails from './components/hire-home'
 
 export const metadata = {
@@ -26,5 +28,9 @@ export const metadata = {
 }
 
 export default function Page() {
-    return <HirePageDetails />
+    return (
+        <Suspense fallback={<LoadingTwo />}>
+            <HirePageDetails />
+        </Suspense>
+    )
 }

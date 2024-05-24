@@ -1,5 +1,7 @@
+import LoadingTwo from '@/components/ui/loading-spinner'
 import GuestLayout from '../layouts/guest-layout'
 import JobView from '@/components/application/jobs-page/job-view'
+import { Suspense } from 'react'
 // import SeoController from '../lib/SeoController'
 
 export const metadata = {
@@ -30,9 +32,9 @@ export const metadata = {
 export default function Page() {
     return (
         <GuestLayout>
-            {/* Page Content */}
-            {/* <SeoController seoData={seoData} /> */}
-            <JobView />
+            <Suspense fallback={<LoadingTwo />}>
+                <JobView />
+            </Suspense>
         </GuestLayout>
     )
 }
