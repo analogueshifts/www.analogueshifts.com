@@ -1,4 +1,5 @@
 import Edit from '../../components/edit-page'
+import Cookies from 'js-cookie'
 
 export const metadata = {
     title: 'Hire Talents | AnalogueShifts',
@@ -26,5 +27,7 @@ export const metadata = {
 }
 
 export default function Page({ params }) {
-    return <Edit slug={params.slug} />
+    const slug = params.slug
+
+    return <Edit slug={slug} />
 }

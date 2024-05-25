@@ -24,6 +24,8 @@ export default function Page() {
     const [timeLeft, setTimeLeft] = useState(120)
     const [isCoutDown, setIsCountDown] = useState(true)
 
+    // Check if the user is in countDown Mode, if so, decrement the counter.
+    // If the counter is = 0, remove the user from countDown mode.
     useEffect(() => {
         if (isCoutDown) {
             const timer = setInterval(() => {
@@ -43,6 +45,7 @@ export default function Page() {
         }
     }, [isCoutDown])
 
+    // Check For user SESSION
     useEffect(() => {
         // Redirect To Login if User is not Authenticated
         const auth = Cookies.get('analogueshifts')
@@ -54,9 +57,11 @@ export default function Page() {
         }
     }, [])
 
+    // The Timer minutes and seconds left
     const minutes = Math.floor(timeLeft / 60)
     const seconds = timeLeft % 60
 
+    // Handle Resend Verification Code
     const resendVerificationCode = () => {
         const axios = require('axios')
         const url =
@@ -75,6 +80,7 @@ export default function Page() {
         axios
             .request(config)
             .then(res => {
+                // Start the timer, so the user wait for 2 minutes before requesting for another code.
                 setLoading(false)
                 setTimeLeft(120)
                 setIsCountDown(true)
@@ -89,6 +95,7 @@ export default function Page() {
             })
     }
 
+    // Handle Form Submit
     const handleSubmit = e => {
         e.preventDefault()
         const axios = require('axios')
@@ -113,6 +120,8 @@ export default function Page() {
                         ...res.data.data.user,
                         token: user.token,
                     })
+
+                    // If the email verification is successful, update the user session value with the latest user session and navigate to the dashboard
                     Cookies.set('analogueshifts', userData)
                     toast.success('Your email has been verified', toastConfig)
                     window.location.href = '/dashboard'

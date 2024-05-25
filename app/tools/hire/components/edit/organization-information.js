@@ -26,6 +26,7 @@ export default function OrganizationInformation() {
     const submitButtonRef = useRef()
     let slug = pathname.slice(17, pathname.length).split('/')[0]
 
+    // Prefill The form with the data stored in the Cookies and at the same time, set the user session
     useEffect(() => {
         let authData = JSON.parse(Cookies.get('analogueshifts'))
         let storedData = Cookies.get('jobEditIngData')
@@ -46,6 +47,7 @@ export default function OrganizationInformation() {
             !JSON.parse(storedData).jobDetails ||
             !JSON.parse(storedData).jobLocation
         ) {
+            // Take the user to the Job Information for they have not filled the previous pages
             router.push(`/tools/hire/edit/${slug}/job-information`)
         }
         if (authData) {
@@ -64,7 +66,7 @@ export default function OrganizationInformation() {
         setAllFieldEnter(returnValue)
     }, [organizationName])
 
-    // Make request
+    // Make the request to the API
     const editJob = data => {
         const url = process.env.NEXT_PUBLIC_BACKEND_URL + '/hire/' + editID
         const axios = require('axios')
@@ -95,7 +97,7 @@ export default function OrganizationInformation() {
             })
     }
 
-    // Upload File
+    // Upload File To The Database
     const uploadFile = async value => {
         const url = process.env.NEXT_PUBLIC_BACKEND_URL + '/upload'
         const axios = require('axios')
@@ -124,10 +126,13 @@ export default function OrganizationInformation() {
         }
     }
 
+    // Handle Form Submit
     const submit = e => {
         e.preventDefault()
         let storedData = Cookies.get('jobEditIngData')
         let existingItem = JSON.parse(storedData)
+
+        // Arrange The Data Structure
         let data = {
             title: existingItem.jobInformation.title,
             description: existingItem.jobInformation.description,
@@ -173,6 +178,8 @@ export default function OrganizationInformation() {
             directApply: existingItem.jobDetails.directApply,
             status: existingItem.jobDetails.status,
         }
+
+        // Call the Edit Function with the data as Parameter
         editJob(data)
     }
 

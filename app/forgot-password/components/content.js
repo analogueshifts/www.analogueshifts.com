@@ -15,10 +15,10 @@ import FormInput from '@/components/application/form-input'
 export default function ForgotPassword() {
     const router = useRouter()
     const [email, setEmail] = useState('')
-    const [errorMessage, setErrorMessage] = useState('')
     const [loading, setLoading] = useState(false)
     const url = process.env.NEXT_PUBLIC_BACKEND_URL + '/forgot-password'
 
+    // Handle Form Submit
     function submit(e) {
         e.preventDefault()
         const axios = require('axios')
@@ -36,6 +36,8 @@ export default function ForgotPassword() {
         }
 
         setLoading(true)
+
+        // Send a new Verification Code to user, and navigate to the reset password page
         axios
             .request(config)
             .then(response => {

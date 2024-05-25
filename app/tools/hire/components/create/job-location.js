@@ -5,6 +5,8 @@ import Cookies from 'js-cookie'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import DropdownMenu from '../dropdown-menu'
+import { addLocationRequirement } from '@/utils/add-location-requirement'
+import { removeLocationRequirement } from '@/utils/remove-location-requirement'
 
 import { jobLocationTypes } from '../data'
 import { toast } from 'react-toastify'
@@ -23,6 +25,7 @@ export default function JobLocation() {
     const [countryRequirements, setCountryRequirements] = useState([])
     const submitButtonRef = useRef()
 
+    // Prefill The form with the data stored in the Cookies
     useEffect(() => {
         let storedData = Cookies.get('jobPostData')
         if (storedData) {
@@ -42,90 +45,46 @@ export default function JobLocation() {
             !JSON.parse(storedData).jobInformation ||
             !JSON.parse(storedData).jobDetails
         ) {
+            // Take the user to the Job Information for they have not filled the previous pages
             router.push('/tools/hire/create/job-information')
         }
     }, [])
 
+    // Add a State Requirement to the list
     const addStateRequirements = () => {
-        let checker = true
-        if (stateRequirementValue === '') {
-            toast.error('State Field is empty!', {
-                position: 'top-right',
-                autoClose: 3000,
-            })
-            return
-        }
-        stateRequirements.forEach(item => {
-            if (item.name === stateRequirementValue) {
-                checker = false
-            }
-        })
-        if (checker) {
-            setStateRequirements(prev => [
-                ...prev,
-                { '@type': 'State', name: stateRequirementValue },
-            ])
-            setStateRequirementValue('')
-        } else {
-            setStateRequirementValue('')
-            toast.error('State Already Exist', {
-                position: 'top-right',
-                autoClose: 3000,
-            })
-        }
+        addLocationRequirement(
+            'State',
+            stateRequirements,
+            setStateRequirements,
+            stateRequirementValue,
+            toast,
+            setStateRequirementValue,
+        )
     }
 
+    // Add a country Requirement
     const addCountryRequirements = () => {
-        let checker = true
-        if (countryRequirementValue === '') {
-            toast.error('Country Field is empty!', {
-                position: 'top-right',
-                autoClose: 3000,
-            })
-            return
-        }
-        countryRequirements.forEach(item => {
-            if (item.name === countryRequirementValue) {
-                checker = false
-            }
-        })
-        if (checker) {
-            setCountryRequirements(prev => [
-                ...prev,
-                { '@type': 'Country', name: countryRequirementValue },
-            ])
-            setCountryRequirementValue('')
-        } else {
-            setCountryRequirementValue('')
-            toast.error('Country Already Exist', {
-                position: 'top-right',
-                autoClose: 3000,
-            })
-        }
+        addLocationRequirement(
+            'Country',
+            countryRequirements,
+            setCountryRequirements,
+            countryRequirementValue,
+            toast,
+            setCountryRequirementValue,
+        )
     }
 
+    // Remove a State Requirement
     const deleteStateRequirement = stateName => {
-        setStateRequirements(prev =>
-            prev.filter(item => item.name !== stateName),
-        )
-
-        toast.success('Deleted Successfully', {
-            position: 'top-right',
-            autoClose: 3000,
-        })
+        removeLocationRequirement(stateName, setStateRequirements, toast)
     }
 
+    // Remove a country Requirement
     const deleteCountryRequirement = countryName => {
-        setCountryRequirements(prev =>
-            prev.filter(item => item.name !== countryName),
-        )
-
-        toast.success('Deleted Successfully', {
-            position: 'top-right',
-            autoClose: 3000,
-        })
+        removeLocationRequirement(countryName, setCountryRequirements, toast)
     }
 
+    // Handle Form Submit
     const submit = e => {
         e.preventDefault()
         let storedData = Cookies.get('jobPostData')
@@ -139,6 +98,8 @@ export default function JobLocation() {
             stateRequirements: stateRequirements,
             countryRequirements: countryRequirements,
         }
+
+        // store the Form data in Cookies and navigate to the next page
         if (storedData) {
             let existingItem = JSON.parse(storedData)
             Cookies.set(

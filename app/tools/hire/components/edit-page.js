@@ -12,6 +12,7 @@ export default function Edit({ slug }) {
     const [user, setUser] = useState(null)
     const [loading, setLoading] = useState(false)
 
+    // We fetch the Job to be editted, and store the data in the Cookie, so we can access the Cookies from the other sub pages without having to fetch the Job over again
     const fetchJobs = () => {
         let url = process.env.NEXT_PUBLIC_BACKEND_URL + '/hire/edit/' + slug
         setLoading(true)
@@ -83,10 +84,8 @@ export default function Edit({ slug }) {
                     )
                     router.push(`/tools/hire/edit/${slug}/job-information`)
                 } else {
-                    toast.error('Error Getting Jobs', {
-                        position: 'top-right',
-                        autoClose: 3000,
-                    })
+                    // If The Job Wasn't found
+                    toast.error('Error Getting Jobs', toastConfig)
                     router.push('/404')
                 }
 

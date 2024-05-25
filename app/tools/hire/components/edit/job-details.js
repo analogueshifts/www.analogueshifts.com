@@ -41,6 +41,7 @@ export default function JobDetails() {
         setAllFieldEnter(returnValue)
     }, [salaryValue, apply])
 
+    // Prefill The form with the data stored in the Cookies
     useEffect(() => {
         let storedData = Cookies.get('jobEditIngData')
         if (storedData) {
@@ -55,12 +56,16 @@ export default function JobDetails() {
                 setSalaryUnitText(jobDetailsData.salaryUnitText)
             }
         } else if (!storedData || !JSON.parse(storedData).jobInformation) {
+            // Take the user to the Job Information for they have not filled the previous pages
             router.push(`/tools/hire/edit/${slug}/job-information`)
         }
     }, [])
 
+    // Handle Form Submit
     const submit = e => {
         e.preventDefault()
+
+        // If salary is not a valid number, Throw an Error
         if (isNaN(salaryValue)) {
             toast.error('Error! Salary value must be a valid number', {
                 position: 'top-right',
@@ -68,8 +73,9 @@ export default function JobDetails() {
             })
             return
         }
-        let storedData = Cookies.get('jobEditIngData')
 
+        // Otherwise, store the Form data in Cookies and navigate to the next page
+        let storedData = Cookies.get('jobEditIngData')
         if (storedData) {
             let existingItem = JSON.parse(storedData)
             Cookies.set(

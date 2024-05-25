@@ -24,6 +24,7 @@ export default function JobInformation() {
     const [allFieldEntered, setAllFieldEnter] = useState(true)
     const submitButtonRef = useRef()
 
+    // Prefill The form with the data stored in the Cookies
     useEffect(() => {
         let storedData = Cookies.get('jobPostData')
         if (storedData) {
@@ -53,6 +54,7 @@ export default function JobInformation() {
         setAllFieldEnter(returnValue)
     }, [title, description, validThrough])
 
+    // Handle Form Submit
     const submit = e => {
         e.preventDefault()
         let storedData = Cookies.get('jobPostData')
@@ -63,6 +65,8 @@ export default function JobInformation() {
             identifierValue: identifierValue,
             validThrough: validThrough,
         }
+
+        // store the Form data in Cookies and navigate to the next page
         if (storedData) {
             let existingItem = JSON.parse(storedData)
             Cookies.set(

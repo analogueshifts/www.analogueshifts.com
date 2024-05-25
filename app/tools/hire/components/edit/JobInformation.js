@@ -25,6 +25,7 @@ export default function JobInformation() {
     const submitButtonRef = useRef()
     let slug = pathname.slice(17, pathname.length).split('/')[0]
 
+    // Prefill The form with the data stored in the Cookies
     useEffect(() => {
         let storedData = Cookies.get('jobEditIngData')
         if (storedData) {
@@ -55,8 +56,11 @@ export default function JobInformation() {
         setAllFieldEnter(returnValue)
     }, [title, description, validThrough])
 
+    // Handle Form Submit
     const submit = e => {
         e.preventDefault()
+
+        // store the Form data in Cookies and navigate to the next page
         let storedData = Cookies.get('jobEditIngData')
         let jobInfoData = {
             title: title,

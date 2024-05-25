@@ -69,6 +69,8 @@ export default function Authenticated({ header, children }) {
             .request(config)
             .then(res => {
                 setLoading(false)
+
+                // Take user to Email Verification Page
                 router.push('/email-verification')
             })
             .catch(error => {
@@ -83,6 +85,7 @@ export default function Authenticated({ header, children }) {
         sideBar.classList.toggle(value)
     }
 
+    // Toggle Sidebar Drawer
     const toggleDrawer = () => {
         if (mobileOpen) {
             setNavAnimationClass('')

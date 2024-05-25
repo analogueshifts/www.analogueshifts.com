@@ -23,6 +23,7 @@ export default function OrganizationInformation() {
     const [isUrlType, setIsUrlType] = useState(false)
     const submitButtonRef = useRef()
 
+    // Prefill The form with the data stored in the Cookies
     useEffect(() => {
         let storedData = Cookies.get('jobPostData')
         let authData = JSON.parse(Cookies.get('analogueshifts'))
@@ -32,6 +33,7 @@ export default function OrganizationInformation() {
             !JSON.parse(storedData).jobDetails ||
             !JSON.parse(storedData).jobLocation
         ) {
+            // Take the user to the Job Information for they have not filled the previous pages
             router.push('/tools/hire/create/job-information')
         }
         if (authData) {
@@ -50,7 +52,7 @@ export default function OrganizationInformation() {
         setAllFieldEnter(returnValue)
     }, [organizationName])
 
-    // Make request
+    // Make the request to the API
     const createJob = data => {
         const url = process.env.NEXT_PUBLIC_BACKEND_URL + '/hire/store'
         const axios = require('axios')
@@ -80,7 +82,7 @@ export default function OrganizationInformation() {
             })
     }
 
-    // Upload File
+    // Upload File To The Database
     const uploadFile = async value => {
         const url = process.env.NEXT_PUBLIC_BACKEND_URL + '/upload'
         const axios = require('axios')
@@ -109,10 +111,13 @@ export default function OrganizationInformation() {
         }
     }
 
+    // Handle Form Submit
     const submit = e => {
         e.preventDefault()
         let storedData = Cookies.get('jobPostData')
         let existingItem = JSON.parse(storedData)
+
+        // Arrange The Data Structure
         let data = {
             title: existingItem.jobInformation.title,
             description: existingItem.jobInformation.description,
@@ -158,6 +163,8 @@ export default function OrganizationInformation() {
             directApply: existingItem.jobDetails.directApply,
             status: existingItem.jobDetails.status,
         }
+
+        // Call the Create Function with the data as Parameter
         createJob(data)
     }
 
