@@ -18,11 +18,12 @@ export default function NotificationSection({ user }) {
             headers: {
                 Authorization: 'Bearer ' + user.token,
                 'Content-Type': 'application/json',
+                Accept: 'application/json',
             },
         }
         try {
             let response = await axios.request(config)
-            console.log(response)
+            console.log(response.json())
         } catch (error) {
             console.log(error)
         }

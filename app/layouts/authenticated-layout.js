@@ -196,7 +196,9 @@ export default function Authenticated({ header, children }) {
                         className="sm:hidden flex">
                         <ApplicationLogo />
                     </Link>
-                    <NotificationSection user={user} />
+
+                    {/* Notification */}
+                    {/* <NotificationSection user={user} /> */}
 
                     {mobileOpen && (
                         <MenuDropDown

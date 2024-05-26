@@ -2,7 +2,6 @@
 import React, { useState, useEffect } from 'react'
 import Authenticated from '@/app/layouts/authenticated-layout'
 import Link from 'next/link'
-import DashboardLoader from '@/components/application/dashboard-loader'
 import { toast } from 'react-toastify'
 import Cookies from 'js-cookie'
 import IdiomProof from '@/components/application/idiom-proof'
@@ -11,11 +10,16 @@ import { fetchJobPosts } from '@/utils/fetch-job-posts'
 import { deletePost } from '@/utils/delete-post'
 import { toastConfig } from '@/utils/toast-config'
 import HirePagination from './hire-pagination'
+import Curve from '@/public/images/curve.png'
+import Image from 'next/image'
+import SkeletonCard from '@/components/application/skeleton-card'
+import DashboardLoader from '@/components/application/dashboard-loader'
 
 export default function HirePageDetails() {
     const [user, setUser] = useState(null)
     const pageQuery = useSearchParams().getAll('page')
     const [currentPageInfo, setCurrentPageInfo] = useState({})
+    const [deleteLoading, setDeleteLoading] = useState(false)
     const [idiomModal, setIdiomModal] = useState(false)
     const [idToBeDeleted, setIdToBeDeleted] = useState(null)
     const [data, setData] = useState([])
@@ -34,8 +38,10 @@ export default function HirePageDetails() {
             allJobsURL,
             user.token,
             response => {
-                setData(response.data.data.hires.data)
-                setCurrentPageInfo(response.data.data.hires)
+                if (response?.data?.success) {
+                    setData(response.data.data.hires.data)
+                    setCurrentPageInfo(response.data.data.hires)
+                }
                 setLoading(false)
             },
             error => {
@@ -49,7 +55,7 @@ export default function HirePageDetails() {
     const deleteJobPost = async () => {
         const url =
             process.env.NEXT_PUBLIC_BACKEND_URL + '/hire/' + idToBeDeleted
-        setLoading(true)
+        setDeleteLoading(true)
         deletePost(
             url,
             user.token,
@@ -57,11 +63,11 @@ export default function HirePageDetails() {
                 fetchJobs()
                 toast.success('Job Deleted Successfully', toastConfig)
                 setIdToBeDeleted(null)
-                setLoading(false)
+                setDeleteLoading(false)
             },
             err => {
                 toast.error('Error Deleting Job', toastConfig)
-                setLoading(false)
+                setDeleteLoading(false)
             },
         )
     }
@@ -92,7 +98,6 @@ export default function HirePageDetails() {
                     Hire
                 </h2>
             }>
-            {loading && <DashboardLoader />}
             <IdiomProof
                 title={'Delete Post'}
                 action={() => {
@@ -109,96 +114,147 @@ export default function HirePageDetails() {
                 open={idiomModal}
             />
 
-            <button
-                onClick={handleCreatePost}
-                type="button"
-                className="h-10 bg-none mx-auto outline-none rounded-full px-8 flex justify-center items-center gap-3 border border-tremor-background-darkYellow font-normal md:text-base text-sm bg-transparent text-tremor-background-darkYellow">
-                Hire Talents
-                <i className="fas fa-plus"></i>
-            </button>
+            {deleteLoading && <DashboardLoader />}
 
-            <div className="w-full pt-9 flex flex-wrap gap-6 ">
-                {data &&
-                    data.map(item => {
-                        return (
-                            <div
-                                key={item.id}
-                                className="w-full h-max md:w-[calc(50%-12px)] min-h-[205px] border-b md:border-none flex flex-wrap pb-5 justify-between  md:flex-col items-center gap-y-2">
-                                <div className="flex gap-5 flex-wrap md:flex-col items-center justify-center md:items-center">
-                                    <img
-                                        src={
-                                            item.hiringOrganization.logo &&
-                                            item.hiringOrganization.logo[0]
-                                                ? item.hiringOrganization
-                                                      .logo[0]
-                                                : '/images/jobs/company_logo.JPG'
-                                        }
-                                        alt="LOGO"
-                                        className={`md:w-max md:h-[100px] object-contain w-[156px] h-[100px]`}
-                                    />
-                                    <div className="flex flex-col gap-1.5 items-center md:items-center">
-                                        <p className="text-sm font-normal text-[#B0B0B0]">
-                                            {item.hiringOrganization.name}
-                                        </p>
-                                        <p className="text-xl font-semibold text-black/90">
-                                            {item.title}
-                                        </p>
-                                        <p
-                                            className="text-[15px] font-normal text-[#7B7B7B] md:text-center"
-                                            dangerouslySetInnerHTML={{
-                                                __html:
-                                                    item.description.length >
-                                                    100
-                                                        ? item.description
-                                                              .slice(0, 100)
-                                                              .concat('...')
-                                                        : item.description,
-                                            }}></p>
-                                        <div className="flex gap-1.5 flex-wrap">
-                                            <div className="px-5 bg-[#E2E2E2] rounded py-1 text-black/80 text-[10px] font-normal">
-                                                {item.baseSalary.value.value +
-                                                    ' ' +
-                                                    item.baseSalary.currency +
-                                                    ' ' +
-                                                    'Per' +
-                                                    ' ' +
-                                                    item.baseSalary.value
-                                                        .unitText}
+            <div className="w-full min-w-[300px] px-1.5 min-h-[calc(100dvh-80px)] lg:min-h-[calc(100dvh-112px)]">
+                <div className="sticky top-0">
+                    <div className="w-full relative h-max pb-6 rounded-2xl bg-tremor-background-brown flex justify-end">
+                        <Image src={Curve} alt="" className="absolute z-10" />
+                        <div className="w-full flex-wrap gap-4 items-center flex justify-between  pt-8 px-5">
+                            {/* Pagination */}
+                            <div className="z-20">
+                                <HirePagination
+                                    currentPageInfo={currentPageInfo}
+                                />
+                            </div>
+
+                            {/* Hire Button */}
+                            <button
+                                onClick={handleCreatePost}
+                                type="button"
+                                className="h-10 z-20 bg-none outline-none rounded-full px-8 flex justify-center items-center gap-3 bg-white font-normal md:text-base text-sm bg-transparent text-tremor-background-brown">
+                                Hire Talents
+                                <i className="fas fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div className="bg-white mt-6 border border-[#e7e7e7] min-h-[200px] py-5 h-max w-full px-5 pb-5 rounded-xl flex flex-col">
+                    {loading ? (
+                        <div className="w-full h-max min-h-[200px] items-center grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+                            <SkeletonCard /> <SkeletonCard /> <SkeletonCard />
+                        </div>
+                    ) : (
+                        <div className="w-full h-max min-h-full flex flex-wrap gap-6">
+                            {data &&
+                                data.map(item => {
+                                    return (
+                                        <div
+                                            key={item.id}
+                                            className="w-full h-max md:w-[calc(50%-12px)] min-h-[205px] border-b md:border-none flex flex-wrap pb-5 justify-between  md:flex-col items-center gap-y-2">
+                                            <div className="flex gap-5 flex-wrap md:flex-col items-center justify-center md:items-center">
+                                                <img
+                                                    src={
+                                                        item.hiringOrganization
+                                                            .logo &&
+                                                        item.hiringOrganization
+                                                            .logo[0]
+                                                            ? item
+                                                                  .hiringOrganization
+                                                                  .logo[0]
+                                                            : '/images/jobs/company_logo.JPG'
+                                                    }
+                                                    alt="LOGO"
+                                                    className={`md:w-max md:h-[100px] object-contain w-[156px] h-[100px]`}
+                                                />
+                                                <div className="flex flex-col gap-1.5 items-center md:items-center">
+                                                    <p className="text-sm font-normal text-[#B0B0B0]">
+                                                        {
+                                                            item
+                                                                .hiringOrganization
+                                                                .name
+                                                        }
+                                                    </p>
+                                                    <p className="text-xl font-semibold text-black/90">
+                                                        {item.title}
+                                                    </p>
+                                                    <p
+                                                        className="text-[15px] font-normal text-[#7B7B7B] md:text-center"
+                                                        dangerouslySetInnerHTML={{
+                                                            __html:
+                                                                item.description
+                                                                    .length >
+                                                                100
+                                                                    ? item.description
+                                                                          .slice(
+                                                                              0,
+                                                                              100,
+                                                                          )
+                                                                          .concat(
+                                                                              '...',
+                                                                          )
+                                                                    : item.description,
+                                                        }}></p>
+                                                    <div className="flex gap-1.5 flex-wrap">
+                                                        <div className="px-5 bg-[#E2E2E2] rounded py-1 text-black/80 text-[10px] font-normal">
+                                                            {item.baseSalary
+                                                                .value.value +
+                                                                ' ' +
+                                                                item.baseSalary
+                                                                    .currency +
+                                                                ' ' +
+                                                                'Per' +
+                                                                ' ' +
+                                                                item.baseSalary
+                                                                    .value
+                                                                    .unitText}
+                                                        </div>
+                                                        <div className="px-5 bg-[#E2E2E2] rounded py-1 text-black/80 text-[10px] font-normal">
+                                                            {
+                                                                item.jobLocationType
+                                                            }
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
-                                            <div className="px-5 bg-[#E2E2E2] rounded py-1 text-black/80 text-[10px] font-normal">
-                                                {item.jobLocationType}
+                                            <div className="flex gap-2 mx-auto items-center md:mt-2 md:mx-auto">
+                                                <Link
+                                                    href={`/tools/hire/edit/${item.uuid}`}
+                                                    className={`w-24 lg:w-28 py-2 hover:scale-105 rounded-full text-xs font-bold duration-300 text-white bg-yellow-500 flex justify-center`}>
+                                                    Edit
+                                                </Link>
+                                                <Link
+                                                    href={item.apply}
+                                                    as={item.apply}
+                                                    className="text-xs font-normal text-black/60">
+                                                    View
+                                                </Link>
+                                                <button
+                                                    onClick={() => {
+                                                        setIdToBeDeleted(
+                                                            item.id,
+                                                        )
+                                                        setIdiomModal(true)
+                                                    }}
+                                                    className="text-xs font-normal text-red-500">
+                                                    Delete
+                                                </button>
                                             </div>
                                         </div>
-                                    </div>
+                                    )
+                                })}
+                            {data.length === 0 && (
+                                <div className="w-full mt-10 flex px-5 items-center justify-center">
+                                    <h3 className="text-tremor-brand-boulder950">
+                                        No Job Found
+                                    </h3>
                                 </div>
-                                <div className="flex gap-2 mx-auto items-center md:mt-2 md:mx-auto">
-                                    <Link
-                                        href={`/tools/hire/edit/${item.uuid}`}
-                                        className={`w-24 lg:w-28 py-2 hover:scale-105 rounded-full text-xs font-bold duration-300 text-white bg-yellow-500 flex justify-center`}>
-                                        Edit
-                                    </Link>
-                                    <Link
-                                        href={item.apply}
-                                        as={item.apply}
-                                        className="text-xs font-normal text-black/60">
-                                        View
-                                    </Link>
-                                    <button
-                                        onClick={() => {
-                                            setIdToBeDeleted(item.id)
-                                            setIdiomModal(true)
-                                        }}
-                                        className="text-xs font-normal text-red-500">
-                                        Delete
-                                    </button>
-                                </div>
-                            </div>
-                        )
-                    })}
+                            )}
+                        </div>
+                    )}
+                </div>
+                <div className="flex flex-col overflow-hidden"></div>
             </div>
-
-            {/* Pagination */}
-            <HirePagination currentPageInfo={currentPageInfo} />
         </Authenticated>
     )
 }

@@ -14,7 +14,7 @@ export default function IdiomProof({
         <Transition.Root show={open} as={Fragment}>
             <Dialog
                 as="div"
-                className="relative z-10"
+                className="relative z-[3100]"
                 initialFocus={cancelButtonRef}
                 onClose={close}>
                 <Transition.Child
