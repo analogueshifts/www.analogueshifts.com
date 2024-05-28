@@ -115,30 +115,6 @@ export default function Dashboard() {
                                 <p className="text-gray-600">{totalVets}</p>
                             </div>
                         )}
-
-                        {/* Metric Card 3 */}
-                        {loading ? (
-                            <SkeletonCard />
-                        ) : (
-                            <div className="bg-white p-4 rounded-xl shadow-xl">
-                                <p className="text-base truncate lg:text-xl font-bold text-yellow-600">
-                                    Recommendations
-                                </p>
-                                <p className="text-gray-600">12</p>
-                            </div>
-                        )}
-
-                        {/* Metric Card 4 */}
-                        {loading ? (
-                            <SkeletonCard />
-                        ) : (
-                            <div className="bg-white p-4 rounded-xl shadow-xl">
-                                <p className="text-base truncate lg:text-xl font-bold text-red-600">
-                                    Projects
-                                </p>
-                                <p className="text-gray-600">8</p>
-                            </div>
-                        )}
                     </div>
 
                     {/* Modes Button Row */}

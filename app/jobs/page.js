@@ -5,13 +5,13 @@ import { Suspense } from 'react'
 // import SeoController from '../lib/SeoController'
 
 export const metadata = {
-    title: 'Jobs in Tech',
+    title: 'Find high paying remote tech jobs | Analogue Shifts',
     description:
-        'Looking for the best tech jobs worldwide? AnalogueShifts has you covered. We work with top employers to bring you the latest opportunities in the tech industry. Visit our jobs page today to start your search.',
+        'Analogue Shifts offers a curated list of high-paying remote tech jobs. Find the perfect job for you and enjoy the flexibility of working remotely.',
     openGraph: {
-        title: 'Jobs in Tech',
+        title: 'Find high paying remote tech jobs | Analogue Shifts',
         description:
-            'Looking for the best tech jobs worldwide? AnalogueShifts has you covered. We work with top employers to bring you the latest opportunities in the tech industry. Visit our jobs page today to start your search.',
+            'Analogue Shifts offers a curated list of high-paying remote tech jobs. Find the perfect job for you and enjoy the flexibility of working remotely.',
         url: 'https://www.analogueshifts.com/jobs',
         siteName: 'AnalogueShifts',
         images: [

@@ -116,26 +116,28 @@ export default function HirePageDetails() {
 
             {deleteLoading && <DashboardLoader />}
 
-            <div className="w-full min-w-[300px] px-1.5 min-h-[calc(100dvh-80px)] lg:min-h-[calc(100dvh-112px)]">
+            <div className="w-full px-1.5 min-h-[calc(100dvh-80px)] lg:min-h-[calc(100dvh-112px)]">
                 <div className="sticky top-0">
                     <div className="w-full relative h-max pb-6 rounded-2xl bg-tremor-background-brown flex justify-end">
                         <Image src={Curve} alt="" className="absolute z-10" />
-                        <div className="w-full flex-wrap gap-4 items-center flex justify-between  pt-8 px-5">
+                        <div className="w-full flex-wrap gap-y-4 items-center flex justify-center  pt-8 px-5">
+                            {/* Hire Button */}
+                            <div className="z-20 w-max max-w-full min-w-[50%]">
+                                <button
+                                    onClick={handleCreatePost}
+                                    type="button"
+                                    className="h-10 bg-none outline-none rounded-full px-8 flex justify-center items-center gap-3 bg-white font-normal md:text-base text-sm bg-transparent text-tremor-background-brown">
+                                    Hire Talents
+                                    <i className="fas fa-plus"></i>
+                                </button>
+                            </div>
+
                             {/* Pagination */}
-                            <div className="z-20">
+                            <div className="z-20 w-max flex justify-end max-w-full min-w-[50%]">
                                 <HirePagination
                                     currentPageInfo={currentPageInfo}
                                 />
                             </div>
-
-                            {/* Hire Button */}
-                            <button
-                                onClick={handleCreatePost}
-                                type="button"
-                                className="h-10 z-20 bg-none outline-none rounded-full px-8 flex justify-center items-center gap-3 bg-white font-normal md:text-base text-sm bg-transparent text-tremor-background-brown">
-                                Hire Talents
-                                <i className="fas fa-plus"></i>
-                            </button>
                         </div>
                     </div>
                 </div>
@@ -223,12 +225,11 @@ export default function HirePageDetails() {
                                                     className={`w-24 lg:w-28 py-2 hover:scale-105 rounded-full text-xs font-bold duration-300 text-white bg-yellow-500 flex justify-center`}>
                                                     Edit
                                                 </Link>
-                                                <Link
+                                                <a
                                                     href={item.apply}
-                                                    as={item.apply}
                                                     className="text-xs font-normal text-black/60">
-                                                    View
-                                                </Link>
+                                                    Apply
+                                                </a>
                                                 <button
                                                     onClick={() => {
                                                         setIdToBeDeleted(

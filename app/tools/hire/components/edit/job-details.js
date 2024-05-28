@@ -5,6 +5,7 @@ import Cookies from 'js-cookie'
 import { useRouter, usePathname } from 'next/navigation'
 import Link from 'next/link'
 import DropdownMenu from '../dropdown-menu'
+import SelectForm from '../select-form'
 
 // Datas
 import {
@@ -26,6 +27,11 @@ export default function JobDetails() {
     const [salaryValue, setSalaryValue] = useState('')
     const [salaryUnitText, setSalaryUnitText] = useState(salaryUnitTextData[0])
     const [apply, setApply] = useState('')
+
+    // Apply URLS
+    const [internalApplicationURL, setInternalApplicationURL] = useState('')
+    const [externalApplicationURL, setExternalApplicationURL] = useState('')
+
     const router = useRouter()
     const submitButtonRef = useRef()
     let slug = pathname.slice(17, pathname.length).split('/')[0]
@@ -33,13 +39,20 @@ export default function JobDetails() {
     // Check if all inputs have been filled
     useEffect(() => {
         var returnValue = false
-        ;[salaryValue, apply].forEach(item => {
-            if (item === '') {
-                returnValue = true
-            }
-        })
+        if (
+            salaryValue.trim() === '' ||
+            (directApply === 'false' && internalApplicationURL.trim() === '') ||
+            (directApply === 'true' && externalApplicationURL.trim() === '')
+        ) {
+            returnValue = true
+        }
         setAllFieldEnter(returnValue)
-    }, [salaryValue, apply])
+    }, [
+        salaryValue,
+        internalApplicationURL,
+        externalApplicationURL,
+        directApply,
+    ])
 
     // Prefill The form with the data stored in the Cookies
     useEffect(() => {
@@ -47,8 +60,7 @@ export default function JobDetails() {
         if (storedData) {
             if (JSON.parse(storedData).jobDetails) {
                 var jobDetailsData = JSON.parse(storedData).jobDetails
-                setApply(jobDetailsData.apply)
-                setDirectApply(jobDetailsData.directApply)
+                setExternalApplicationURL(jobDetailsData.apply)
                 setStatus(jobDetailsData.status === '0' ? 'Offline' : 'Online')
                 setEmploymentType(jobDetailsData.employmentType)
                 setSalaryCurrency(jobDetailsData.salaryCurrency)
@@ -84,7 +96,11 @@ export default function JobDetails() {
                     ...existingItem,
                     jobDetails: {
                         employmentType: employmentType,
-                        apply: apply,
+                        apply:
+                            directApply === 'true'
+                                ? externalApplicationURL
+                                : 'https://forms.analogueshifts.com/forms/show/' +
+                                  internalApplicationURL,
                         directApply: directApply,
                         status: status === 'Offline' ? '0' : '1',
                         salaryCurrency: salaryCurrency,
@@ -198,7 +214,8 @@ export default function JobDetails() {
                             DIRECT APPLY
                         </p>
                         <p className="font-light text-[13px] text-tremor-brand-boulder900">
-                            The Job Application link type
+                            The Job Application link type (Set this to false if
+                            you want to use an internal Form URL)
                         </p>
                     </div>
                     <div className="w-full md:w-1/2">
@@ -219,14 +236,23 @@ export default function JobDetails() {
                         </p>
                     </div>
                     <div className="w-full md:w-1/2">
-                        <input
-                            required
-                            type="text"
-                            value={apply}
-                            onChange={e => setApply(e.target.value)}
-                            placeholder="e.g “https://www.analogueshifts.com”"
-                            className="max-w-full w-full h-14 rounded-2xl  px-5 border border-tremor-brand-boulder200 text-[13px] font-light placeholder:text-tremor-brand-boulder300 text-tremor-brand-boulder950 outline-1 outline-tremor-background-darkYellow"
-                        />
+                        {directApply === 'true' ? (
+                            <input
+                                required
+                                type="url"
+                                value={externalApplicationURL}
+                                onChange={e =>
+                                    setExternalApplicationURL(e.target.value)
+                                }
+                                placeholder="e.g “https://www.analogueshifts.com”"
+                                className="max-w-full w-full h-14 rounded-2xl  px-5 border border-tremor-brand-boulder200 text-[13px] font-light placeholder:text-tremor-brand-boulder300 text-tremor-brand-boulder950 outline-1 outline-tremor-background-darkYellow"
+                            />
+                        ) : (
+                            <SelectForm
+                                selectedForm={internalApplicationURL}
+                                setSelectedForm={setInternalApplicationURL}
+                            />
+                        )}
                     </div>
                 </div>
 

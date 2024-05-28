@@ -3,13 +3,13 @@ import PageContent from '@/components/application/about-page/content'
 // import SeoController from '../lib/SeoController'
 
 export const metadata = {
-    title: 'About Us | AnalogueShifts',
+    title: 'About | Analogue shifts',
     description:
-        "At Analogueshifts, we're passionate about connecting employers with top tech talent from around the world. Our team of experts brings years of experience and industry knowledge to every recruitment search. Learn more about us and our mission today.",
+        'Analogue Shifts is a remote talent acquisition and recruitment agency specializing in connecting startups with top remote tech talents globally.',
     openGraph: {
-        title: 'About Us | AnalogueShifts',
+        title: 'About | Analogue shifts',
         description:
-            "At Analogueshifts, we're passionate about connecting employers with top tech talent from around the world. Our team of experts brings years of experience and industry knowledge to every recruitment search. Learn more about us and our mission today.",
+            'Analogue Shifts is a remote talent acquisition and recruitment agency specializing in connecting startups with top remote tech talents globally.',
         url: 'https://www.analogueshifts.com/about',
         siteName: 'AnalogueShifts',
         images: [

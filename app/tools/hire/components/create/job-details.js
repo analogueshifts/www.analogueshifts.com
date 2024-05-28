@@ -5,6 +5,7 @@ import Cookies from 'js-cookie'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import DropdownMenu from '../dropdown-menu'
+import SelectForm from '../select-form'
 
 // Datas
 import {
@@ -28,14 +29,17 @@ export default function JobDetails() {
     const router = useRouter()
     const submitButtonRef = useRef()
 
+    // Apply URLS
+    const [internalApplicationURL, setInternalApplicationURL] = useState('')
+    const [externalApplicationURL, setExternalApplicationURL] = useState('')
+
     // Prefill The form with the data stored in the Cookies
     useEffect(() => {
         let storedData = Cookies.get('jobPostData')
         if (storedData) {
             if (JSON.parse(storedData).jobDetails) {
                 var jobDetailsData = JSON.parse(storedData).jobDetails
-                setApply(jobDetailsData.apply)
-                setDirectApply(jobDetailsData.directApply)
+                setExternalApplicationURL(jobDetailsData.apply)
                 setStatus(jobDetailsData.status === '0' ? 'Offline' : 'Online')
                 setEmploymentType(jobDetailsData.employmentType)
                 setSalaryCurrency(jobDetailsData.salaryCurrency)
@@ -51,13 +55,20 @@ export default function JobDetails() {
     // Check if all inputs have been filled
     useEffect(() => {
         var returnValue = false
-        ;[salaryValue, apply].forEach(item => {
-            if (item === '') {
-                returnValue = true
-            }
-        })
+        if (
+            salaryValue.trim() === '' ||
+            (directApply === 'false' && internalApplicationURL.trim() === '') ||
+            (directApply === 'true' && externalApplicationURL.trim() === '')
+        ) {
+            returnValue = true
+        }
         setAllFieldEnter(returnValue)
-    }, [salaryValue, apply])
+    }, [
+        salaryValue,
+        internalApplicationURL,
+        externalApplicationURL,
+        directApply,
+    ])
 
     // Handle Form Submit
     const submit = e => {
@@ -76,7 +87,11 @@ export default function JobDetails() {
         let storedData = Cookies.get('jobPostData')
         let jobDetailsData = {
             employmentType: employmentType,
-            apply: apply,
+            apply:
+                directApply === 'true'
+                    ? externalApplicationURL
+                    : 'https://forms.analogueshifts.com/forms/show/' +
+                      internalApplicationURL,
             directApply: directApply,
             status: status === 'Offline' ? '0' : '1',
             salaryCurrency: salaryCurrency,
@@ -198,7 +213,8 @@ export default function JobDetails() {
                             DIRECT APPLY
                         </p>
                         <p className="font-light text-[13px] text-tremor-brand-boulder900">
-                            The Job Application link type
+                            The Job Application link type (Set this to false if
+                            you want to use an internal Form URL)
                         </p>
                     </div>
                     <div className="w-full md:w-1/2">
@@ -219,14 +235,23 @@ export default function JobDetails() {
                         </p>
                     </div>
                     <div className="w-full md:w-1/2">
-                        <input
-                            required
-                            type="url"
-                            value={apply}
-                            onChange={e => setApply(e.target.value)}
-                            placeholder="e.g “https://www.analogueshifts.com”"
-                            className="max-w-full w-full h-14 rounded-2xl  px-5 border border-tremor-brand-boulder200 text-[13px] font-light placeholder:text-tremor-brand-boulder300 text-tremor-brand-boulder950 outline-1 outline-tremor-background-darkYellow"
-                        />
+                        {directApply === 'true' ? (
+                            <input
+                                required
+                                type="url"
+                                value={externalApplicationURL}
+                                onChange={e =>
+                                    setExternalApplicationURL(e.target.value)
+                                }
+                                placeholder="e.g “https://www.analogueshifts.com”"
+                                className="max-w-full w-full h-14 rounded-2xl  px-5 border border-tremor-brand-boulder200 text-[13px] font-light placeholder:text-tremor-brand-boulder300 text-tremor-brand-boulder950 outline-1 outline-tremor-background-darkYellow"
+                            />
+                        ) : (
+                            <SelectForm
+                                selectedForm={internalApplicationURL}
+                                setSelectedForm={setInternalApplicationURL}
+                            />
+                        )}
                     </div>
                 </div>
 

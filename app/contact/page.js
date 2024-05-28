@@ -5,13 +5,13 @@ import GuestLayout from '../layouts/guest-layout'
 // import SeoController from '../lib/SeoController'
 
 export const metadata = {
-    title: '24/7 Contact Center | AnalogueShift',
+    title: 'Contact us | Analogue Shifts',
     description:
-        "Have a question for Analogueshifts? Our team is here to help. Contact us today to learn more about our recruitment services or to discuss your organization's hiring needs",
+        'Looking to hire remote developers, designers, or marketers? Contact us at Analogue Shifts today to find qualified professionals for your team.',
     openGraph: {
-        title: '24/7 Contact Center | AnalogueShift',
+        title: 'Contact us | Analogue Shifts',
         description:
-            "Have a question for Analogueshifts? Our team is here to help. Contact us today to learn more about our recruitment services or to discuss your organization's hiring needs",
+            'Looking to hire remote developers, designers, or marketers? Contact us at Analogue Shifts today to find qualified professionals for your team.',
         url: 'https://www.analogueshifts.com/contact',
         siteName: 'AnalogueShifts',
         images: [

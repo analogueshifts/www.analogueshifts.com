@@ -6,13 +6,14 @@ import Services from '@/components/application/home-page/services'
 import Testimonials from '@/components/application/home-page/testimonials-section'
 
 export const metadata = {
-    title: 'Tech Talent Recruitment and Acquisition | AnalogueShifts',
+    title: 'Remote talent acquisition & recruitment agency | Analogue shifts',
     description:
-        'Looking for the best tech talent worldwide? Analogueshifts is the recruitment agency for you. Our team of experts can help you streamline recruitment and find the perfect talent for your organization. ',
+        'Analogue Shifts is a remote talent acquisition and recruitment agency specializing in connecting startups with top remote tech talents globally.',
     openGraph: {
-        title: 'Tech Talent Recruitment and Acquisition | AnalogueShifts',
+        title:
+            'Remote talent acquisition & recruitment agency | Analogue shifts',
         description:
-            'Looking for the best tech talent worldwide? Analogueshifts is the recruitment agency for you. Our team of experts can help you streamline recruitment and find the perfect talent for your organization. ',
+            'Analogue Shifts is a remote talent acquisition and recruitment agency specializing in connecting startups with top remote tech talents globally.',
         url: 'https://www.analogueshifts.com',
         siteName: 'AnalogueShifts',
         images: [

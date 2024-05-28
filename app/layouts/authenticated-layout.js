@@ -171,6 +171,11 @@ export default function Authenticated({ header, children }) {
 
             <section className="content">
                 <nav className=" justify-between z-50">
+                    <Link
+                        href="https://www.analogueshifts.com"
+                        className="sm:hidden flex">
+                        <ApplicationLogo />
+                    </Link>
                     <i
                         onClick={() => toggleMenu('hide')}
                         className="fas fa-bars menu-btn"></i>
@@ -191,11 +196,6 @@ export default function Authenticated({ header, children }) {
                                 mobileOpen ? 'bg-black/80' : 'bg-[#342e37]'
                             }`}></span>
                     </button>
-                    <Link
-                        href="https://www.analogueshifts.com"
-                        className="sm:hidden flex">
-                        <ApplicationLogo />
-                    </Link>
 
                     {/* Notification */}
                     {/* <NotificationSection user={user} /> */}

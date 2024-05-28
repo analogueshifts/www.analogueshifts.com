@@ -16,6 +16,7 @@ export default function OrganizationInformation() {
     const [user, setUser] = useState(null)
     const [loading, setLoading] = useState(false)
     const [organizationName, setOrganizationName] = useState('')
+    const [fileUploading, setFileUploading] = useState(false)
     const [organizationUrl, setOrganizationUrl] = useState('')
     const [logoFileUrl, setLogoFileUrl] = useState('')
     const [logoFile, setLogoFile] = useState(null)
@@ -74,7 +75,7 @@ export default function OrganizationInformation() {
             method: 'PUT',
             url: url,
             headers: {
-                Accept: 'application/json',
+                'Content-Type': 'application/json',
                 Authorization: 'Bearer ' + user.token,
             },
             data: data,
@@ -114,14 +115,14 @@ export default function OrganizationInformation() {
             data: formData,
         }
 
-        setLoading(true)
+        setFileUploading(true)
         try {
             const data = await axios.request(config)
             setLogoFileUrl(data.data.data.path)
             setLogoFile(value)
-            setLoading(false)
+            setFileUploading(false)
         } catch (error) {
-            setLoading(false)
+            setFileUploading(false)
             toast.error('Error Uploading Logo', toastConfig)
         }
     }
@@ -258,7 +259,28 @@ export default function OrganizationInformation() {
                     </div>
                     <div className="w-full md:w-1/2">
                         {!isUrlType ? (
-                            <FileInput value={logoFile} setValue={uploadFile} />
+                            <div className="relative w-full h-max rounded-3xl overflow-hidden">
+                                {fileUploading && (
+                                    <div
+                                        style={{ zIndex: 3000 }}
+                                        className="absolute top-0 left-0 w-full h-full flex justify-center items-center bg-gray-300/30 bg-opacity-80">
+                                        <div className="lds-roller">
+                                            <div></div>
+                                            <div></div>
+                                            <div></div>
+                                            <div></div>
+                                            <div></div>
+                                            <div></div>
+                                            <div></div>
+                                            <div></div>
+                                        </div>
+                                    </div>
+                                )}
+                                <FileInput
+                                    value={logoFile}
+                                    setValue={uploadFile}
+                                />
+                            </div>
                         ) : (
                             <input
                                 type="url"

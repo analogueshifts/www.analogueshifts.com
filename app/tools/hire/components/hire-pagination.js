@@ -10,7 +10,7 @@ import {
 
 export default function HirePagination({ currentPageInfo }) {
     return (
-        <div className="w-max mx-auto overflow-x-hidden h-max rounded-full scrollbar-hidden">
+        <div className="w-max max-w-full overflow-x-auto h-max rounded-full scrollbar-hidden">
             <Pagination className=" w-max">
                 <PaginationContent className="bg-transparent h-full">
                     <PaginationItem>
