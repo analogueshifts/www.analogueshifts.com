@@ -198,7 +198,7 @@ export default function Authenticated({ header, children }) {
                     </button>
 
                     {/* Notification */}
-                    {/* <NotificationSection user={user} /> */}
+                    <NotificationSection user={user} />
 
                     {mobileOpen && (
                         <MenuDropDown

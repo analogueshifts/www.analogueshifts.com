@@ -23,7 +23,7 @@ export default function NotificationSection({ user }) {
         }
         try {
             let response = await axios.request(config)
-            console.log(response.json())
+            console.log(response)
         } catch (error) {
             console.log(error)
         }
