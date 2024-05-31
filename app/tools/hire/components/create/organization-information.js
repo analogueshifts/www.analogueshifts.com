@@ -66,7 +66,6 @@ export default function OrganizationInformation() {
             },
             data: data,
         }
-
         setLoading(true)
         axios
             .request(config)
@@ -79,7 +78,6 @@ export default function OrganizationInformation() {
             .catch(error => {
                 toast.error(error.message, toastConfig)
                 setLoading(false)
-                console.log(error)
             })
     }
 

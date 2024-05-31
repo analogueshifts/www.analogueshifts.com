@@ -159,11 +159,11 @@ export default function HirePageDetails() {
                                                     src={
                                                         item.hiringOrganization
                                                             .logo &&
-                                                        item.hiringOrganization
-                                                            .logo[0]
+                                                        item.hiringOrganization.logo.trim()
+                                                            .length > 0
                                                             ? item
                                                                   .hiringOrganization
-                                                                  .logo[0]
+                                                                  .logo
                                                             : '/images/jobs/company_logo.JPG'
                                                     }
                                                     alt="LOGO"

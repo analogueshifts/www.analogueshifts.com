@@ -33,7 +33,7 @@ export default function FileInput({ value, setValue }) {
         <section>
             {/* The File Input */}
             <input
-                accept="image/jpeg,image/png,application/pdf"
+                accept="image/jpeg,image/png"
                 onChange={handleFileChange}
                 ref={fileRef}
                 type="file"
@@ -55,7 +55,7 @@ export default function FileInput({ value, setValue }) {
                             <i className="fas fa-cloud-arrow-up text-sm"></i>
                         </p>
                         <p className="font-light text-[13px] text-tremor-brand-boulder500 mb-1">
-                            Supports JPG, JPEG, PNG, PDF
+                            Supports JPG, JPEG, PNG
                         </p>
                         <p className="font-light text-[13px] text-tremor-brand-boulder500 mb-1">
                             Maximum file size 5mb

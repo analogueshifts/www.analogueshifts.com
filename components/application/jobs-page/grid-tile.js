@@ -11,7 +11,7 @@ export default function JobGridTile({ job }) {
                             : '/images/jobs/company_logo.JPG'
                     }
                     alt="LOGO"
-                    className={`md:w-max md:h-[185px] object-contain w-[206px] h-[150px]`}
+                    className={` max-w-[150px] object-contain w-max h-max`}
                 />
                 <div className="flex flex-col gap-1.5 md:items-center">
                     <p className="text-sm font-normal text-[#B0B0B0]">
