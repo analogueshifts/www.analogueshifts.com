@@ -71,7 +71,6 @@ export default function NotificationSection({ user }) {
                         </DropdownMenuItem>
                     )}
                 </DropdownMenuGroup>
-                <DropdownMenuSeparator />
             </DropdownMenuContent>
         </DropdownMenu>
     )

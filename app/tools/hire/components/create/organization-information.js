@@ -102,13 +102,12 @@ export default function OrganizationInformation() {
         setFileUploading(true)
         try {
             const data = await axios.request(config)
-            setLogoFileUrl(data.data.data.path)
+            setLogoFileUrl(data.data.data.full_path)
             setLogoFile(value)
             setFileUploading(false)
         } catch (error) {
             setFileUploading(false)
             toast.error('Error Uploading Logo', toastConfig)
-            console.log(error)
         }
     }
 
