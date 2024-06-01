@@ -46,7 +46,7 @@ export default function Page() {
                                     </Link>
                                     <Link
                                         className="text-gray-500 font-semibold text-md p-3 border hover:ml-3"
-                                        href="/blog">
+                                        href="https://blog.analogueshifts.com">
                                         Blog
                                     </Link>
                                     <Link

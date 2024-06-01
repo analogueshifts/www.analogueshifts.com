@@ -17,7 +17,8 @@ export default function HirePagination({ currentPageInfo }) {
                         <PaginationPrevious
                             href={
                                 currentPageInfo?.prev_page_url
-                                    ? currentPageInfo.prev_page_url.slice(34)
+                                    ? '/tools/hire' +
+                                      currentPageInfo?.prev_page_url?.slice(49)
                                     : ''
                             }
                         />
@@ -33,7 +34,8 @@ export default function HirePagination({ currentPageInfo }) {
                                             isActive={item.active}
                                             href={
                                                 item.url
-                                                    ? item.url.slice(34)
+                                                    ? '/tools/hire' +
+                                                      item?.url?.slice(49)
                                                     : ''
                                             }>
                                             {item.label}
@@ -49,7 +51,8 @@ export default function HirePagination({ currentPageInfo }) {
                         <PaginationNext
                             href={
                                 currentPageInfo?.next_page_url
-                                    ? currentPageInfo.next_page_url.slice(34)
+                                    ? '/tools/hire' +
+                                      currentPageInfo?.next_page_url?.slice(49)
                                     : ''
                             }
                         />

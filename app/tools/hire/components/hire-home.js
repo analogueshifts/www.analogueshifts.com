@@ -18,7 +18,7 @@ import DashboardLoader from '@/components/application/dashboard-loader'
 export default function HirePageDetails() {
     const [user, setUser] = useState(null)
     const pageQuery = useSearchParams().getAll('page')
-    const [currentPageInfo, setCurrentPageInfo] = useState({})
+    const [currentPageInfo, setCurrentPageInfo] = useState(null)
     const [deleteLoading, setDeleteLoading] = useState(false)
     const [idiomModal, setIdiomModal] = useState(false)
     const [idToBeDeleted, setIdToBeDeleted] = useState(null)
@@ -31,8 +31,6 @@ export default function HirePageDetails() {
 
     //Fetch Jobs
     const fetchJobs = () => {
-        setLoading(true)
-
         // Fetch Jobs
         fetchJobPosts(
             allJobsURL,
@@ -43,6 +41,7 @@ export default function HirePageDetails() {
                     setCurrentPageInfo(response.data.data.hires)
                 }
                 setLoading(false)
+                setDeleteLoading(false)
             },
             error => {
                 setLoading(false)
@@ -63,7 +62,6 @@ export default function HirePageDetails() {
                 fetchJobs()
                 toast.success('Job Deleted Successfully', toastConfig)
                 setIdToBeDeleted(null)
-                setDeleteLoading(false)
             },
             err => {
                 toast.error('Error Deleting Job', toastConfig)
@@ -87,6 +85,7 @@ export default function HirePageDetails() {
 
     useEffect(() => {
         if (user) {
+            setLoading(true)
             fetchJobs()
         }
     }, [user])
@@ -244,7 +243,7 @@ export default function HirePageDetails() {
                                         </div>
                                     )
                                 })}
-                            {data.length === 0 && (
+                            {currentPageInfo && data.length === 0 && (
                                 <div className="w-full mt-10 flex px-5 items-center justify-center">
                                     <h3 className="text-tremor-brand-boulder950">
                                         No Job Found

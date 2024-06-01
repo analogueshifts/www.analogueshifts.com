@@ -1,8 +1,8 @@
 {
   "/tools/hire/page": "app/tools/hire/page.js",
-  "/tools/hire/create/job-information/page": "app/tools/hire/create/job-information/page.js",
   "/tools/hire/create/job-details/page": "app/tools/hire/create/job-details/page.js",
   "/tools/hire/create/job-location/page": "app/tools/hire/create/job-location/page.js",
   "/tools/hire/create/organization-information/page": "app/tools/hire/create/organization-information/page.js",
+  "/404/page": "app/404/page.js",
   "/not-found": "app/not-found.js"
 }
