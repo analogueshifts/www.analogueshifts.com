@@ -7,43 +7,51 @@ import Cookies from 'js-cookie'
 import ProfileImage from '@/public/images/profile_avatar.JPG'
 import { toast } from 'react-toastify'
 import { toastConfig } from '@/utils/toast-config'
-import { fetchJobPosts } from '@/utils/fetch-job-posts'
 import SkeletonCard from '@/components/application/skeleton-card'
-import { fetchVetPosts } from '@/utils/fetch-vets'
+import { processChartData } from '@/utils/process-chart-data'
+import RenderChart from './chart'
 
 export default function Dashboard() {
-    const [selectedMode, setSelectedMode] = useState('Buy')
     const [loading, setLoading] = useState(true)
-    const [totalJobs, setTotalJobs] = useState(0)
-    const [totalVets, setTotalVets] = useState(0)
+    const [data, setData] = useState({
+        labels: [],
+        datasets: [
+            {
+                label: 'Hires',
+                data: [],
+                borderColor: 'rgba(75,192,192,1)',
+                backgroundColor: 'rgba(75,192,192,0.2)',
+                fill: true,
+            },
+            {
+                label: 'Forms',
+                data: [],
+                borderColor: 'rgba(153,102,255,1)',
+                backgroundColor: 'rgba(153,102,255,0.2)',
+                fill: true,
+            },
+        ],
+    })
     const [user, setUser] = useState(null)
 
     // Fetch Jobs and Vets
-    const getDatas = () => {
-        const jobsUrl = process.env.NEXT_PUBLIC_BACKEND_URL + '/hire/dashboard'
-        const vetsUrl = process.env.NEXT_PUBLIC_BACKEND_URL + '/tools/form'
+    const getDatas = async () => {
+        const url = process.env.NEXT_PUBLIC_BACKEND_URL + '/dashboard'
+        const config = {
+            url: url,
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                Accept: 'application/json',
+                Authorization: 'Bearer ' + user.token,
+            },
+        }
+        const axios = require('axios')
         try {
-            fetchJobPosts(
-                jobsUrl,
-                user.token,
-                response => {
-                    setTotalJobs(response.data.data.hires.total)
-                    fetchVetPosts(
-                        vetsUrl,
-                        user.token,
-                        response => {
-                            setTotalVets(response.data.data.forms.total)
-                            setLoading(false)
-                        },
-                        err => {
-                            setLoading(false)
-                        },
-                    )
-                },
-                err => {
-                    setLoading(false)
-                },
-            )
+            setLoading(true)
+            const request = await axios.request(config)
+            setData(processChartData(request.data))
+            setLoading(false)
         } catch (error) {
             setLoading(false)
             toast.error('Error Fetching Data', toastConfig)
@@ -53,7 +61,7 @@ export default function Dashboard() {
     useEffect(() => {
         let storedData = Cookies.get('analogueshifts')
         if (storedData) {
-            setUser(JSON.parse(Cookies.get('analogueshifts')))
+            setUser(JSON.parse(storedData))
         }
     }, [])
 
@@ -84,7 +92,8 @@ export default function Dashboard() {
                     />
                     <div className="-translate-y-5">
                         <h2 className="text-2xl font-bold text-gray-800">
-                            {user?.name}
+                            {user?.user?.first_name}{' '}
+                            {user?.user?.last_name && ' ' + user.user.last_name}
                         </h2>
                         <p className="text-gray-600">{user?.email}</p>
                         {/* <p className="text-blue-500">Nigeria</p> */}
@@ -93,138 +102,33 @@ export default function Dashboard() {
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 ">
                         {/* Metric Card 1 */}
-                        {loading ? (
+                        {/* {loading ? (
                             <SkeletonCard />
                         ) : (
                             <div className="bg-white p-4 rounded-xl shadow-xl">
                                 <p className="text-base truncate lg:text-xl font-bold text-blue-600">
                                     Hire Talents
                                 </p>
-                                <p className="text-gray-600">{totalJobs}</p>
+                                <p className="text-gray-600">0</p>
                             </div>
-                        )}
+                        )} */}
 
                         {/* Metric Card 2 */}
-                        {loading ? (
+                        {/* {loading ? (
                             <SkeletonCard />
                         ) : (
                             <div className="bg-white p-4 rounded-xl shadow-xl">
                                 <p className="text-base truncate lg:text-xl font-bold text-green-600">
                                     Vetting System
                                 </p>
-                                <p className="text-gray-600">{totalVets}</p>
+                                <p className="text-gray-600">0</p>
                             </div>
-                        )}
+                        )} */}
                     </div>
 
-                    {/* Modes Button Row */}
-                    <div className="flex flex-col pt-12">
-                        {/* <p className="w-full text-center font-medium text-[#D2D2D2] text-[13px]">
-                            YOUR MODES
-                        </p>
-                        <div className="w-full flex pt-8 justify-center gap-1.5">
-                            <button
-                                onClick={() => setSelectedMode('Buy')}
-                                className={`w-28 lg:w-36 py-2.5 rounded-full text-[15px] font-bold duration-300 hover:scale-105 ${
-                                    selectedMode === 'Buy'
-                                        ? 'text-white bg-tremor-background-darkYellow border border-solid border-tremor-background-darkYellow'
-                                        : 'bg-transparent text-tremor-background-darkYellow border border-solid border-tremor-background-darkYellow'
-                                }`}>
-                                Buy
-                            </button>
-                            <button
-                                onClick={() => setSelectedMode('Sell')}
-                                className={`w-28 lg:w-36 py-2.5 hover:scale-105 rounded-full text-[15px] font-bold duration-300 ${
-                                    selectedMode === 'Sell'
-                                        ? 'text-white bg-tremor-background-darkYellow border border-solid border-tremor-background-darkYellow'
-                                        : 'bg-transparent text-tremor-background-darkYellow border border-solid border-tremor-background-darkYellow'
-                                }`}>
-                                Sell
-                            </button>
-                        </div> */}
-                        {/* <div className="w-full pt-9 flex flex-col gap-6">
-                            {selectedMode === 'Buy'
-                                ? modesDummyData.buy.map(data => {
-                                      return (
-                                          <div
-                                              key={crypto.randomUUID()}
-                                              className="w-full border-b flex flex-wrap pb-5 justify-between items-center gap-y-2">
-                                              <div className="flex gap-2 flex-wrap items-center">
-                                                  <Image
-                                                      src={data.image}
-                                                      alt=""
-                                                  />
-                                                  <div className="flex flex-col gap-1.5">
-                                                      <p className="text-xs font-normal text-black/40">
-                                                          {data.company}
-                                                      </p>
-                                                      <p className="text-sm font-semibold text-black/80">
-                                                          {data.title}
-                                                      </p>
-                                                      <div className="flex gap-1.5 flex-wrap">
-                                                          <div className="px-5 bg-[#f2f2f2] rounded py-1 text-black/80 text-[10px] font-normal">
-                                                              {data.salary}
-                                                          </div>
-                                                          <div className="px-5 bg-[#f2f2f2] rounded py-1 text-black/80 text-[10px] font-normal">
-                                                              {data.location}
-                                                          </div>
-                                                      </div>
-                                                  </div>
-                                              </div>
-                                              <div className="flex gap-2 items-center">
-                                                  <button
-                                                      className={`w-24 lg:w-28 py-2 hover:scale-105 rounded-full text-xs font-bold duration-300 text-white bg-tremor-background-darkYellow border border-solid border-tremor-background-darkYellow`}>
-                                                      Apply
-                                                  </button>
-                                                  <p className="text-xs font-normal text-black/60">
-                                                      Just Now!
-                                                  </p>
-                                              </div>
-                                          </div>
-                                      )
-                                  })
-                                : modesDummyData.sell.map(data => {
-                                      return (
-                                          <div
-                                              key={crypto.randomUUID()}
-                                              className="w-full border-b gap-y-2 flex flex-wrap pb-5 justify-between items-center">
-                                              <div className="flex gap-2 flex-wrap items-center">
-                                                  <Image
-                                                      src={data.image}
-                                                      alt=""
-                                                  />
-                                                  <div className="flex flex-col gap-1.5">
-                                                      <p className="text-xs font-normal text-black/40">
-                                                          {data.company}
-                                                      </p>
-                                                      <p className="text-sm font-semibold text-black/80">
-                                                          {data.title}
-                                                      </p>
-                                                      <div className="flex gap-1.5 flex-wrap">
-                                                          <div className="px-5 bg-[#f2f2f2] rounded py-1 text-black/80 text-[10px] font-normal">
-                                                              {data.salary}
-                                                          </div>
-                                                          <div className="px-5 bg-[#f2f2f2] rounded py-1 text-black/80 text-[10px] font-normal">
-                                                              {data.location}
-                                                          </div>
-                                                      </div>
-                                                  </div>
-                                              </div>
-                                              <div className="flex gap-2 items-center">
-                                                  <button
-                                                      className={`w-24 lg:w-28 py-2 hover:scale-105 rounded-full text-xs font-bold duration-300 text-white bg-tremor-background-darkYellow border border-solid border-tremor-background-darkYellow`}>
-                                                      Apply
-                                                  </button>
-                                                  <p className="text-xs font-normal text-black/60">
-                                                      Just Now!
-                                                  </p>
-                                              </div>
-                                          </div>
-                                      )
-                                  })}
-                        </div> */}
-                    </div>
+                    <RenderChart chartData={data} />
                 </div>
+
                 <div className="flex flex-col overflow-hidden"></div>
             </div>
         </Authenticated>

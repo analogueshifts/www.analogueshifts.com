@@ -117,7 +117,7 @@ export default function Page() {
                 setLoading(false)
                 if (res.data.success) {
                     const userData = JSON.stringify({
-                        ...res.data.data.user,
+                        user: { ...res.data.data.user },
                         token: user.token,
                     })
 

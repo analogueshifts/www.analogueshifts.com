@@ -1,4 +1,12 @@
-const FormInput = ({ label, icon, value, type, placeholder, onChange }) => {
+const FormInput = ({
+    label,
+    icon,
+    value,
+    type,
+    placeholder,
+    onChange,
+    required,
+}) => {
     return (
         <div className="w-full pb-5 flex flex-col gap-2.5">
             <p className="text-base font-normal text-tremor-content-grayText">
@@ -17,7 +25,7 @@ const FormInput = ({ label, icon, value, type, placeholder, onChange }) => {
                     value={value}
                     type={type}
                     onChange={onChange}
-                    required
+                    required={required}
                 />
             </div>
         </div>

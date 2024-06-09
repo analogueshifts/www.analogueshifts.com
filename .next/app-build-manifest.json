@@ -1,10 +1,5 @@
 {
   "pages": {
-    "/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/page.js"
-    ],
     "/layout": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
@@ -47,10 +42,10 @@
       "static/chunks/main-app.js",
       "static/chunks/app/tools/hire/create/organization-information/page.js"
     ],
-    "/404/page": [
+    "/login/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/404/page.js"
+      "static/chunks/app/login/page.js"
     ]
   }
 }

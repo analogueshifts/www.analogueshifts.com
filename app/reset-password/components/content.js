@@ -109,9 +109,12 @@ export default function ResetPassword() {
         }
         try {
             const request = await axios.request(config)
+            console.log(request)
             if (!request.data.success) {
                 setLoading(false)
                 toast.error('Invalid OTP', toastConfig)
+            } else {
+                await resetPassword()
             }
         } catch (error) {
             setLoading(false)
@@ -136,6 +139,9 @@ export default function ResetPassword() {
         }
         try {
             await axios.request(config)
+            toast.success('Password Reset Successful', toastConfig)
+            router.push('/login')
+            setLoading(false)
         } catch (error) {
             setLoading(false)
             toast.error('Failed to reset password', toastConfig)
@@ -144,13 +150,16 @@ export default function ResetPassword() {
 
     const handleSubmit = async e => {
         e.preventDefault()
-        setLoading(true)
+        if (password !== confirm_password) {
+            toast.error(
+                'Password must match with Confirm Password',
+                toastConfig,
+            )
+            return
+        }
         try {
+            setLoading(true)
             await validateOTP()
-            await resetPassword()
-            toast.success('Password Reset Successful', toastConfig)
-            router.push('/login')
-            setLoading(false)
         } catch (error) {
             console.log(error)
         }

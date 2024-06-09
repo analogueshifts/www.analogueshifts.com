@@ -1,8 +1,9 @@
 {
-  "/tools/hire/page": "app/tools/hire/page.js",
+  "/dashboard/page": "app/dashboard/page.js",
   "/tools/hire/create/job-details/page": "app/tools/hire/create/job-details/page.js",
-  "/tools/hire/create/job-location/page": "app/tools/hire/create/job-location/page.js",
   "/tools/hire/create/organization-information/page": "app/tools/hire/create/organization-information/page.js",
-  "/404/page": "app/404/page.js",
+  "/tools/hire/page": "app/tools/hire/page.js",
+  "/tools/hire/create/job-location/page": "app/tools/hire/create/job-location/page.js",
+  "/login/page": "app/login/page.js",
   "/not-found": "app/not-found.js"
 }

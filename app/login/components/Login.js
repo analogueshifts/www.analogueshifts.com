@@ -14,47 +14,41 @@ import FormInput from '@/components/application/form-input'
 export default function Login() {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    const [errorMessage, setErrorMessage] = useState('')
     const [loading, setLoading] = useState(false)
     const url = process.env.NEXT_PUBLIC_BACKEND_URL + '/login'
 
-    function submit(e) {
+    async function submit(e) {
         e.preventDefault()
-        const axios = require('axios')
-
-        let config = {
-            method: 'POST',
-            url: url,
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            data: JSON.stringify({
-                email: email,
-                password: password,
-            }),
-        }
         setLoading(true)
 
-        axios
-            .request(config)
-            .then(async response => {
-                const userData = JSON.stringify({
-                    ...response.data.data.user,
-                    token: response.data.data.token,
-                })
-                Cookies.set('analogueshifts', userData)
+        try {
+            const res = await fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    Accept: 'application/json',
+                    secret_key: process.env.NEXT_PUBLIC_SECRET_KEY,
+                },
+                body: JSON.stringify({
+                    email: email,
+                    password: password,
+                    device_token: crypto.randomUUID(),
+                }),
+            })
+            const data = await res.json()
+            if (data.success) {
+                Cookies.set('analogueshifts', JSON.stringify(data.data))
                 toast.success('Login Successful', toastConfig)
                 let redirectionLink = Cookies.get('RedirectionLink')
                 window.location.href = redirectionLink?.trim().length
                     ? redirectionLink
                     : '/dashboard'
-
-                setLoading(false)
-            })
-            .catch(error => {
-                setLoading(false)
-                toast.error(error.message, toastConfig)
-            })
+            }
+            setLoading(false)
+        } catch (error) {
+            setLoading(false)
+            toast.error(error.message, toastConfig)
+        }
     }
 
     useEffect(() => {

@@ -12,55 +12,50 @@ import { toastConfig } from '@/utils/toast-config'
 import FormInput from '@/components/application/form-input'
 
 export default function Register() {
-    const [name, setName] = useState('')
+    const [first_name, setFirstName] = useState('')
+    const [last_name, setLastName] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [confirm_password, setConfirmPassword] = useState('')
     const [loading, setLoading] = useState(false)
     const url = process.env.NEXT_PUBLIC_BACKEND_URL + '/register'
 
-    function submit(e) {
+    async function submit(e) {
         e.preventDefault()
-        const axios = require('axios')
-        let data = JSON.stringify({
-            name: name,
-            email: email,
-            password: password,
-            password_confirmation: confirm_password,
-            device_token: crypto.randomUUID(),
-            device_type: 'web',
-        })
-
-        let config = {
-            method: 'POST',
-            url: url,
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            data: data,
-        }
-
         setLoading(true)
-        axios
-            .request(config)
-            .then(async response => {
-                const userData = JSON.stringify({
-                    ...response.data[0].data.user,
-                    token: response.data[0].data.token,
-                })
 
-                Cookies.set('analogueshifts', userData)
-                setLoading(false)
-                toast.success('Account Created Successfully', toastConfig)
+        try {
+            const res = await fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    Accept: 'application/json',
+                    secret_key: process.env.NEXT_PUBLIC_SECRET_KEY,
+                },
+                body: JSON.stringify({
+                    first_name: first_name,
+                    last_name: last_name,
+                    email: email,
+                    password: password,
+                    password_confirmation: confirm_password,
+                    device_token: crypto.randomUUID(),
+                }),
+            })
+            const data = await res.json()
+            if (data[0].success) {
+                Cookies.set('analogueshifts', JSON.stringify(data[0].data))
+                toast.success('Account created successfully', toastConfig)
                 let redirectionLink = Cookies.get('RedirectionLink')
-                window.location.href = redirectionLink.trim().length
+                window.location.href = redirectionLink?.trim().length
                     ? redirectionLink
                     : '/dashboard'
-            })
-            .catch(error => {
-                setLoading(false)
-                toast.error(error.message, toastConfig)
-            })
+            }
+
+            setLoading(false)
+        } catch (error) {
+            setLoading(false)
+            toast.error(error.message, toastConfig)
+        }
     }
     useEffect(() => {
         const auth = Cookies.get('analogueshifts')
@@ -76,9 +71,12 @@ export default function Register() {
             {loading && <LoadingTwo />}
             <main className="w-full h-max min-h-screen mx-auto flex justify-center items-center px-5 py-10">
                 <section className="max-w-full lg:w-[1000px] md:w-[800px] md:flex-row flex-col flex justify-between items-center">
-                    <div className="lg:w-[450px] md:w-[350px] relative hidden md:flex justify-center items-center">
-                        <Image src={Group} alt="" className="absolute" />
-                        <Image src={Avatar} alt="" />
+                    <div className="hidden md:flex"></div>
+                    <div className="w-max h-screen top-0 items-center justify-center fixed hidden md:flex">
+                        <div className="lg:w-[450px] md:w-[350px] relative flex  justify-center items-center">
+                            <Image src={Group} alt="" className="absolute" />
+                            <Image src={Avatar} alt="" />
+                        </div>
                     </div>
                     <div className="lg:w-[450px] md:w-[350px] flex flex-col">
                         <ApplicationLogo />
@@ -94,10 +92,20 @@ export default function Register() {
                             <FormInput
                                 icon="fa-solid fa-signature"
                                 type="text"
-                                onChange={e => setName(e.target.value)}
-                                label="Name"
-                                placeholder="Name"
-                                value={name}
+                                onChange={e => setFirstName(e.target.value)}
+                                label="First Name"
+                                placeholder="First Name"
+                                value={first_name}
+                                required={true}
+                            />
+                            <FormInput
+                                icon="fa-solid fa-signature"
+                                type="text"
+                                onChange={e => setLastName(e.target.value)}
+                                label="Last Name"
+                                placeholder="Last Name"
+                                value={last_name}
+                                required={false}
                             />
                             <FormInput
                                 icon="fa-solid fa-envelope"
@@ -106,6 +114,7 @@ export default function Register() {
                                 label="Email"
                                 placeholder="Enter Email"
                                 value={email}
+                                required={true}
                             />
                             <FormInput
                                 icon="fa-solid fa-lock"
@@ -114,6 +123,7 @@ export default function Register() {
                                 label="Password"
                                 placeholder="Enter Password"
                                 value={password}
+                                required={true}
                             />
                             <FormInput
                                 icon="fa-solid fa-lock"
@@ -124,6 +134,7 @@ export default function Register() {
                                 label="Confirm Password"
                                 placeholder="Enter Password"
                                 value={confirm_password}
+                                required={true}
                             />
                             <button
                                 type="submit"

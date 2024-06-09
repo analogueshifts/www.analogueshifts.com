@@ -3,8 +3,6 @@ import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
 import { toast } from 'react-toastify'
-import { Toaster } from '@/components/ui/sonner'
-import { customToast } from '@/components/ui/custom-toast'
 import Cookies from 'js-cookie'
 import DashboardLoader from '@/components/application/dashboard-loader'
 import ApplicationLogo from '@/components/application/application-logo'
@@ -13,6 +11,7 @@ import IdiomProof from '@/components/application/idiom-proof'
 import { toastConfig } from '@/utils/toast-config'
 import SidebarMenu from '@/components/application/side-bar-menu'
 import NotificationSection from '@/components/application/notifications-section'
+import UnverifiedBanner from '@/components/application/unverified-banner'
 
 export default function Authenticated({ header, children }) {
     const pathname = usePathname()
@@ -22,6 +21,7 @@ export default function Authenticated({ header, children }) {
     const [mobileOpen, setMobileOpen] = useState(false)
     const [navAnimationClass, setNavAnimationClass] = useState('')
     const [loading, setLoading] = useState(false)
+    const [showUnverifiedBanner, setShowUnverifiedBanner] = useState(false)
 
     // Handle Logout
     async function logout() {
@@ -42,36 +42,6 @@ export default function Authenticated({ header, children }) {
             .then(res => {
                 Cookies.remove('analogueshifts')
                 window.location.href = '/login'
-            })
-            .catch(error => {
-                setLoading(false)
-                toast.error(error.message, toastConfig)
-            })
-    }
-
-    // Send Verification Email
-    function handleSendVerificationEmail() {
-        const axios = require('axios')
-        const url =
-            process.env.NEXT_PUBLIC_BACKEND_URL +
-            '/email/verification-notification'
-        let config = {
-            url: url,
-            method: 'POST',
-            headers: {
-                Authorization: 'Bearer ' + user?.token,
-            },
-        }
-
-        setLoading(true)
-
-        axios
-            .request(config)
-            .then(res => {
-                setLoading(false)
-
-                // Take user to Email Verification Page
-                router.push('/email-verification')
             })
             .catch(error => {
                 setLoading(false)
@@ -133,13 +103,8 @@ export default function Authenticated({ header, children }) {
 
     // Display Unverified Email Banner if the user's email is unverified
     useEffect(() => {
-        if (user && !user.email_verified_at) {
-            customToast(
-                'Unverified Email',
-                'Your email address is not verified',
-                'Verify Email',
-                handleSendVerificationEmail,
-            )
+        if (user && !user.user.email_verified_at) {
+            setShowUnverifiedBanner(true)
         }
     }, [user])
 
@@ -215,8 +180,14 @@ export default function Authenticated({ header, children }) {
                 <main className="p-7 h-[calc(100dvh-56px)] overflow-y-auto">
                     {children}
                 </main>
+                {/*  UnVerified Banner */}
+                <UnverifiedBanner
+                    visible={showUnverifiedBanner}
+                    setVisible={setShowUnverifiedBanner}
+                    user={user}
+                    setLoading={setLoading}
+                />
             </section>
-            <Toaster />
         </main>
     )
 }
