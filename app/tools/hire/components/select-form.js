@@ -24,6 +24,8 @@ import { toast } from 'react-toastify'
 import { toastConfig } from '@/utils/toast-config'
 import FormGridTile from './form-grid-tile'
 import { ChevronDown } from 'lucide-react'
+import { clearUserSession } from '@/utils/clear-user-session'
+import { errorToast } from '@/utils/error-toast'
 
 export default function SelectForm({ selectedForm, setSelectedForm }) {
     const [loading, setLoading] = useState(false)
@@ -54,8 +56,14 @@ export default function SelectForm({ selectedForm, setSelectedForm }) {
             setForms(response.data.data.forms.data)
             setLoading(false)
         } catch (error) {
-            toast.error(error.message, toastConfig)
+            errorToast(
+                'Error Fetching Forms',
+                error?.response?.data?.message || error.message || '',
+            )
             setLoading(false)
+            if (error?.response?.status === 401) {
+                clearUserSession()
+            }
         }
     }
 

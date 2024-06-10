@@ -9,6 +9,8 @@ import FileInput from '@/components/application/file-input'
 import { motion } from 'framer-motion'
 import { toast } from 'react-toastify'
 import { toastConfig } from '@/utils/toast-config'
+import { clearUserSession } from '@/utils/clear-user-session'
+import { errorToast } from '@/utils/error-toast'
 
 export default function OrganizationInformation() {
     const pathname = usePathname()
@@ -95,8 +97,14 @@ export default function OrganizationInformation() {
                 router.push('/tools/hire')
             })
             .catch(error => {
-                toast.error(error.message, toastConfig)
+                errorToast(
+                    'Error Editing Job',
+                    error?.response?.data?.message || error.message || '',
+                )
                 setLoading(false)
+                if (error?.response?.status === 401) {
+                    clearUserSession()
+                }
             })
     }
 
@@ -125,7 +133,14 @@ export default function OrganizationInformation() {
             setFileUploading(false)
         } catch (error) {
             setFileUploading(false)
-            toast.error('Error Uploading Logo', toastConfig)
+
+            errorToast(
+                'Error Uploading Logo',
+                error?.response?.data?.message || error.message || '',
+            )
+            if (error?.response?.status === 401) {
+                clearUserSession()
+            }
         }
     }
 

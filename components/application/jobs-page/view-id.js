@@ -8,6 +8,7 @@ import JobApplicationCard from './job-application-card'
 import Tag from './tag'
 import { toastConfig } from '@/utils/toast-config'
 import Link from 'next/link'
+import { errorToast } from '@/utils/error-toast'
 
 export default function ViewId({ id }) {
     const router = useRouter()
@@ -29,7 +30,10 @@ export default function ViewId({ id }) {
             setJob(filteredData)
         } catch (error) {
             setLoading(false)
-            toast.error('Error Fetching Job', toastConfig)
+            errorToast(
+                'Error Fetching Job',
+                error?.response?.data?.message || error.message || '',
+            )
         }
     }
 
@@ -45,7 +49,10 @@ export default function ViewId({ id }) {
             setOtherJobs(response.data.data.jobs.data.slice(0, 5))
         } catch (error) {
             setLoading(false)
-            toast.error('Error Fetching Related Jobs', toastConfig)
+            errorToast(
+                'Error Fetching Related Jobs',
+                error?.response?.data?.message || error.message || '',
+            )
         }
     }
 
@@ -57,7 +64,10 @@ export default function ViewId({ id }) {
             setLoading(false)
         } catch (error) {
             setLoading(false)
-            toast.error('Error Fetching Job', toastConfig)
+            errorToast(
+                'Error Fetching Job',
+                error?.response?.data?.message || error.message || '',
+            )
         }
     }
 

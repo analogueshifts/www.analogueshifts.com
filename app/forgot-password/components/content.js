@@ -6,11 +6,10 @@ import ApplicationLogo from '@/components/application/application-logo'
 import { useState } from 'react'
 import Link from 'next/link'
 import LoadingTwo from '@/components/ui/loading-spinner'
-import { toast } from 'react-toastify'
-import { toastConfig } from '@/utils/toast-config'
 import { useRouter } from 'next/navigation'
 import Cookies from 'js-cookie'
 import FormInput from '@/components/application/form-input'
+import { errorToast } from '@/utils/error-toast'
 
 export default function ForgotPassword() {
     const router = useRouter()
@@ -47,9 +46,9 @@ export default function ForgotPassword() {
             })
             .catch(error => {
                 setLoading(false)
-                toast.error(
+                errorToast(
                     'An Error Occured, Please try again later',
-                    toastConfig,
+                    error?.response?.data?.message || error.message || '',
                 )
             })
     }

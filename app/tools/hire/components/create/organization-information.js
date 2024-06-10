@@ -9,6 +9,8 @@ import FileInput from '@/components/application/file-input'
 import { toast } from 'react-toastify'
 import DashboardLoader from '@/components/application/dashboard-loader'
 import { toastConfig } from '@/utils/toast-config'
+import { clearUserSession } from '@/utils/clear-user-session'
+import { errorToast } from '@/utils/error-toast'
 
 export default function OrganizationInformation() {
     const [user, setUser] = useState(null)
@@ -76,8 +78,14 @@ export default function OrganizationInformation() {
                 router.push('/tools/hire')
             })
             .catch(error => {
-                toast.error(error.message, toastConfig)
+                errorToast(
+                    'Failed To Post Job',
+                    error?.response?.data?.message || error.message || '',
+                )
                 setLoading(false)
+                if (error?.response?.status === 401) {
+                    clearUserSession()
+                }
             })
     }
 
@@ -107,7 +115,13 @@ export default function OrganizationInformation() {
             setFileUploading(false)
         } catch (error) {
             setFileUploading(false)
-            toast.error('Error Uploading Logo', toastConfig)
+            errorToast(
+                'Error Uploading Logo',
+                error?.response?.data?.message || error.message || '',
+            )
+            if (error?.response?.status === 401) {
+                clearUserSession()
+            }
         }
     }
 

@@ -6,7 +6,8 @@ import ApplicationLogo from '@/components/application/application-logo'
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import LoadingTwo from '@/components/ui/loading-spinner'
-import { toast } from 'react-toastify'
+import { successToast } from '@/utils/success-toast'
+import { errorToast } from '@/utils/error-toast'
 import Cookies from 'js-cookie'
 import { toastConfig } from '@/utils/toast-config'
 import FormInput from '@/components/application/form-input'
@@ -22,6 +23,13 @@ export default function Register() {
 
     async function submit(e) {
         e.preventDefault()
+
+        // Check for Confirm Password
+        if (password !== confirm_password) {
+            errorToast('Bad Input', 'Password Must Match with Confirm Password')
+            return
+        }
+
         setLoading(true)
 
         try {
@@ -44,7 +52,10 @@ export default function Register() {
             const data = await res.json()
             if (data[0].success) {
                 Cookies.set('analogueshifts', JSON.stringify(data[0].data))
-                toast.success('Account created successfully', toastConfig)
+                successToast(
+                    'Account created successfully',
+                    'Redirecting You to your Dashboard.',
+                )
                 let redirectionLink = Cookies.get('RedirectionLink')
                 window.location.href = redirectionLink?.trim().length
                     ? redirectionLink
@@ -54,7 +65,12 @@ export default function Register() {
             setLoading(false)
         } catch (error) {
             setLoading(false)
-            toast.error(error.message, toastConfig)
+            errorToast(
+                'Failed To create Account',
+                error?.response?.data?.message ||
+                    error.message ||
+                    'Failed To Create Account',
+            )
         }
     }
     useEffect(() => {

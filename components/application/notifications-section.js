@@ -21,7 +21,7 @@ export default function NotificationSection({ user }) {
         const axios = require('axios')
         const config = {
             method: 'GET',
-            url: process.env.NEXT_PUBLIC_BACKEND_URL + 'notification/count',
+            url: process.env.NEXT_PUBLIC_BACKEND_URL + '/notification/count',
             headers: {
                 Authorization: 'Bearer ' + user.token,
                 'Content-Type': 'application/json',
@@ -30,7 +30,7 @@ export default function NotificationSection({ user }) {
         }
         try {
             let response = await axios.request(config)
-            console.log(response)
+            setNotificationCount(response.data.data.notifications)
         } catch (error) {
             console.log(error)
         }

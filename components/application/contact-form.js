@@ -3,6 +3,7 @@ import { useState } from 'react'
 import LoadingTwo from '@/components/ui/loading-spinner'
 import { toast } from 'react-toastify'
 import { toastConfig } from '@/utils/toast-config'
+import { errorToast } from '@/utils/error-toast'
 
 export default function ContactForm() {
     const [loading, setLoading] = useState(false)
@@ -37,8 +38,10 @@ export default function ContactForm() {
             setTel('')
         } catch (error) {
             setLoading(false)
-            toast.error('Message sending failed, Try again later', toastConfig)
-            console.log(error)
+            errorToast(
+                'Message sending failed, Try again later',
+                error?.response?.data?.message || error.message || '',
+            )
         }
     }
 

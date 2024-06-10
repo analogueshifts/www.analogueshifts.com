@@ -14,8 +14,10 @@ import Avatar from '@/public/images/login/avatar.png'
 import Image from 'next/image'
 import Cookies from 'js-cookie'
 import { toast } from 'react-toastify'
+import { errorToast } from '@/utils/error-toast'
 import { toastConfig } from '@/utils/toast-config'
 import ApplicationLogo from '@/components/application/application-logo'
+import { clearUserSession } from '@/utils/clear-user-session'
 
 export default function Page() {
     const [value, setValue] = useState('')
@@ -92,6 +94,9 @@ export default function Page() {
             .catch(error => {
                 setLoading(false)
                 toast.error(error.message, toastConfig)
+                if (error?.response?.status === 401) {
+                    clearUserSession()
+                }
             })
     }
 
@@ -133,7 +138,13 @@ export default function Page() {
             .catch(error => {
                 setLoading(false)
                 setValue('')
-                toast.error('Invalid OTP', toastConfig)
+                errorToast(
+                    'Invalid OTP',
+                    error?.response?.data?.message || error.message || '',
+                )
+                if (error?.response?.status === 401) {
+                    clearUserSession()
+                }
             })
     }
 

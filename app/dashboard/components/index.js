@@ -4,7 +4,7 @@ import Authenticated from '@/app/layouts/authenticated-layout'
 import Curve from '@/public/images/curve.png'
 import Image from 'next/image'
 import Cookies from 'js-cookie'
-import { toast } from 'react-toastify'
+import { errorToast } from '@/utils/error-toast'
 import { toastConfig } from '@/utils/toast-config'
 import { processChartData } from '@/utils/process-chart-data'
 import RenderChart from './chart'
@@ -12,6 +12,7 @@ import EditProfile from './edit-profile'
 import DashboardLoader from '@/components/application/dashboard-loader'
 import { stats } from './stats'
 import VerifiedCheckMark from './verified-check'
+import { clearUserSession } from '@/utils/clear-user-session'
 
 export default function Dashboard() {
     const [loading, setLoading] = useState(false)
@@ -33,9 +34,19 @@ export default function Dashboard() {
         const axios = require('axios')
         try {
             const request = await axios.request(config)
-            setData(processChartData(request.data))
+            if (request?.data) {
+                setData(processChartData(request.data.data.dashboard))
+            }
         } catch (error) {
-            toast.error('Error Fetching Data', toastConfig)
+            errorToast(
+                'Error Fetching Data',
+                error?.response?.data?.message ||
+                    error.message ||
+                    'Failed To Fetch Statistics Data',
+            )
+            if (error?.response?.status === 401) {
+                clearUserSession()
+            }
         }
     }
 

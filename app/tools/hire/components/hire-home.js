@@ -14,6 +14,8 @@ import Curve from '@/public/images/curve.png'
 import Image from 'next/image'
 import SkeletonCard from '@/components/application/skeleton-card'
 import DashboardLoader from '@/components/application/dashboard-loader'
+import { clearUserSession } from '@/utils/clear-user-session'
+import { errorToast } from '@/utils/error-toast'
 
 export default function HirePageDetails() {
     const [user, setUser] = useState(null)
@@ -45,7 +47,13 @@ export default function HirePageDetails() {
             },
             error => {
                 setLoading(false)
-                toast.error(error.message, toastConfig)
+                errorToast(
+                    error.message,
+                    error?.response?.data?.message || error.message || '',
+                )
+                if (error?.response?.status === 401) {
+                    clearUserSession()
+                }
             },
         )
     }
@@ -63,9 +71,15 @@ export default function HirePageDetails() {
                 toast.success('Job Deleted Successfully', toastConfig)
                 setIdToBeDeleted(null)
             },
-            err => {
-                toast.error('Error Deleting Job', toastConfig)
+            error => {
+                errorToast(
+                    'Error Deleting Job',
+                    error?.response?.data?.message || error.message || '',
+                )
                 setDeleteLoading(false)
+                if (error?.response?.status === 401) {
+                    clearUserSession()
+                }
             },
         )
     }
