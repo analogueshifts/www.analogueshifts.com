@@ -41,6 +41,7 @@ export const metadata = {
     verification: {
         google: 'SyAAgxsXes-UzPmZubsHldcLFGqyvtB2Spen8LZxR9k',
     },
+    'twilio-domain-verification': '9e857c0c645cf1823a163c70580f36e9',
 }
 
 export default function RootLayout({ children }) {
