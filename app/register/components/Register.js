@@ -96,7 +96,6 @@ export default function Register() {
                                 label="First Name"
                                 placeholder="First Name"
                                 value={first_name}
-                                required={true}
                             />
                             <FormInput
                                 icon="fa-solid fa-signature"
@@ -105,7 +104,6 @@ export default function Register() {
                                 label="Last Name"
                                 placeholder="Last Name"
                                 value={last_name}
-                                required={false}
                             />
                             <FormInput
                                 icon="fa-solid fa-envelope"
@@ -114,7 +112,6 @@ export default function Register() {
                                 label="Email"
                                 placeholder="Enter Email"
                                 value={email}
-                                required={true}
                             />
                             <FormInput
                                 icon="fa-solid fa-lock"
@@ -123,7 +120,6 @@ export default function Register() {
                                 label="Password"
                                 placeholder="Enter Password"
                                 value={password}
-                                required={true}
                             />
                             <FormInput
                                 icon="fa-solid fa-lock"
@@ -134,7 +130,6 @@ export default function Register() {
                                 label="Confirm Password"
                                 placeholder="Enter Password"
                                 value={confirm_password}
-                                required={true}
                             />
                             <button
                                 type="submit"

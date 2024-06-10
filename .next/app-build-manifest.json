@@ -1,5 +1,10 @@
 {
   "pages": {
+    "/dashboard/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/dashboard/page.js"
+    ],
     "/layout": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
@@ -11,36 +16,10 @@
       "static/chunks/main-app.js",
       "static/chunks/app/not-found.js"
     ],
-    "/dashboard/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/dashboard/page.js"
-    ],
     "/tools/hire/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/tools/hire/page.js"
-    ],
-    "/tools/hire/create/job-information/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/css/app/tools/hire/create/job-information/page.css",
-      "static/chunks/app/tools/hire/create/job-information/page.js"
-    ],
-    "/tools/hire/create/job-details/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/tools/hire/create/job-details/page.js"
-    ],
-    "/tools/hire/create/job-location/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/tools/hire/create/job-location/page.js"
-    ],
-    "/tools/hire/create/organization-information/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/tools/hire/create/organization-information/page.js"
     ],
     "/login/page": [
       "static/chunks/webpack.js",

@@ -9,6 +9,7 @@ export const processChartData = data => {
     })
 
     data.forms.forEach(item => {
+        dates.push(item.date)
         formsCount.push(item.count)
     })
 
@@ -18,15 +19,15 @@ export const processChartData = data => {
             {
                 label: 'Hires',
                 data: hiresCount,
-                borderColor: 'rgba(75,192,192,1)',
-                backgroundColor: 'rgba(75,192,192,0.2)',
+                borderColor: '#876307',
+                backgroundColor: '#876307',
                 fill: true,
             },
             {
                 label: 'Forms',
                 data: formsCount,
-                borderColor: 'rgba(153,102,255,1)',
-                backgroundColor: 'rgba(153,102,255,0.2)',
+                borderColor: '#D5AE35',
+                backgroundColor: '#D5AE35',
                 fill: true,
             },
         ],
