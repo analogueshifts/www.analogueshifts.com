@@ -2,7 +2,6 @@ import Image from 'next/image'
 import Image1 from '@/public/images/contactHero.jpg'
 import ContactForm from '@/components/application/contact-form'
 import GuestLayout from '../layouts/guest-layout'
-// import SeoController from '../lib/SeoController'
 
 export const metadata = {
     title: 'Contact us | Analogue Shifts',
@@ -29,42 +28,6 @@ export const metadata = {
     },
 }
 export default function Page() {
-    /* useEffect(() => {
-        // Animation for the main heading
-        gsap.from('#title', {
-            opacity: 0,
-            x: -50,
-            duration: 1,
-            delay: 0.5,
-        })
-
-        // Animation for the job description section
-        gsap.from('#intro', {
-            opacity: 0,
-            y: 50,
-            duration: 1,
-            delay: 1,
-            stagger: 0.2,
-        })
-
-        // Animation for the contact form section
-        gsap.from('#form', {
-            opacity: 0,
-            y: 50,
-            duration: 1,
-            delay: 1,
-        })
-
-        // Animation for the contact cards
-        gsap.from('#card', {
-            opacity: 0,
-            y: 50,
-            duration: 1,
-            delay: 1,
-            stagger: 0.2,
-        })
-    }, [])*/
-
     return (
         <GuestLayout>
             {/* <SeoController seoData={seoData} /> */}

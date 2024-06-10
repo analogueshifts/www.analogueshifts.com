@@ -1,8 +1,8 @@
 'use client'
 import { useState } from 'react'
 import LoadingTwo from '@/components/ui/loading-spinner'
-// import axios from '../lib/axios'
-import SuccessPopup from './success-popup'
+import { toast } from 'react-toastify'
+import { toastConfig } from '@/utils/toast-config'
 
 export default function ContactForm() {
     const [loading, setLoading] = useState(false)
@@ -11,67 +11,41 @@ export default function ContactForm() {
     const [message, setMessage] = useState('')
     const [subject, setSubject] = useState('')
     const [tel, setTel] = useState('')
-    const [successMessage, setSuccessMessage] = useState(null)
-    const [isVisible, setIsVisible] = useState(false)
 
     const sendMail = async e => {
         e.preventDefault()
-        setLoading(true)
-        const data = JSON.stringify({ name, email, tel, subject, message })
-        const response = await fetch('/api/contact', {
+        const axios = require('axios')
+        const data = { name, email, tel, subject, message }
+        const config = {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: data,
-        })
-        if (response.ok) {
+            url: process.env.NEXT_PUBLIC_BACKEND_URL + '/contact',
+            headers: { 'Content-Type': 'application/json' },
+            data: data,
+        }
+        try {
+            setLoading(true)
+            await axios.request(config)
             setLoading(false)
-            setSuccessMessage({
-                status: true,
-                message: 'Message sent successfully, We will get in touch.',
-            })
+            toast.success(
+                'Message sent successfully, We will get in touch.',
+                toastConfig,
+            )
             setName('')
             setEmail('')
             setMessage('')
             setSubject('')
             setTel('')
-        }
-        if (!response.ok) {
+        } catch (error) {
             setLoading(false)
-            setSuccessMessage({
-                status: false,
-                message: 'Message sending failed, Try again later',
-            })
+            toast.error('Message sending failed, Try again later', toastConfig)
+            console.log(error)
         }
     }
-    // const sendMail = async e => {
-    //     e.preventDefault()
-    //     setLoading(true)
-    //     axios
-    //         .post('/contact', data)
-    //         .then(response => {
-    //             if (response.status === 'success') {
-    //                 setSuccessMessage(response.data.status)
-    //             } else {
-    //                 alert('Error Sending Message')
-    //             }
-    //             setLoading(false)
-    //         })
-    //         .catch(error => {
-    //             setLoading(false)
-    //             alert(error)
-    //         })
-    // }
 
     return (
         <>
             {loading && <LoadingTwo />}
-            <SuccessPopup
-                successMessage={successMessage}
-                isVisible={isVisible}
-                setIsVisible={setIsVisible}
-            />
+
             <div id="form" className="bg-gray-200 rounded-md py-16">
                 <div>
                     <div className="flex justify-center w-full">
