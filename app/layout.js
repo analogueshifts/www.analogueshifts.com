@@ -63,6 +63,15 @@ export default function RootLayout({ children }) {
                 src="https://kit.fontawesome.com/39a80cd06c.js"
                 crossorigin="anonymous"
             />
+            {/* Google tag (gtag.js)  */}
+            <script async src="https://www.googletagmanager.com/gtag/js?id=G-6Y906JD2GX"></script>
+            <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+
+                gtag('config', 'G-6Y906JD2GX');
+            </script>
         </html>
     )
 }
