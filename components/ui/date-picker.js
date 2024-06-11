@@ -20,7 +20,7 @@ export function DatePicker({ label, date, setDate }) {
                 <Button
                     variant={'outline'}
                     className={cn(
-                        'w-[280px]  justify-start text-left font-normal text-tremor-brand-boulder900',
+                        'w-full md:w-[280px] justify-start text-left font-normal text-tremor-brand-boulder900',
                         !date && 'text-muted-foreground',
                     )}>
                     <CalendarIcon className="mr-2 h-4 w-4 text-tremor-brand-boulder500" />

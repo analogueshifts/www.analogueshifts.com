@@ -40,7 +40,7 @@ export default function Filter({ submit }) {
             />
             <Button
                 onClick={handleSubmit}
-                className="bg-tremor-background-lightYellow hover:bg-tremor-background-lightYellow/80">
+                className="bg-tremor-background-lightYellow w-full md:w-max hover:bg-tremor-background-lightYellow/80">
                 Filter Statistics
             </Button>
         </div>
