@@ -13,6 +13,7 @@ import DashboardLoader from '@/components/application/dashboard-loader'
 import { stats } from './stats'
 import VerifiedCheckMark from './verified-check'
 import { clearUserSession } from '@/utils/clear-user-session'
+import Filter from './filter'
 
 export default function Dashboard() {
     const [loading, setLoading] = useState(false)
@@ -20,8 +21,7 @@ export default function Dashboard() {
     const [user, setUser] = useState(null)
 
     // Fetch Jobs and Vets
-    const getDatas = async () => {
-        const url = process.env.NEXT_PUBLIC_BACKEND_URL + '/dashboard'
+    const getDatas = async url => {
         const config = {
             url: url,
             method: 'GET',
@@ -59,7 +59,7 @@ export default function Dashboard() {
 
     useEffect(() => {
         if (user) {
-            getDatas()
+            getDatas(process.env.NEXT_PUBLIC_BACKEND_URL + '/dashboard')
         }
     }, [user])
 
@@ -137,6 +137,7 @@ export default function Dashboard() {
                         )} */}
                     </div>
 
+                    <Filter submit={url => getDatas(url)} />
                     <RenderChart chartData={data} />
                 </div>
 
