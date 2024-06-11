@@ -110,7 +110,6 @@ export default function ResetPassword() {
         }
         try {
             const request = await axios.request(config)
-            console.log(request)
             if (!request.data.success) {
                 setLoading(false)
                 toast.error('Invalid OTP', toastConfig)
@@ -134,6 +133,7 @@ export default function ResetPassword() {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
+                secret_key: process.env.NEXT_PUBLIC_SECRET_KEY,
             },
             data: {
                 email: email,
@@ -148,6 +148,7 @@ export default function ResetPassword() {
                 'Redirecting You To Login',
             )
             router.push('/login')
+
             setLoading(false)
         } catch (error) {
             setLoading(false)
@@ -171,7 +172,10 @@ export default function ResetPassword() {
             setLoading(true)
             await validateOTP()
         } catch (error) {
-            console.log(error)
+            errorToast(
+                'Failed to reset password',
+                error?.response?.data?.message || error.message || '',
+            )
         }
     }
 

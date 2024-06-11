@@ -72,10 +72,10 @@ export default function Dashboard() {
             }>
             {loading && <DashboardLoader />}
             <div className="w-full min-w-[300px] px-1.5 min-h-[calc(100dvh-80px)] lg:min-h-[calc(100dvh-112px)]">
-                <div className="w-full h-60 rounded-2xl bg-tremor-background-brown flex justify-end">
+                <div className="w-full h-60 md:rounded-2xl bg-tremor-background-brown flex justify-end">
                     <Image src={Curve} alt="" />
                 </div>
-                <div className="bg-white relative -translate-y-12 ml-5 h-max w-[calc(100%-40px)] px-5 pb-5 rounded-xl flex flex-col">
+                <div className="bg-white relative -translate-y-12 md:ml-5 min-h-[calc(100vh-240px)] h-max w-full md:w-[calc(100%-40px)] px-5 pb-5 md:rounded-xl flex flex-col">
                     {/* Profile Overview */}
 
                     <div className="w-32 h-32 bg-white rounded-full flex justify-center -translate-y-12 items-center">

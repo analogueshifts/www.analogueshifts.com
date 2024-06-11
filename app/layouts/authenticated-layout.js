@@ -147,6 +147,10 @@ export default function Authenticated({ header, children }) {
                     <i
                         onClick={() => toggleMenu('hide')}
                         className="fas fa-bars menu-btn"></i>
+                    {/* Notification */}
+                    <NotificationSection user={user} />
+
+                    {/* Hamburger */}
                     <button
                         className={`${navAnimationClass} block z-60 hamburger sm:hidden outline-none`}
                         type="button"
@@ -165,9 +169,6 @@ export default function Authenticated({ header, children }) {
                             }`}></span>
                     </button>
 
-                    {/* Notification */}
-                    <NotificationSection user={user} />
-
                     {mobileOpen && (
                         <MenuDropDown
                             user={user}
@@ -180,7 +181,7 @@ export default function Authenticated({ header, children }) {
                     )}
                 </nav>
 
-                <main className="p-7 h-[calc(100dvh-56px)] overflow-y-auto">
+                <main className="md:p-7 p-0 h-[calc(100dvh-56px)] overflow-y-auto">
                     {children}
                 </main>
                 {/*  UnVerified Banner */}

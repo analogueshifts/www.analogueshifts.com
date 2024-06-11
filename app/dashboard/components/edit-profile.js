@@ -113,7 +113,7 @@ export default function EditProfile({ user, updateLoading }) {
     return (
         <Dialog>
             <DialogTrigger asChild>
-                <button className="absolute right-8 top-6 bg-transparent hover:bg-black/5 outline-none py-2.5 px-3 rounded-full cursor-pointer">
+                <button className="absolute right-1 top-0 md:right-8 md:top-6 bg-transparent hover:bg-black/5 outline-none py-2.5 px-3 rounded-full cursor-pointer">
                     <SquarePen className="" width={18} />
                 </button>
             </DialogTrigger>

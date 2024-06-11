@@ -11,41 +11,40 @@
       "static/chunks/main-app.js",
       "static/chunks/app/not-found.js"
     ],
+    "/dashboard/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/dashboard/page.js"
+    ],
     "/login/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/login/page.js"
     ],
-    "/dashboard/page": [
+    "/404/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/dashboard/page.js"
+      "static/chunks/app/404/page.js"
     ],
     "/tools/hire/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/tools/hire/page.js"
     ],
-    "/tools/hire/create/job-information/page": [
+    "/notifications/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/css/app/tools/hire/create/job-information/page.css",
-      "static/chunks/app/tools/hire/create/job-information/page.js"
+      "static/chunks/app/notifications/page.js"
     ],
-    "/tools/hire/create/job-details/page": [
+    "/forgot-password/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/tools/hire/create/job-details/page.js"
+      "static/chunks/app/forgot-password/page.js"
     ],
-    "/tools/hire/create/job-location/page": [
+    "/reset-password/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/tools/hire/create/job-location/page.js"
-    ],
-    "/tools/hire/create/organization-information/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/tools/hire/create/organization-information/page.js"
+      "static/chunks/app/reset-password/page.js"
     ]
   }
 }

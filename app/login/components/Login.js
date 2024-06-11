@@ -38,6 +38,7 @@ export default function Login() {
             })
             const data = await res.json()
             if (data.success) {
+                console.log(data)
                 Cookies.set('analogueshifts', JSON.stringify(data.data))
                 successToast(
                     'Login Successful',

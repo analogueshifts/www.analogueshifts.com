@@ -1,13 +1,12 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { usePathname } from 'next/navigation'
 import Link from 'next/link'
+import { Bell, LayoutDashboard, Users, LogOut } from 'lucide-react'
 
 export default function MenuDropDown({ user, close, handleLogout }) {
     const [bgPos, setBgPos] = useState('translateX(-100%)')
     const [textOpacity, setTextOpacity] = useState(0)
-    const pathname = usePathname()
     useEffect(() => {
         setBgPos('translateX(0px)')
         setTextOpacity(1)
@@ -22,39 +21,40 @@ export default function MenuDropDown({ user, close, handleLogout }) {
                     href="/dashboard"
                     className={` duration-500 text-base -translate-y-[80px] font-semibold flex items-center gap-2`}>
                     <span className="text-black/80">Dashboard</span>
-                    <i className="fas fa-border-all text-black/80 text-sm"></i>
+                    <i className=" text-black/80 text-sm">
+                        <LayoutDashboard width={18} />
+                    </i>
                 </Link>
                 <Link
                     style={{ opacity: textOpacity, transitionDelay: '0.7s' }}
                     href="/tools/hire"
                     className={` duration-500 -translate-y-[80px] text-base font-semibold flex items-center gap-2`}>
                     <span className="text-black/80">Hire Talents</span>{' '}
-                    <i className="fas fa-users text-black/80 text-sm"></i>
+                    <i className=" text-black/80 text-sm">
+                        <Users width={18} />
+                    </i>
                 </Link>
-                {user?.role == 'admin' && (
-                    <Link
-                        style={{
-                            opacity: textOpacity,
-                            transitionDelay: '0.9s',
-                        }}
-                        href="/dashboard/users"
-                        className={` text-base -translate-y-[80px] duration-500 font-semibold flex items-center gap-2`}>
-                        <span className="text-black/80">Users</span>{' '}
-                        <i className="fas fa-users text-black/80 text-sm"></i>
-                    </Link>
-                )}
+                <Link
+                    style={{ opacity: textOpacity, transitionDelay: '0.7s' }}
+                    href="/notifications"
+                    className={` duration-500 -translate-y-[80px] text-base font-semibold flex items-center gap-2`}>
+                    <span className="text-black/80">Notifications</span>{' '}
+                    <i className=" text-black/80 text-sm">
+                        <Bell width={18} />
+                    </i>
+                </Link>
                 <button
                     onClick={handleLogout}
                     type="button"
                     style={{
                         opacity: textOpacity,
-                        transitionDelay: `${
-                            user.role == 'admin' ? '1.1s' : '0.9s'
-                        }`,
+                        transitionDelay: '0.9s',
                     }}
                     className={` text-base -translate-y-[80px] duration-500 font-semibold flex items-center gap-2`}>
                     <span className="text-red-600">LogOut</span>
-                    <i className="fas fa-right-from-bracket text-red-600 text-sm"></i>
+                    <i className=" text-red-600 text-sm">
+                        <LogOut width={18} />
+                    </i>
                 </button>
             </div>
         </div>

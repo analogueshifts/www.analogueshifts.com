@@ -1,8 +1,8 @@
 {
-  "/dashboard/page": "app/dashboard/page.js",
-  "/tools/hire/page": "app/tools/hire/page.js",
-  "/tools/hire/create/job-location/page": "app/tools/hire/create/job-location/page.js",
-  "/tools/hire/create/organization-information/page": "app/tools/hire/create/organization-information/page.js",
   "/login/page": "app/login/page.js",
+  "/notifications/page": "app/notifications/page.js",
+  "/forgot-password/page": "app/forgot-password/page.js",
+  "/reset-password/page": "app/reset-password/page.js",
+  "/dashboard/page": "app/dashboard/page.js",
   "/not-found": "app/not-found.js"
 }
