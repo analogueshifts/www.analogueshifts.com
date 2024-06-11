@@ -14,6 +14,8 @@ import Curve from '@/public/images/curve.png'
 import Image from 'next/image'
 import SkeletonCard from '@/components/application/skeleton-card'
 import DashboardLoader from '@/components/application/dashboard-loader'
+import { clearUserSession } from '@/utils/clear-user-session'
+import { errorToast } from '@/utils/error-toast'
 
 export default function HirePageDetails() {
     const [user, setUser] = useState(null)
@@ -45,7 +47,13 @@ export default function HirePageDetails() {
             },
             error => {
                 setLoading(false)
-                toast.error(error.message, toastConfig)
+                errorToast(
+                    error.message,
+                    error?.response?.data?.message || error.message || '',
+                )
+                if (error?.response?.status === 401) {
+                    clearUserSession()
+                }
             },
         )
     }
@@ -63,9 +71,15 @@ export default function HirePageDetails() {
                 toast.success('Job Deleted Successfully', toastConfig)
                 setIdToBeDeleted(null)
             },
-            err => {
-                toast.error('Error Deleting Job', toastConfig)
+            error => {
+                errorToast(
+                    'Error Deleting Job',
+                    error?.response?.data?.message || error.message || '',
+                )
                 setDeleteLoading(false)
+                if (error?.response?.status === 401) {
+                    clearUserSession()
+                }
             },
         )
     }
@@ -115,9 +129,9 @@ export default function HirePageDetails() {
 
             {deleteLoading && <DashboardLoader />}
 
-            <div className="w-full px-1.5 min-h-[calc(100dvh-80px)] lg:min-h-[calc(100dvh-112px)]">
-                <div className="sticky top-0">
-                    <div className="w-full relative h-max pb-6 rounded-2xl bg-tremor-background-brown flex justify-end">
+            <div className="w-full md:px-1.5 min-h-[calc(100dvh-80px)] lg:min-h-[calc(100dvh-112px)]">
+                <div className="sticky top-0 z-20">
+                    <div className="w-full relative h-60 md:h-max pb-6 md:rounded-2xl bg-tremor-background-brown flex justify-end">
                         <Image src={Curve} alt="" className="absolute z-10" />
                         <div className="w-full flex-wrap gap-y-4 items-center flex justify-center  pt-8 px-5">
                             {/* Hire Button */}
@@ -140,7 +154,7 @@ export default function HirePageDetails() {
                         </div>
                     </div>
                 </div>
-                <div className="bg-white mt-6 border border-[#e7e7e7] min-h-[200px] py-5 h-max w-full px-5 pb-5 rounded-xl flex flex-col">
+                <div className="bg-white z-50 md:mt-6 border border-[#e7e7e7] min-h-[calc(100vh-192px)] md:min-h-[200px] py-5 h-max w-full px-5 pb-5 md:rounded-xl flex flex-col">
                     {loading ? (
                         <div className="w-full h-max min-h-[200px] items-center grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
                             <SkeletonCard /> <SkeletonCard /> <SkeletonCard />

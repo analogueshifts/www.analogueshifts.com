@@ -1,7 +1,7 @@
 'use client'
 import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
-import { usePathname, useRouter } from 'next/navigation'
+import { usePathname } from 'next/navigation'
 import { toast } from 'react-toastify'
 import Cookies from 'js-cookie'
 import DashboardLoader from '@/components/application/dashboard-loader'
@@ -12,10 +12,10 @@ import { toastConfig } from '@/utils/toast-config'
 import SidebarMenu from '@/components/application/side-bar-menu'
 import NotificationSection from '@/components/application/notifications-section'
 import UnverifiedBanner from '@/components/application/unverified-banner'
+import { clearUserSession } from '@/utils/clear-user-session'
 
 export default function Authenticated({ header, children }) {
     const pathname = usePathname()
-    const router = useRouter()
     const [user, setUser] = useState(null)
     const [open, setOpen] = useState(false)
     const [mobileOpen, setMobileOpen] = useState(false)
@@ -46,6 +46,9 @@ export default function Authenticated({ header, children }) {
             .catch(error => {
                 setLoading(false)
                 toast.error(error.message, toastConfig)
+                if (error?.response?.status === 401) {
+                    clearUserSession()
+                }
             })
     }
 
@@ -144,6 +147,10 @@ export default function Authenticated({ header, children }) {
                     <i
                         onClick={() => toggleMenu('hide')}
                         className="fas fa-bars menu-btn"></i>
+                    {/* Notification */}
+                    <NotificationSection user={user} />
+
+                    {/* Hamburger */}
                     <button
                         className={`${navAnimationClass} block z-60 hamburger sm:hidden outline-none`}
                         type="button"
@@ -162,9 +169,6 @@ export default function Authenticated({ header, children }) {
                             }`}></span>
                     </button>
 
-                    {/* Notification */}
-                    <NotificationSection user={user} />
-
                     {mobileOpen && (
                         <MenuDropDown
                             user={user}
@@ -177,7 +181,7 @@ export default function Authenticated({ header, children }) {
                     )}
                 </nav>
 
-                <main className="p-7 h-[calc(100dvh-56px)] overflow-y-auto">
+                <main className="md:p-7 p-0 h-[calc(100dvh-56px)] overflow-y-auto">
                     {children}
                 </main>
                 {/*  UnVerified Banner */}

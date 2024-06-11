@@ -3,6 +3,7 @@ import Logo from '@/public/logo.png'
 import Link from 'next/link'
 import Image from 'next/image'
 import { usePathname } from 'next/navigation'
+import { Bell, LayoutDashboard, Users, LogOut } from 'lucide-react'
 
 export default function SidebarMenu({ header, user, handleLogout }) {
     const pathname = usePathname()
@@ -21,7 +22,9 @@ export default function SidebarMenu({ header, user, handleLogout }) {
             <ul className="side-menu top">
                 <li className={`${pathname === '/dashboard' ? 'active' : ''}`}>
                     <Link href="/dashboard" className="nav-link">
-                        <i className="fas fa-border-all"></i>
+                        <i className="">
+                            <LayoutDashboard className="" width={18} />
+                        </i>
                         <span className="text hidden sm:flex">Dashboard</span>
                     </Link>
                 </li>
@@ -30,37 +33,43 @@ export default function SidebarMenu({ header, user, handleLogout }) {
                         pathname.startsWith('/tools/hire') ? 'active' : ''
                     }`}>
                     <Link href="/tools/hire" className="nav-link">
-                        <i className="fas fa-users"></i>
+                        <i className="">
+                            <Users className="" width={18} />
+                        </i>
                         <span className="text hidden sm:flex">
                             Hire Talents
                         </span>
                     </Link>
                 </li>
-                {/* <li
+                <li
                     className={`${
-                        pathname.startsWith('/tools/vet') ? 'active' : ''
+                        pathname.startsWith('/notifications') ? 'active' : ''
                     }`}>
-                    <Link href="/tools/vet" className="nav-link">
-                        <i className="fa-brands fa-teamspeak"></i>
+                    <Link href="/notifications" className="nav-link">
+                        <i className="l">
+                            <Bell className="" width={18} />
+                        </i>
                         <span className="text hidden sm:flex">
-                            Vetting System
+                            Notifications
                         </span>
                     </Link>
-                </li> */}
-                {user?.role == 'admin' && (
+                </li>
+                {/* {user?.role == 'admin' && (
                     <li className={`${pathname === '' ? 'active' : ''}`}>
                         <Link href="" className="nav-link">
                             <i className="fas fa-users"></i>
                             <span className="text hidden sm:flex">Users</span>
                         </Link>
                     </li>
-                )}
+                )} */}
             </ul>
 
             <ul className="side-menu">
                 <li>
                     <button onClick={handleLogout} className="logout">
-                        <i className="fas fa-right-from-bracket"></i>
+                        <i className="">
+                            <LogOut className="" width={18} />
+                        </i>
                         <span className="text hidden sm:flex">Logout</span>
                     </button>
                 </li>

@@ -14,6 +14,7 @@ import UserRatingStack from './rating-stack'
 import { fetchJobs, searchJob } from '@/utils/fetch-jobs'
 import { toastConfig } from '@/utils/toast-config'
 import JobsPagination from './jobs-pagination'
+import { errorToast } from '@/utils/error-toast'
 
 export default function JobView() {
     const [jobs, setJobs] = useState([])
@@ -54,7 +55,10 @@ export default function JobView() {
                 },
                 error => {
                     setLoading(false)
-                    toast.error(error.message, toastConfig)
+                    errorToast(
+                        'An error Occured',
+                        error?.response?.data?.message || error.message || '',
+                    )
                 },
                 'POST',
             )
@@ -71,7 +75,10 @@ export default function JobView() {
                 },
                 error => {
                     setLoading(false)
-                    toast.error(error.message, toastConfig)
+                    errorToast(
+                        'An error Occured',
+                        error?.response?.data?.message || error.message || '',
+                    )
                 },
             )
         }

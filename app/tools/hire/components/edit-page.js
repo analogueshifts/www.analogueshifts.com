@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation'
 import DashboardLoader from '@/components/application/dashboard-loader'
 import Cookies from 'js-cookie'
 import { toastConfig } from '@/utils/toast-config'
+import { errorToast } from '@/utils/error-toast'
 
 export default function Edit({ slug }) {
     const router = useRouter()
@@ -94,7 +95,10 @@ export default function Edit({ slug }) {
             .catch(error => {
                 setLoading(false)
                 router.push('/404')
-                toast.error('Error Getting Jobs', toastConfig)
+                errorToast(
+                    'Error Getting Jobs',
+                    error?.response?.data?.message || error.message || '',
+                )
             })
     }
 

@@ -15,6 +15,8 @@ import {
     InputOTPGroup,
     InputOTPSlot,
 } from '@/components/ui/input-otp'
+import { errorToast } from '@/utils/error-toast'
+import { successToast } from '@/utils/success-toast'
 
 export default function ResetPassword() {
     const router = useRouter()
@@ -88,11 +90,10 @@ export default function ResetPassword() {
             })
             .catch(error => {
                 setLoading(false)
-                toast.error(
+                errorToast(
                     'An Error Occured, Please try again later',
-                    toastConfig,
+                    error?.response?.data?.message || error.message || '',
                 )
-                console.log(error)
             })
     }
 
@@ -109,7 +110,6 @@ export default function ResetPassword() {
         }
         try {
             const request = await axios.request(config)
-            console.log(request)
             if (!request.data.success) {
                 setLoading(false)
                 toast.error('Invalid OTP', toastConfig)
@@ -118,7 +118,10 @@ export default function ResetPassword() {
             }
         } catch (error) {
             setLoading(false)
-            toast.error('Invalid OTP', toastConfig)
+            errorToast(
+                'Invalid OTP',
+                error?.response?.data?.message || error.message || '',
+            )
         }
     }
 
@@ -130,6 +133,7 @@ export default function ResetPassword() {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
+                secret_key: process.env.NEXT_PUBLIC_SECRET_KEY,
             },
             data: {
                 email: email,
@@ -139,12 +143,19 @@ export default function ResetPassword() {
         }
         try {
             await axios.request(config)
-            toast.success('Password Reset Successful', toastConfig)
+            successToast(
+                'Password Reset Successful',
+                'Redirecting You To Login',
+            )
             router.push('/login')
+
             setLoading(false)
         } catch (error) {
             setLoading(false)
-            toast.error('Failed to reset password', toastConfig)
+            errorToast(
+                'Failed to reset password',
+                error?.response?.data?.message || error.message || '',
+            )
         }
     }
 
@@ -161,7 +172,10 @@ export default function ResetPassword() {
             setLoading(true)
             await validateOTP()
         } catch (error) {
-            console.log(error)
+            errorToast(
+                'Failed to reset password',
+                error?.response?.data?.message || error.message || '',
+            )
         }
     }
 

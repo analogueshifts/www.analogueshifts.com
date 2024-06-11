@@ -4,7 +4,7 @@ import Authenticated from '@/app/layouts/authenticated-layout'
 import Curve from '@/public/images/curve.png'
 import Image from 'next/image'
 import Cookies from 'js-cookie'
-import { toast } from 'react-toastify'
+import { errorToast } from '@/utils/error-toast'
 import { toastConfig } from '@/utils/toast-config'
 import { processChartData } from '@/utils/process-chart-data'
 import RenderChart from './chart'
@@ -12,6 +12,8 @@ import EditProfile from './edit-profile'
 import DashboardLoader from '@/components/application/dashboard-loader'
 import { stats } from './stats'
 import VerifiedCheckMark from './verified-check'
+import { clearUserSession } from '@/utils/clear-user-session'
+import Filter from './filter'
 
 export default function Dashboard() {
     const [loading, setLoading] = useState(false)
@@ -19,8 +21,7 @@ export default function Dashboard() {
     const [user, setUser] = useState(null)
 
     // Fetch Jobs and Vets
-    const getDatas = async () => {
-        const url = process.env.NEXT_PUBLIC_BACKEND_URL + '/dashboard'
+    const getDatas = async url => {
         const config = {
             url: url,
             method: 'GET',
@@ -33,9 +34,19 @@ export default function Dashboard() {
         const axios = require('axios')
         try {
             const request = await axios.request(config)
-            setData(processChartData(request.data))
+            if (request?.data) {
+                setData(processChartData(request.data.data.dashboard))
+            }
         } catch (error) {
-            toast.error('Error Fetching Data', toastConfig)
+            errorToast(
+                'Error Fetching Data',
+                error?.response?.data?.message ||
+                    error.message ||
+                    'Failed To Fetch Statistics Data',
+            )
+            if (error?.response?.status === 401) {
+                clearUserSession()
+            }
         }
     }
 
@@ -48,7 +59,7 @@ export default function Dashboard() {
 
     useEffect(() => {
         if (user) {
-            getDatas()
+            getDatas(process.env.NEXT_PUBLIC_BACKEND_URL + '/dashboard')
         }
     }, [user])
 
@@ -61,10 +72,10 @@ export default function Dashboard() {
             }>
             {loading && <DashboardLoader />}
             <div className="w-full min-w-[300px] px-1.5 min-h-[calc(100dvh-80px)] lg:min-h-[calc(100dvh-112px)]">
-                <div className="w-full h-60 rounded-2xl bg-tremor-background-brown flex justify-end">
+                <div className="w-full h-60 md:rounded-2xl bg-tremor-background-brown flex justify-end">
                     <Image src={Curve} alt="" />
                 </div>
-                <div className="bg-white relative -translate-y-12 ml-5 h-max w-[calc(100%-40px)] px-5 pb-5 rounded-xl flex flex-col">
+                <div className="bg-white relative -translate-y-12 md:ml-5 min-h-[calc(100vh-240px)] h-max w-full md:w-[calc(100%-40px)] px-5 pb-5 md:rounded-xl flex flex-col">
                     {/* Profile Overview */}
 
                     <div className="w-32 h-32 bg-white rounded-full flex justify-center -translate-y-12 items-center">
@@ -126,6 +137,7 @@ export default function Dashboard() {
                         )} */}
                     </div>
 
+                    <Filter submit={url => getDatas(url)} />
                     <RenderChart chartData={data} />
                 </div>
 

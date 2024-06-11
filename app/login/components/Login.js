@@ -6,7 +6,8 @@ import Image from 'next/image'
 import ApplicationLogo from '@/components/application/application-logo'
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
-import { toast } from 'react-toastify'
+import { successToast } from '@/utils/success-toast'
+import { errorToast } from '@/utils/error-toast'
 import Cookies from 'js-cookie'
 import { toastConfig } from '@/utils/toast-config'
 import FormInput from '@/components/application/form-input'
@@ -37,8 +38,12 @@ export default function Login() {
             })
             const data = await res.json()
             if (data.success) {
+                console.log(data)
                 Cookies.set('analogueshifts', JSON.stringify(data.data))
-                toast.success('Login Successful', toastConfig)
+                successToast(
+                    'Login Successful',
+                    'Redirecting You to your Dashboard.',
+                )
                 let redirectionLink = Cookies.get('RedirectionLink')
                 window.location.href = redirectionLink?.trim().length
                     ? redirectionLink
@@ -47,7 +52,12 @@ export default function Login() {
             setLoading(false)
         } catch (error) {
             setLoading(false)
-            toast.error(error.message, toastConfig)
+            errorToast(
+                'Failed To Login',
+                error?.response?.data?.message ||
+                    error.message ||
+                    'Failed To Login',
+            )
         }
     }
 

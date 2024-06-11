@@ -11,9 +11,11 @@ import {
 } from '@/components/ui/dialog'
 import { Input } from '@/components/ui/input'
 import { useState } from 'react'
-import { toast } from 'react-toastify'
 import { toastConfig } from '@/utils/toast-config'
 import Cookies from 'js-cookie'
+import { clearUserSession } from '@/utils/clear-user-session'
+import { successToast } from '@/utils/success-toast'
+import { errorToast } from '@/utils/error-toast'
 
 export default function EditProfile({ user, updateLoading }) {
     const [loading, setLoading] = useState(false)
@@ -46,10 +48,18 @@ export default function EditProfile({ user, updateLoading }) {
             const data = await axios.request(config)
             setProfile(data.data.data.full_path)
             setLoading(false)
-            toast.success('File Uploaded', toastConfig)
+            successToast('File Uploaded', 'File uploaded successfully')
         } catch (error) {
             setLoading(false)
-            toast.error('Error Uploading Logo', toastConfig)
+            errorToast(
+                'Error Uploading Logo',
+                error?.response?.data?.message ||
+                    error.message ||
+                    'Failed To Upload Logo',
+            )
+            if (error?.response?.status === 401) {
+                clearUserSession()
+            }
         }
     }
 
@@ -80,19 +90,30 @@ export default function EditProfile({ user, updateLoading }) {
                     token: user.token,
                 })
                 Cookies.set('analogueshifts', userData)
-                toast.success('Profile Updated', toastConfig)
+                successToast(
+                    'Profile Updated',
+                    'Your Profile has been updated.',
+                )
                 window.location.reload()
             })
             .catch(error => {
-                toast.error(error.message, toastConfig)
+                errorToast(
+                    'Error Updating Profile',
+                    error?.response?.data?.message ||
+                        error.message ||
+                        'Failed To Update Your Profile',
+                )
                 setLoading(false)
+                if (error?.response?.status === 401) {
+                    clearUserSession()
+                }
             })
     }
 
     return (
         <Dialog>
             <DialogTrigger asChild>
-                <button className="absolute right-8 top-6 bg-transparent hover:bg-black/5 outline-none py-2.5 px-3 rounded-full cursor-pointer">
+                <button className="absolute right-1 top-0 md:right-8 md:top-6 bg-transparent hover:bg-black/5 outline-none py-2.5 px-3 rounded-full cursor-pointer">
                     <SquarePen className="" width={18} />
                 </button>
             </DialogTrigger>
