@@ -45,6 +45,7 @@ export default function Login() {
                     'Redirecting You to your Dashboard.',
                 )
                 let redirectionLink = Cookies.get('RedirectionLink')
+                Cookies.remove('RedirectionLink')
                 window.location.href = redirectionLink?.trim().length
                     ? redirectionLink
                     : '/dashboard'
