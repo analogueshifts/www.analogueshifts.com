@@ -1,6 +1,20 @@
+import Cookies from 'js-cookie'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 
-export default function JobGridTile({ job }) {
+export default function JobGridTile({ job, user }) {
+    const router = useRouter()
+
+    // Check If User Is Logged In, Redirect User To Login If not Logged In
+    const handleApply = () => {
+        if (user) {
+            router.push(job?.apply)
+        } else {
+            Cookies.set('RedirectionLink', job?.apply)
+            router.push('/login')
+        }
+    }
+
     return (
         <div className="w-full h-max md:w-[calc(50%-12px)] min-h-[205px] border-b md:border-none flex flex-wrap pb-5 justify-between md:flex-col items-center gap-y-2">
             <div className="flex gap-5 flex-wrap md:flex-col items-start md:items-center">
@@ -57,11 +71,11 @@ export default function JobGridTile({ job }) {
                 </div>
             </div>
             <div className="flex gap-2 items-center md:mt-2 md:mx-auto">
-                <Link
-                    href={job?.apply}
+                <button
+                    onClick={handleApply}
                     className={`w-24 lg:w-28 py-2 hover:scale-105 rounded-full text-xs font-bold duration-300 text-white bg-yellow-500 flex justify-center`}>
                     Apply
-                </Link>
+                </button>
                 <Link
                     href={`/jobs/${job?.slug}`}
                     as={`/jobs/${job?.slug}`}

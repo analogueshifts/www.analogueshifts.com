@@ -7,7 +7,7 @@ export default function NewsLetterCard() {
             style={{
                 backgroundImage: 'url(/images/rectangle.png)',
             }}
-            className="w-full rounded-[32px] bg-[#D3A121] flex justify-center items-center mt-10 pb-5 pt-14">
+            className="w-full max-w-full overflow-x-hidden rounded-[32px] bg-[#D3A121] flex justify-center items-center mt-10 pb-5 pt-14">
             <div className="w-[85%] md:w-[80%] desktop:w-[820px] flex flex-col items-center">
                 <p
                     className={`text-lg md:text-3xl font-semibold md:leading-9 text-center mb-5 text-white`}>

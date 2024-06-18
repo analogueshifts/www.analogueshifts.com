@@ -8,7 +8,7 @@ import StarRating from '@/public/images/jobs/ratings-star.png'
 
 export default function UserRatingStack() {
     return (
-        <div className="w-[280px] h-[43px] relative">
+        <div className="w-[280px] max-w-full h-[43px] relative">
             <Image
                 src={UserTwo}
                 alt="User Image"

@@ -1,11 +1,28 @@
 'use client'
-import Link from 'next/link'
 import { toast } from 'react-toastify'
 import { toastConfig } from '@/utils/toast-config'
-import { usePathname } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
+import Cookies from 'js-cookie'
 
-export default function JobApplicationCard({ row, applicationUrl, jobTitle }) {
+export default function JobApplicationCard({
+    row,
+    applicationUrl,
+    jobTitle,
+    user,
+}) {
     const pathname = usePathname()
+    const router = useRouter()
+
+    // Check If User Is Logged In, Redirect User To Login If not Logged In
+    const handleApply = () => {
+        if (user) {
+            router.push(applicationUrl)
+        } else {
+            Cookies.set('RedirectionLink', applicationUrl)
+            router.push('/login')
+        }
+    }
+
     return (
         <div
             className={`w-full py-[30px] px-6 rounded-md bg-transparent border flex ${
@@ -20,11 +37,11 @@ export default function JobApplicationCard({ row, applicationUrl, jobTitle }) {
                 </span>
             </div>
             <div className={`flex-col gap-8 flex ${row ? 'w-6/12' : 'w-full'}`}>
-                <Link
+                <button
                     className="w-full h-[50px] rounded-sm bg-as flex items-center justify-center text-white font-bold text-sm"
-                    href={applicationUrl}>
+                    onClick={handleApply}>
                     Apply for this job
-                </Link>
+                </button>
                 <div className="w-full flex justify-center items-center gap-4">
                     <span className="text-base font-normal text-black pr-2">
                         Share this job

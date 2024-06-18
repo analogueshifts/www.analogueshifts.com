@@ -1,7 +1,6 @@
 import {
     Pagination,
     PaginationContent,
-    PaginationEllipsis,
     PaginationItem,
     PaginationLink,
     PaginationNext,
@@ -10,8 +9,8 @@ import {
 
 export default function JobsPagination({ currentPageInfo, keywordQuery }) {
     return (
-        <Pagination>
-            <PaginationContent>
+        <Pagination className="max-w-full w-max overflow-x-auto pb-3">
+            <PaginationContent className="w-full">
                 <PaginationItem>
                     <PaginationPrevious
                         href={
@@ -57,9 +56,6 @@ export default function JobsPagination({ currentPageInfo, keywordQuery }) {
                             )
                         })}
 
-                <PaginationItem>
-                    <PaginationEllipsis />
-                </PaginationItem>
                 <PaginationItem>
                     <PaginationNext
                         href={

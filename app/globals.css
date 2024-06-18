@@ -634,3 +634,15 @@ body::-webkit-scrollbar-thumb:hover {
 .scrollbar-hidden::-webkit-scrollbar {
     display: none;
 }
+
+input[type='password']::-webkit-textfield-decoration-container {
+    display: none;
+}
+
+input[type='password']::-moz-svg-anonymous {
+    display: none;
+}
+
+input[type='password']::-ms-reveal {
+    display: none;
+}

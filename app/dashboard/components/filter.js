@@ -3,7 +3,7 @@ import { Button } from '@/components/ui/button'
 import { DatePicker } from '@/components/ui/date-picker'
 import { useState } from 'react'
 
-function formatDate(dateString) {
+export function formatDate(dateString) {
     const date = new Date(dateString)
     const year = date.getFullYear()
     const month = String(date.getMonth() + 1).padStart(2, '0')
@@ -27,7 +27,7 @@ export default function Filter({ submit }) {
     }
 
     return (
-        <div className="w-full flex flex-wrap items-center gap-3 mb-5">
+        <div className="w-full flex flex-wrap items-center gap-3 my-5">
             <DatePicker
                 label={'Select Start Date'}
                 date={start}
@@ -40,7 +40,7 @@ export default function Filter({ submit }) {
             />
             <Button
                 onClick={handleSubmit}
-                className="bg-tremor-background-lightYellow w-full md:w-max hover:bg-tremor-background-lightYellow/80">
+                className="bg-tremor-background-lightYellow h-12 md:ml-auto rounded-none w-full md:w-max hover:bg-tremor-background-lightYellow/80">
                 Filter Statistics
             </Button>
         </div>

@@ -15,9 +15,11 @@ import { fetchJobs, searchJob } from '@/utils/fetch-jobs'
 import { toastConfig } from '@/utils/toast-config'
 import JobsPagination from './jobs-pagination'
 import { errorToast } from '@/utils/error-toast'
+import Cookies from 'js-cookie'
 
 export default function JobView() {
     const [jobs, setJobs] = useState([])
+    const [user, setUser] = useState(null)
     const pageQuery = useSearchParams().getAll('page')
     const keywordQuery = useSearchParams().getAll('keywords')
     const [currentPageInfo, setCurrentPageInfo] = useState({})
@@ -42,6 +44,11 @@ export default function JobView() {
     }
 
     useEffect(() => {
+        const authSession = Cookies.get('analogueshifts')
+        if (authSession) {
+            setUser(JSON.parse(authSession))
+        }
+
         if (keywordQuery[0]) {
             setLoading(true)
             searchJob(
@@ -151,7 +158,13 @@ export default function JobView() {
                             </h3>
                         )}
                         {jobs.map((job, index) => {
-                            return <JobGridTile job={job} key={index} />
+                            return (
+                                <JobGridTile
+                                    user={user}
+                                    job={job}
+                                    key={index}
+                                />
+                            )
                         })}
                     </div>
 

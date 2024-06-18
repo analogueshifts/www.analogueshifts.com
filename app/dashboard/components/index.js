@@ -5,7 +5,6 @@ import Curve from '@/public/images/curve.png'
 import Image from 'next/image'
 import Cookies from 'js-cookie'
 import { errorToast } from '@/utils/error-toast'
-import { toastConfig } from '@/utils/toast-config'
 import { processChartData } from '@/utils/process-chart-data'
 import RenderChart from './chart'
 import EditProfile from './edit-profile'
@@ -13,7 +12,8 @@ import DashboardLoader from '@/components/application/dashboard-loader'
 import { stats } from './stats'
 import VerifiedCheckMark from './verified-check'
 import { clearUserSession } from '@/utils/clear-user-session'
-import Filter from './filter'
+import Filter, { formatDate } from './filter'
+import { getOneMonthAgoDate } from '@/utils/one-month-ago'
 
 export default function Dashboard() {
     const [loading, setLoading] = useState(false)
@@ -59,7 +59,13 @@ export default function Dashboard() {
 
     useEffect(() => {
         if (user) {
-            getDatas(process.env.NEXT_PUBLIC_BACKEND_URL + '/dashboard')
+            getDatas(
+                process.env.NEXT_PUBLIC_BACKEND_URL +
+                    '/dashboard?start=' +
+                    `${formatDate(getOneMonthAgoDate())}${
+                        '&stop=' + formatDate(new Date())
+                    }`,
+            )
         }
     }, [user])
 
@@ -137,8 +143,8 @@ export default function Dashboard() {
                         )} */}
                     </div>
 
-                    <Filter submit={url => getDatas(url)} />
                     <RenderChart chartData={data} />
+                    <Filter submit={url => getDatas(url)} />
                 </div>
 
                 <div className="flex flex-col overflow-hidden"></div>

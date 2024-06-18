@@ -12,8 +12,8 @@ function Footer() {
         <div className="footer">
             <footer className="container mx-auto p-4">
                 <div className="wrapper">
-                    <div className="space-y-12">
-                        <a href="/" className="logo flex gap-5">
+                    <div className="space-y-12 overflow-hidden">
+                        <a href="/" className="logo flex gap-5  ">
                             <img
                                 src="/logo.png"
                                 className="w-20 md:w-12"
