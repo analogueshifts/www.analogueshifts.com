@@ -16,7 +16,7 @@ export default function JobGridTile({ job, user }) {
     }
 
     return (
-        <div className="w-full h-max md:w-[calc(50%-12px)] min-h-[205px] border-b md:border-none flex flex-wrap pb-5 justify-between md:flex-col items-center gap-y-2">
+        <div className="w-full h-max md:w-[calc(50%-12px)] min-h-[205px] max-h-[500px] border-b md:border-none flex flex-wrap pb-5 justify-between md:flex-col items-center gap-y-2">
             <div className="flex gap-5 flex-wrap md:flex-col items-start md:items-center">
                 <img
                     src={
@@ -25,7 +25,7 @@ export default function JobGridTile({ job, user }) {
                             : '/images/jobs/company_logo.JPG'
                     }
                     alt="LOGO"
-                    className={` max-w-[150px] object-contain w-max h-max`}
+                    className={` max-w-[150px] max-h-[150px] object-contain w-max h-max`}
                 />
                 <div className="flex flex-col gap-1.5 md:items-center">
                     <p className="text-sm font-normal text-[#B0B0B0]">
@@ -38,9 +38,9 @@ export default function JobGridTile({ job, user }) {
                         className="text-[15px] font-normal text-[#7B7B7B] md:text-center"
                         dangerouslySetInnerHTML={{
                             __html:
-                                job?.description.length > 219
+                                job?.description.length > 200
                                     ? job.description
-                                          .slice(0, 216)
+                                          .slice(0, 197)
                                           .concat('...')
                                     : job.description,
                         }}></p>
@@ -82,6 +82,26 @@ export default function JobGridTile({ job, user }) {
                     className="text-xs font-normal text-black/60">
                     Read More
                 </Link>
+                <button
+                    onClick={async () => {
+                        if (navigator.share) {
+                            try {
+                                await navigator.share({
+                                    title: job?.title || '',
+                                    text: '',
+                                    url: `https://www.analogueshifts.com/jobs/${job?.slug}`,
+                                })
+                            } catch (error) {}
+                        } else {
+                            toast.error(
+                                'Sharing not supported on this device.',
+                                toastConfig,
+                            )
+                        }
+                    }}
+                    className="text-xs font-normal text-black/60">
+                    Share
+                </button>
             </div>
         </div>
     )

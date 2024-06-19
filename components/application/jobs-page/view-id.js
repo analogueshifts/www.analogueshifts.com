@@ -90,16 +90,13 @@ export default function ViewId({ id }) {
                 {/* Job Description Section */}
                 <div className="xl:w-jobDescriptionSection">
                     <div className="w-full flex items-start gap-6 mb-5">
-                        <Image
+                        <img
                             src={
-                                job?.hiringOrganization?.logo &&
-                                job.hiringOrganization.logo
+                                job?.hiringOrganization?.logo
                                     ? job.hiringOrganization.logo
                                     : '/images/jobs/company_logo.JPG'
                             }
-                            width={48}
-                            height={48}
-                            className="rounded"
+                            className="rounded w-12 h-12"
                             alt="LOGO"
                         />
                         <div className="min-h-12 flex flex-col justify-between">

@@ -29,12 +29,12 @@ export default function JobApplicationCard({
                 row ? 'flex-row' : 'flex-col'
             }`}>
             <div className={`flex-col gap-3 flex ${row ? 'w-6/12' : 'w-full'}`}>
-                <h5 className="font-bold text-base text-black">
+                {/* <h5 className="font-bold text-base text-black">
                     You may be a good fit for this job
                 </h5>
                 <span className="text-base font-normal mb-6">
                     6 of 10 skills match your profile.{' '}
-                </span>
+                </span> */}
             </div>
             <div className={`flex-col gap-8 flex ${row ? 'w-6/12' : 'w-full'}`}>
                 <button
@@ -57,12 +57,7 @@ export default function JobApplicationCard({
                                             'https://www.analogueshifts.com' +
                                             pathname,
                                     })
-                                } catch (error) {
-                                    toast.error(
-                                        'Error sharing content:',
-                                        toastConfig,
-                                    )
-                                }
+                                } catch (error) {}
                             } else {
                                 toast.error(
                                     'Sharing not supported on this device.',
