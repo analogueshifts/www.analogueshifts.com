@@ -93,7 +93,9 @@ export default function JobGridTile({ job, user }) {
                                     text: '',
                                     url: `https://www.analogueshifts.com/jobs/${job?.slug}`,
                                 })
-                            } catch (error) {console.log(error)}
+                            } catch (error) {
+                                console.log(error)
+                            }
                         } else {
                             toast.error(
                                 'Sharing not supported on this device.',

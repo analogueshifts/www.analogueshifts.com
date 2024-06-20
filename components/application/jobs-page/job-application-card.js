@@ -57,7 +57,9 @@ export default function JobApplicationCard({
                                             'https://www.analogueshifts.com' +
                                             pathname,
                                     })
-                                } catch (error) {console.log(error)}
+                                } catch (error) {
+                                    console.log(error)
+                                }
                             } else {
                                 toast.error(
                                     'Sharing not supported on this device.',
