@@ -170,10 +170,10 @@ export default function HirePageDetails() {
                                             <div className="flex gap-5 flex-wrap md:flex-col items-center justify-center md:items-center">
                                                 <img
                                                     src={
-                                                        item.hiringOrganization
-                                                            .logo &&
-                                                        item.hiringOrganization.logo.trim()
-                                                            .length > 0
+                                                        item?.hiringOrganization
+                                                            ?.logo &&
+                                                        item?.hiringOrganization?.logo?.trim()
+                                                            .length
                                                             ? item
                                                                   .hiringOrganization
                                                                   .logo
@@ -186,8 +186,8 @@ export default function HirePageDetails() {
                                                     <p className="text-sm font-normal text-[#B0B0B0]">
                                                         {
                                                             item
-                                                                .hiringOrganization
-                                                                .name
+                                                                ?.hiringOrganization
+                                                                ?.name
                                                         }
                                                     </p>
                                                     <p className="text-xl font-semibold text-black/90">
@@ -198,35 +198,35 @@ export default function HirePageDetails() {
                                                         dangerouslySetInnerHTML={{
                                                             __html:
                                                                 item.description
-                                                                    .length >
+                                                                    ?.length >
                                                                 100
-                                                                    ? item.description
-                                                                          .slice(
+                                                                    ? item?.description
+                                                                          ?.slice(
                                                                               0,
                                                                               100,
                                                                           )
                                                                           .concat(
                                                                               '...',
                                                                           )
-                                                                    : item.description,
+                                                                    : item?.description,
                                                         }}></p>
                                                     <div className="flex gap-1.5 flex-wrap">
                                                         <div className="px-5 bg-[#E2E2E2] rounded py-1 text-black/80 text-[10px] font-normal">
-                                                            {item.baseSalary
-                                                                .value.value +
+                                                            {item?.baseSalary
+                                                                ?.value.value +
                                                                 ' ' +
-                                                                item.baseSalary
-                                                                    .currency +
+                                                                item?.baseSalary
+                                                                    ?.currency +
                                                                 ' ' +
                                                                 'Per' +
                                                                 ' ' +
-                                                                item.baseSalary
-                                                                    .value
-                                                                    .unitText}
+                                                                item?.baseSalary
+                                                                    ?.value
+                                                                    ?.unitText}
                                                         </div>
                                                         <div className="px-5 bg-[#E2E2E2] rounded py-1 text-black/80 text-[10px] font-normal">
                                                             {
-                                                                item.jobLocationType
+                                                                item?.jobLocationType
                                                             }
                                                         </div>
                                                     </div>
@@ -234,12 +234,12 @@ export default function HirePageDetails() {
                                             </div>
                                             <div className="flex gap-2 mx-auto items-center md:mt-2 md:mx-auto">
                                                 <Link
-                                                    href={`/tools/hire/edit/${item.uuid}`}
+                                                    href={`/tools/hire/edit/${item?.uuid}`}
                                                     className={`w-24 lg:w-28 py-2 hover:scale-105 rounded-full text-xs font-bold duration-300 text-white bg-yellow-500 flex justify-center`}>
                                                     Edit
                                                 </Link>
                                                 <a
-                                                    href={item.apply}
+                                                    href={item?.apply || ''}
                                                     className="text-xs font-normal text-black/60">
                                                     Apply
                                                 </a>
