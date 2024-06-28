@@ -2,17 +2,16 @@
 import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { toast } from 'react-toastify'
 import Cookies from 'js-cookie'
 import DashboardLoader from '@/components/application/dashboard-loader'
 import ApplicationLogo from '@/components/application/application-logo'
 import MenuDropDown from '@/components/application/menu-dropdown'
 import IdiomProof from '@/components/application/idiom-proof'
-import { toastConfig } from '@/utils/toast-config'
 import SidebarMenu from '@/components/application/side-bar-menu'
 import NotificationSection from '@/components/application/notifications-section'
 import UnverifiedBanner from '@/components/application/unverified-banner'
-import { clearUserSession } from '@/utils/clear-user-session'
+import { logout } from '@/utils/logout'
+import { handleResize, toggleDrawer } from '@/utils/authenticated-layout'
 
 export default function Authenticated({ header, children }) {
     const pathname = usePathname()
@@ -23,54 +22,10 @@ export default function Authenticated({ header, children }) {
     const [loading, setLoading] = useState(false)
     const [showUnverifiedBanner, setShowUnverifiedBanner] = useState(false)
 
-    // Handle Logout
-    async function logout() {
-        const axios = require('axios')
-        const url = process.env.NEXT_PUBLIC_BACKEND_URL + '/logout'
-        let config = {
-            url: url,
-            method: 'POST',
-            headers: {
-                Authorization: 'Bearer ' + user?.token,
-            },
-        }
-
-        setLoading(true)
-
-        axios
-            .request(config)
-            .then(res => {
-                Cookies.remove('analogueshifts')
-                window.location.href = '/login'
-            })
-            .catch(error => {
-                setLoading(false)
-                toast.error(error.message, toastConfig)
-                if (error?.response?.status === 401) {
-                    clearUserSession()
-                }
-            })
-    }
-
     //Toggle The Nav Bar
     const toggleMenu = value => {
         const sideBar = document.querySelector('.sidebar')
         sideBar.classList.toggle(value)
-    }
-
-    // Toggle Sidebar Drawer
-    const toggleDrawer = () => {
-        if (mobileOpen) {
-            setNavAnimationClass('')
-            setMobileOpen(prevExpenses => {
-                return !prevExpenses
-            })
-        } else {
-            setNavAnimationClass('open')
-            setMobileOpen(prevExpenses => {
-                return !prevExpenses
-            })
-        }
     }
 
     useEffect(() => {
@@ -84,24 +39,7 @@ export default function Authenticated({ header, children }) {
             setUser(JSON.parse(auth))
         }
 
-        // Handle Resize Event Listener
-        const sideBar = document.querySelector('.sidebar')
-        window.addEventListener('resize', () => {
-            if (window.innerWidth < 768) {
-                sideBar.classList.add('hide')
-            }
-        })
-        if (window.innerWidth < 768) {
-            sideBar.classList.add('hide')
-        }
-        window.addEventListener('resize', () => {
-            setMobileOpen(false)
-            setNavAnimationClass('')
-        })
-        return window.removeEventListener('resize', () => {
-            setMobileOpen(false)
-            setNavAnimationClass('')
-        })
+        handleResize(setMobileOpen, setNavAnimationClass)
     }, [])
 
     // Display Unverified Email Banner if the user's email is unverified
@@ -120,7 +58,7 @@ export default function Authenticated({ header, children }) {
                 open={open}
                 action={() => {
                     setOpen(false)
-                    logout()
+                    logout(user, setLoading)
                 }}
                 title={'Log Out'}
                 description={
@@ -154,7 +92,13 @@ export default function Authenticated({ header, children }) {
                     <button
                         className={`${navAnimationClass} block z-60 hamburger sm:hidden outline-none`}
                         type="button"
-                        onClick={toggleDrawer}>
+                        onClick={() =>
+                            toggleDrawer(
+                                setNavAnimationClass,
+                                setMobileOpen,
+                                mobileOpen,
+                            )
+                        }>
                         <span
                             className={`hamburger-top ${
                                 mobileOpen ? 'bg-black/80' : 'bg-[#342e37]'
@@ -174,7 +118,11 @@ export default function Authenticated({ header, children }) {
                             user={user}
                             close={() => setMobileOpen(false)}
                             handleLogout={() => {
-                                toggleDrawer()
+                                toggleDrawer(
+                                    setNavAnimationClass,
+                                    setMobileOpen,
+                                    mobileOpen,
+                                )
                                 setOpen(true)
                             }}
                         />

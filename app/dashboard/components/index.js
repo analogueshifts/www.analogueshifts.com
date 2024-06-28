@@ -5,7 +5,7 @@ import Curve from '@/public/images/curve.png'
 import Image from 'next/image'
 import Cookies from 'js-cookie'
 import { errorToast } from '@/utils/error-toast'
-import { processChartData } from '@/utils/process-chart-data'
+import { processChartData } from '@/utils/dashboard/process-chart-data'
 import RenderChart from './chart'
 import EditProfile from './edit-profile'
 import DashboardLoader from '@/components/application/dashboard-loader'
@@ -13,7 +13,7 @@ import { stats } from './stats'
 import VerifiedCheckMark from './verified-check'
 import { clearUserSession } from '@/utils/clear-user-session'
 import Filter, { formatDate } from './filter'
-import { getOneMonthAgoDate } from '@/utils/one-month-ago'
+import { getOneMonthAgoDate } from '@/utils/dashboard/one-month-ago'
 
 export default function Dashboard() {
     const [loading, setLoading] = useState(false)

@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import ResponsiveNavLink from './responsive-navlink'
 import { usePathname } from 'next/navigation'
 
-export default function ResponsiveNavBar({ handleBlogNavigation }) {
+export default function ResponsiveNavBar({ handleBlogNavigation, user }) {
     const [opacity, setOpacity] = useState(0)
     const pathname = usePathname()
 
@@ -35,24 +35,26 @@ export default function ResponsiveNavBar({ handleBlogNavigation }) {
                     Contact
                 </ResponsiveNavLink>
                 <ResponsiveNavLink href="/dashboard">
-                    Get Started
+                    {user ? 'Dashboard' : 'Get Started'}
                 </ResponsiveNavLink>
             </div>
 
             {/* Responsive Settings Options */}
-            <div className="pt-4 pb-1 border-t border-gray-200">
-                <div>
-                    <div className="space-y-1">
-                        {/* Authentication */}
-                        <ResponsiveNavLink href="/login">
-                            Login
-                        </ResponsiveNavLink>
-                        <ResponsiveNavLink href="/register">
-                            Register
-                        </ResponsiveNavLink>
+            {!user && (
+                <div className="pt-4 pb-1 border-t border-gray-200">
+                    <div>
+                        <div className="space-y-1">
+                            {/* Authentication */}
+                            <ResponsiveNavLink href="/login">
+                                Login
+                            </ResponsiveNavLink>
+                            <ResponsiveNavLink href="/register">
+                                Register
+                            </ResponsiveNavLink>
+                        </div>
                     </div>
                 </div>
-            </div>
+            )}
         </div>
     )
 }

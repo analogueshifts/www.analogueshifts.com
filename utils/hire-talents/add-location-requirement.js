@@ -8,7 +8,7 @@
 // toast... So we'll be able to throw an error
 // clearNewValueField: this should be a method that allows us to reset the value of the newValue to be added
 
-import { toastConfig } from './toast-config'
+import { toastConfig } from '../toast-config'
 
 export function addLocationRequirement(
     type,

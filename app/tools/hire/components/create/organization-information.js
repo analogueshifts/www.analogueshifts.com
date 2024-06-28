@@ -6,11 +6,9 @@ import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 import FileInput from '@/components/application/file-input'
-import { toast } from 'react-toastify'
 import DashboardLoader from '@/components/application/dashboard-loader'
-import { toastConfig } from '@/utils/toast-config'
-import { clearUserSession } from '@/utils/clear-user-session'
-import { errorToast } from '@/utils/error-toast'
+import { createJob } from '@/utils/hire-talents/create-job'
+import { uploadFile } from '@/utils/hire-talents/upload-file'
 
 export default function OrganizationInformation() {
     const [user, setUser] = useState(null)
@@ -54,76 +52,6 @@ export default function OrganizationInformation() {
         })
         setAllFieldEnter(returnValue)
     }, [organizationName])
-
-    // Make the request to the API
-    const createJob = data => {
-        const url = process.env.NEXT_PUBLIC_BACKEND_URL + '/hire/store'
-        const axios = require('axios')
-        let config = {
-            method: 'POST',
-            url: url,
-            headers: {
-                'Content-Type': 'application/json',
-                Authorization: 'Bearer ' + user.token,
-            },
-            data: data,
-        }
-        setLoading(true)
-        axios
-            .request(config)
-            .then(response => {
-                setLoading(false)
-                toast.success('Your Hire Request Has Been Sent', toastConfig)
-                Cookies.remove('jobPostData')
-                router.push('/tools/hire')
-            })
-            .catch(error => {
-                errorToast(
-                    'Failed To Post Job',
-                    error?.response?.data?.message || error.message || '',
-                )
-                setLoading(false)
-                if (error?.response?.status === 401) {
-                    clearUserSession()
-                }
-            })
-    }
-
-    // Upload File To The Database
-    const uploadFile = async value => {
-        const url = process.env.NEXT_PUBLIC_BACKEND_URL + '/upload'
-        const axios = require('axios')
-        const formData = new FormData()
-        formData.append('upload', value)
-        formData.append('type', 'image')
-        let config = {
-            method: 'POST',
-            url: url,
-            headers: {
-                Accept: 'application/json',
-                'Content-Type': 'multipart/form-data',
-                Authorization: 'Bearer ' + user.token,
-            },
-            data: formData,
-        }
-
-        setFileUploading(true)
-        try {
-            const data = await axios.request(config)
-            setLogoFileUrl(data.data.data.full_path)
-            setLogoFile(value)
-            setFileUploading(false)
-        } catch (error) {
-            setFileUploading(false)
-            errorToast(
-                'Error Uploading Logo',
-                error?.response?.data?.message || error.message || '',
-            )
-            if (error?.response?.status === 401) {
-                clearUserSession()
-            }
-        }
-    }
 
     // Handle Form Submit
     const submit = e => {
@@ -179,7 +107,7 @@ export default function OrganizationInformation() {
         }
 
         // Call the Create Function with the data as Parameter
-        createJob(data)
+        createJob(data, user, setLoading, router)
     }
 
     return (
@@ -189,7 +117,8 @@ export default function OrganizationInformation() {
                 <div className="w-full pb-6 border-b border-tremor-brand-boulder200 flex flex-col md:justify-between md:flex-row gap-y-4">
                     <div className="w-full md:w-1/2 flex flex-col gap-4 md:pr-5">
                         <p className="text-sm font-normal text-tremor-brand-boulder400">
-                            ORGANIZATION NAME
+                            ORGANIZATION NAME{' '}
+                            <span className="text-red-600 text-lg">*</span>
                         </p>
                         <p className="font-light text-[13px] text-tremor-brand-boulder900">
                             The official name of the company or organization
@@ -276,7 +205,15 @@ export default function OrganizationInformation() {
                                 )}
                                 <FileInput
                                     value={logoFile}
-                                    setValue={uploadFile}
+                                    setValue={value =>
+                                        uploadFile(
+                                            value,
+                                            user,
+                                            setFileUploading,
+                                            setLogoFileUrl,
+                                            setLogoFile,
+                                        )
+                                    }
                                 />
                             </div>
                         ) : (

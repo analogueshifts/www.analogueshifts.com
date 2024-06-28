@@ -20,12 +20,11 @@ import {
 } from '@/components/ui/pagination'
 import { Button } from '@/components/ui/button'
 import Cookies from 'js-cookie'
-import { toast } from 'react-toastify'
-import { toastConfig } from '@/utils/toast-config'
 import FormGridTile from './form-grid-tile'
 import { ChevronDown } from 'lucide-react'
 import { clearUserSession } from '@/utils/clear-user-session'
 import { errorToast } from '@/utils/error-toast'
+import { Plus } from 'lucide-react'
 
 export default function SelectForm({ selectedForm, setSelectedForm }) {
     const [loading, setLoading] = useState(false)
@@ -108,10 +107,20 @@ export default function SelectForm({ selectedForm, setSelectedForm }) {
                     <DialogTitle className="text-tremor-brand-boulder950">
                         Select A Form
                     </DialogTitle>
-                    <DialogDescription className="text-tremor-brand-boulder700">
-                        You have to select a Form that will be used as the Job
-                        URL.
-                    </DialogDescription>
+
+                    <div className="w-full flex-wrap gap-5 flex justify-between items-center pt-2">
+                        <DialogDescription className="text-tremor-brand-boulder700">
+                            You have to select a Form that will be used as the
+                            Job URL.
+                        </DialogDescription>
+                        <a
+                            rel="noreferrer"
+                            className="bg-tremor-background-lightYellow gap-1.5 text-sm text-white flex items-center justify-center w-max h-10 px-8"
+                            target="_blank"
+                            href="https://forms.analogueshifts.com/forms/create">
+                            <Plus width={16} /> Create new form
+                        </a>
+                    </div>
                 </DialogHeader>
 
                 {/* Content */}

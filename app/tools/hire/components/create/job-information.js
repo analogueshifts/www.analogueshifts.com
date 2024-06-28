@@ -4,23 +4,15 @@ import CreateJobLayout from './layout'
 import Cookies from 'js-cookie'
 import Tiptap from '@/components/application/utilities/Tiptap'
 import { useRouter } from 'next/navigation'
+import { generateValidThrough } from '@/utils/hire-talents/generate-valid-through'
 
 export default function JobInformation() {
-    const currentDate = new Date()
     const router = useRouter()
     const [title, setTitle] = useState('')
     const [description, setDescription] = useState(null)
     const [identifierName, setIdentifierName] = useState('')
     const [identifierValue, setIdentifierValue] = useState('')
-
-    const [validThrough, setValidThrough] = useState(
-        `${currentDate.getFullYear()}-${(currentDate.getMonth() + 1)
-            .toString()
-            .padStart(2, '0')}-${currentDate
-            .getDate()
-            .toString()
-            .padStart(2, '0')}`,
-    )
+    const [validThrough, setValidThrough] = useState(generateValidThrough())
     const [allFieldEntered, setAllFieldEnter] = useState(true)
     const submitButtonRef = useRef()
 
@@ -92,7 +84,8 @@ export default function JobInformation() {
                 <div className="w-full pb-6 border-b border-tremor-brand-boulder200 flex flex-col md:justify-between md:flex-row gap-y-4">
                     <div className="w-full md:w-1/2 flex flex-col gap-4 md:pr-5">
                         <p className="text-sm font-normal text-tremor-brand-boulder400">
-                            JOB TITLE
+                            JOB TITLE{' '}
+                            <span className="text-red-600 text-lg">*</span>
                         </p>
                         <p className="font-light text-[13px] text-tremor-brand-boulder900">
                             A Job posting must describe one position only
@@ -112,7 +105,8 @@ export default function JobInformation() {
                 <div className="w-full pb-6 border-b border-tremor-brand-boulder200 flex flex-col md:justify-between md:flex-row gap-y-4">
                     <div className="w-full md:w-1/2 flex flex-col gap-4 md:pr-5">
                         <p className="text-sm font-normal text-tremor-brand-boulder400">
-                            JOB DESCRIPTION
+                            JOB DESCRIPTION{' '}
+                            <span className="text-red-600 text-lg">*</span>
                         </p>
                         <p className="font-light text-[13px] text-tremor-brand-boulder900">
                             Provide a short description about the job. Keep it

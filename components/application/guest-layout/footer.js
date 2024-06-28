@@ -12,28 +12,32 @@ function Footer() {
         <div className="footer">
             <footer className="container mx-auto p-4">
                 <div className="wrapper">
-                    <div className="space-y-12 overflow-hidden">
-                        <a href="/" className="logo flex gap-5  ">
+                    <div className="space-y-12  overflow-hidden">
+                        <a href="/" className="logo flex gap-3  ">
                             <img
                                 src="/logo.png"
-                                className="w-20 md:w-12"
+                                className="w-16 md:w-10 h-max"
                                 alt=""
                             />
-                            <h3 className="">
-                                <span className="tracking-widest text-yellow-400">
+                            <h3 className="flex flex-col gap-0.5 leading-5 text-lg">
+                                <span className="tracking-widest text-yellow-400 ">
                                     Analogue
                                 </span>
-                                <br />
+
                                 <span className="tracking-[1rem]">Shifts</span>
                             </h3>
                         </a>
 
-                        <div className="grid gap-3 text-lg text-gray-100 font-sans w-max">
-                            <a href="tel:+2348066708343" target="blank">
+                        <div className="grid gap-3  text-zinc-100 w-full text-base font-medium ">
+                            <a
+                                href="tel:+2348066708343"
+                                target="blank"
+                                className="hover:underline">
                                 Call: +2348066708343
                             </a>
                             <a
                                 href="mailto:hello@analogueshifts.com"
+                                className="hover:underline"
                                 target="blank">
                                 Mail: hello@analogueshifts.com
                             </a>
@@ -44,7 +48,7 @@ function Footer() {
                             </span>
                         </div>
 
-                        <div className="flex gap-5 text-4xl text-zinc-100 justify-center p-5">
+                        <div className="flex gap-5 text-3xl text-zinc-100 justify-center p-5">
                             <a
                                 href="https://www.facebook.com/profile.php?id=100078666855898"
                                 target="blank">

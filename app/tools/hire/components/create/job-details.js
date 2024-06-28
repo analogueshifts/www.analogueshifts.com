@@ -25,7 +25,6 @@ export default function JobDetails() {
     const [salaryCurrency, setSalaryCurrency] = useState(salaryCurrencyData[0])
     const [salaryValue, setSalaryValue] = useState('')
     const [salaryUnitText, setSalaryUnitText] = useState(salaryUnitTextData[0])
-    const [apply, setApply] = useState('')
     const router = useRouter()
     const submitButtonRef = useRef()
 
@@ -171,7 +170,8 @@ export default function JobDetails() {
                 <div className="w-full pb-6 border-b border-tremor-brand-boulder200 flex flex-col md:justify-between md:flex-row gap-y-4">
                     <div className="w-full md:w-1/2 flex flex-col gap-4 md:pr-5">
                         <p className="text-sm font-normal text-tremor-brand-boulder400">
-                            SALARY VALUE
+                            SALARY VALUE{' '}
+                            <span className="text-red-600 text-lg">*</span>
                         </p>
                         <p className="font-light text-[13px] text-tremor-brand-boulder900">
                             The numerical value representing the salary amount
@@ -228,7 +228,8 @@ export default function JobDetails() {
                 <div className="w-full pb-6 border-b border-tremor-brand-boulder200 flex flex-col md:justify-between md:flex-row gap-y-4">
                     <div className="w-full md:w-1/2 flex flex-col gap-4 md:pr-5">
                         <p className="text-sm font-normal text-tremor-brand-boulder400">
-                            APPLY
+                            APPLY{' '}
+                            <span className="text-red-600 text-lg">*</span>
                         </p>
                         <p className="font-light text-[13px] text-tremor-brand-boulder900">
                             The Job Application URL

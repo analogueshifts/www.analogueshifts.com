@@ -1,15 +1,21 @@
 'use client'
-import ApplicationLogo from './application-logo'
+import ApplicationLogo from '../application-logo'
 import Link from 'next/link'
 import NavLink from './navlink'
 import { useEffect, useState } from 'react'
 import { usePathname } from 'next/navigation'
 import ResponsiveNavBar from './responsive-navbar'
+import LoggedInProfileDropdown from './logged-in-profile-dropdown'
+import { logout } from '@/utils/logout'
+import LoadingTwo from '@/components/ui/loading-spinner'
+import IdiomProof from '../idiom-proof'
 
-const Navigation = () => {
+const Navigation = ({ user }) => {
     const pathname = usePathname()
 
     const [open, setOpen] = useState(false)
+    const [logoutIdiomDisplay, setLogoutIdiomDisplay] = useState(false)
+    const [loading, setLoading] = useState(false)
 
     //Close the Nav bar whenever the pathname changes
     useEffect(() => {
@@ -20,6 +26,22 @@ const Navigation = () => {
 
     return (
         <div className="flex  justify-center pt-3 pb-20 px-3">
+            {loading && <LoadingTwo />}
+
+            {/* Logout Idiom */}
+            <IdiomProof
+                close={() => setLogoutIdiomDisplay(false)}
+                open={logoutIdiomDisplay}
+                action={() => {
+                    setLogoutIdiomDisplay(false)
+                    logout(user, setLoading)
+                }}
+                title={'Log Out'}
+                description={
+                    'Are you sure you want to sign out of your account? You can always sign in at anytime.'
+                }
+            />
+
             <nav className="bg-white bg-opacity-20 max-w-full backdrop-blur-lg drop-shadow-lg border border-gray-100 w-full lg:rounded-full fixed z-30">
                 {/* Primary Navigation Menu */}
                 <div className="w-full mx-auto px-4 lg:px-6 xl:px-8">
@@ -59,13 +81,20 @@ const Navigation = () => {
                         </div>
 
                         {/* Settings Dropdown */}
-                        <div className="hidden lg:flex lg:items-center lg:ml-6">
-                            <Link
-                                className="text-sm font-medium py-2 px-7 duration-300 rounded-full bg-yellow-500 text-white hover:bg-transparent hover:text-yellow-500 hover:ring-1 ring-yellow-500"
-                                href="/dashboard">
-                                Get Started
-                            </Link>
-                        </div>
+                        {user ? (
+                            <LoggedInProfileDropdown
+                                handleLogout={() => setLogoutIdiomDisplay(true)}
+                                user={user}
+                            />
+                        ) : (
+                            <div className="hidden lg:flex lg:items-center lg:ml-6">
+                                <Link
+                                    className="text-sm font-medium py-2 px-7 duration-300 rounded-full bg-yellow-500 text-white hover:bg-transparent hover:text-yellow-500 hover:ring-1 ring-yellow-500"
+                                    href="/dashboard">
+                                    Get Started
+                                </Link>
+                            </div>
+                        )}
 
                         {/* Hamburger */}
                         <div className="-mr-2 flex items-center lg:hidden">
@@ -103,6 +132,7 @@ const Navigation = () => {
                 {/* Responsive Navigation Menu */}
                 {open && (
                     <ResponsiveNavBar
+                        user={user}
                         handleBlogNavigation={() => setOpen(false)}
                     />
                 )}

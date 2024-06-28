@@ -3,7 +3,7 @@
     @apply p-5 md:p-9 lg:p-20 bg-black text-zinc-900;
 
     .wrapper{
-        @apply flex flex-col-reverse md:grid grid-cols-2 lg:grid-cols-4 gap-20;
+        @apply flex flex-col-reverse md:grid grid-cols-2 xl:grid-cols-4 gap-14;
 
         .logo{
             @apply text-xl font-bold uppercase 
