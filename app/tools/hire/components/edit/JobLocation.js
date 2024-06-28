@@ -29,7 +29,7 @@ export default function JobLocation() {
 
     // Prefill The form with the data stored in the Cookies
     useEffect(() => {
-        let storedData = Cookies.get('jobEditIngData')
+        let storedData = Cookies.get('jobEditingData')
         if (storedData) {
             if (JSON.parse(storedData).jobLocation) {
                 var jobLocationData = JSON.parse(storedData).jobLocation
@@ -109,7 +109,7 @@ export default function JobLocation() {
     // Handle Form Submit
     const submit = e => {
         e.preventDefault()
-        let storedData = Cookies.get('jobEditIngData')
+        let storedData = Cookies.get('jobEditingData')
         let jobLocationData = {
             streetAddress: streetAddress,
             addressLocality: addressLocality,
@@ -125,7 +125,7 @@ export default function JobLocation() {
         if (storedData) {
             let existingItem = JSON.parse(storedData)
             Cookies.set(
-                'jobEditIngData',
+                'jobEditingData',
                 JSON.stringify({
                     ...existingItem,
                     jobLocation: jobLocationData,
@@ -368,5 +368,3 @@ export default function JobLocation() {
         </CreateJobLayout>
     )
 }
-
-// { '@type': type, name: name }

@@ -31,7 +31,7 @@ export default function Edit({ slug }) {
                 let jobData = res.data.data.hire
                 if (jobData) {
                     Cookies.set(
-                        'jobEditIngData',
+                        'jobEditingData',
                         JSON.stringify({
                             jobInformation: {
                                 title: jobData.title,

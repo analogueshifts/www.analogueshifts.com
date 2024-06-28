@@ -14,6 +14,7 @@ import VerifiedCheckMark from './verified-check'
 import { clearUserSession } from '@/utils/clear-user-session'
 import Filter, { formatDate } from './filter'
 import { getOneMonthAgoDate } from '@/utils/dashboard/one-month-ago'
+import OurApps from './our-apps'
 
 export default function Dashboard() {
     const [loading, setLoading] = useState(false)
@@ -117,34 +118,9 @@ export default function Dashboard() {
                         <EditProfile user={user} updateLoading={setLoading} />
                     )}
 
-                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 ">
-                        {/* Metric Card 1 */}
-                        {/* {loading ? (
-                            <SkeletonCard />
-                        ) : (
-                            <div className="bg-white p-4 rounded-xl shadow-xl">
-                                <p className="text-base truncate lg:text-xl font-bold text-blue-600">
-                                    Hire Talents
-                                </p>
-                                <p className="text-gray-600">0</p>
-                            </div>
-                        )} */}
-
-                        {/* Metric Card 2 */}
-                        {/* {loading ? (
-                            <SkeletonCard />
-                        ) : (
-                            <div className="bg-white p-4 rounded-xl shadow-xl">
-                                <p className="text-base truncate lg:text-xl font-bold text-green-600">
-                                    Vetting System
-                                </p>
-                                <p className="text-gray-600">0</p>
-                            </div>
-                        )} */}
-                    </div>
-
                     <RenderChart chartData={data} />
                     <Filter submit={url => getDatas(url)} />
+                    <OurApps />
                 </div>
 
                 <div className="flex flex-col overflow-hidden"></div>

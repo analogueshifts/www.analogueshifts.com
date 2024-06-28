@@ -20,7 +20,7 @@ export default function JobInformation() {
 
     // Prefill The form with the data stored in the Cookies
     useEffect(() => {
-        let storedData = Cookies.get('jobEditIngData')
+        let storedData = Cookies.get('jobEditingData')
         if (storedData) {
             console.log(JSON.parse(storedData))
             if (JSON.parse(storedData).jobInformation) {
@@ -54,7 +54,7 @@ export default function JobInformation() {
         e.preventDefault()
 
         // store the Form data in Cookies and navigate to the next page
-        let storedData = Cookies.get('jobEditIngData')
+        let storedData = Cookies.get('jobEditingData')
         let jobInfoData = {
             title: title,
             description: description,
@@ -65,7 +65,7 @@ export default function JobInformation() {
 
         let existingItem = JSON.parse(storedData)
         Cookies.set(
-            'jobEditIngData',
+            'jobEditingData',
             JSON.stringify({
                 ...existingItem,
                 jobInformation: jobInfoData,

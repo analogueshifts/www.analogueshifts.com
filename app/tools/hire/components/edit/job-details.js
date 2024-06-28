@@ -56,10 +56,10 @@ export default function JobDetails() {
 
     // Prefill The form with the data stored in the Cookies
     useEffect(() => {
-        let storedData = Cookies.get('jobEditIngData')
+        let storedData = Cookies.get('jobEditingData')
         if (storedData) {
-            if (JSON.parse(storedData).jobDetails) {
-                var jobDetailsData = JSON.parse(storedData).jobDetails
+            var jobDetailsData = JSON.parse(storedData)?.jobDetails
+            if (jobDetailsData) {
                 setExternalApplicationURL(jobDetailsData.apply)
                 setStatus(jobDetailsData.status === '0' ? 'Offline' : 'Online')
                 setEmploymentType(jobDetailsData.employmentType)
@@ -87,7 +87,7 @@ export default function JobDetails() {
         }
 
         // Otherwise, store the Form data in Cookies and navigate to the next page
-        let storedData = Cookies.get('jobEditIngData')
+        let storedData = Cookies.get('jobEditingData')
         if (storedData) {
             let existingItem = JSON.parse(storedData)
             Cookies.set(

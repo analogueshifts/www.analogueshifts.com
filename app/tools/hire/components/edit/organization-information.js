@@ -30,7 +30,7 @@ export default function OrganizationInformation() {
     // Prefill The form with the data stored in the Cookies and at the same time, set the user session
     useEffect(() => {
         let authData = JSON.parse(Cookies.get('analogueshifts'))
-        let storedData = Cookies.get('jobEditIngData')
+        let storedData = Cookies.get('jobEditingData')
         if (storedData) {
             if (JSON.parse(storedData).organizationInformation) {
                 var organizationInformationData = JSON.parse(storedData)
@@ -72,7 +72,7 @@ export default function OrganizationInformation() {
     // Handle Form Submit
     const submit = e => {
         e.preventDefault()
-        let storedData = Cookies.get('jobEditIngData')
+        let storedData = Cookies.get('jobEditingData')
         let existingItem = JSON.parse(storedData)
 
         // Arrange The Data Structure
@@ -123,7 +123,8 @@ export default function OrganizationInformation() {
         }
 
         // Call the Edit Function with the data as Parameter
-        editJob(data, user, setLoading, router)
+        // editJob(data, user, setLoading, router)
+        console.log(data)
     }
 
     return (

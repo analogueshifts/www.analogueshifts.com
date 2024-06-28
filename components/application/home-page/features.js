@@ -1,5 +1,5 @@
 'use client'
-import { useState, useRef, useEffect } from 'react'
+import { useRef } from 'react'
 import Image from 'next/image'
 import Data from './utilities/FeaturesData.json'
 import { useInView } from 'react-intersection-observer'
@@ -10,8 +10,6 @@ function Features() {
         triggerOnce: true,
         rootMargin: '-140px', //triggers when the div is -50px up
     })
-    const [breakpointColumnsObj, setBreakPointColumnsObj] = useState(1)
-    const masonryRef = useRef(null)
 
     return (
         <div ref={ref}>
