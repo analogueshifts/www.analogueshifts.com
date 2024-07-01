@@ -1,0 +1,47 @@
+[
+    {
+        "role": "CEO",
+        "name": "Kenneth Malaka",
+        "image": "/images/team/ceo.jpeg"
+    },
+    {
+        "role": "Technical Recruiter",
+        "name": "Regina Maduemezia",
+        "image": "/images/team/recruit.jpg"
+    },
+    {
+        "role": "Social media manager",
+        "name": "Temi Tori",
+        "image": "/images/team/social.jpg"
+    },
+    {
+        "role": "Full-Stack Developer",
+        "name": "Teslim Abdulwahab",
+        "image": "/images/team/dev.png"
+    },
+    {
+        "role": "Frontend Developer",
+        "name": "Promise Onuoha",
+        "image": "/images/team/frontend.jpeg"
+    },
+    {
+        "role": "Content Writer",
+        "name": "Grace Evumovwe",
+        "image": "/images/team/writer.jpg"
+    },
+    {
+        "role": "Content Developer",
+        "name": "Marvellous SUNMIBOYE",
+        "image": "/images/team/content.jpg"
+    },
+    {
+        "role": "DevOps Engineer",
+        "name": "Nnochiri Oral",
+        "image": "/images/team/microsoft-azure-trainer.jpg"
+    },
+    {
+        "role": "SEO Specialist",
+        "name": "Fagbola Joshua",
+        "image": "/images/team/SEO.jpg"
+    }
+]

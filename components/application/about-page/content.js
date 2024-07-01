@@ -4,15 +4,9 @@ import Image from 'next/image'
 import Image1 from '@/public/images/1.jpg'
 import AboutImage1 from '@/public/images/about/1.jpg'
 import AboutImage2 from '@/public/images/about/2.jpg'
-import CEO from '@/public/images/team/ceo.jpeg'
-import Recruit from '@/public/images/team/recruit.jpg'
-import FrontEnd from '@/public/images/team/frontend.jpeg'
-import Social from '@/public/images/team/social.jpg'
-import Dev from '@/public/images/team/dev.png'
-import Writer from '@/public/images/team/writer.jpg'
-import Content from '@/public/images/team/content.jpg'
-import Microsoft from '@/public/images/team/microsoft-azure-trainer.jpg'
 import { useInView } from 'react-intersection-observer'
+import TeamData from './utilities/team.json'
+
 export default function PageContent() {
     const [ref, inView] = useInView({
         triggerOnce: true,
@@ -28,9 +22,6 @@ export default function PageContent() {
                         : 'opacity-0 translate-y-2'
                 }`}>
                 <div className="container mx-auto py-5 px-3 md:px-9 xl:px-20">
-                    {/* <h1 id="title" className="font-bold text-2xl mb-9">
-                        About AnalogueShifts
-                    </h1> */}
                     <div className="bg-white border-0 shadow rounded-lg overflow-hidden">
                         <div className="grid lg:grid-cols-12">
                             <div className="grid lg:col-span-6 p-7 lg:p-14">
@@ -194,126 +185,29 @@ export default function PageContent() {
                     </div>
                     <div className="grid justify-center py-16">
                         <div className="grid justify-center lg:grid-cols-3 gap-5">
-                            <div className="grid justify-center rounded p-2 cursor-pointer relative">
-                                <Image
-                                    src={CEO}
-                                    className="object-cover grid justify-center bg-gray-300 h-80 md:h-96 w-80 md:w-96 rounded-lg"
-                                    alt="..."
-                                />
-                                <div className="bg-white rounded-md grid justify-center py-3 px-2 gap-1 font-bold absolute inset-x-5 bottom-5">
-                                    <span className="flex justify-center">
-                                        Kenneth Malaka
-                                    </span>
-                                    <span className="flex justify-center text-yellow-500">
-                                        CEO
-                                    </span>
-                                </div>
-                            </div>
-                            <div className="grid justify-center rounded p-2 cursor-pointer relative">
-                                <Image
-                                    src={Recruit}
-                                    className="object-cover grid justify-center bg-gray-300 h-80 md:h-96 w-80 md:w-96 rounded-lg"
-                                    alt="..."
-                                />
-                                <div className="bg-white rounded-md grid justify-center py-3 px-2 gap-1 font-bold absolute inset-x-5 bottom-5">
-                                    <span className="flex justify-center">
-                                        Regina Maduemezia
-                                    </span>
-                                    <span className="flex justify-center text-yellow-500">
-                                        Technical Recruiter
-                                    </span>
-                                </div>
-                            </div>
-                            <div className="grid justify-center rounded p-2 cursor-pointer relative">
-                                <Image
-                                    src={Social}
-                                    className="object-cover grid justify-center bg-gray-300 h-80 md:h-96 w-80 md:w-96 rounded-lg"
-                                    alt="..."
-                                />
-                                <div className="bg-white rounded-md grid justify-center py-3 px-2 gap-1 font-bold absolute inset-x-5 bottom-5">
-                                    <span className="flex justify-center">
-                                        Temi Tori
-                                    </span>
-                                    <span className="flex justify-center text-yellow-500">
-                                        Social media manager
-                                    </span>
-                                </div>
-                            </div>
-                            <div className="grid justify-center rounded p-2 cursor-pointer relative">
-                                <Image
-                                    src={Dev}
-                                    className="object-cover grid justify-center bg-gray-300 h-80 md:h-96 w-80 md:w-96 rounded-lg"
-                                    alt="..."
-                                />
-                                <div className="bg-white rounded-md grid justify-center py-3 px-2 gap-1 font-bold absolute inset-x-5 bottom-5">
-                                    <span className="flex justify-center">
-                                        Teslim Abdulwahab
-                                    </span>
-                                    <span className="flex justify-center text-yellow-500">
-                                        Full-Stack Developer
-                                    </span>
-                                </div>
-                            </div>
-                            <div className="grid justify-center rounded p-2 cursor-pointer relative">
-                                <Image
-                                    src={FrontEnd}
-                                    className="object-cover grid justify-center bg-gray-300 h-80 md:h-96 w-80 md:w-96 rounded-lg"
-                                    alt="..."
-                                />
-                                <div className="bg-white rounded-md grid justify-center py-3 px-2 gap-1 font-bold absolute inset-x-5 bottom-5">
-                                    <span className="flex justify-center">
-                                        Promise Onuoha
-                                    </span>
-                                    <span className="flex justify-center text-yellow-500">
-                                        Frontend Developer
-                                    </span>
-                                </div>
-                            </div>
-                            <div className="grid justify-center rounded p-2 cursor-pointer relative">
-                                <Image
-                                    src={Writer}
-                                    className="object-cover grid justify-center bg-gray-300 h-80 md:h-96 w-80 md:w-96 rounded-lg"
-                                    alt="..."
-                                />
-                                <div className="bg-white rounded-md grid justify-center py-3 px-2 gap-1 font-bold absolute inset-x-5 bottom-5">
-                                    <span className="flex justify-center">
-                                        Grace Evumovwe
-                                    </span>
-                                    <span className="flex justify-center text-yellow-500">
-                                        Content Writer
-                                    </span>
-                                </div>
-                            </div>
-                            <div className="grid justify-center rounded p-2 cursor-pointer relative">
-                                <Image
-                                    src={Content}
-                                    className="object-cover grid justify-center bg-gray-300 h-80 md:h-96 w-80 md:w-96 rounded-lg"
-                                    alt="..."
-                                />
-                                <div className="bg-white rounded-md grid justify-center py-3 px-2 gap-1 font-bold absolute inset-x-5 bottom-5">
-                                    <span className="flex justify-center">
-                                        Marvellous SUNMIBOYE
-                                    </span>
-                                    <span className="flex justify-center text-yellow-500">
-                                        Content Developer
-                                    </span>
-                                </div>
-                            </div>
-                            <div className="grid justify-center rounded p-2 cursor-pointer relative">
-                                <Image
-                                    src={Microsoft}
-                                    className="object-cover grid justify-center bg-gray-300 h-80 md:h-96 w-80 md:w-96 rounded-lg"
-                                    alt="..."
-                                />
-                                <div className="bg-white rounded-md grid justify-center py-3 px-2 gap-1 font-bold absolute inset-x-5 bottom-5">
-                                    <span className="flex justify-center">
-                                        Nnochiri Oral
-                                    </span>
-                                    <span className="flex justify-center text-yellow-500">
-                                        DevOps Engineer
-                                    </span>
-                                </div>
-                            </div>
+                            {TeamData.map(item => {
+                                return (
+                                    <div
+                                        key={item.name}
+                                        className="grid justify-center rounded p-2 cursor-pointer relative">
+                                        <Image
+                                            width={400}
+                                            height={500}
+                                            src={item.image}
+                                            className="object-cover grid justify-center bg-gray-300 h-80 md:h-96 w-80 md:w-96 rounded-lg"
+                                            alt="Employee's Image"
+                                        />
+                                        <div className="bg-white rounded-md grid justify-center py-3 px-2 gap-1 font-bold absolute inset-x-5 bottom-5">
+                                            <span className="flex justify-center">
+                                                {item.name}
+                                            </span>
+                                            <span className="flex justify-center text-yellow-500">
+                                                {item.role}
+                                            </span>
+                                        </div>
+                                    </div>
+                                )
+                            })}
                         </div>
                     </div>
                 </div>
