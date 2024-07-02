@@ -45,7 +45,7 @@ export default function PageContent() {
                             </div>
                             <div className="grid lg:col-span-6">
                                 <Image
-                                    className="object-cover h-full w-full"
+                                    className="object-cover object-center h-full w-full"
                                     src={Image1}
                                     alt="landing"
                                 />

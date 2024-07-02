@@ -10,12 +10,12 @@
         "image": "/images/team/recruit.jpg"
     },
     {
-        "role": "Social media manager",
-        "name": "Temi Tori",
+        "role": "Public Relations Manager",
+        "name": "Akinola Temiloluwa ",
         "image": "/images/team/social.jpg"
     },
     {
-        "role": "Full-Stack Developer",
+        "role": "Senior Software Engineer",
         "name": "Teslim Abdulwahab",
         "image": "/images/team/dev.png"
     },
@@ -30,7 +30,7 @@
         "image": "/images/team/writer.jpg"
     },
     {
-        "role": "Content Developer",
+        "role": "Partnership and Strategy Associate ",
         "name": "Marvellous SUNMIBOYE",
         "image": "/images/team/content.jpg"
     },
@@ -43,5 +43,41 @@
         "role": "SEO Specialist",
         "name": "Fagbola Joshua",
         "image": "/images/team/SEO.jpg"
+    },
+    {
+        "role": "Creative Designer",
+        "name": "Honeybell Jolomi Omadeli",
+        "image": "/images/team/designer.png"
+    },
+    {
+        "role": "Recruiter",
+        "name": "Ojo Elizabeth Oreoluwa ",
+        "image": "/images/team/recruiter.jpg"
+    },
+
+    {
+        "role": "Partnership Specialist ",
+        "name": "Eniola Bamidele",
+        "image": "/images/team/partnership-specialist.png"
+    },
+    {
+        "role": "Project Manager ",
+        "name": "Ali Richard",
+        "image": "/images/team/product-manager.jpg"
+    },
+    {
+        "role": "Mobile Application Engineer",
+        "name": "Achu-ulim Akem Agbama",
+        "image": "/images/team/mobile.png"
+    },
+    {
+        "role": "Lead, Human Resource Officer ",
+        "name": "Moniola  Lawal",
+        "image": "/images/team/human-resource.jpg"
+    },
+    {
+        "role": "Legal Officer",
+        "name": "Suleman Halimat Opeyemi",
+        "image": "/images/team/legal-officer.jpeg"
     }
 ]
