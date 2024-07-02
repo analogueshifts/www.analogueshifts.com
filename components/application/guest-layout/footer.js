@@ -42,9 +42,8 @@ function Footer() {
                                 Mail: hello@analogueshifts.com
                             </a>
                             <span>
-                                Address: 5 Chief Sunday Olaiya Close <br />{' '}
-                                Salawe Avenue, Off Love All Street <br /> Ikosi,
-                                Lagos-Nigeria
+                                Address: 7, Smart Idomia Street Along KOKA,
+                                Asaba, Delta State.
                             </span>
                         </div>
 
