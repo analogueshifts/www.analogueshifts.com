@@ -1,7 +1,7 @@
 'use client'
 import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
-import Authenticated from '@/app/layouts/authenticated-layout'
+import Authenticated from '@/app/layouts/authenticated'
 import { saveData } from './save-data'
 
 export default function Redirect({ role }) {

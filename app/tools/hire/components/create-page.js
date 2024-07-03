@@ -1,6 +1,6 @@
 'use client'
 import { useEffect } from 'react'
-import Authenticated from '@/app/layouts/authenticated-layout'
+import Authenticated from '@/app/layouts/authenticated'
 import { useRouter } from 'next/navigation'
 
 export default function Create() {

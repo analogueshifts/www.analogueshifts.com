@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import GuestLayout from '../layouts/guest-layout'
+import GuestLayout from '../layouts/guest'
 
 export const metadata = {
     title: '404',

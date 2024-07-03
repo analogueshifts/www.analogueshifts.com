@@ -1,4 +1,4 @@
-import GuestLayout from '../layouts/guest-layout'
+import GuestLayout from '../layouts/guest'
 import PageContent from '@/components/application/about-page/content'
 // import SeoController from '../lib/SeoController'
 

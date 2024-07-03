@@ -1,4 +1,4 @@
-import GuestLayout from '@/app/layouts/guest-layout'
+import GuestLayout from '@/app/layouts/guest'
 import BuildTeam from '@/components/application/home-page/build-team'
 import Features from '@/components/application/home-page/features'
 import Landing from '@/components/application/home-page/landing'

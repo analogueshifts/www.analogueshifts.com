@@ -1,4 +1,4 @@
-import GuestLayout from '@/app/layouts/guest-layout'
+import GuestLayout from '@/app/layouts/guest'
 import ViewId from '@/components/application/jobs-page/view-id'
 // import SeoController from '@/app/lib/SeoController'
 
