@@ -14,12 +14,12 @@ export default function EditJobLayout({ children }) {
 
     useEffect(() => {
         let storedData = JSON.parse(Cookies.get('analogueshifts'))
-        let jobEditIngData = Cookies.get('jobEditIngData')
+        let jobEditIngData = Cookies.get('jobEditingData')
         if (storedData) {
             setUser(storedData)
         }
         if (!jobEditIngData) {
-            router.push('tools/hire')
+            router.push('/tools/hire')
         } else {
             setInitialData(JSON.parse(jobEditIngData))
         }
