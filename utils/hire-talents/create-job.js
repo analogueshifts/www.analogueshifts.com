@@ -1,4 +1,5 @@
 import { errorToast } from '../error-toast'
+import { toastConfig } from '../toast-config'
 import Cookies from 'js-cookie'
 import { toast } from 'react-toastify'
 import { clearUserSession } from '../clear-user-session'

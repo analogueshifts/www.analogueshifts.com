@@ -123,8 +123,7 @@ export default function OrganizationInformation() {
         }
 
         // Call the Edit Function with the data as Parameter
-        // editJob(data, user, setLoading, router)
-        console.log(data)
+        editJob(data, user, setLoading, router)
     }
 
     return (
