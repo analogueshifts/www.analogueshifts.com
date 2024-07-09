@@ -1,7 +1,7 @@
 'use client'
 import { useEffect } from 'react'
 import { useRouter } from 'next/navigation'
-import GuestLayout from '../../layouts/guest'
+import GuestLayout from '@/app/layouts/guest'
 // import BlogList from '../components/BlogComponents/BlogList'
 
 // export const metadata = {

@@ -1,5 +1,5 @@
 import LoadingTwo from '@/components/ui/loading-spinner'
-import GuestLayout from '../../layouts/guest'
+import GuestLayout from '@/app/layouts/guest'
 import JobView from './components/job-view'
 import { Suspense } from 'react'
 
