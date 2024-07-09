@@ -34,7 +34,7 @@ export default function ResponsiveNavBar({ handleBlogNavigation, user }) {
                     active={pathname === '/contact'}>
                     Contact
                 </ResponsiveNavLink>
-                <ResponsiveNavLink href="/dashboard">
+                <ResponsiveNavLink href={user ? '/dashboard' : '/login'}>
                     {user ? 'Dashboard' : 'Get Started'}
                 </ResponsiveNavLink>
             </div>
