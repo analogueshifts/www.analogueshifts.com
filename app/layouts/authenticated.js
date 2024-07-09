@@ -40,7 +40,7 @@ export default function Authenticated({ header, children }) {
         // Redirect To Login if User is not Authenticated
         if (user === null && !token) {
             Cookies.set('RedirectionLink', pathname)
-            router.push('/login')
+            window.location.pathname = '/login'
             return null
         } else if (user === null && token) {
             //    Fetch User
