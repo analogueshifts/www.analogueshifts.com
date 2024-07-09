@@ -96,7 +96,7 @@ export default function ViewId({ id }) {
                                     ? job.hiringOrganization.logo
                                     : '/images/jobs/company_logo.JPG'
                             }
-                            className="rounded w-12 h-12"
+                            className="rounded w-12 h-12 object-cover"
                             alt="LOGO"
                         />
                         <div className="min-h-12 flex flex-col justify-between">
@@ -214,14 +214,14 @@ export default function ViewId({ id }) {
                                     <div className="w-full items-start flex gap-4">
                                         <Image
                                             src={
-                                                item?.hiringOrganization?.logo
-                                                    ? item.hiringOrganization
+                                                job?.hiringOrganization?.logo
+                                                    ? job.hiringOrganization
                                                           .logo
                                                     : '/images/jobs/company_logo.JPG'
                                             }
                                             width={48}
                                             height={48}
-                                            className="rounded"
+                                            className="rounded object-cover"
                                             alt="LOGO"
                                         />
                                         <div className="min-h-12 flex flex-col justify-between">
