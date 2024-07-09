@@ -212,16 +212,14 @@ export default function ViewId({ id }) {
                                     key={crypto.randomUUID()}
                                     className="w-full h-max rounded-sm border py-4 px-6">
                                     <div className="w-full items-start flex gap-4">
-                                        <Image
+                                        <img
                                             src={
                                                 job?.hiringOrganization?.logo
                                                     ? job.hiringOrganization
                                                           .logo
                                                     : '/images/jobs/company_logo.JPG'
                                             }
-                                            width={48}
-                                            height={48}
-                                            className="rounded object-cover"
+                                            className="rounded object-cover w-12 h-12"
                                             alt="LOGO"
                                         />
                                         <div className="min-h-12 flex flex-col justify-between">
