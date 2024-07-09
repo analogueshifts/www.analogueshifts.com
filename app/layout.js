@@ -4,6 +4,8 @@ import './scss/app.scss'
 import Script from 'next/script'
 import { cn } from '@/lib/utils'
 
+import { UserProvider } from '@/contexts/user'
+
 // Toastify
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
@@ -68,7 +70,7 @@ export default function RootLayout({ children }) {
             </head>
             <body className={cn('', lexend.className)}>
                 <ToastContainer position="top-center" />
-                {children}
+                <UserProvider>{children}</UserProvider>
                 <Script
                     src="https://kit.fontawesome.com/39a80cd06c.js"
                     crossorigin="anonymous"

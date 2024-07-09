@@ -19,16 +19,16 @@ export default function LoggedInProfileDropdown({ user, handleLogout }) {
                     <Avatar className="w-8 h-8">
                         <AvatarImage
                             className="object-cover"
-                            src={user?.user?.profile}
+                            src={user?.profile}
                             alt="Profile"
                         />
                         <AvatarFallback className="bg-background-darkYellow text-white text-sm font-bold">
-                            {user?.user?.email.slice(0, 1)?.toUpperCase()}
+                            {user?.email.slice(0, 1)?.toUpperCase()}
                         </AvatarFallback>
                     </Avatar>
                     <h4 className="text-xs  font-bold">
-                        {user?.user?.first_name}{' '}
-                        {user?.user?.last_name && ' ' + user.user.last_name}
+                        {user?.first_name}{' '}
+                        {user?.last_name && ' ' + user.last_name}
                     </h4>
                     <div className="mr-2.5 ml-1">
                         <ChevronDown width={15} />
@@ -62,7 +62,7 @@ export default function LoggedInProfileDropdown({ user, handleLogout }) {
                     <LogOut className="mr-2 h-4 w-4" />
                     <span>
                         Log out <br />{' '}
-                        <small className="truncate">{user?.user?.email}</small>
+                        <small className="truncate">{user?.email}</small>
                     </span>
                 </DropdownMenuItem>
             </DropdownMenuContent>

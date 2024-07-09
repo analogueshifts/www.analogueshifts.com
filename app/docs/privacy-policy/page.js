@@ -2,7 +2,7 @@
 import { useState, useEffect } from 'react'
 import { axiosBlog } from '../../lib/axios'
 import LoadingTwo from '@/components/ui/loading-spinner'
-import GuestLayout from '@/app/layouts/guest'
+import GuestLayout from '@/layouts/guest'
 
 export default function page() {
     const [dataRes, setDataRes] = useState()

@@ -1,4 +1,4 @@
-import JobLocation from '../../components/create/job-location'
+import JobLocation from '../components/job-location'
 export const metadata = {
     title: 'Hire Talents | AnalogueShifts',
     description:

@@ -1,24 +1,20 @@
 'use client'
 import React, { useState, useEffect } from 'react'
-import Authenticated from '@/app/layouts/authenticated'
+import Authenticated from '@/layouts/authenticated'
 import Link from 'next/link'
-import { toast } from 'react-toastify'
 import Cookies from 'js-cookie'
 import IdiomProof from '@/components/application/idiom-proof'
 import { useRouter, useSearchParams } from 'next/navigation'
-import { fetchJobPosts } from '@/utils/fetch-job-posts'
-import { deletePost } from '@/utils/hire-talents/delete-post'
-import { toastConfig } from '@/utils/toast-config'
 import HirePagination from './hire-pagination'
 import Curve from '@/public/images/curve.png'
 import Image from 'next/image'
 import SkeletonCard from '@/components/application/skeleton-card'
 import DashboardLoader from '@/components/application/dashboard-loader'
-import { clearUserSession } from '@/utils/clear-user-session'
-import { errorToast } from '@/utils/error-toast'
+import { useUser } from '@/contexts/user'
+import { useHire } from '@/hooks/hires'
 
 export default function HirePageDetails() {
-    const [user, setUser] = useState(null)
+    const { user } = useUser()
     const pageQuery = useSearchParams().getAll('page')
     const [currentPageInfo, setCurrentPageInfo] = useState(null)
     const [deleteLoading, setDeleteLoading] = useState(false)
@@ -27,61 +23,24 @@ export default function HirePageDetails() {
     const [data, setData] = useState([])
     const [loading, setLoading] = useState(false)
     const router = useRouter()
+    const { deleteJob, fetchJobs } = useHire()
     let allJobsURL = `${process.env.NEXT_PUBLIC_BACKEND_URL}/hire/dashboard${
         pageQuery.length ? `?page=${pageQuery[0]}` : ''
     }`
 
-    //Fetch Jobs
-    const fetchJobs = () => {
-        // Fetch Jobs
-        fetchJobPosts(
-            allJobsURL,
-            user.token,
-            response => {
-                if (response?.data?.success) {
-                    setData(response.data.data.hires.data)
-                    setCurrentPageInfo(response.data.data.hires)
-                }
-                setLoading(false)
-                setDeleteLoading(false)
-            },
-            error => {
-                setLoading(false)
-                errorToast(
-                    error.message,
-                    error?.response?.data?.message || error.message || '',
-                )
-                if (error?.response?.status === 401) {
-                    clearUserSession()
-                }
-            },
-        )
-    }
-
-    // Delete A Job Post by using the Job Id
     const deleteJobPost = async () => {
-        const url =
-            process.env.NEXT_PUBLIC_BACKEND_URL + '/hire/' + idToBeDeleted
-        setDeleteLoading(true)
-        deletePost(
-            url,
-            user.token,
-            () => {
-                fetchJobs()
-                toast.success('Job Deleted Successfully', toastConfig)
-                setIdToBeDeleted(null)
-            },
-            error => {
-                errorToast(
-                    'Error Deleting Job',
-                    error?.response?.data?.message || error.message || '',
-                )
-                setDeleteLoading(false)
-                if (error?.response?.status === 401) {
-                    clearUserSession()
-                }
-            },
-        )
+        try {
+            await deleteJob({
+                setLoading: setDeleteLoading,
+                id: idToBeDeleted,
+                getJobsUrl: allJobsURL,
+                setData,
+                setCurrentPageInfo,
+            })
+            setIdToBeDeleted(null)
+        } catch (error) {
+            console.log(error)
+        }
     }
 
     // When the create Button is clicked, clear the Clear the existing Job Posting data from the Cookies
@@ -91,16 +50,14 @@ export default function HirePageDetails() {
     }
 
     useEffect(() => {
-        let storedData = Cookies.get('analogueshifts')
-        if (storedData) {
-            setUser(JSON.parse(Cookies.get('analogueshifts')))
-        }
-    }, [])
-
-    useEffect(() => {
         if (user) {
             setLoading(true)
-            fetchJobs()
+            fetchJobs({
+                setLoading,
+                setCurrentPageInfo,
+                setData,
+                url: allJobsURL,
+            })
         }
     }, [user])
 

@@ -1,4 +1,4 @@
-import AuthenticationLayout from '@/app/layouts/authentication'
+import AuthenticationLayout from '@/layouts/authentication'
 import LoginForm from './components/login-form'
 
 export const metadata = {

@@ -1,5 +1,4 @@
-import Edit from '../../components/edit-page'
-import Cookies from 'js-cookie'
+import Edit from '../components/edit-page'
 
 export const metadata = {
     title: 'Hire Talents | AnalogueShifts',

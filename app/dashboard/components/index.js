@@ -1,72 +1,35 @@
 'use client'
 import { useEffect, useState } from 'react'
-import Authenticated from '@/app/layouts/authenticated'
+import Authenticated from '@/layouts/authenticated'
 import Curve from '@/public/images/curve.png'
 import Image from 'next/image'
-import Cookies from 'js-cookie'
-import { errorToast } from '@/utils/error-toast'
-import { processChartData } from '@/utils/dashboard/process-chart-data'
 import RenderChart from './chart'
 import EditProfile from './edit-profile'
 import DashboardLoader from '@/components/application/dashboard-loader'
-import { stats } from './stats'
+import { stats } from '../utilities/stats'
 import VerifiedCheckMark from './verified-check'
-import { clearUserSession } from '@/utils/clear-user-session'
 import Filter, { formatDate } from './filter'
-import { getOneMonthAgoDate } from '@/utils/dashboard/one-month-ago'
+import { getOneMonthAgoDate } from '@/app/dashboard/utilities/one-month-ago'
 import OurApps from './our-apps'
+import { useUser } from '@/contexts/user'
+import { useHire } from '@/hooks/hires'
 
 export default function Dashboard() {
     const [loading, setLoading] = useState(false)
     const [data, setData] = useState(stats)
-    const [user, setUser] = useState(null)
-
-    // Fetch Jobs and Vets
-    const getDatas = async url => {
-        const config = {
-            url: url,
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-                Accept: 'application/json',
-                Authorization: 'Bearer ' + user.token,
-            },
-        }
-        const axios = require('axios')
-        try {
-            const request = await axios.request(config)
-            if (request?.data) {
-                setData(processChartData(request.data.data.dashboard))
-            }
-        } catch (error) {
-            errorToast(
-                'Error Fetching Data',
-                error?.response?.data?.message ||
-                    error.message ||
-                    'Failed To Fetch Statistics Data',
-            )
-            if (error?.response?.status === 401) {
-                clearUserSession()
-            }
-        }
-    }
-
-    useEffect(() => {
-        let storedData = Cookies.get('analogueshifts')
-        if (storedData) {
-            setUser(JSON.parse(storedData))
-        }
-    }, [])
+    const { user } = useUser()
+    const { getStats } = useHire()
 
     useEffect(() => {
         if (user) {
-            getDatas(
-                process.env.NEXT_PUBLIC_BACKEND_URL +
+            getStats({
+                url:
                     '/dashboard?start=' +
                     `${formatDate(getOneMonthAgoDate())}${
                         '&stop=' + formatDate(new Date())
                     }`,
-            )
+                setData,
+            })
         }
     }, [user])
 
@@ -90,8 +53,8 @@ export default function Dashboard() {
                             width={112}
                             height={112}
                             src={
-                                user?.user?.profile
-                                    ? user.user.profile
+                                user?.profile
+                                    ? user.profile
                                     : '/images/profile_avatar.JPG'
                             }
                             alt="Profile"
@@ -101,25 +64,20 @@ export default function Dashboard() {
                     <div className="-translate-y-5">
                         <div className="w-full gap-2 flex items-center">
                             <h2 className="text-2xl font-bold truncate w-max max-w-[90%] text-gray-800">
-                                {user?.user?.first_name}{' '}
-                                {user?.user?.last_name &&
-                                    ' ' + user.user.last_name}
+                                {user?.first_name}{' '}
+                                {user?.last_name && ' ' + user.last_name}
                             </h2>
-                            {user?.user?.email_verified_at && (
-                                <VerifiedCheckMark />
-                            )}
+                            {user?.email_verified_at && <VerifiedCheckMark />}
                         </div>
-                        <p className="text-gray-600">{user?.user?.email}</p>
+                        <p className="text-gray-600">{user?.email}</p>
                         {/* <p className="text-blue-500">Nigeria</p> */}
                     </div>
                     {/* Metric Overview */}
 
-                    {user && (
-                        <EditProfile user={user} updateLoading={setLoading} />
-                    )}
+                    {user && <EditProfile updateLoading={setLoading} />}
 
                     <RenderChart chartData={data} />
-                    <Filter submit={url => getDatas(url)} />
+                    <Filter submit={url => getStats({ url, setData })} />
                     <OurApps />
                 </div>
 

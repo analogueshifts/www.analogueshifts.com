@@ -1,4 +1,4 @@
-import JobDetails from '../../../components/edit/job-details'
+import JobDetails from '../../components/job-details'
 
 export const metadata = {
     title: 'Hire Talents | AnalogueShifts',

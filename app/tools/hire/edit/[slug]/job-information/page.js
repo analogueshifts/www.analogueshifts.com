@@ -1,4 +1,4 @@
-import JobInformation from '../../../components/edit/JobInformation'
+import JobInformation from '../../components/JobInformation'
 
 export const metadata = {
     title: 'Hire Talents | AnalogueShifts',

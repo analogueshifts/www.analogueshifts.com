@@ -11,103 +11,40 @@ import {
 } from '@/components/ui/dialog'
 import { Input } from '@/components/ui/input'
 import { useState } from 'react'
-import { toastConfig } from '@/utils/toast-config'
 import Cookies from 'js-cookie'
 import { clearUserSession } from '@/utils/clear-user-session'
 import { successToast } from '@/utils/success-toast'
 import { errorToast } from '@/utils/error-toast'
+import { useUser } from '@/contexts/user'
+import { useAuth } from '@/hooks/auth'
+import { useHire } from '@/hooks/hires'
 
-export default function EditProfile({ user, updateLoading }) {
+export default function EditProfile({ updateLoading }) {
+    const { user } = useUser()
+    const { uploadFile } = useHire()
     const [loading, setLoading] = useState(false)
-    const [firstName, setFirstName] = useState(user?.user?.first_name || '')
-    const [lastName, setLastName] = useState(user?.user?.last_name || '')
-    const [userName, setUserName] = useState(user?.user?.username || '')
+    const [firstName, setFirstName] = useState(user?.first_name || '')
+    const [lastName, setLastName] = useState(user?.last_name || '')
+    const [userName, setUserName] = useState(user?.username || '')
     const [profile, setProfile] = useState('')
+    const { updateProfile } = useAuth()
+
+    const token = Cookies.get('analogueshifts')
 
     // Upload File To The Database
-    const uploadFile = async value => {
+    const uploadImage = async value => {
         let fileValue = value.target.files[0]
-        const url = process.env.NEXT_PUBLIC_BACKEND_URL + '/upload'
-        const axios = require('axios')
-        const formData = new FormData()
-        formData.append('upload', fileValue)
-        formData.append('type', 'image')
-        let config = {
-            method: 'POST',
-            url: url,
-            headers: {
-                Accept: 'application/json',
-                'Content-Type': 'multipart/form-data',
-                Authorization: 'Bearer ' + user.token,
-            },
-            data: formData,
-        }
-
-        setLoading(true)
-        try {
-            const data = await axios.request(config)
-            setProfile(data.data.data.full_path)
-            setLoading(false)
-            successToast('File Uploaded', 'File uploaded successfully')
-        } catch (error) {
-            setLoading(false)
-            errorToast(
-                'Error Uploading Logo',
-                error?.response?.data?.message ||
-                    error.message ||
-                    'Failed To Upload Logo',
-            )
-            if (error?.response?.status === 401) {
-                clearUserSession()
-            }
-        }
+        await uploadFile({ fileValue, setLoading, setData: setProfile })
     }
 
-    const updateProfile = () => {
-        const url = process.env.NEXT_PUBLIC_BACKEND_URL + '/update/profile'
-        const axios = require('axios')
-        let config = {
-            method: 'POST',
-            url: url,
-            headers: {
-                'Content-Type': 'application/json',
-                Authorization: 'Bearer ' + user.token,
-            },
-            data: {
-                first_name: firstName,
-                last_name: lastName,
-                username: userName,
-                profile: profile,
-            },
-        }
-        updateLoading(true)
-        axios
-            .request(config)
-            .then(response => {
-                updateLoading(false)
-                const userData = JSON.stringify({
-                    user: { ...response.data.data.user },
-                    token: user.token,
-                })
-                Cookies.set('analogueshifts', userData)
-                successToast(
-                    'Profile Updated',
-                    'Your Profile has been updated.',
-                )
-                window.location.reload()
-            })
-            .catch(error => {
-                errorToast(
-                    'Error Updating Profile',
-                    error?.response?.data?.message ||
-                        error.message ||
-                        'Failed To Update Your Profile',
-                )
-                setLoading(false)
-                if (error?.response?.status === 401) {
-                    clearUserSession()
-                }
-            })
+    const handleUpdateProfile = () => {
+        updateProfile({
+            firstName,
+            lastName,
+            userName,
+            profile,
+            setLoading: updateLoading,
+        })
     }
 
     return (
@@ -183,7 +120,7 @@ export default function EditProfile({ user, updateLoading }) {
                             Profile
                         </label>
                         <Input
-                            onChange={uploadFile}
+                            onChange={uploadImage}
                             accept="image/jpeg,image/png"
                             id="picture"
                             type="file"
@@ -194,7 +131,7 @@ export default function EditProfile({ user, updateLoading }) {
                 <DialogFooter>
                     <DialogTrigger>
                         <Button
-                            onClick={updateProfile}
+                            onClick={handleUpdateProfile}
                             type="submit"
                             className="bg-tremor-background-lightYellow hover:bg-tremor-background-lightYellow/80">
                             Save changes

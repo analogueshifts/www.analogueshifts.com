@@ -2,8 +2,10 @@
 import { Bell } from 'lucide-react'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
+import Cookies from 'js-cookie'
 
 export default function NotificationSection({ user }) {
+    const token = Cookies.get('analogueshifts')
     const [notificationCount, setNotificationCount] = useState(0)
 
     const getNotificationCount = async () => {
@@ -12,7 +14,7 @@ export default function NotificationSection({ user }) {
             method: 'GET',
             url: process.env.NEXT_PUBLIC_BACKEND_URL + '/notification/count',
             headers: {
-                Authorization: 'Bearer ' + user.token,
+                Authorization: 'Bearer ' + token,
                 'Content-Type': 'application/json',
                 Accept: 'application/json',
             },

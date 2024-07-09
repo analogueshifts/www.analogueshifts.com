@@ -1,8 +1,7 @@
 import LoadingTwo from '@/components/ui/loading-spinner'
-import GuestLayout from '../layouts/guest'
-import JobView from '@/components/application/jobs-page/job-view'
+import GuestLayout from '../../layouts/guest'
+import JobView from './components/job-view'
 import { Suspense } from 'react'
-// import SeoController from '../lib/SeoController'
 
 export const metadata = {
     title: 'Find high paying remote tech jobs | Analogue Shifts',

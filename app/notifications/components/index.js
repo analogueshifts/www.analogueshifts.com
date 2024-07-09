@@ -1,6 +1,6 @@
 'use client'
 import { useEffect, useState } from 'react'
-import Authenticated from '@/app/layouts/authenticated'
+import Authenticated from '@/layouts/authenticated'
 import Curve from '@/public/images/curve.png'
 import Image from 'next/image'
 import Cookies from 'js-cookie'
@@ -11,17 +11,19 @@ import NotificationsPagination from './notifications-pagination'
 import SkeletonCard from '@/components/application/skeleton-card'
 import { useSearchParams } from 'next/navigation'
 import NotificationGridTile from './notification-grid-tile'
+import { useUser } from '@/contexts/user'
 
 export default function Notifications() {
     const [loading, setLoading] = useState(false)
     const [loadingTwo, setLoadingTwo] = useState(false)
     const [data, setData] = useState([])
-    const [user, setUser] = useState(null)
+    const { user, setUser } = useUser()
     const pageQuery = useSearchParams().getAll('page')
     const [currentPageInfo, setCurrentPageInfo] = useState(null)
     const url = `${process.env.NEXT_PUBLIC_BACKEND_URL}/notification/view${
         pageQuery.length ? `?page=${pageQuery[0]}` : ''
     }`
+    const token = Cookies.get('analogueshifts')
 
     const getNotifications = async () => {
         const axios = require('axios')
@@ -29,7 +31,7 @@ export default function Notifications() {
             method: 'GET',
             url: url,
             headers: {
-                Authorization: 'Bearer ' + user.token,
+                Authorization: 'Bearer ' + token,
                 'Content-Type': 'application/json',
                 Accept: 'application/json',
             },
@@ -53,13 +55,6 @@ export default function Notifications() {
             }
         }
     }
-
-    useEffect(() => {
-        let storedData = Cookies.get('analogueshifts')
-        if (storedData) {
-            setUser(JSON.parse(storedData))
-        }
-    }, [])
 
     useEffect(() => {
         if (user) {

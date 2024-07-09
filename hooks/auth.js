@@ -1,13 +1,25 @@
 import axios from '@/app/lib/axios'
 import { useRouter } from 'next/navigation'
+import { useUser } from '@/contexts/user'
 
 import Cookies from 'js-cookie'
 
 import { successToast } from '@/utils/success-toast'
 import { errorToast } from '@/utils/error-toast'
+import { clearUserSession } from '@/utils/clear-user-session'
 
 export const useAuth = () => {
     const router = useRouter()
+    const { user, setUser } = useUser()
+    const token = Cookies.get('analogueshifts')
+
+    const authConfig = {
+        headers: {
+            'Content-Type': 'application/json',
+            Accept: 'application/json',
+            secret_key: process.env.NEXT_PUBLIC_SECRET_KEY,
+        },
+    }
 
     const register = async ({
         first_name,
@@ -30,15 +42,10 @@ export const useAuth = () => {
                     password_confirmation,
                     device_token,
                 },
-                {
-                    headers: {
-                        'Content-Type': 'application/json',
-                        Accept: 'application/json',
-                        secret_key: process.env.NEXT_PUBLIC_SECRET_KEY,
-                    },
-                },
+                authConfig,
             )
-            Cookies.set('analogueshifts', JSON.stringify(response.data[0].data))
+            Cookies.set('analogueshifts', response?.data[0]?.data?.token)
+            setUser(response?.data[0]?.data?.token)
 
             successToast(
                 'Account created successfully',
@@ -46,9 +53,9 @@ export const useAuth = () => {
             )
             let redirectionLink = Cookies.get('RedirectionLink')
             Cookies.remove('RedirectionLink')
-            window.location.href = redirectionLink?.trim().length
-                ? redirectionLink
-                : '/dashboard'
+            router.push(
+                redirectionLink?.trim().length ? redirectionLink : '/dashboard',
+            )
             setLoading(false)
         } catch (error) {
             setLoading(false)
@@ -67,24 +74,19 @@ export const useAuth = () => {
             const response = await axios.post(
                 '/login',
                 { email, password },
-                {
-                    headers: {
-                        'Content-Type': 'application/json',
-                        Accept: 'application/json',
-                        secret_key: process.env.NEXT_PUBLIC_SECRET_KEY,
-                    },
-                },
+                authConfig,
             )
-            Cookies.set('analogueshifts', JSON.stringify(response.data.data))
+            Cookies.set('analogueshifts', response.data.data.token)
+            setUser(response.data.data.user)
             successToast(
                 'Login Successful',
                 'Redirecting You to your Dashboard.',
             )
             let redirectionLink = Cookies.get('RedirectionLink')
             Cookies.remove('RedirectionLink')
-            window.location.href = redirectionLink?.trim().length
-                ? redirectionLink
-                : '/dashboard'
+            router.push(
+                redirectionLink?.trim().length ? redirectionLink : '/dashboard',
+            )
             setLoading(false)
         } catch (error) {
             setLoading(false)
@@ -95,6 +97,80 @@ export const useAuth = () => {
                     'Failed To Login',
             )
         }
+    }
+
+    const getUser = async ({ setLoading, layout }) => {
+        setLoading(true)
+        try {
+            const response = await axios.request({
+                url: '/user',
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    Accept: 'application/json',
+                    Authorization: 'Bearer ' + token,
+                },
+            })
+
+            setUser(response.data)
+            setLoading(false)
+        } catch (error) {
+            setLoading(false)
+            if (error?.response?.status === 401 && layout !== 'guest') {
+                clearUserSession()
+            }
+        }
+    }
+
+    const updateProfile = ({
+        setLoading,
+        firstName,
+        lastName,
+        userName,
+        profile,
+    }) => {
+        const url = '/update/profile'
+        let config = {
+            method: 'POST',
+            url: url,
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: 'Bearer ' + token,
+            },
+            data: {
+                first_name: firstName,
+                last_name: lastName,
+                username: userName,
+                profile: profile,
+            },
+        }
+        setLoading(true)
+        axios
+            .request(config)
+            .then(response => {
+                setLoading(false)
+                if (response.data.success) {
+                    setUser(response.data.data.user)
+                    successToast(
+                        'Profile Updated',
+                        'Your Profile has been updated.',
+                    )
+                } else {
+                    errorToast('Error', response?.data?.message)
+                }
+            })
+            .catch(error => {
+                errorToast(
+                    'Error Updating Profile',
+                    error?.response?.data?.message ||
+                        error.message ||
+                        'Failed To Update Your Profile',
+                )
+                setLoading(false)
+                if (error?.response?.status === 401) {
+                    clearUserSession()
+                }
+            })
     }
 
     const forgotPassword = async ({ email, setLoading }) => {
@@ -146,12 +222,7 @@ export const useAuth = () => {
                     password,
                     password_confirmation,
                 },
-                {
-                    headers: {
-                        'Content-Type': 'application/json',
-                        secret_key: process.env.NEXT_PUBLIC_SECRET_KEY,
-                    },
-                },
+                authConfig,
             )
             successToast(
                 'Password Reset Successful',
@@ -185,32 +256,32 @@ export const useAuth = () => {
         }
     }
 
-    const logout = async ({ setStatus }) => {
-        const token = localStorage.getItem('token')
-        setStatus({
-            success: 'load',
-            message: 'Sending request!',
-        })
-        try {
-            const response = await axios.post(
-                '/logout',
-                {},
-                {
-                    headers: {
-                        Authorization: `Bearer ${token}`,
-                    },
-                },
-            )
-            if (response.data.success) {
-                localStorage.removeItem('token')
-                setUser(null)
-                router.push('/login')
-            }
-        } catch (error) {
-            localStorage.removeItem('token')
-            setUser(null)
-            router.push('/login')
+    const logout = async ({ setLoading }) => {
+        const url = '/logout'
+
+        let config = {
+            url: url,
+            method: 'POST',
+            headers: {
+                Authorization: 'Bearer ' + token,
+            },
         }
+
+        setLoading(true)
+
+        axios
+            .request(config)
+            .then(res => {
+                Cookies.remove('analogueshifts')
+                router.push('/login')
+            })
+            .catch(error => {
+                setLoading(false)
+                toast.error(error.message, toastConfig)
+                if (error?.response?.status === 401) {
+                    clearUserSession()
+                }
+            })
     }
 
     return {
@@ -221,5 +292,7 @@ export const useAuth = () => {
         resetPassword,
         resendEmailVerification,
         logout,
+        getUser,
+        updateProfile,
     }
 }

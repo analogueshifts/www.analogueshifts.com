@@ -1,5 +1,5 @@
-import AuthenticationLayout from '@/app/layouts/authentication'
-import EmailVerificationForm from './components/email-verification-form'
+import AuthenticationLayout from '@/layouts/authentication'
+import EmailVerificationForm from './components/form'
 
 export default function Page() {
     return (

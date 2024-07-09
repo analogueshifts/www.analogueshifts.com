@@ -1,5 +1,5 @@
-import GuestLayout from '@/app/layouts/guest'
-import ViewId from '@/components/application/jobs-page/view-id'
+import GuestLayout from '@/layouts/guest'
+import ViewId from '../components/view-id'
 // import SeoController from '@/app/lib/SeoController'
 
 export async function generateMetadata({ params }) {

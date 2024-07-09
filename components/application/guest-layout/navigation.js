@@ -6,12 +6,13 @@ import { useEffect, useState } from 'react'
 import { usePathname } from 'next/navigation'
 import ResponsiveNavBar from './responsive-navbar'
 import LoggedInProfileDropdown from './logged-in-profile-dropdown'
-import { logout } from '@/utils/logout'
 import LoadingTwo from '@/components/ui/loading-spinner'
 import IdiomProof from '../idiom-proof'
+import { useAuth } from '@/hooks/auth'
 
 const Navigation = ({ user }) => {
     const pathname = usePathname()
+    const { logout } = useAuth()
 
     const [open, setOpen] = useState(false)
     const [logoutIdiomDisplay, setLogoutIdiomDisplay] = useState(false)
@@ -34,7 +35,7 @@ const Navigation = ({ user }) => {
                 open={logoutIdiomDisplay}
                 action={() => {
                     setLogoutIdiomDisplay(false)
-                    logout(user, setLoading)
+                    logout({ setLoading })
                 }}
                 title={'Log Out'}
                 description={
