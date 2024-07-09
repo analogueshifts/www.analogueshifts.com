@@ -1,4 +1,4 @@
-import AuthenticationLayout from '@/layouts/authentication'
+import AuthenticationLayout from '@/app/layouts/authentication'
 import RegisterForm from './components/register-form'
 
 export const metadata = {

@@ -2,7 +2,7 @@
 import { usePathname } from 'next/navigation'
 import { useState, useEffect } from 'react'
 import Cookies from 'js-cookie'
-import Authenticated from '@/layouts/authenticated'
+import Authenticated from '@/app/layouts/authenticated'
 import { useRouter } from 'next/navigation'
 import { useUser } from '@/contexts/user'
 

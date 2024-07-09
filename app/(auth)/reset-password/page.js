@@ -1,4 +1,4 @@
-import AuthenticationLayout from '@/layouts/authentication'
+import AuthenticationLayout from '@/app/layouts/authentication'
 import ResetPasswordForm from './components/reset-password-form'
 
 export const metadata = {

@@ -13,7 +13,7 @@ import UnverifiedBanner from '@/components/application/unverified-banner'
 import {
     handleResize,
     toggleDrawer,
-} from '@/layouts/utilities/authenticated-layout'
+} from '@/app/layouts/utilities/authenticated-layout'
 import { useUser } from '@/contexts/user'
 import { useAuth } from '@/hooks/auth'
 

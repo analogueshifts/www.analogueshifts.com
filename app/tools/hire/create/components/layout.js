@@ -1,7 +1,7 @@
 'use client'
 import { usePathname } from 'next/navigation'
 import { useState, useEffect } from 'react'
-import Authenticated from '@/layouts/authenticated'
+import Authenticated from '@/app/layouts/authenticated'
 import { useUser } from '@/contexts/user'
 
 export default function CreateJobLayout({ children }) {

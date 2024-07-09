@@ -1,6 +1,6 @@
 'use client'
 import { useEffect, useState } from 'react'
-import Authenticated from '@/layouts/authenticated'
+import Authenticated from '@/app/layouts/authenticated'
 import { toast } from 'react-toastify'
 import { useRouter } from 'next/navigation'
 import DashboardLoader from '@/components/application/dashboard-loader'

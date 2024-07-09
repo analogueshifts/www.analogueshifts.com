@@ -1,6 +1,6 @@
 'use client'
 import { useEffect, useState } from 'react'
-import Authenticated from '@/layouts/authenticated'
+import Authenticated from '@/app/layouts/authenticated'
 import Curve from '@/public/images/curve.png'
 import Image from 'next/image'
 import Cookies from 'js-cookie'

@@ -1,6 +1,6 @@
 'use client'
 import React, { useState, useEffect } from 'react'
-import Authenticated from '@/layouts/authenticated'
+import Authenticated from '@/app/layouts/authenticated'
 import Link from 'next/link'
 import Cookies from 'js-cookie'
 import IdiomProof from '@/components/application/idiom-proof'
