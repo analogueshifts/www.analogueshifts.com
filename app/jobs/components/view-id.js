@@ -6,14 +6,14 @@ import JobApplicationCard from './job-application-card'
 import Tag from './tag'
 import Link from 'next/link'
 import { errorToast } from '@/utils/error-toast'
-import Cookies from 'js-cookie'
+import { useUser } from '@/contexts/user'
 
 export default function ViewId({ id }) {
     const router = useRouter()
     const [job, setJob] = useState(null)
     const [otherJobs, setOtherJobs] = useState([])
     const [loading, setLoading] = useState(false)
-    const [user, setUser] = useState(null)
+    const { user } = useUser()
 
     const fetchJob = async () => {
         const url = process.env.NEXT_PUBLIC_BACKEND_URL + '/job/' + id
@@ -71,10 +71,6 @@ export default function ViewId({ id }) {
     }
 
     useEffect(() => {
-        const authSession = Cookies.get('analogueshifts')
-        if (authSession) {
-            setUser(JSON.parse(authSession))
-        }
         getData()
     }, [id])
 

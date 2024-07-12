@@ -28,24 +28,17 @@ import { Plus } from 'lucide-react'
 
 export default function SelectForm({ selectedForm, setSelectedForm }) {
     const [loading, setLoading] = useState(false)
-    const [user, setUser] = useState(null)
     const [forms, setForms] = useState([])
     const [currentPageInfo, setCurrentPageInfo] = useState(null)
     const getFormUrl = `${process.env.NEXT_PUBLIC_BACKEND_URL}/tools/form`
-
-    useEffect(() => {
-        const authSession = Cookies.get('analogueshifts')
-        if (authSession) {
-            setUser(JSON.parse(authSession))
-        }
-    }, [])
+    const token = Cookies.get('analogueshifts')
 
     const fetchForms = async url => {
         const axios = require('axios')
         const config = {
             method: 'GET',
             url: url,
-            headers: { Authorization: 'Bearer ' + user?.token },
+            headers: { Authorization: 'Bearer ' + token },
         }
 
         try {

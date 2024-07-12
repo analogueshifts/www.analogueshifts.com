@@ -19,9 +19,9 @@ import { useRouter } from 'next/navigation'
 export default function EmailVerificationForm() {
     const [value, setValue] = useState('')
     const [loading, setLoading] = useState(false)
-    const [user, setUser] = useState(null)
     const [timeLeft, setTimeLeft] = useState(120)
     const [isCoutDown, setIsCountDown] = useState(true)
+    const token = Cookies.get('analogueshifts')
     const router = useRouter()
 
     // Check if the user is in countDown Mode, if so, decrement the counter.
@@ -50,8 +50,6 @@ export default function EmailVerificationForm() {
         if (auth === null || auth === undefined) {
             router.push('/login')
             return null
-        } else {
-            setUser(JSON.parse(auth))
         }
     }, [])
 
@@ -69,7 +67,7 @@ export default function EmailVerificationForm() {
             url: url,
             method: 'POST',
             headers: {
-                Authorization: 'Bearer ' + user?.token,
+                Authorization: 'Bearer ' + token,
             },
         }
 
@@ -107,7 +105,7 @@ export default function EmailVerificationForm() {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                Authorization: 'Bearer ' + user?.token,
+                Authorization: 'Bearer ' + token,
             },
             data: { OTP: value },
         }
