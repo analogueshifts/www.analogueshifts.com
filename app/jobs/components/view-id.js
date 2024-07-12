@@ -13,7 +13,7 @@ export default function ViewId({ id }) {
     const [job, setJob] = useState(null)
     const [otherJobs, setOtherJobs] = useState([])
     const [loading, setLoading] = useState(false)
-    const { user } = useUser()
+    const { user } = useUser(null)
 
     const fetchJob = async () => {
         const url = process.env.NEXT_PUBLIC_BACKEND_URL + '/job/' + id

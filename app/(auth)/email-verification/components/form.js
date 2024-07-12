@@ -21,8 +21,8 @@ export default function EmailVerificationForm() {
     const [loading, setLoading] = useState(false)
     const [timeLeft, setTimeLeft] = useState(120)
     const [isCoutDown, setIsCountDown] = useState(true)
-    const token = Cookies.get('analogueshifts')
     const router = useRouter()
+    const token = Cookies.get('analogueshifts')
 
     // Check if the user is in countDown Mode, if so, decrement the counter.
     // If the counter is = 0, remove the user from countDown mode.
@@ -46,8 +46,8 @@ export default function EmailVerificationForm() {
     // Check For user SESSION
     useEffect(() => {
         // Redirect To Login if User is not Authenticated
-        const auth = Cookies.get('analogueshifts')
-        if (auth === null || auth === undefined) {
+
+        if (token === null || token === undefined) {
             router.push('/login')
             return null
         }
