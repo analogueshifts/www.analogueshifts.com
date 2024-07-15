@@ -2,6 +2,7 @@
 import { useEffect, useState } from 'react'
 import ResponsiveNavLink from './responsive-navlink'
 import { usePathname } from 'next/navigation'
+import OurApps from './our-apps'
 
 export default function ResponsiveNavBar({ handleBlogNavigation, user }) {
     const [opacity, setOpacity] = useState(0)
@@ -34,6 +35,7 @@ export default function ResponsiveNavBar({ handleBlogNavigation, user }) {
                     active={pathname === '/contact'}>
                     Contact
                 </ResponsiveNavLink>
+                <OurApps />
                 <ResponsiveNavLink href={user ? '/dashboard' : '/login'}>
                     {user ? 'Dashboard' : 'Get Started'}
                 </ResponsiveNavLink>

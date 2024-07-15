@@ -1,0 +1,27 @@
+[
+    {
+        "title": "Vetting System",
+        "href": "https://forms.analogueshifts.com",
+        "description": "Create Forms and Analize Results"
+    },
+    {
+        "title": "Payment Gateway",
+        "href": "https://pay.analogueshifts.com",
+        "description": "Coming Soon"
+    },
+    {
+        "title": "Learning Platform",
+        "href": "https://learn.analogueshifts.com",
+        "description": "Join our Devops Training"
+    },
+    {
+        "title": "Resume Builder",
+        "href": "https://resume.analogueshifts.com",
+        "description": "Coming Soon"
+    },
+    {
+        "title": "Event Builder",
+        "href": "https://events.analogueshifts.com",
+        "description": "Create events and share with guests."
+    }
+]

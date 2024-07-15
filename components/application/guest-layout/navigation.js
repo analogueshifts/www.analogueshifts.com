@@ -5,10 +5,11 @@ import NavLink from './navlink'
 import { useEffect, useState } from 'react'
 import { usePathname } from 'next/navigation'
 import ResponsiveNavBar from './responsive-navbar'
-import LoggedInProfileDropdown from './logged-in-profile-dropdown'
+import LoggedInProfileDropdown from './profile-dropdown'
 import LoadingTwo from '@/components/ui/loading-spinner'
 import IdiomProof from '../idiom-proof'
 import { useAuth } from '@/hooks/auth'
+import OurApps from './our-apps'
 
 const Navigation = ({ user }) => {
     const pathname = usePathname()
@@ -79,6 +80,7 @@ const Navigation = ({ user }) => {
                                 active={pathname === '/contact'}>
                                 Contact
                             </NavLink>
+                            <OurApps />
                         </div>
 
                         {/* Settings Dropdown */}
