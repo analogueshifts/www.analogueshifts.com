@@ -18,6 +18,7 @@ export default function ResponsiveNavBar({ handleBlogNavigation, user }) {
                 <ResponsiveNavLink href="/" active={pathname === '/'}>
                     Home
                 </ResponsiveNavLink>
+                <OurApps />
                 <a
                     onClick={handleBlogNavigation}
                     href="https://blog.analogueshifts.com"
@@ -35,7 +36,7 @@ export default function ResponsiveNavBar({ handleBlogNavigation, user }) {
                     active={pathname === '/contact'}>
                     Contact
                 </ResponsiveNavLink>
-                <OurApps />
+
                 <ResponsiveNavLink href={user ? '/dashboard' : '/login'}>
                     {user ? 'Dashboard' : 'Get Started'}
                 </ResponsiveNavLink>
