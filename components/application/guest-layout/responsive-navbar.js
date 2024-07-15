@@ -18,13 +18,14 @@ export default function ResponsiveNavBar({ handleBlogNavigation, user }) {
                 <ResponsiveNavLink href="/" active={pathname === '/'}>
                     Home
                 </ResponsiveNavLink>
-                <OurApps />
+
                 <a
                     onClick={handleBlogNavigation}
                     href="https://blog.analogueshifts.com"
                     className={`block pl-4 pr-4 py-3 border-l-4 text-base font-medium leading-5 focus:outline-none transition duration-150 ease-in-out border-transparent text-gray-600 hover:text-gray-800 hover:bg-gray-50 hover:border-gray-300 focus:text-gray-800 focus:bg-gray-50 focus:border-gray-300`}>
                     Blog
                 </a>
+                <OurApps />
                 <ResponsiveNavLink href="/jobs" active={pathname === '/jobs'}>
                     Jobs
                 </ResponsiveNavLink>
