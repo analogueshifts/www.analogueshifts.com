@@ -78,7 +78,7 @@ export default function Dashboard() {
 
                     <RenderChart chartData={data} />
                     <Filter submit={url => getStats({ url, setData })} />
-                    <OurApps />
+                    {/* <OurApps /> */}
                 </div>
 
                 <div className="flex flex-col overflow-hidden"></div>

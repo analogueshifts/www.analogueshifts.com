@@ -1,7 +1,8 @@
 {
-  "/jobs/[jobViewId]/page": "app/jobs/[jobViewId]/page.js",
+  "/page": "app/page.js",
+  "/(auth)/login/page": "app/(auth)/login/page.js",
   "/dashboard/page": "app/dashboard/page.js",
-  "/tools/hire/page": "app/tools/hire/page.js",
-  "/tools/hire/create/job-information/page": "app/tools/hire/create/job-information/page.js",
-  "/tools/hire/create/job-details/page": "app/tools/hire/create/job-details/page.js"
+  "/not-found": "app/not-found.js",
+  "/notifications/page": "app/notifications/page.js",
+  "/tools/hire/page": "app/tools/hire/page.js"
 }

@@ -44,7 +44,14 @@ export const useAuth = () => {
                 },
                 authConfig,
             )
-            Cookies.set('analogueshifts', response?.data[0]?.data?.token)
+            const cookieDomain =
+                process.env.NODE_ENV === 'development'
+                    ? 'localhost'
+                    : '.analogueshifts.com'
+            Cookies.set('analogueshifts', response?.data[0]?.data?.token, {
+                domain: cookieDomain,
+                path: '/',
+            })
             setUser(response?.data[0]?.data?.token)
 
             successToast(
@@ -76,7 +83,14 @@ export const useAuth = () => {
                 { email, password },
                 authConfig,
             )
-            Cookies.set('analogueshifts', response.data.data.token)
+            const cookieDomain =
+                process.env.NODE_ENV === 'development'
+                    ? 'localhost'
+                    : '.analogueshifts.com'
+            Cookies.set('analogueshifts', response.data.data.token, {
+                domain: cookieDomain,
+                path: '/',
+            })
             setUser(response.data.data.user)
             successToast(
                 'Login Successful',
