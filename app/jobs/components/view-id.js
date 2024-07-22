@@ -43,11 +43,14 @@ export default function ViewId({ id }) {
     }
 
     const fetchOtherJobs = async () => {
-        await getRecommendedJobs({
-            url: '/jobs/recommend',
-            setData: data => setOtherJobs(data?.recommendation?.slice(0, 5)),
-            setLoading,
-        })
+        if (user) {
+            await getRecommendedJobs({
+                url: '/jobs/recommend',
+                setData: data =>
+                    setOtherJobs(data?.recommendation?.slice(0, 5)),
+                setLoading,
+            })
+        }
     }
 
     const handleStoreAppliedJob = async () => {
@@ -65,7 +68,9 @@ export default function ViewId({ id }) {
         setLoading(true)
         try {
             await fetchJob()
-            await fetchOtherJobs()
+            if (user) {
+                await fetchOtherJobs()
+            }
             setLoading(false)
         } catch (error) {
             setLoading(false)
