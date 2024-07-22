@@ -116,12 +116,7 @@ export default function SidebarMenu({ handleLogout, user }) {
                                 </span>
                             </Link>
                         </li>
-                        <li
-                            className={`${
-                                pathname.startsWith('/applied-jobs')
-                                    ? 'active'
-                                    : ''
-                            }`}>
+                        <li>
                             <Link href="/kyc" className="nav-link">
                                 <i className="">
                                     <User className="" width={18} />
