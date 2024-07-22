@@ -4,6 +4,7 @@ import Link from 'next/link'
 import LoadingTwo from '@/components/ui/loading-spinner'
 import { errorToast } from '@/utils/error-toast'
 import FormInput from '@/components/application/form-input'
+import DropdownMenu from '@/app/(authenticated)/tools/hire/components/dropdown-menu'
 import { useAuth } from '@/hooks/auth'
 
 export default function RegisterForm() {
@@ -12,6 +13,7 @@ export default function RegisterForm() {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [confirm_password, setConfirmPassword] = useState('')
+    const [user_mode, setUserMode] = useState('job')
     const [loading, setLoading] = useState(false)
     const { register } = useAuth()
 
@@ -35,6 +37,7 @@ export default function RegisterForm() {
             password_confirmation,
             device_token,
             setLoading,
+            user_mode,
         })
     }
 
@@ -89,6 +92,25 @@ export default function RegisterForm() {
                     placeholder="Enter Password"
                     value={confirm_password}
                 />
+                <div className="w-full pb-5 flex flex-col gap-2.5">
+                    <p className="text-base font-normal text-tremor-content-grayText">
+                        Account Type
+                    </p>
+                    <div className={`w-full h-12`}>
+                        <DropdownMenu
+                            authForm={true}
+                            list={['Job Seeker', 'Recruiter']}
+                            value={
+                                user_mode === 'job' ? 'Job Seeker' : 'Recruiter'
+                            }
+                            onChange={value =>
+                                setUserMode(
+                                    value === 'Job Seeker' ? 'job' : 'hire',
+                                )
+                            }
+                        />
+                    </div>
+                </div>
                 <button
                     type="submit"
                     className="w-full bg-tremor-background-lightYellow font-semibold text-base text-[#FDFAEF] flex items-center justify-center hover:bg-tremor-background-lightYellow/80 duration-300 h-12 rounded-2xl ">

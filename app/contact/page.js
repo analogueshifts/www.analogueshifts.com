@@ -4,11 +4,11 @@ import ContactForm from '@/components/application/contact-form'
 import GuestLayout from '@/app/layouts/guest'
 
 export const metadata = {
-    title: 'Contact us | Analogue Shifts',
+    title: 'Contact Us | Analogue Shifts',
     description:
         'Looking to hire remote developers, designers, or marketers? Contact us at Analogue Shifts today to find qualified professionals for your team.',
     openGraph: {
-        title: 'Contact us | Analogue Shifts',
+        title: 'Contact Us | Analogue Shifts',
         description:
             'Looking to hire remote developers, designers, or marketers? Contact us at Analogue Shifts today to find qualified professionals for your team.',
         url: 'https://www.analogueshifts.com/contact',

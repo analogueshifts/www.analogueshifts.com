@@ -6,12 +6,12 @@ import Services from '@/components/application/home-page/services'
 import Testimonials from '@/components/application/home-page/testimonials-section'
 
 export const metadata = {
-    title: 'Remote talent acquisition & recruitment agency | Analogue shifts',
+    title: 'Remote Talent Acquisition & Recruitment Agency | Analogue shifts',
     description:
         'Analogue Shifts is a remote talent acquisition and recruitment agency specializing in connecting startups with top remote tech talents globally.',
     openGraph: {
         title:
-            'Remote talent acquisition & recruitment agency | Analogue shifts',
+            'Remote Talent Acquisition & Recruitment Agency | Analogue shifts',
         description:
             'Analogue Shifts is a remote talent acquisition and recruitment agency specializing in connecting startups with top remote tech talents globally.',
         url: 'https://www.analogueshifts.com',

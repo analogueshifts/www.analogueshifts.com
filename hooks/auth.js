@@ -29,6 +29,7 @@ export const useAuth = () => {
         password_confirmation,
         device_token,
         setLoading,
+        user_mode,
     }) => {
         setLoading(true)
         try {
@@ -41,12 +42,13 @@ export const useAuth = () => {
                     password,
                     password_confirmation,
                     device_token,
+                    user_mode,
                 },
                 authConfig,
             )
 
             Cookies.set('analogueshifts', response?.data[0]?.data?.token)
-            setUser(response?.data[0]?.data?.token)
+            setUser(response?.data[0]?.data.user)
 
             successToast(
                 'Account created successfully',
@@ -113,7 +115,6 @@ export const useAuth = () => {
                     Authorization: 'Bearer ' + token,
                 },
             })
-
             setUser(response.data)
             setLoading(false)
         } catch (error) {
@@ -240,6 +241,32 @@ export const useAuth = () => {
         }
     }
 
+    const updateProfileMode = async ({ setLoading }) => {
+        try {
+            setLoading(true)
+            const config = {
+                url: '/profile/mode',
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                    Accept: 'application/json',
+                    Authorization: 'Bearer ' + token,
+                },
+            }
+
+            await axios.request(config)
+            successToast('Profile Mode Updated', '')
+            await getUser({ setLoading, layout: 'authenticated' })
+            setLoading(false)
+        } catch (error) {
+            setLoading(false)
+            errorToast(
+                'Failed to update mode',
+                error?.response?.data?.message || error.message || '',
+            )
+        }
+    }
+
     const resendEmailVerification = async ({ setStatus }) => {
         setStatus({
             success: 'load',
@@ -275,7 +302,7 @@ export const useAuth = () => {
             .request(config)
             .then(res => {
                 Cookies.remove('analogueshifts')
-                router.push('/login')
+                window.location.href = '/login'
             })
             .catch(error => {
                 setLoading(false)
@@ -296,5 +323,6 @@ export const useAuth = () => {
         logout,
         getUser,
         updateProfile,
+        updateProfileMode,
     }
 }

@@ -7,7 +7,14 @@ import {
     DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
 import { useRouter } from 'next/navigation'
-import { ChevronDown, Plus, LogOut, LayoutDashboard, Bell } from 'lucide-react'
+import {
+    ChevronDown,
+    Plus,
+    LogOut,
+    LayoutDashboard,
+    Bell,
+    Briefcase,
+} from 'lucide-react'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 
 export default function LoggedInProfileDropdown({ user, handleLogout }) {
@@ -42,12 +49,21 @@ export default function LoggedInProfileDropdown({ user, handleLogout }) {
                     <LayoutDashboard className="mr-2 h-4 w-4" />
                     <span>Dashboard</span>
                 </DropdownMenuItem>
-                <DropdownMenuItem
-                    onClick={() => router.push('/tools/hire')}
-                    className="px-5 py-4 focus:bg-gray-700/5 cursor-pointer text-sm font-semibold text-primary-boulder950">
-                    <Plus className="mr-2 h-4 w-4" />
-                    <span>Hire Talents</span>
-                </DropdownMenuItem>
+                {user?.user_mode === 'hire' ? (
+                    <DropdownMenuItem
+                        onClick={() => router.push('/tools/hire')}
+                        className="px-5 py-4 focus:bg-gray-700/5 cursor-pointer text-sm font-semibold text-primary-boulder950">
+                        <Plus className="mr-2 h-4 w-4" />
+                        <span>Hire Talents</span>
+                    </DropdownMenuItem>
+                ) : (
+                    <DropdownMenuItem
+                        onClick={() => router.push('/jobs-recommendations')}
+                        className="px-5 py-4 focus:bg-gray-700/5 cursor-pointer text-sm font-semibold text-primary-boulder950">
+                        <Briefcase className="mr-2 h-4 w-4" />
+                        <span>Recommendations</span>
+                    </DropdownMenuItem>
+                )}
                 <DropdownMenuItem
                     onClick={() => router.push('/notifications')}
                     className="px-5 py-4 focus:bg-gray-700/5 cursor-pointer text-sm font-semibold text-primary-boulder950">

@@ -3,9 +3,16 @@ import Logo from '@/public/logo.png'
 import Link from 'next/link'
 import Image from 'next/image'
 import { usePathname } from 'next/navigation'
-import { Bell, LayoutDashboard, Users, LogOut } from 'lucide-react'
+import {
+    Bell,
+    LayoutDashboard,
+    Users,
+    LogOut,
+    Building2,
+    Briefcase,
+} from 'lucide-react'
 
-export default function SidebarMenu({ header, user, handleLogout }) {
+export default function SidebarMenu({ handleLogout, user }) {
     const pathname = usePathname()
 
     return (
@@ -16,7 +23,19 @@ export default function SidebarMenu({ header, user, handleLogout }) {
                     className="icon sm:flex hidden">
                     <Image src={Logo} alt="Logo" className="w-6 h-6" />
                 </Link>
-                <div className="text pt-1.5">{header}</div>
+                <div className="text pt-1.5">
+                    <h2 className="text-xl font-bold text-gray-800 leading-tight">
+                        {pathname === '/dashboard' && 'Dashboard'}
+                        {pathname.startsWith('/tools/hire') && 'Hire'}
+                        {pathname.startsWith('/manage-companies') &&
+                            'Companies'}
+                        {pathname.startsWith('/notifications') &&
+                            'Notifications'}
+                        {pathname.startsWith('/jobs-recommendations') &&
+                            'Recommendations'}
+                        {pathname.startsWith('/applied-jobs') && 'Applied'}
+                    </h2>
+                </div>
             </div>
 
             <ul className="side-menu top">
@@ -28,19 +47,77 @@ export default function SidebarMenu({ header, user, handleLogout }) {
                         <span className="text hidden sm:flex">Dashboard</span>
                     </Link>
                 </li>
-                <li
-                    className={`${
-                        pathname.startsWith('/tools/hire') ? 'active' : ''
-                    }`}>
-                    <Link href="/tools/hire" className="nav-link">
-                        <i className="">
-                            <Users className="" width={18} />
-                        </i>
-                        <span className="text hidden sm:flex">
-                            Hire Talents
-                        </span>
-                    </Link>
-                </li>
+                {user?.user_mode === 'hire' && (
+                    <>
+                        <li
+                            className={`${
+                                pathname.startsWith('/tools/hire')
+                                    ? 'active'
+                                    : ''
+                            }`}>
+                            <Link href="/tools/hire" className="nav-link">
+                                <i className="">
+                                    <Users className="" width={18} />
+                                </i>
+                                <span className="text hidden sm:flex">
+                                    Hire Talents
+                                </span>
+                            </Link>
+                        </li>
+                        <li
+                            className={`${
+                                pathname.startsWith('/manage-companies')
+                                    ? 'active'
+                                    : ''
+                            }`}>
+                            <Link href="/manage-companies" className="nav-link">
+                                <i className="">
+                                    <Building2 className="" width={18} />
+                                </i>
+                                <span className="text hidden sm:flex">
+                                    Manage Companies
+                                </span>
+                            </Link>
+                        </li>
+                    </>
+                )}
+                {user?.user_mode === 'job' && (
+                    <>
+                        <li
+                            className={`${
+                                pathname.startsWith('/jobs-recommendations')
+                                    ? 'active'
+                                    : ''
+                            }`}>
+                            <Link
+                                href="/jobs-recommendations"
+                                className="nav-link">
+                                <i className="">
+                                    <Briefcase className="" width={18} />
+                                </i>
+                                <span className="text hidden sm:flex">
+                                    Recommendations
+                                </span>
+                            </Link>
+                        </li>
+                        <li
+                            className={`${
+                                pathname.startsWith('/applied-jobs')
+                                    ? 'active'
+                                    : ''
+                            }`}>
+                            <Link href="/applied-jobs" className="nav-link">
+                                <i className="">
+                                    <Briefcase className="" width={18} />
+                                </i>
+                                <span className="text hidden sm:flex">
+                                    Applied Jobs
+                                </span>
+                            </Link>
+                        </li>
+                    </>
+                )}
+
                 <li
                     className={`${
                         pathname.startsWith('/notifications') ? 'active' : ''
@@ -54,14 +131,6 @@ export default function SidebarMenu({ header, user, handleLogout }) {
                         </span>
                     </Link>
                 </li>
-                {/* {user?.role == 'admin' && (
-                    <li className={`${pathname === '' ? 'active' : ''}`}>
-                        <Link href="" className="nav-link">
-                            <i className="fas fa-users"></i>
-                            <span className="text hidden sm:flex">Users</span>
-                        </Link>
-                    </li>
-                )} */}
             </ul>
 
             <ul className="side-menu">

@@ -18,8 +18,7 @@ export default function OurApps() {
                 <NavigationMenuItem>
                     <NavigationMenuTrigger className="bg-transparent px-3 lg:px-4 w-screen lg:w-auto justify-between lg:justify-center data-[active]:bg-transparent data-[state=open]:bg-transparent text-gray-600  lg:text-gray-500 lg:hover:text-gray-700 focus:text-gray-600 hover:text-gray-600 hover:bg-transparent focus:bg-transparent">
                         <div className="inline-flex  items-center lg:px-1 text-base lg:text-sm font-medium leading-5 focus:outline-none">
-                            <span className="hidden lg:block">Our</span>&nbsp;
-                            Services
+                            Tools
                         </div>
                     </NavigationMenuTrigger>
                     <NavigationMenuContent className="lg:bg-[#F3F4F6] bg-white">

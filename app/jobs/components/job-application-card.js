@@ -9,6 +9,7 @@ export default function JobApplicationCard({
     applicationUrl,
     jobTitle,
     user,
+    setIdiomModal,
 }) {
     const pathname = usePathname()
     const router = useRouter()
@@ -16,9 +17,10 @@ export default function JobApplicationCard({
     // Check If User Is Logged In, Redirect User To Login If not Logged In
     const handleApply = () => {
         if (user) {
-            router.push(applicationUrl)
+            window.open(applicationUrl, 'blank')
+            setIdiomModal(true)
         } else {
-            Cookies.set('RedirectionLink', applicationUrl)
+            Cookies.set('RedirectionLink', pathname)
             router.push('/login')
         }
     }

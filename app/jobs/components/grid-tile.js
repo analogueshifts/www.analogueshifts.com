@@ -1,7 +1,5 @@
 import { toast } from 'react-toastify'
 import { toastConfig } from '@/utils/toast-config'
-import Cookies from 'js-cookie'
-import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 
 export default function JobGridTile({ job, user }) {
@@ -9,12 +7,7 @@ export default function JobGridTile({ job, user }) {
 
     // Check If User Is Logged In, Redirect User To Login If not Logged In
     const handleApply = () => {
-        if (user) {
-            router.push(job?.apply)
-        } else {
-            Cookies.set('RedirectionLink', job?.apply)
-            router.push('/login')
-        }
+        router.push(`/jobs/${job?.slug}`)
     }
 
     return (
@@ -76,14 +69,9 @@ export default function JobGridTile({ job, user }) {
                 <button
                     onClick={handleApply}
                     className={`w-24 lg:w-28 py-2 hover:scale-105 rounded-full text-xs font-bold duration-300 text-white bg-yellow-500 flex justify-center`}>
-                    Apply
+                    View
                 </button>
-                <Link
-                    href={`/jobs/${job?.slug}`}
-                    as={`/jobs/${job?.slug}`}
-                    className="text-xs font-normal text-black/60">
-                    Read More
-                </Link>
+
                 <button
                     onClick={async () => {
                         if (navigator.share) {

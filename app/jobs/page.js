@@ -4,11 +4,11 @@ import JobView from './components/job-view'
 import { Suspense } from 'react'
 
 export const metadata = {
-    title: 'Find high paying remote tech jobs | Analogue Shifts',
+    title: 'Find High Paying Remote Tech Jobs | Analogue Shifts',
     description:
         'Analogue Shifts offers a curated list of high-paying remote tech jobs. Find the perfect job for you and enjoy the flexibility of working remotely.',
     openGraph: {
-        title: 'Find high paying remote tech jobs | Analogue Shifts',
+        title: 'Find High Paying Remote Tech Jobs | Analogue Shifts',
         description:
             'Analogue Shifts offers a curated list of high-paying remote tech jobs. Find the perfect job for you and enjoy the flexibility of working remotely.',
         url: 'https://www.analogueshifts.com/jobs',

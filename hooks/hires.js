@@ -5,7 +5,7 @@ import Cookies from 'js-cookie'
 import { successToast } from '@/utils/success-toast'
 import { errorToast } from '@/utils/error-toast'
 import { clearUserSession } from '@/utils/clear-user-session'
-import { processChartData } from '@/app/dashboard/utilities/process-chart-data'
+import { processChartData } from '@/app/(authenticated)/dashboard/utilities/process-chart-data'
 import { toast } from 'react-toastify'
 import { toastConfig } from '@/utils/toast-config'
 
