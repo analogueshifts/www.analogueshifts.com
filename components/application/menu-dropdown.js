@@ -9,6 +9,7 @@ import {
     LogOut,
     Building2,
     Briefcase,
+    User,
 } from 'lucide-react'
 
 export default function MenuDropDown({ user, close, handleLogout }) {
@@ -95,11 +96,28 @@ export default function MenuDropDown({ user, close, handleLogout }) {
                                 <Briefcase width={18} />
                             </i>
                         </Link>
+                        <Link
+                            onClick={close}
+                            style={{
+                                opacity: textOpacity,
+                                transitionDelay: '1.1s',
+                            }}
+                            href="/kyc"
+                            className={` duration-500 -translate-y-[80px] text-base font-semibold flex items-center gap-2`}>
+                            <span className="text-black/80">Update KYC</span>{' '}
+                            <i className=" text-black/80 text-sm">
+                                <User width={18} />
+                            </i>
+                        </Link>
                     </>
                 )}
                 <Link
                     onClick={close}
-                    style={{ opacity: textOpacity, transitionDelay: '1.1s' }}
+                    style={{
+                        opacity: textOpacity,
+                        transitionDelay:
+                            user?.user_mode === 'job' ? '1.3s' : '1.1s',
+                    }}
                     href="/notifications"
                     className={` duration-500 -translate-y-[80px] text-base font-semibold flex items-center gap-2`}>
                     <span className="text-black/80">Notifications</span>{' '}
@@ -115,7 +133,8 @@ export default function MenuDropDown({ user, close, handleLogout }) {
                     type="button"
                     style={{
                         opacity: textOpacity,
-                        transitionDelay: '1.3s',
+                        transitionDelay:
+                            user?.user_mode === 'job' ? '1.5s' : '1.3s',
                     }}
                     className={` text-base -translate-y-[80px] duration-500 font-semibold flex items-center gap-2`}>
                     <span className="text-red-600">LogOut</span>

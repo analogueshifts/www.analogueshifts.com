@@ -10,6 +10,7 @@ import {
     LogOut,
     Building2,
     Briefcase,
+    User,
 } from 'lucide-react'
 
 export default function SidebarMenu({ handleLogout, user }) {
@@ -112,6 +113,21 @@ export default function SidebarMenu({ handleLogout, user }) {
                                 </i>
                                 <span className="text hidden sm:flex">
                                     Applied Jobs
+                                </span>
+                            </Link>
+                        </li>
+                        <li
+                            className={`${
+                                pathname.startsWith('/applied-jobs')
+                                    ? 'active'
+                                    : ''
+                            }`}>
+                            <Link href="/kyc" className="nav-link">
+                                <i className="">
+                                    <User className="" width={18} />
+                                </i>
+                                <span className="text hidden sm:flex">
+                                    Update KYC
                                 </span>
                             </Link>
                         </li>

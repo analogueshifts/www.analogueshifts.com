@@ -16,8 +16,8 @@ export default function OurApps() {
         <NavigationMenu>
             <NavigationMenuList>
                 <NavigationMenuItem>
-                    <NavigationMenuTrigger className="bg-transparent px-3 lg:px-4 w-screen lg:w-auto justify-between lg:justify-center data-[active]:bg-transparent data-[state=open]:bg-transparent text-gray-600  lg:text-gray-500 lg:hover:text-gray-700 focus:text-gray-600 hover:text-gray-600 hover:bg-transparent focus:bg-transparent">
-                        <div className="inline-flex  items-center lg:px-1 text-base lg:text-sm font-medium leading-5 focus:outline-none">
+                    <NavigationMenuTrigger className="bg-transparent lg:px-4  w-screen lg:w-auto justify-between lg:justify-center data-[active]:bg-transparent data-[state=open]:bg-transparent text-gray-600  lg:text-gray-500 lg:hover:text-gray-700 focus:text-gray-600 hover:text-gray-600 hover:bg-transparent focus:bg-transparent">
+                        <div className="inline-flex  items-center px-1.5 lg:px-4  text-base lg:text-sm font-medium leading-5 focus:outline-none">
                             Tools
                         </div>
                     </NavigationMenuTrigger>
