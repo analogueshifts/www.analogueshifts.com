@@ -142,7 +142,7 @@ export default function AuthenticatedLayout({ children }) {
                 <UnverifiedBanner
                     visible={showUnverifiedBanner}
                     setVisible={setShowUnverifiedBanner}
-                    user={user}
+                    token={token}
                     setLoading={setLoading}
                 />
             </section>

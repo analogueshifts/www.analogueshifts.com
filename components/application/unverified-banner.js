@@ -9,7 +9,7 @@ import { toast } from 'react-toastify'
 export default function UnverifiedBanner({
     visible,
     setVisible,
-    user,
+    token,
     setLoading,
 }) {
     const router = useRouter()
@@ -29,7 +29,7 @@ export default function UnverifiedBanner({
             url: url,
             method: 'POST',
             headers: {
-                Authorization: 'Bearer ' + user?.token,
+                Authorization: 'Bearer ' + token,
             },
         }
 
