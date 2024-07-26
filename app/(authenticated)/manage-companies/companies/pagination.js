@@ -29,7 +29,7 @@ export default function CompaniesPagination({ currentPageInfo }) {
                             .slice(1, currentPageInfo.links.length - 1)
                             .map(item => {
                                 return (
-                                    <PaginationItem key={crypto.randomUUID()}>
+                                    <PaginationItem key={item.label}>
                                         <PaginationLink
                                             isActive={item.active}
                                             href={

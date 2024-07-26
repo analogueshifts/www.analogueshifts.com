@@ -9,8 +9,8 @@ import {
 
 export default function NotificationsPagination({ currentPageInfo }) {
     return (
-        <Pagination className="w-full">
-            <PaginationContent className="bg-white w-screen md:w-full py-5 md:py-0 h-max flex-wrap items-start">
+        <Pagination className="w-full overflow-x-auto overflow-y-hidden mt-5">
+            <PaginationContent className="bg-white w-max">
                 <PaginationItem>
                     <PaginationPrevious
                         href={
@@ -27,7 +27,7 @@ export default function NotificationsPagination({ currentPageInfo }) {
                         .slice(1, currentPageInfo.links.length - 1)
                         .map(item => {
                             return (
-                                <PaginationItem key={crypto.randomUUID()}>
+                                <PaginationItem key={item.label}>
                                     <PaginationLink
                                         isActive={item.active}
                                         href={

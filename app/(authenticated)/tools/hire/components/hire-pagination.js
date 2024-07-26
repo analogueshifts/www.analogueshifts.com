@@ -1,7 +1,6 @@
 import {
     Pagination,
     PaginationContent,
-    PaginationEllipsis,
     PaginationItem,
     PaginationLink,
     PaginationNext,
@@ -29,7 +28,7 @@ export default function HirePagination({ currentPageInfo }) {
                             .slice(1, currentPageInfo.links.length - 1)
                             .map(item => {
                                 return (
-                                    <PaginationItem key={crypto.randomUUID()}>
+                                    <PaginationItem key={item.label}>
                                         <PaginationLink
                                             isActive={item.active}
                                             href={
@@ -44,9 +43,6 @@ export default function HirePagination({ currentPageInfo }) {
                                 )
                             })}
 
-                    <PaginationItem>
-                        <PaginationEllipsis />
-                    </PaginationItem>
                     <PaginationItem>
                         <PaginationNext
                             href={

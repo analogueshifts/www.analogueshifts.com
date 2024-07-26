@@ -16,25 +16,35 @@
       "static/chunks/main-app.js",
       "static/chunks/app/page.js"
     ],
-    "/(auth)/login/page": [
+    "/(authenticated)/jobs-recommendations/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/(auth)/login/page.js"
-    ],
-    "/(authenticated)/dashboard/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/(authenticated)/dashboard/page.js"
+      "static/chunks/app/(authenticated)/jobs-recommendations/page.js"
     ],
     "/(authenticated)/layout": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/(authenticated)/layout.js"
     ],
-    "/(auth)/email-verification/page": [
+    "/(authenticated)/applied-jobs/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/(auth)/email-verification/page.js"
+      "static/chunks/app/(authenticated)/applied-jobs/page.js"
+    ],
+    "/(auth)/kyc/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/(auth)/kyc/page.js"
+    ],
+    "/(authenticated)/dashboard/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/(authenticated)/dashboard/page.js"
+    ],
+    "/(authenticated)/notifications/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/(authenticated)/notifications/page.js"
     ]
   }
 }

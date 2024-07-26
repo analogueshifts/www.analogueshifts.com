@@ -1,6 +1,8 @@
 {
-  "/page": "app/page.js",
-  "/(auth)/login/page": "app/(auth)/login/page.js",
-  "/(auth)/email-verification/page": "app/(auth)/email-verification/page.js",
-  "/(authenticated)/dashboard/page": "app/(authenticated)/dashboard/page.js"
+  "/(auth)/kyc/page": "app/(auth)/kyc/page.js",
+  "/not-found": "app/not-found.js",
+  "/(authenticated)/jobs-recommendations/page": "app/(authenticated)/jobs-recommendations/page.js",
+  "/(authenticated)/applied-jobs/page": "app/(authenticated)/applied-jobs/page.js",
+  "/(authenticated)/dashboard/page": "app/(authenticated)/dashboard/page.js",
+  "/(authenticated)/notifications/page": "app/(authenticated)/notifications/page.js"
 }

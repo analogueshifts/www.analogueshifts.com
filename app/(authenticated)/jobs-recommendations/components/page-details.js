@@ -64,6 +64,7 @@ export default function JobsRecommendationsPage() {
                 <div className="bg-white z-50 border border-[#e7e7e7] min-h-[calc(100vh-192px)] md:min-h-[200px] py-5 h-max w-full px-5 pb-5 md:rounded-xl flex flex-col">
                     {loading ? (
                         <div className="w-full h-max min-h-[200px] items-center grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+                            <SkeletonCard /> <SkeletonCard /> <SkeletonCard />{' '}
                             <SkeletonCard /> <SkeletonCard /> <SkeletonCard />
                         </div>
                     ) : (

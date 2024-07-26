@@ -34,7 +34,7 @@ const MasonryGrid = ({ posts }) => {
                 ref={masonryRef}>
                 {posts.map(data => (
                     <Link
-                        key={crypto.randomUUID()}
+                        key={data.slug}
                         href={`blog/${data.slug}`}
                         className="w-full mb-6 hover:scale-[1.05] duration-300 h-max pb-6  overflow-hidden rounded-2xl shadow-xl flex flex-col blog-box">
                         <div className="flex flex-col justify-evenly w-full h-6/12">

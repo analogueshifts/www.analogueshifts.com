@@ -122,7 +122,7 @@ export default function SelectForm({ selectedForm, setSelectedForm }) {
                         forms.map(item => {
                             return (
                                 <FormGridTile
-                                    key={crypto.randomUUID()}
+                                    key={item.uuid}
                                     item={item}
                                     selectedUrl={selectedForm}
                                     setSelectedUrl={setSelectedForm}
@@ -160,7 +160,7 @@ export default function SelectForm({ selectedForm, setSelectedForm }) {
                                             return (
                                                 <PaginationItem
                                                     className="cursor-pointer"
-                                                    key={crypto.randomUUID()}>
+                                                    key={item.label}>
                                                     <PaginationLink
                                                         isActive={item.active}
                                                         onClick={() =>

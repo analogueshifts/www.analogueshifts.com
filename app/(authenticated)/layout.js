@@ -135,7 +135,7 @@ export default function AuthenticatedLayout({ children }) {
                     )}
                 </nav>
 
-                <main className="md:p-7 bg-white md:bg-transparent p-0 h-[calc(100dvh-56px)] overflow-y-auto">
+                <main className="md:p-7 bg-white sm:bg-transparent p-0 h-[calc(100dvh-56px)] overflow-y-auto">
                     {children}
                 </main>
                 {/*  UnVerified Banner */}

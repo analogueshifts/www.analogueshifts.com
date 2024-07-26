@@ -5,21 +5,28 @@ import SkeletonCard from '@/components/application/skeleton-card'
 import { useUser } from '@/contexts/user'
 import { useJobs } from '@/hooks/jobs'
 import React, { useState, useEffect } from 'react'
+import { useSearchParams } from 'next/navigation'
+import AppliedJobsPagination from './pagination'
 
 export default function AppliedJobsPage() {
     const { user } = useUser()
+    const pageQuery = useSearchParams().getAll('page')
     const { getRecommendedJobs } = useJobs()
     const [data, setData] = useState(null)
     const [loading, setLoading] = useState(false)
+    const [currentPageInfo, setCurrentPageInfo] = useState(null)
 
-    let url = `/jobs/applied`
+    let url = `/jobs/applied${pageQuery.length ? `?page=${pageQuery[0]}` : ''}`
 
     useEffect(() => {
         if (user) {
             getRecommendedJobs({
                 setLoading,
                 url,
-                setData: data => console.log(data),
+                setData: data => {
+                    setData(data.applied.data)
+                    setCurrentPageInfo(data.applied)
+                },
             })
         }
     }, [user])
@@ -30,6 +37,7 @@ export default function AppliedJobsPage() {
                 <div className="bg-white z-50 border border-[#e7e7e7] min-h-[calc(100vh-192px)] md:min-h-[200px] py-5 h-max w-full px-5 pb-5 md:rounded-xl flex flex-col">
                     {loading ? (
                         <div className="w-full h-max min-h-[200px] items-center grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+                            <SkeletonCard /> <SkeletonCard /> <SkeletonCard />{' '}
                             <SkeletonCard /> <SkeletonCard /> <SkeletonCard />
                         </div>
                     ) : (
@@ -123,12 +131,15 @@ export default function AppliedJobsPage() {
                                     )
                                 })}
                             {data && data?.length === 0 && (
-                                <div className="w-full mt-10 flex px-5 items-center justify-center">
+                                <div className="w-full my-10 flex px-5 items-center justify-center">
                                     <h3 className="text-tremor-brand-boulder950">
-                                        No Job Found
+                                        No Applied Job
                                     </h3>
                                 </div>
                             )}
+                            <AppliedJobsPagination
+                                currentPageInfo={currentPageInfo}
+                            />
                         </div>
                     )}
                 </div>

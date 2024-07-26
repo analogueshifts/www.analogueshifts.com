@@ -196,7 +196,7 @@ export default function JobLocation() {
                         <div className="w-full border-t border-tremor-brand-boulder200/30 flex flex-col">
                             {stateRequirements?.map(item => (
                                 <div
-                                    key={crypto.randomUUID()}
+                                    key={item.name}
                                     className="w-full flex justify-between px-2 items-center py-2.5 border-b border-tremor-brand-boulder200/30">
                                     <p className="font-light text-[13px] text-tremor-brand-boulder900">
                                         {item.name}
@@ -242,7 +242,7 @@ export default function JobLocation() {
                         <div className="w-full border-t border-tremor-brand-boulder200/30 flex flex-col">
                             {countryRequirements?.map(item => (
                                 <div
-                                    key={crypto.randomUUID()}
+                                    key={item.name}
                                     className="w-full flex justify-between px-2 items-center py-2.5 border-b border-tremor-brand-boulder200/30">
                                     <p className="font-light text-[13px] text-tremor-brand-boulder900">
                                         {item.name}

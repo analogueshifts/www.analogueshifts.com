@@ -193,7 +193,7 @@ export default function SelectCompany() {
                                             return (
                                                 <PaginationItem
                                                     className="cursor-pointer"
-                                                    key={crypto.randomUUID()}>
+                                                    key={item.label}>
                                                     <PaginationLink
                                                         isActive={item.active}
                                                         onClick={() =>

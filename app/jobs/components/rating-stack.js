@@ -41,7 +41,7 @@ export default function UserRatingStack() {
                 <div className="flex">
                     {[1, 2, 3, 4, 5].map(star => (
                         <Image
-                            key={crypto.randomUUID()}
+                            key={star}
                             src={StarRating}
                             alt="Star"
                             height={20}

@@ -145,7 +145,7 @@ export default function ViewId({ id }) {
                                 {job.applicantLocationRequirements.map(item => {
                                     return (
                                         <p
-                                            key={crypto.randomUUID()}
+                                            key={item.name}
                                             className="text-sm font-medium text-black/80 ">
                                             {item.name} •
                                         </p>
@@ -224,8 +224,8 @@ export default function ViewId({ id }) {
                                 {otherJobs.map(item => {
                                     return (
                                         <Link
-                                            href="#"
-                                            key={crypto.randomUUID()}
+                                            href={`https://www.analogueshifts.com/jobs/${item?.slug}`}
+                                            key={item.slug}
                                             className="w-full h-max rounded-sm border py-4 px-6">
                                             <div className="w-full items-start flex gap-4">
                                                 <img

@@ -66,23 +66,13 @@ export default function Notifications() {
         <>
             {loadingTwo && <DashboardLoader />}
             <div className="w-full md:px-1.5 lg:min-h-[calc(100dvh-112px)] md:block flex flex-col-reverse justify-end">
-                <div className="md:sticky static md:top-0 z-20">
-                    {currentPageInfo && (
-                        <div className="w-full h-max py-5 md:py-6 md:px-5 md:rounded-2xl bg-white  flex justify-end">
-                            {/* Pagination */}
-                            <div className="z-20 h-max w-full flex justify-center max-w-full">
-                                <NotificationsPagination
-                                    currentPageInfo={currentPageInfo}
-                                />
-                            </div>
-                        </div>
-                    )}
-                </div>
                 {user && (
-                    <div className="bg-white z-30 py-5 md:pt-0 md:mt-6 md:border border-[#e7e7e7] md:min-h-[200px] h-max w-full px-5  md:rounded-xl flex flex-col">
+                    <div className="bg-white z-30 py-5 md:border border-[#e7e7e7] md:min-h-[85vh] h-max w-full px-5 justify-between  md:rounded-xl flex flex-col">
                         {loading ? (
                             <div className="w-full h-max min-h-[200px] items-center grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-10 gap-x-5">
                                 <SkeletonCard /> <SkeletonCard />{' '}
+                                <SkeletonCard /> <SkeletonCard />{' '}
+                                <SkeletonCard />
                                 <SkeletonCard />
                             </div>
                         ) : (
@@ -104,6 +94,11 @@ export default function Notifications() {
                                     </div>
                                 )}
                             </div>
+                        )}
+                        {currentPageInfo && (
+                            <NotificationsPagination
+                                currentPageInfo={currentPageInfo}
+                            />
                         )}
                     </div>
                 )}
