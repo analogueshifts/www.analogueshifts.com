@@ -1,19 +1,16 @@
-import { Lexend } from 'next/font/google'
+import { Plus_Jakarta_Sans } from 'next/font/google'
 import './globals.css'
 import './scss/app.scss'
 import Script from 'next/script'
 import { cn } from '@/lib/utils'
 
 import { UserProvider } from '@/contexts/user'
+import { ToastProvider } from '@/contexts/toast'
+import ToastMessage from '@/components/application/toast-message'
 
-// Toastify
-import { ToastContainer } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css'
-
-const lexend = Lexend({
-    weight: '400',
+const plusJakartaSans = Plus_Jakarta_Sans({
+    weight: ['400', '500', '600', '700'],
     subsets: ['latin'],
-    display: 'swap',
 })
 
 export const metadata = {
@@ -68,9 +65,14 @@ export default function RootLayout({ children }) {
                     `}
                 </Script>
             </head>
-            <body className={cn('', lexend.className)}>
-                <ToastContainer position="top-center" />
-                <UserProvider>{children}</UserProvider>
+            <body className={cn('', plusJakartaSans.className)}>
+                <UserProvider>
+                    {' '}
+                    <ToastProvider>
+                        <ToastMessage />
+                        {children}
+                    </ToastProvider>
+                </UserProvider>
                 <Script
                     src="https://kit.fontawesome.com/39a80cd06c.js"
                     crossorigin="anonymous"

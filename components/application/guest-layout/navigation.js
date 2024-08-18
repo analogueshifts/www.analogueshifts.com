@@ -1,23 +1,23 @@
 'use client'
-import ApplicationLogo from '../application-logo'
-import Link from 'next/link'
-import NavLink from './navlink'
 import { useEffect, useState } from 'react'
 import { usePathname } from 'next/navigation'
+
+import Link from 'next/link'
+import Image from 'next/image'
+import NavLink from './navlink'
+
+import OurApps from './our-apps'
 import ResponsiveNavBar from './responsive-navbar'
 import LoggedInProfileDropdown from './profile-dropdown'
-import LoadingTwo from '@/components/ui/loading-spinner'
-import IdiomProof from '../idiom-proof'
-import { useAuth } from '@/hooks/auth'
-import OurApps from './our-apps'
+
+import NavLogo from '@/public/images/guest-layout/nav-logo.svg'
+import LogoutIdiom from './logout-idiom'
 
 const Navigation = ({ user }) => {
     const pathname = usePathname()
-    const { logout } = useAuth()
 
     const [open, setOpen] = useState(false)
     const [logoutIdiomDisplay, setLogoutIdiomDisplay] = useState(false)
-    const [loading, setLoading] = useState(false)
 
     //Close the Nav bar whenever the pathname changes
     useEffect(() => {
@@ -27,119 +27,96 @@ const Navigation = ({ user }) => {
     }, [pathname])
 
     return (
-        <div className="flex  justify-center pt-3 pb-20 px-3">
-            {loading && <LoadingTwo />}
-
+        <div
+            className={`w-full bg-white flex justify-center h-20 large:h-104  z-30 duration-500 fixed top-0 left-0`}>
             {/* Logout Idiom */}
-            <IdiomProof
+            <LogoutIdiom
                 close={() => setLogoutIdiomDisplay(false)}
                 open={logoutIdiomDisplay}
-                action={() => {
-                    setLogoutIdiomDisplay(false)
-                    logout({ setLoading })
-                }}
-                title={'Log Out'}
-                description={
-                    'Are you sure you want to sign out of your account? You can always sign in at anytime.'
-                }
             />
 
-            <nav className="bg-white bg-opacity-20 max-w-full backdrop-blur-lg drop-shadow-lg border border-gray-100 w-full lg:rounded-full fixed z-30">
+            <nav className="bg-white max-w-[1650px] absolute z-30 h-20 large:h-104 px-6 sm:px-20 large:px-112 flex items-center justify-between w-full  ">
                 {/* Primary Navigation Menu */}
-                <div className="w-full mx-auto px-4 lg:px-6 xl:px-8">
-                    <div className="flex justify-between h-16">
-                        <div className="flex items-center">
-                            {/* Logo */}
-                            <div className="flex-shrink-0 flex items-center">
-                                <Link href="/">
-                                    <ApplicationLogo className="block h-10 w-auto fill-current text-gray-600" />
-                                </Link>
-                            </div>
-                        </div>
 
-                        {/* Navigation Links */}
-                        <div className="hidden space-x-8 lg:-my-px lg:ml-10 lg:flex">
-                            <NavLink href="/" active={pathname === '/'}>
-                                Home
-                            </NavLink>
-                            <a
-                                href="https://blog.analogueshifts.com"
-                                className={`inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium leading-5 focus:outline-none transition duration-150 ease-in-out border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:text-gray-700 focus:border-gray-300`}>
-                                Blog
-                            </a>
-                            <NavLink href="/jobs" active={pathname === '/jobs'}>
-                                Jobs
-                            </NavLink>
-                            <NavLink
-                                href="/about"
-                                active={pathname === '/about'}>
-                                About
-                            </NavLink>
-                            <NavLink
-                                href="/contact"
-                                active={pathname === '/contact'}>
-                                Contact
-                            </NavLink>
-                            <OurApps />
-                        </div>
+                {/* Logo */}
 
-                        {/* Settings Dropdown */}
-                        {user ? (
-                            <LoggedInProfileDropdown
-                                handleLogout={() => setLogoutIdiomDisplay(true)}
-                                user={user}
-                            />
-                        ) : (
-                            <div className="hidden lg:flex lg:items-center lg:ml-6">
-                                <Link
-                                    className="text-sm font-medium py-2 px-7 duration-300 rounded-full bg-yellow-500 text-white hover:bg-transparent hover:text-yellow-500 hover:ring-1 ring-yellow-500"
-                                    href="/login">
-                                    Get Started
-                                </Link>
-                            </div>
-                        )}
+                <Link href="/">
+                    <Image
+                        src={NavLogo}
+                        alt=""
+                        className="large:w-221 w-40 sm:w-48 h-max"
+                    />
+                </Link>
 
-                        {/* Hamburger */}
-                        <div className="-mr-2 flex items-center lg:hidden">
-                            <button
-                                onClick={() => setOpen(open => !open)}
-                                className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out">
-                                <svg
-                                    className="h-6 w-6"
-                                    stroke="currentColor"
-                                    fill="none"
-                                    viewBox="0 0 24 24">
-                                    {open ? (
-                                        <path
-                                            className="inline-flex"
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                            strokeWidth="2"
-                                            d="M6 18L18 6M6 6l12 12"
-                                        />
-                                    ) : (
-                                        <path
-                                            className="inline-flex"
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                            strokeWidth="2"
-                                            d="M4 6h16M4 12h16M4 18h16"
-                                        />
-                                    )}
-                                </svg>
-                            </button>
-                        </div>
-                    </div>
+                {/* Navigation Links */}
+                <div className="hidden items-center gap-7 large:gap-10 lg:flex">
+                    <NavLink href="/" active={pathname === '/'}>
+                        Home
+                    </NavLink>
+
+                    <OurApps />
+
+                    <NavLink href="/jobs" active={pathname.startsWith('/jobs')}>
+                        Jobs
+                    </NavLink>
+
+                    <NavLink href="https://blog.analogueshifts.com">
+                        Blog
+                    </NavLink>
+
+                    <NavLink href="/about" active={pathname === '/about'}>
+                        About
+                    </NavLink>
+                    <NavLink href="/contact" active={pathname === '/contact'}>
+                        Contact
+                    </NavLink>
                 </div>
 
-                {/* Responsive Navigation Menu */}
-                {open && (
-                    <ResponsiveNavBar
+                {/* Settings Dropdown */}
+                {user ? (
+                    <LoggedInProfileDropdown
+                        handleLogout={() => setLogoutIdiomDisplay(true)}
                         user={user}
-                        handleBlogNavigation={() => setOpen(false)}
                     />
+                ) : (
+                    <div className="hidden lg:flex lg:items-center gap-6">
+                        <NavLink href="/login">Login</NavLink>
+                        <Link
+                            className="text-[13px] large:text-base font-medium h-11 large:h-14 px-10  large:px-12 duration-200 rounded-2xl bg-tremor-background-darkYellow text-white hover:bg-transparent hover:text-tremor-background-darkYellow hover:ring-1 ring-tremor-background-darkYellow flex items-center justify-center"
+                            href="/register">
+                            Sign Up
+                        </Link>
+                    </div>
                 )}
+
+                {/* Hamburger */}
+                <div className="flex items-center lg:hidden">
+                    <button
+                        onClick={() => setOpen(prev => !prev)}
+                        className="w-18 flex flex-col gap-1.5 bg-transparent border-none outline-none">
+                        <div
+                            className={`w-full h-[1px] bg-tremor-brand-boulder700 duration-300 ${
+                                open
+                                    ? 'rotate-[45deg] translate-y-[3.6px]'
+                                    : 'rotate-0 translate-y-0'
+                            }`}></div>
+                        <div
+                            className={`w-full h-[1px] bg-tremor-brand-boulder700 duration-300 ${
+                                open
+                                    ? '-rotate-[45deg] -translate-y-[3.6px]'
+                                    : 'rotate-0 translate-y-0'
+                            }`}></div>
+                    </button>
+                </div>
             </nav>
+
+            {/* Responsive Navigation Menu */}
+
+            <ResponsiveNavBar
+                user={user}
+                open={open}
+                handleBlogNavigation={() => setOpen(false)}
+            />
         </div>
     )
 }

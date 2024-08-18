@@ -1,4 +1,5 @@
 'use client'
+import { useToast } from '@/contexts/toast'
 import { useState, useEffect, useRef } from 'react'
 import CreateJobLayout from './form-layout'
 import Cookies from 'js-cookie'
@@ -16,11 +17,12 @@ import {
     directApplyData,
     statusData,
 } from '../../utilities/data'
-import { toast } from 'react-toastify'
 
 export default function JobDetails() {
-    const [allFieldEntered, setAllFieldEnter] = useState(true)
     const pathname = usePathname()
+    const { notifyUser } = useToast()
+
+    const [allFieldEntered, setAllFieldEnter] = useState(true)
     const [employmentType, setEmploymentType] = useState(employmentTypesData[0])
     const [status, setStatus] = useState(statusData[0])
     const [directApply, setDirectApply] = useState(directApplyData[0])
@@ -79,10 +81,7 @@ export default function JobDetails() {
 
         // If salary is not a valid number, Throw an Error
         if (isNaN(salaryValue)) {
-            toast.error('Error! Salary value must be a valid number', {
-                position: 'top-right',
-                autoClose: 3000,
-            })
+            notifyUser('error', 'Salary value must be a valid number')
             return
         }
 

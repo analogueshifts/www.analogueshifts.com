@@ -1,0 +1,16 @@
+[
+    {
+        "message": "I found a wonderful remote job opportunity through Analogue Shifts that was a perfect fit for my skill set and background in full-stack web development. It is really admirable how dedicated they are to finding the ideal fit for organizations and candidates.",
+        "ratings": [1, 2, 3, 4, 5],
+        "userName": "Laura M.",
+        "userRole": "Web Full-stack Developer",
+        "userImage": "/images/guest-layout/ratings/laura.svg"
+    },
+    {
+        "message": "Throughout my hunt for a job as a UI/UX designer, Analogue Shifts offered me excellent advice and assistance. Their individualized approach, continuous communication, and ability to find undiscovered job openings in the tech industry were outstanding. I appreciate all of their knowledge and help.",
+        "ratings": [1, 2, 3, 4, 5],
+        "userName": "Daniel S.",
+        "userRole": "UI/UX Design",
+        "userImage": "/images/guest-layout/hero/boy_one.svg"
+    }
+]

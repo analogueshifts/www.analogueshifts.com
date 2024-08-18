@@ -1,64 +1,109 @@
 'use client'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import ResponsiveNavLink from './responsive-navlink'
-import { usePathname } from 'next/navigation'
-import OurApps from './our-apps'
 
-export default function ResponsiveNavBar({ handleBlogNavigation, user }) {
-    const [opacity, setOpacity] = useState(0)
-    const pathname = usePathname()
+import { motion, AnimatePresence } from 'framer-motion'
 
-    useEffect(() => setOpacity(1), [])
+import Image from 'next/image'
+import ChevronDown from '@/public/images/guest-layout/chevron-down.svg'
+
+import ourApps from '../utilities/our-apps.json'
+import Link from 'next/link'
+
+export default function ResponsiveNavBar({ handleBlogNavigation, user, open }) {
+    const [showApps, setShowApps] = useState(false)
+
+    const MenuLink = ({ item }) => (
+        <div>
+            <Link href={item.href} className="w-full flex items-center gap-2">
+                <Image src={item.image} alt="" width={25} height={25} />
+                <div className="flex flex-col">
+                    <p className="text-[13px] text-tremor-brand-boulder900 font-semibold">
+                        {item.title}
+                    </p>
+                </div>
+            </Link>
+        </div>
+    )
 
     return (
-        <div
-            style={{ opacity: opacity }}
-            className="bg-white duration-500 w-full block lg:hidden">
-            <div className="pt-2 pb-3 space-y-1">
-                <ResponsiveNavLink href="/" active={pathname === '/'}>
-                    Home
-                </ResponsiveNavLink>
-
-                <a
-                    onClick={handleBlogNavigation}
-                    href="https://blog.analogueshifts.com"
-                    className={`block pl-4 pr-4 py-3 border-l-4 text-base font-medium leading-5 focus:outline-none transition duration-150 ease-in-out border-transparent text-gray-600 hover:text-gray-800 hover:bg-gray-50 hover:border-gray-300 focus:text-gray-800 focus:bg-gray-50 focus:border-gray-300`}>
-                    Blog
-                </a>
-                <OurApps />
-                <ResponsiveNavLink href="/jobs" active={pathname === '/jobs'}>
-                    Jobs
-                </ResponsiveNavLink>
-                <ResponsiveNavLink href="/about" active={pathname === '/about'}>
-                    About
-                </ResponsiveNavLink>
-                <ResponsiveNavLink
-                    href="/contact"
-                    active={pathname === '/contact'}>
-                    Contact
-                </ResponsiveNavLink>
-
-                <ResponsiveNavLink href={user ? '/dashboard' : '/login'}>
-                    {user ? 'Dashboard' : 'Get Started'}
-                </ResponsiveNavLink>
-            </div>
-
-            {/* Responsive Settings Options */}
-            {!user && (
-                <div className="pt-4 pb-1 border-t border-gray-200">
-                    <div>
-                        <div className="space-y-1">
-                            {/* Authentication */}
-                            <ResponsiveNavLink href="/login">
-                                Login
-                            </ResponsiveNavLink>
-                            <ResponsiveNavLink href="/register">
-                                Register
-                            </ResponsiveNavLink>
+        <AnimatePresence>
+            {open && (
+                <motion.div
+                    exit={{ x: '-100%' }}
+                    animate={{ x: 0 }}
+                    initial={{ x: '-100%' }}
+                    transition={{ ease: 'easeInOut', duration: 0.3 }}
+                    className="bg-white z-40 overflow-y-auto  h-screen absolute overflow-hidden top-0 w-2/3 left-0 block lg:hidden">
+                    <div className="pt-7 pb-5 px-8 w-full flex-col flex gap-8">
+                        <ResponsiveNavLink href="/jobs">Jobs</ResponsiveNavLink>
+                        <ResponsiveNavLink
+                            onClick={handleBlogNavigation}
+                            href="https://blog.analogueshifts.com">
+                            Blog
+                        </ResponsiveNavLink>
+                        <ResponsiveNavLink href="/">Home</ResponsiveNavLink>
+                        <ResponsiveNavLink href="/about">
+                            About
+                        </ResponsiveNavLink>
+                        <ResponsiveNavLink href="/contact">
+                            Contact
+                        </ResponsiveNavLink>
+                        <div
+                            onClick={() => setShowApps(prev => !prev)}
+                            className="cursor-pointer w-full flex items-center justify-between">
+                            <p className="text-xl text-tremor-brand-boulder700 font-bold  focus:outline-none ">
+                                Products
+                            </p>
+                            <Image
+                                src={ChevronDown}
+                                alt=""
+                                className={` duration-300 w-4 h-max ${
+                                    showApps ? 'rotate-180' : '-rotate-90'
+                                }`}
+                            />
                         </div>
+
+                        {showApps && (
+                            <motion.div className="w-full flex flex-col gap-4 -translate-y-2 px-3">
+                                {ourApps.ready.map(item => {
+                                    return (
+                                        <MenuLink
+                                            key={item.title}
+                                            item={item}
+                                        />
+                                    )
+                                })}
+
+                                {ourApps.comingSoon.map(item => {
+                                    return (
+                                        <MenuLink
+                                            key={item.title}
+                                            item={item}
+                                        />
+                                    )
+                                })}
+                            </motion.div>
+                        )}
+
+                        {/* Responsive Settings Options */}
+                        {user ? (
+                            <ResponsiveNavLink href="/dashboard">
+                                Dashboard
+                            </ResponsiveNavLink>
+                        ) : (
+                            <>
+                                <ResponsiveNavLink href="/login">
+                                    Login
+                                </ResponsiveNavLink>
+                                <ResponsiveNavLink href="/register">
+                                    Sign Up
+                                </ResponsiveNavLink>
+                            </>
+                        )}
                     </div>
-                </div>
+                </motion.div>
             )}
-        </div>
+        </AnimatePresence>
     )
 }

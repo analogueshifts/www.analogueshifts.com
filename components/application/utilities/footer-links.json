@@ -1,0 +1,78 @@
+[
+    {
+        "title": "Discover Talents",
+        "links": [
+            {
+                "name": "For Companies",
+                "path": "mailto:hello@analogueshifts.com"
+            },
+            {
+                "name": "Enterprises",
+                "path": "mailto:hello@analogueshifts.com"
+            },
+            {
+                "name": "Case Study",
+                "path": "mailto:hello@analogueshifts.com"
+            }
+        ]
+    },
+    {
+        "title": "Find Work",
+        "links": [
+            {
+                "name": "For Technologies",
+                "path": "mailto:hello@analogueshifts.com"
+            },
+            {
+                "name": "Learning Community",
+                "path": "mailto:hello@analogueshifts.com"
+            },
+            {
+                "name": "Leadership Program",
+                "path": "mailto:hello@analogueshifts.com"
+            },
+            {
+                "name": "Resources",
+                "path": "mailto:hello@analogueshifts.com"
+            }
+        ]
+    },
+    {
+        "title": "Analogue Shifts",
+        "links": [
+            {
+                "name": "About Us",
+                "path": "/about"
+            },
+            {
+                "name": "Events",
+                "path": "mailto:hello@analogueshifts.com"
+            },
+            {
+                "name": "Blog",
+                "path": "https://blog.analogueshifts.com"
+            },
+            {
+                "name": "Press Center",
+                "path": "mailto:hello@analogueshifts.com"
+            },
+            {
+                "name": "Careers",
+                "path": "mailto:hello@analogueshifts.com"
+            }
+        ]
+    },
+    {
+        "title": "Pages",
+        "links": [
+            {
+                "name": "Privacy Policy",
+                "path": "/docs/privacy-policy"
+            },
+            {
+                "name": "Terms & Conditions",
+                "path": "/docs/terms-and-conditions"
+            }
+        ]
+    }
+]

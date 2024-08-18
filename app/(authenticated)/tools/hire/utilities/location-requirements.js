@@ -1,5 +1,3 @@
-import { toastConfig } from '@/utils/toast-config'
-
 // This Function Adds a Location requirement.
 
 // PARAMETERS
@@ -15,15 +13,15 @@ export function addLocationRequirement(
     requirements,
     setReQuirements,
     newValue,
-    toast,
     clearNewValueField,
+    notifyUser,
 ) {
     // We will use this variable to Keep track of the new value that should be added to the list
     let checker = true
 
     // If the new Value is an empty string, throw an error
     if (newValue.trim() === '') {
-        toast.error(type + ' Field is empty!', toastConfig)
+        notifyUser('error', type + ' Field is empty!')
         return
     }
 
@@ -40,7 +38,7 @@ export function addLocationRequirement(
         clearNewValueField('')
     } else {
         clearNewValueField('')
-        toast.error(type + ' Already Exist', toastConfig)
+        notifyUser('error', type + ' Already Exist')
     }
 }
 
@@ -51,11 +49,8 @@ export function addLocationRequirement(
 // The setRequirement will be the method that updates the requirements list
 // toast... So we'll be able to throw an error
 
-export function removeLocationRequirement(value, setReQuirements, toast) {
+export function removeLocationRequirement(notifyUser, value, setReQuirements) {
     setReQuirements(prev => prev.filter(item => item.name !== value))
 
-    toast.success('Deleted Successfully', {
-        position: 'top-right',
-        autoClose: 3000,
-    })
+    notifyUser('success', 'Deleted Successfully')
 }

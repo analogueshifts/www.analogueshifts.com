@@ -1,15 +1,12 @@
+'use client'
+import { useToast } from '@/contexts/toast'
 import axios from '@/app/lib/axios'
-
 import Cookies from 'js-cookie'
-
-import { successToast } from '@/utils/success-toast'
-import { errorToast } from '@/utils/error-toast'
-import { clearUserSession } from '@/utils/clear-user-session'
+import { clearUserSession } from '@/configs/clear-user-session'
 import { processChartData } from '@/app/(authenticated)/dashboard/utilities/process-chart-data'
-import { toast } from 'react-toastify'
-import { toastConfig } from '@/utils/toast-config'
 
 export const useHire = () => {
+    const { notifyUser } = useToast()
     const token = Cookies.get('analogueshifts')
 
     const getStats = async ({ url, setData }) => {
@@ -28,10 +25,10 @@ export const useHire = () => {
                 setData(processChartData(request.data.data.dashboard))
             }
         } catch (error) {
-            errorToast(
-                'Error Fetching Data',
+            notifyUser(
+                'error',
                 error?.response?.data?.message ||
-                    error.message ||
+                    error?.response?.data?.data?.message ||
                     'Failed To Fetch Statistics Data',
             )
             if (error?.response?.status === 401) {
@@ -60,13 +57,13 @@ export const useHire = () => {
             const data = await axios.request(config)
             setData(data.data.data.full_path)
             setLoading(false)
-            successToast('File Uploaded', 'File uploaded successfully')
+            notifyUser('success', 'File uploaded successfully')
         } catch (error) {
             setLoading(false)
-            errorToast(
-                'Error Uploading Logo',
+            notifyUser(
+                'error',
                 error?.response?.data?.message ||
-                    error.message ||
+                    error?.response?.data?.data?.message ||
                     'Failed To Upload Logo',
             )
             if (error?.response?.status === 401) {
@@ -89,13 +86,15 @@ export const useHire = () => {
         try {
             await axios.request(config)
             setLoading(false)
-            toast.success('Your Hire Request Has Been Sent', toastConfig)
+            notifyUser('success', 'Your Hire Request Has Been Sent')
             Cookies.remove('jobPostData')
             router.push('/tools/hire')
         } catch (error) {
-            errorToast(
-                'Failed To Post Job',
-                error?.response?.data?.message || error.message || '',
+            notifyUser(
+                'error',
+                error?.response?.data?.message ||
+                    error?.response?.data?.data?.message ||
+                    'Failed To Post Job',
             )
             setLoading(false)
             if (error?.response?.status === 401) {
@@ -119,12 +118,14 @@ export const useHire = () => {
         try {
             await axios.request(config)
             setLoading(false)
-            toast.success('Your Post Has Been Edited Successfully', toastConfig)
+            notifyUser('success', 'Your Post Has Been Edited Successfully')
             router.push('/tools/hire')
         } catch (error) {
-            errorToast(
-                'Failed To Post Job',
-                error?.response?.data?.message || error.message || '',
+            notifyUser(
+                'error',
+                error?.response?.data?.message ||
+                    error?.response?.data?.data?.message ||
+                    'Failed To Post Job',
             )
             setLoading(false)
             if (error?.response?.status === 401) {
@@ -155,9 +156,11 @@ export const useHire = () => {
             setLoading(false)
         } catch (error) {
             setLoading(false)
-            errorToast(
-                error.message,
-                error?.response?.data?.message || error.message || '',
+            notifyUser(
+                'error',
+                error?.response?.data?.message ||
+                    error?.response?.data?.data?.message ||
+                    'Error',
             )
             if (error?.response?.status === 401) {
                 clearUserSession()
@@ -188,11 +191,13 @@ export const useHire = () => {
                 setData,
                 setCurrentPageInfo,
             })
-            toast.success('Job Deleted Successfully', toastConfig)
+            notifyUser('success', 'Job Deleted Successfully')
         } catch (error) {
-            errorToast(
-                'Error Deleting Job',
-                error?.response?.data?.message || error.message || '',
+            notifyUser(
+                'error',
+                error?.response?.data?.message ||
+                    error?.response?.data?.data?.message ||
+                    'Error Deleting Job',
             )
             setLoading(false)
             if (error?.response?.status === 401) {

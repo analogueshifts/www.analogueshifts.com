@@ -1,16 +1,16 @@
 'use client'
+import { useUser } from '@/contexts/user'
+import { useToast } from '@/contexts/toast'
 import { useEffect, useState } from 'react'
-import { toast } from 'react-toastify'
 import { useRouter } from 'next/navigation'
 import DashboardLoader from '@/components/application/dashboard-loader'
 import Cookies from 'js-cookie'
-import { toastConfig } from '@/utils/toast-config'
-import { errorToast } from '@/utils/error-toast'
-import { useUser } from '@/contexts/user'
 
 export default function Edit({ slug }) {
     const router = useRouter()
     const { user } = useUser()
+    const { notifyUser } = useToast()
+
     const [loading, setLoading] = useState(false)
     const token = Cookies.get('analogueshifts')
 
@@ -87,7 +87,7 @@ export default function Edit({ slug }) {
                     router.push(`/tools/hire/edit/${slug}/job-information`)
                 } else {
                     // If The Job Wasn't found
-                    toast.error('Error Getting Jobs', toastConfig)
+                    notifyUser('error', 'Error Getting Jobs')
                     router.push('/404')
                 }
 
@@ -96,9 +96,11 @@ export default function Edit({ slug }) {
             .catch(error => {
                 setLoading(false)
                 router.push('/404')
-                errorToast(
-                    'Error Getting Jobs',
-                    error?.response?.data?.message || error.message || '',
+                notifyUser(
+                    'error',
+                    error?.response?.data?.message ||
+                        error?.response?.data?.data?.message ||
+                        'Error Getting Jobs',
                 )
             })
     }

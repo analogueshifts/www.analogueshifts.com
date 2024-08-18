@@ -3,15 +3,13 @@ import LoadingTwo from '@/components/ui/loading-spinner'
 import Cookies from 'js-cookie'
 import { useRouter } from 'next/navigation'
 import { useState, useEffect } from 'react'
-import { toast } from 'react-toastify'
-import { toastConfig } from '@/utils/toast-config'
+import { useToast } from '@/contexts/toast'
 
 import {
     InputOTP,
     InputOTPGroup,
     InputOTPSlot,
 } from '@/components/ui/input-otp'
-import { errorToast } from '@/utils/error-toast'
 
 import { useAuth } from '@/hooks/auth'
 import FormInput from '@/components/application/form-input'
@@ -26,6 +24,7 @@ export default function ResetPasswordForm() {
     const [timeLeft, setTimeLeft] = useState(120)
     const [isCoutDown, setIsCountDown] = useState(true)
 
+    const { notifyUser } = useToast()
     const { forgotPassword, validateOtp, resetPassword } = useAuth()
 
     useEffect(() => {
@@ -61,7 +60,7 @@ export default function ResetPasswordForm() {
         await forgotPassword({ email, setLoading })
         setTimeLeft(120)
         setIsCountDown(true)
-        toast.success('Verification code sent sucessfully!', toastConfig)
+        notifyUser('success', 'Verification code sent sucessfully!')
     }
 
     const validateOTP = async () => {
@@ -85,18 +84,17 @@ export default function ResetPasswordForm() {
     const handleSubmit = async e => {
         e.preventDefault()
         if (password !== confirm_password) {
-            toast.error(
-                'Password must match with Confirm Password',
-                toastConfig,
-            )
+            notifyUser('error', 'Password must match with Confirm Password')
             return
         }
         try {
             await validateOTP()
         } catch (error) {
-            errorToast(
-                'Failed to reset password',
-                error?.response?.data?.message || error.message || '',
+            notifyUser(
+                'notifyUser',
+                error?.response?.data?.message ||
+                    error?.response?.data?.data?.message ||
+                    'Failed to reset password',
             )
         }
     }

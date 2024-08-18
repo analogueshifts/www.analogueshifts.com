@@ -1,4 +1,3 @@
-import AuthenticationLayout from '@/app/layouts/authentication'
 import LoginForm from './components/login-form'
 
 export const metadata = {
@@ -27,9 +26,5 @@ export const metadata = {
 }
 
 export default function Page() {
-    return (
-        <AuthenticationLayout>
-            <LoginForm />
-        </AuthenticationLayout>
-    )
+    return <LoginForm />
 }

@@ -1,0 +1,80 @@
+[
+    {
+        "role": "CEO",
+        "name": "Kenneth Malaka",
+        "image": "/images/team/ceo.png"
+    },
+
+    {
+        "role": "Public Relations Manager",
+        "name": "Akinola Temiloluwa ",
+        "image": "/images/team/social.png"
+    },
+    {
+        "role": "Senior Software Engineer",
+        "name": "Teslim Abdulwahab",
+        "image": "/images/team/dev.png"
+    },
+    {
+        "role": "Content Writer",
+        "name": "Grace Evumovwe",
+        "image": "/images/team/writer.png"
+    },
+    {
+        "role": "Frontend Developer",
+        "name": "Promise Onuoha",
+        "image": "/images/team/frontend.png"
+    },
+    {
+        "role": "Creative Designer",
+        "name": "Honeybell Jolomi Omadeli",
+        "image": "/images/team/designer.png"
+    },
+    {
+        "role": "Project Manager ",
+        "name": "Ali Richard",
+        "image": "/images/team/product-manager.png"
+    },
+    {
+        "role": "Partnership and Strategy Associate ",
+        "name": "Marvellous SUNMIBOYE",
+        "image": "/images/team/content.png"
+    },
+    {
+        "role": "Recruiter",
+        "name": "Ojo Elizabeth Oreoluwa ",
+        "image": "/images/team/recruiter.png"
+    },
+
+    {
+        "role": "SEO Specialist",
+        "name": "Fagbola Joshua",
+        "image": "/images/team/SEO.png"
+    },
+
+    {
+        "role": "Mobile Application Engineer",
+        "name": "Achu-ulim Akem Agbama",
+        "image": "/images/team/mobile.png"
+    },
+    {
+        "role": "Partnership Specialist ",
+        "name": "Eniola Bamidele",
+        "image": "/images/team/partnership-specialist.png"
+    },
+    {
+        "role": "Lead, Human Resource Officer ",
+        "name": "Moniola  Lawal",
+        "image": "/images/team/human-resource.png"
+    },
+    {
+        "role": "Legal Officer",
+        "name": "Suleman Halimat Opeyemi",
+        "image": "/images/team/legal-officer.png"
+    },
+    {
+        "role": "Partnership and Strategy Lead",
+        "name": "Adepeju Bello",
+        "image": "/images/team/partnership-specialist-lead.png"
+    }
+]

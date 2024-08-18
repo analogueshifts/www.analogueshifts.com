@@ -1,10 +1,9 @@
 'use client'
 import { useState, useEffect } from 'react'
-import { X } from 'lucide-react'
+import { useToast } from '@/contexts/toast'
 import { useRouter } from 'next/navigation'
+import { X } from 'lucide-react'
 import { Button } from '../ui/button'
-import { toastConfig } from '@/utils/toast-config'
-import { toast } from 'react-toastify'
 
 export default function UnverifiedBanner({
     visible,
@@ -13,6 +12,7 @@ export default function UnverifiedBanner({
     setLoading,
 }) {
     const router = useRouter()
+    const { notifyUser } = useToast()
     const [bottom, setBottom] = useState(visible ? 0 : -120)
 
     useEffect(() => {
@@ -44,7 +44,11 @@ export default function UnverifiedBanner({
             })
             .catch(error => {
                 setLoading(false)
-                toast.error(error.message, toastConfig)
+                notifyUser(
+                    'error',
+                    error?.response?.data?.message ||
+                        error?.response?.data?.data?.message,
+                )
             })
     }
 

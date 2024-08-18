@@ -1,19 +1,17 @@
 'use client'
 import { useState, useRef, useEffect } from 'react'
-import { toast } from 'react-toastify'
+import { useToast } from '@/contexts/toast'
 
 export default function FileInput({ value, setValue }) {
     const [uploadState, setUploadState] = useState(value ? 'Success' : '')
     const fileRef = useRef()
+    const { notifyUser } = useToast()
 
     const handleFileChange = e => {
         const maxFileSize = 5 * 1024 * 1024
         const selectedFile = e.target.files[0]
         if (selectedFile && selectedFile.size > maxFileSize) {
-            toast.error('File size exceeds the limit (5 MB)', {
-                position: 'top-right',
-                autoClose: 3000,
-            })
+            notifyUser('error', 'File size exceeds the limit (5 MB)')
             return
         }
         if (selectedFile) {

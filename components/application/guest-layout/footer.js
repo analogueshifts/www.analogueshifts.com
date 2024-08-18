@@ -1,162 +1,91 @@
 import Link from 'next/link'
-import React from 'react'
-import {
-    FaFacebookSquare,
-    FaInstagram,
-    FaTwitter,
-    FaLinkedin,
-} from 'react-icons/fa'
+import Image from 'next/image'
+import Logo from '@/public/images/guest-layout/nav-logo.svg'
+
+import footerLinks from '../utilities/footer-links.json'
+import socialLinks from '../utilities/social-icons.json'
+import DownloadAppBtn from '../home-page/download-app-btn'
 
 function Footer() {
     return (
-        <div className="footer">
-            <footer className="container mx-auto p-4">
-                <div className="wrapper">
-                    <div className="space-y-12  overflow-hidden">
-                        <a href="/" className="logo flex gap-3  ">
-                            <img
-                                src="/logo.png"
-                                className="w-16 md:w-10 h-max"
-                                alt=""
-                            />
-                            <h3 className="flex flex-col gap-0.5 leading-5 text-lg">
-                                <span className="tracking-widest text-yellow-400 ">
-                                    Analogue
-                                </span>
-
-                                <span className="tracking-[1rem]">Shifts</span>
-                            </h3>
-                        </a>
-
-                        <div className="grid gap-3  text-zinc-100 w-full text-base font-medium ">
-                            <a
-                                href="tel:+2348066708343"
-                                target="blank"
-                                className="hover:underline">
-                                Call: +2348066708343
-                            </a>
-                            <a
-                                href="mailto:hello@analogueshifts.com"
-                                className="hover:underline"
-                                target="blank">
-                                Mail: hello@analogueshifts.com
-                            </a>
-                            <span>
-                                Address: 7, Smart Idomia Street Along KOKA,
-                                Asaba, Delta State.
-                            </span>
-                        </div>
-
-                        <div className="flex gap-5 text-3xl text-zinc-100 justify-center p-5">
-                            <a
-                                href="https://www.facebook.com/profile.php?id=100078666855898"
-                                target="blank">
-                                <FaFacebookSquare />
-                            </a>
-                            <a
-                                href="https://www.instagram.com/analogueshifts_/"
-                                target="blank">
-                                <FaInstagram />
-                            </a>
-                            <a
-                                href="https://twitter.com/AnalogueShifts"
-                                target="blank">
-                                <FaTwitter />
-                            </a>
-                            {/* <a href="mailto:hello@analogueshifts.com" target='blank' target="blank"><ImGithub /></a> */}
-                            <a
-                                href="https://www.linkedin.com/company/analogue-shifts/"
-                                target="blank">
-                                <FaLinkedin />
-                            </a>
-                        </div>
-                    </div>
-
-                    <div className="menu">
-                        <div className="">
-                            <li>Discover Talents</li>
-                            <a
-                                className="mb-2"
-                                href="mailto:hello@analogueshifts.com"
-                                target="blank">
-                                For Companies
-                            </a>
-                            <a
-                                className="mb-2"
-                                href="mailto:hello@analogueshifts.com"
-                                target="blank">
-                                Enterprises
-                            </a>
-                            <a
-                                href="mailto:hello@analogueshifts.com"
-                                target="blank">
-                                Case Study
-                            </a>
-                        </div>
-                        <div className="">
-                            <li>Find Work</li>
-                            <a
-                                className="mb-2"
-                                href="mailto:hello@analogueshifts.com"
-                                target="blank">
-                                For Technologies
-                            </a>
-                            <a
-                                className="mb-2"
-                                href="mailto:hello@analogueshifts.com"
-                                target="blank">
-                                Learning Community
-                            </a>
-                            <a
-                                className="mb-2"
-                                href="mailto:hello@analogueshifts.com"
-                                target="blank">
-                                Leadership Program
-                            </a>
-                            <a
-                                href="mailto:hello@analogueshifts.com"
-                                target="blank">
-                                Resources
-                            </a>
-                        </div>
-                        <div className="">
-                            <li>Analogue Shifts</li>
-                            <Link className="mb-2" href="/about">
-                                About Us
+        <footer className="z-20 sticky bg-white tablet:pt-20 pt-168 pb-9 tablet:px-6 px-20 large:px-112 flex flex-col">
+            <div className="w-full flex gap-5 tablet:flex-col tablet:gap-10 justify-between">
+                <div className="min-w-[320px] tablet:max-w-full max-w-[320px] flex flex-col">
+                    <Link
+                        href="/"
+                        className="max-w-full h-max tablet:mb-8 mb-12">
+                        <Image src={Logo} alt="" />
+                    </Link>
+                    <Link
+                        href="tel:+2348066708343"
+                        className="text-tremor-brand-boulder950 tablet:text-base text-lg mb-3 leading-7 font-normal">
+                        Call: +2348066708343
+                    </Link>
+                    <Link
+                        href="mailto:hello@analogueshifts.com"
+                        className="text-tremor-brand-boulder950 tablet:text-base text-lg mb-3 leading-7 font-normal">
+                        Mail: hello@analogueshifts.com
+                    </Link>
+                    <p className="text-tremor-brand-boulder950 tablet:text-base text-lg  leading-7 font-normal">
+                        Address: 5 Chief Sunday Olaiya Close Salawe Avenue, Off
+                        Love All Street Ikosi, Lagos-Nigeria
+                    </p>
+                </div>
+                <div className="flex flex-wrap gap-y-8 gap-x-16 items-start">
+                    {footerLinks.map(item => {
+                        return (
+                            <div
+                                key={item.title}
+                                className="flex flex-col gap-3">
+                                <p className="text-tremor-brand-boulder950 font-bold text-base leading-6">
+                                    {item.title}
+                                </p>
+                                <div className="flex flex-col gap-2">
+                                    {item.links.map(link => {
+                                        return (
+                                            <Link
+                                                key={link.name}
+                                                href={link.path}
+                                                className="text-base leading-6 font-normal text-tremor-brand-boulder600">
+                                                {link.name}
+                                            </Link>
+                                        )
+                                    })}
+                                </div>
+                            </div>
+                        )
+                    })}
+                </div>
+            </div>
+            <div className="w-full tablet:mt-10 tablet:mb-14 mb-20 flex flex-wrap gap-5 justify-between items-end">
+                <div className="items-center flex tablet:gap-4 gap-8">
+                    {socialLinks.map(item => {
+                        return (
+                            <Link key={item.path} href={item.path}>
+                                <Image
+                                    width={24}
+                                    height={24}
+                                    src={item.icon}
+                                    alt=""
+                                />
                             </Link>
-                            <Link
-                                className="mb-2"
-                                href="mailto:hello@analogueshifts.com">
-                                Events
-                            </Link>
-                            <Link className="mb-2" href="/blog">
-                                Blog
-                            </Link>
-                            <Link
-                                className="mb-2"
-                                href="mailto:hello@analogueshifts.com">
-                                Press Center
-                            </Link>
-                            <Link href="mailto:hello@analogueshifts.com">
-                                Careers
-                            </Link>
-                        </div>
-                        <div className="">
-                            <li>Pages</li>
-                            <Link className="mb-2" href="/docs/privacy-policy">
-                                Privacy Policy
-                            </Link>
-                            <Link href="/docs/terms-and-conditions">
-                                Terms & Conditions
-                            </Link>
-                        </div>
+                        )
+                    })}
+                </div>
+                <div className="flex flex-col gap-4">
+                    <p className="border-tremor-brand-boulder950 font-bold text-base">
+                        Download the app on
+                    </p>
+                    <div className="flex tablet:gap-4 gap-8 items-center">
+                        <DownloadAppBtn platform="playstore" />
+                        <DownloadAppBtn platform="appstore" />
                     </div>
                 </div>
-                <p className="copy text-center col-span-4 text-lg text-zinc-100 mt-10">
-                    &copy; {new Date().getFullYear()} | All Rights Reserved
-                </p>
-            </footer>
-        </div>
+            </div>
+            <p className="text-center text-tremor-brand-boulder950 font-normal tablet:text-base text-lg">
+                © {new Date().getFullYear()} | All Rights Reserved
+            </p>
+        </footer>
     )
 }
 

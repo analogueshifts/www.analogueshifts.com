@@ -9,18 +9,18 @@ import {
 } from '@/components/ui/input-otp'
 
 import Cookies from 'js-cookie'
-import { toast } from 'react-toastify'
-import { errorToast } from '@/utils/error-toast'
-import { toastConfig } from '@/utils/toast-config'
-import { clearUserSession } from '@/utils/clear-user-session'
+import { clearUserSession } from '@/configs/clear-user-session'
 import LoadingTwo from '@/components/ui/loading-spinner'
 import { useRouter } from 'next/navigation'
+import { useToast } from '@/contexts/toast'
 
 export default function EmailVerificationForm() {
     const [value, setValue] = useState('')
     const [loading, setLoading] = useState(false)
     const [timeLeft, setTimeLeft] = useState(120)
     const [isCoutDown, setIsCountDown] = useState(true)
+    const { notifyUser } = useToast()
+
     const router = useRouter()
     const token = Cookies.get('analogueshifts')
 
@@ -80,14 +80,15 @@ export default function EmailVerificationForm() {
                 setLoading(false)
                 setTimeLeft(120)
                 setIsCountDown(true)
-                toast.success(
-                    'Verification code sent sucessfully!',
-                    toastConfig,
-                )
+                notifyUser('success', 'Verification code sent sucessfully!')
             })
             .catch(error => {
                 setLoading(false)
-                toast.error(error.message, toastConfig)
+                notifyUser(
+                    'error',
+                    error?.response?.data?.message ||
+                        error?.response?.data?.data?.message,
+                )
                 if (error?.response?.status === 401) {
                     clearUserSession()
                 }
@@ -115,19 +116,21 @@ export default function EmailVerificationForm() {
             .then(res => {
                 setLoading(false)
                 if (res.data.success) {
-                    toast.success('Your email has been verified', toastConfig)
+                    notifyUser('success', 'Your email has been verified')
                     router.push('/dashboard')
                 } else {
                     setValue('')
-                    toast.error('Invalid OTP', toastConfig)
+                    notifyUser('error', 'Invalid OTP')
                 }
             })
             .catch(error => {
                 setLoading(false)
                 setValue('')
-                errorToast(
-                    'Invalid OTP',
-                    error?.response?.data?.message || error.message || '',
+                notifyUser(
+                    'error',
+                    error?.response?.data?.message ||
+                        error?.response?.data?.data?.message ||
+                        'Invalid OTP',
                 )
                 if (error?.response?.status === 401) {
                     clearUserSession()

@@ -1,4 +1,5 @@
-import { toast } from 'react-toastify'
+'use client'
+import { useToast } from '@/contexts/toast'
 import Cookies from 'js-cookie'
 
 export const handleSubmit = (
@@ -12,12 +13,10 @@ export const handleSubmit = (
     salaryUnitText,
     router,
 ) => {
+    const { notifyUser } = useToast()
     // If salary is not a valid number, Throw an Error
     if (isNaN(salaryValue)) {
-        toast.error('Error! Salary value must be a valid number', {
-            position: 'top-right',
-            autoClose: 3000,
-        })
+        notifyUser('error', 'Salary value must be a valid number')
         return
     }
 

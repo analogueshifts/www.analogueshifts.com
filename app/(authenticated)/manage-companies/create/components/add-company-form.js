@@ -2,12 +2,12 @@
 import { useState } from 'react'
 import { useCompany } from '@/hooks/companies'
 import { useRouter } from 'next/navigation'
+import { useToast } from '@/contexts/toast'
 
 import InputGroup from './input-group'
 import DashboardLoader from '@/components/application/dashboard-loader'
 
 import { Plus } from 'lucide-react'
-import { errorToast } from '@/utils/error-toast'
 import UploadFile from './upload-file'
 
 export default function AddCompanyForm() {
@@ -21,6 +21,7 @@ export default function AddCompanyForm() {
     const [description, setDescription] = useState('')
     const [logo, setLogo] = useState('')
 
+    const { notifyUser } = useToast()
     const { addCompany } = useCompany()
 
     const router = useRouter()
@@ -28,7 +29,7 @@ export default function AddCompanyForm() {
     const handleSubmit = async e => {
         e.preventDefault()
         if (logo.trim().length === 0) {
-            errorToast('Something went wrong!', 'Company Logo Is Required')
+            notifyUser('error', 'Company Logo Is Required')
             return
         }
 

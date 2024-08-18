@@ -2,10 +2,10 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import LoadingTwo from '@/components/ui/loading-spinner'
-import { errorToast } from '@/utils/error-toast'
 import FormInput from '@/components/application/form-input'
 import DropdownMenu from '@/app/(authenticated)/tools/hire/components/dropdown-menu'
 import { useAuth } from '@/hooks/auth'
+import { useToast } from '@/contexts/toast'
 
 export default function RegisterForm() {
     const [first_name, setFirstName] = useState('')
@@ -16,13 +16,14 @@ export default function RegisterForm() {
     const [user_mode, setUserMode] = useState('job')
     const [loading, setLoading] = useState(false)
     const { register } = useAuth()
+    const { notifyUser } = useToast()
 
     async function submit(e) {
         e.preventDefault()
 
         // Check for Confirm Password
         if (password !== confirm_password) {
-            errorToast('Bad Input', 'Password Must Match with Confirm Password')
+            notifyUser('error', 'Password Must Match with Confirm Password')
             return
         }
 

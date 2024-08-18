@@ -1,27 +1,36 @@
-[
-    {
-        "title": "Vetting System",
-        "href": "https://forms.analogueshifts.com",
-        "description": "Create Forms and Analize Results"
-    },
-    {
-        "title": "Payment Gateway",
-        "href": "https://pay.analogueshifts.com",
-        "description": "Coming Soon"
-    },
-    {
-        "title": "Learning Platform",
-        "href": "https://learn.analogueshifts.com",
-        "description": "Join our Devops Training"
-    },
-    {
-        "title": "Resume Builder",
-        "href": "https://resume.analogueshifts.com",
-        "description": "Coming Soon"
-    },
-    {
-        "title": "Event Builder",
-        "href": "https://events.analogueshifts.com",
-        "description": "Create events and share with guests."
-    }
-]
+{
+    "ready": [
+        {
+            "title": "Vetting System",
+            "href": "https://forms.analogueshifts.com",
+            "description": "Create forms and analyze results",
+            "image": "/images/guest-layout/our-apps/forms.svg"
+        },
+        {
+            "title": "Learning Platform",
+            "href": "https://learn.analogueshifts.com",
+            "description": "Join our DevOps training",
+            "image": "/images/guest-layout/our-apps/learn.svg"
+        },
+        {
+            "title": "Event Builder",
+            "href": "https://events.analogueshifts.com",
+            "description": "Create Events and share with guests",
+            "image": "/images/guest-layout/our-apps/events.svg"
+        }
+    ],
+    "comingSoon": [
+        {
+            "title": "Payment Gateway",
+            "href": "https://pay.analogueshifts.com",
+            "description": "Streamline payroll/bulk payments",
+            "image": "/images/guest-layout/our-apps/payment.svg"
+        },
+        {
+            "title": "Resume Builder",
+            "href": "https://resume.analogueshifts.com",
+            "description": "Build winning resumes",
+            "image": "/images/guest-layout/our-apps/resume.svg"
+        }
+    ]
+}

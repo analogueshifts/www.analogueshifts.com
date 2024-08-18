@@ -1,22 +1,21 @@
 'use client'
 import { useEffect, useState } from 'react'
-import Curve from '@/public/images/curve.png'
-import Image from 'next/image'
 import Cookies from 'js-cookie'
-import { errorToast } from '@/utils/error-toast'
 import DashboardLoader from '@/components/application/dashboard-loader'
-import { clearUserSession } from '@/utils/clear-user-session'
+import { clearUserSession } from '@/configs/clear-user-session'
 import NotificationsPagination from './notifications-pagination'
 import SkeletonCard from '@/components/application/skeleton-card'
 import { useSearchParams } from 'next/navigation'
 import NotificationGridTile from './notification-grid-tile'
 import { useUser } from '@/contexts/user'
+import { useToast } from '@/contexts/toast'
 
 export default function Notifications() {
     const [loading, setLoading] = useState(false)
     const [loadingTwo, setLoadingTwo] = useState(false)
     const [data, setData] = useState([])
     const { user } = useUser()
+    const { notifyUser } = useToast()
     const pageQuery = useSearchParams().getAll('page')
     const [currentPageInfo, setCurrentPageInfo] = useState(null)
     const url = `${process.env.NEXT_PUBLIC_BACKEND_URL}/notification/view${
@@ -43,10 +42,10 @@ export default function Notifications() {
             setLoading(false)
         } catch (error) {
             setLoading(false)
-            errorToast(
-                'Failed To Fetch Notifications',
+            notifyUser(
+                'error',
                 error?.response?.data?.message ||
-                    error.message ||
+                    error?.response?.data?.data?.message ||
                     'An error Occured',
             )
             if (error?.response?.status === 401) {

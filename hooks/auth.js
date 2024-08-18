@@ -3,14 +3,14 @@ import { useRouter } from 'next/navigation'
 import { useUser } from '@/contexts/user'
 
 import Cookies from 'js-cookie'
-
-import { successToast } from '@/utils/success-toast'
-import { errorToast } from '@/utils/error-toast'
-import { clearUserSession } from '@/utils/clear-user-session'
+import { clearUserSession } from '@/configs/clear-user-session'
+import { useToast } from '@/contexts/toast'
 
 export const useAuth = () => {
     const router = useRouter()
-    const { user, setUser } = useUser()
+    const { setUser } = useUser()
+    const { notifyUser } = useToast()
+
     const token = Cookies.get('analogueshifts')
 
     const authConfig = {
@@ -50,10 +50,7 @@ export const useAuth = () => {
             Cookies.set('analogueshifts', response?.data[0]?.data?.token)
             setUser(response?.data[0]?.data.user)
 
-            successToast(
-                'Account created successfully',
-                'Redirecting You to your Dashboard.',
-            )
+            notifyUser('success', 'Account created successfully')
             let redirectionLink = Cookies.get('RedirectionLink')
             Cookies.remove('RedirectionLink')
             router.push(
@@ -62,10 +59,11 @@ export const useAuth = () => {
             setLoading(false)
         } catch (error) {
             setLoading(false)
-            errorToast(
+            notifyUser(
+                'error',
                 'Failed To create Account',
                 error?.response?.data?.message ||
-                    error.message ||
+                    error?.response?.data?.data?.message ||
                     'Failed To Create Account',
             )
         }
@@ -82,10 +80,7 @@ export const useAuth = () => {
 
             Cookies.set('analogueshifts', response.data.data.token)
             setUser(response.data.data.user)
-            successToast(
-                'Login Successful',
-                'Redirecting You to your Dashboard.',
-            )
+            notifyUser('success', 'Logged In successful')
             let redirectionLink = Cookies.get('RedirectionLink')
             Cookies.remove('RedirectionLink')
             router.push(
@@ -94,10 +89,10 @@ export const useAuth = () => {
             setLoading(false)
         } catch (error) {
             setLoading(false)
-            errorToast(
-                'Failed To Login',
+            notifyUser(
+                'error',
                 error?.response?.data?.message ||
-                    error.message ||
+                    error?.response?.data?.data?.message ||
                     'Failed To Login',
             )
         }
@@ -154,19 +149,16 @@ export const useAuth = () => {
                 setLoading(false)
                 if (response.data.success) {
                     setUser(response.data.data.user)
-                    successToast(
-                        'Profile Updated',
-                        'Your Profile has been updated.',
-                    )
+                    notifyUser('success', 'Your Profile has been updated.')
                 } else {
-                    errorToast('Error', response?.data?.message)
+                    notifyUser('error', response?.data?.message)
                 }
             })
             .catch(error => {
-                errorToast(
-                    'Error Updating Profile',
+                notifyUser(
+                    'error',
                     error?.response?.data?.message ||
-                        error.message ||
+                        error?.response?.data?.data.data?.message ||
                         'Failed To Update Your Profile',
                 )
                 setLoading(false)
@@ -185,9 +177,11 @@ export const useAuth = () => {
             router.push('/reset-password')
         } catch (error) {
             setLoading(false)
-            errorToast(
-                'An Error Occured, Please try again later',
-                error?.response?.data?.message || error.message || '',
+            notifyUser(
+                'error',
+                error?.response?.data?.data?.message ||
+                    error?.response?.data?.message ||
+                    '',
             )
         }
     }
@@ -198,15 +192,17 @@ export const useAuth = () => {
             const request = await axios.post('/check-otp', { otp, email })
             if (!request.data.success) {
                 setLoading(false)
-                errorToast('Invalid OTP', '')
+                notifyUser('error', 'Invalid OTP')
             } else {
                 await resetPassword()
             }
         } catch (error) {
             setLoading(false)
-            errorToast(
-                'Invalid OTP',
-                error?.response?.data?.message || error.message || '',
+            notifyUser(
+                'error',
+                error?.response?.data?.message ||
+                    error?.response?.data?.data?.message ||
+                    '',
             )
         }
     }
@@ -227,16 +223,15 @@ export const useAuth = () => {
                 },
                 authConfig,
             )
-            successToast(
-                'Password Reset Successful',
-                'Redirecting You To Login',
-            )
+            notifyUser('success', 'Password reset successful')
             router.push('/login')
         } catch (error) {
             setLoading(false)
-            errorToast(
+            notifyUser(
                 'Failed to reset password',
-                error?.response?.data?.message || error.message || '',
+                error?.response?.data?.message ||
+                    error?.response?.data?.data?.message ||
+                    '',
             )
         }
     }
@@ -255,33 +250,17 @@ export const useAuth = () => {
             }
 
             await axios.request(config)
-            successToast('Profile Mode Updated', '')
+            notifyUser('Profile Mode Updated', '')
             await getUser({ setLoading, layout: 'authenticated' })
             setLoading(false)
         } catch (error) {
             setLoading(false)
-            errorToast(
+            notifyUser(
                 'Failed to update mode',
-                error?.response?.data?.message || error.message || '',
+                error?.response?.data?.message ||
+                    error?.response?.data?.data?.message ||
+                    '',
             )
-        }
-    }
-
-    const resendEmailVerification = async ({ setStatus }) => {
-        setStatus({
-            success: 'load',
-            message: 'Sending request!',
-        })
-        try {
-            const response = await axios.post(
-                '/email/verification-notification',
-            )
-            setStatus(response.data.status)
-        } catch (error) {
-            setStatus({
-                success: false,
-                message: 'An error occurred. Please try again.',
-            })
         }
     }
 
@@ -306,7 +285,13 @@ export const useAuth = () => {
             })
             .catch(error => {
                 setLoading(false)
-                toast.error(error.message, toastConfig)
+                notifyUser(
+                    'error',
+                    error?.response?.data?.message ||
+                        error?.response?.data?.data?.message ||
+                        '',
+                    toastConfig,
+                )
                 if (error?.response?.status === 401) {
                     clearUserSession()
                 }
@@ -319,7 +304,6 @@ export const useAuth = () => {
         forgotPassword,
         validateOtp,
         resetPassword,
-        resendEmailVerification,
         logout,
         getUser,
         updateProfile,

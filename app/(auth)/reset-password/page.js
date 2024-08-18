@@ -1,4 +1,3 @@
-import AuthenticationLayout from '@/app/layouts/authentication'
 import ResetPasswordForm from './components/reset-password-form'
 
 export const metadata = {
@@ -27,9 +26,5 @@ export const metadata = {
 }
 
 export default function Page() {
-    return (
-        <AuthenticationLayout>
-            <ResetPasswordForm />
-        </AuthenticationLayout>
-    )
+    return <ResetPasswordForm />
 }

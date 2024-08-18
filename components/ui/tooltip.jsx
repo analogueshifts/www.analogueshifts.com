@@ -14,6 +14,7 @@ const TooltipTrigger = TooltipPrimitive.Trigger
 const TooltipContent = React.forwardRef(
     ({ className, sideOffset = 4, ...props }, ref) => (
         <TooltipPrimitive.Content
+            side="bottom"
             ref={ref}
             sideOffset={sideOffset}
             className={cn(

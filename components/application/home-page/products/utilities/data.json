@@ -1,0 +1,38 @@
+[
+    {
+        "title": "Build your winning",
+        "highlighted": "Resume",
+        "href": "https://forms.analogueshifts.com",
+        "description": "Our resume builder empowers you to create a standout resume that gets you noticed by top employers. Start building your winning resume today and open the door to new opportunities!",
+        "image": "/images/guest-layout/products/vetting-system.svg",
+        "payroll": false
+    },
+    {
+        "title": "Payment Gateway",
+        "href": "https://pay.analogueshifts.com",
+        "description": "Our payment gateway platform enables companies to make bulk payments and create payrolls, while individuals can track their salaries and make bulk payments. It serves both companies and individual staff efficiently.",
+        "image": "/images/guest-layout/products/payment-gateway.svg",
+        "payroll": true
+    },
+    {
+        "title": "Learning Platform",
+        "href": "https://learn.analogueshifts.com",
+        "description": "Join for exclusive access to premium tutorials, behind-the-scenes, and more. Elevate your skill set and acquire a skill that is on high demand today!",
+        "image": "/images/guest-layout/products/learning.svg",
+        "payroll": false
+    },
+    {
+        "title": "Resume Builder",
+        "href": "https://resume.analogueshifts.com",
+        "description": "Experience the ease of our AI-driven resume builder. Harness the capabilities of our Genius resume maker to swiftly and effortlessly craft your professional resume",
+        "image": "/images/guest-layout/products/resume-builder.svg",
+        "payroll": false
+    },
+    {
+        "title": "Event Planner",
+        "href": "https://events.analogueshifts.com",
+        "description": "Our event-creating platform allows users to seamlessly create and manage events. It provides an efficient and intuitive way to organize gatherings and connect with attendees.",
+        "image": "/images/guest-layout/products/event-planner.svg",
+        "payroll": false
+    }
+]

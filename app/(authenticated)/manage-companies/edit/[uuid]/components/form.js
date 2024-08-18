@@ -8,7 +8,7 @@ import InputGroup from '../../../create/components/input-group'
 import DashboardLoader from '@/components/application/dashboard-loader'
 import UploadFile from '../../../create/components/upload-file'
 
-import { errorToast } from '@/utils/error-toast'
+import { useToast } from '@/contexts/toast'
 
 export default function EditCompanyForm({ uuid }) {
     const [loading, setLoading] = useState(false)
@@ -21,6 +21,7 @@ export default function EditCompanyForm({ uuid }) {
     const [description, setDescription] = useState(null)
     const [logo, setLogo] = useState(null)
 
+    const { notifyUser } = useToast()
     const { user } = useUser()
     const { updateCompany, getCompany } = useCompany()
 
@@ -29,7 +30,7 @@ export default function EditCompanyForm({ uuid }) {
     const handleSubmit = async e => {
         e.preventDefault()
         if (logo.trim().length === 0) {
-            errorToast('Something went wrong!', 'Company Logo Is Required')
+            notifyUser('error', 'Company Logo Is Required')
             return
         }
 

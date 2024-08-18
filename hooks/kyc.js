@@ -1,12 +1,12 @@
+'use client'
 import axios from '@/app/lib/axios'
 
 import Cookies from 'js-cookie'
-import { errorToast } from '@/utils/error-toast'
-import { clearUserSession } from '@/utils/clear-user-session'
-import { toast } from 'react-toastify'
-import { toastConfig } from '@/utils/toast-config'
+import { clearUserSession } from '@/configs/clear-user-session'
+import { useToast } from '@/contexts/toast'
 
 export const useKyc = () => {
+    const { notifyUser } = useToast()
     const token = Cookies.get('analogueshifts')
 
     const getKyc = async ({ setData, setLoading }) => {
@@ -26,9 +26,11 @@ export const useKyc = () => {
             setLoading(false)
         } catch (error) {
             setLoading(false)
-            errorToast(
-                'Error Fetching Kyc Information',
-                error?.response?.data?.message || error.message || '',
+            notifyUser(
+                'error',
+                error?.response?.data?.message ||
+                    error?.response?.data?.data?.message ||
+                    'Error Fetching Kyc Information',
             )
             if (error?.response?.status === 401) {
                 clearUserSession()
@@ -51,13 +53,15 @@ export const useKyc = () => {
             const request = await axios.request(config)
             setLoading(false)
             if (request?.data?.success) {
-                toast.success('KYC Information Updated', toastConfig)
+                notifyUser('success', 'KYC Information Updated')
                 router.push('/dashboard')
             }
         } catch (error) {
-            errorToast(
-                'Failed To Update KYC',
-                error?.response?.data?.message || error.message || '',
+            notifyUser(
+                'error',
+                error?.response?.data?.message ||
+                    error?.response?.data?.data?.message ||
+                    'Failed To Update KYC',
             )
             setLoading(false)
             if (error?.response?.status === 401) {

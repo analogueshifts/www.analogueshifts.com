@@ -12,7 +12,7 @@ import {
 import InputGroup from '@/app/(authenticated)/manage-companies/create/components/input-group'
 
 import { jobLocationTypes } from '../../utilities/data'
-import { toast } from 'react-toastify'
+import { useToast } from '@/contexts/toast'
 
 export default function JobLocation() {
     const router = useRouter()
@@ -27,6 +27,7 @@ export default function JobLocation() {
     const [jobLocationType, setJobLocationType] = useState(jobLocationTypes[0])
     const [stateRequirements, setStateRequirements] = useState([])
     const [countryRequirements, setCountryRequirements] = useState([])
+    const { notifyUser } = useToast()
     const submitButtonRef = useRef()
     let slug = pathname.slice(17, pathname.length).split('/')[0]
 
@@ -82,8 +83,8 @@ export default function JobLocation() {
             stateRequirements,
             setStateRequirements,
             stateRequirementValue,
-            toast,
             setStateRequirementValue,
+            notifyUser,
         )
     }
 
@@ -94,19 +95,23 @@ export default function JobLocation() {
             countryRequirements,
             setCountryRequirements,
             countryRequirementValue,
-            toast,
             setCountryRequirementValue,
+            notifyUser,
         )
     }
 
     // Remove a State Requirement
     const deleteStateRequirement = stateName => {
-        removeLocationRequirement(stateName, setStateRequirements, toast)
+        removeLocationRequirement(notifyUser, stateName, setStateRequirements)
     }
 
     // Remove a Country Requirement
     const deleteCountryRequirement = countryName => {
-        removeLocationRequirement(countryName, setCountryRequirements, toast)
+        removeLocationRequirement(
+            notifyUser,
+            countryName,
+            setCountryRequirements,
+        )
     }
 
     // Handle Form Submit

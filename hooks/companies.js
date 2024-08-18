@@ -1,12 +1,11 @@
 import axios from '@/app/lib/axios'
 
 import Cookies from 'js-cookie'
-import { errorToast } from '@/utils/error-toast'
-import { clearUserSession } from '@/utils/clear-user-session'
-import { toast } from 'react-toastify'
-import { toastConfig } from '@/utils/toast-config'
+import { clearUserSession } from '@/configs/clear-user-session'
+import { useToast } from '@/contexts/toast'
 
 export const useCompany = () => {
+    const { notifyUser } = useToast()
     const token = Cookies.get('analogueshifts')
 
     const getCompanies = async ({ url, setData, setLoading }) => {
@@ -26,9 +25,11 @@ export const useCompany = () => {
             setLoading(false)
         } catch (error) {
             setLoading(false)
-            errorToast(
-                'Error Fetching Saved Companies',
-                error?.response?.data?.message || error.message || '',
+            notifyUser(
+                'error',
+                error?.response?.data?.message ||
+                    error?.response?.data?.data?.message ||
+                    'Error Fetching Saved Companies',
             )
             if (error?.response?.status === 401) {
                 clearUserSession()
@@ -53,9 +54,11 @@ export const useCompany = () => {
             setLoading(false)
         } catch (error) {
             setLoading(false)
-            errorToast(
-                'Error Fetching Company',
-                error?.response?.data?.message || error.message || '',
+            notifyUser(
+                'error',
+                error?.response?.data?.message ||
+                    error?.response?.data?.data?.message ||
+                    'Error Fetching Company',
             )
             if (error?.response?.status === 401) {
                 clearUserSession()
@@ -78,13 +81,15 @@ export const useCompany = () => {
             const request = await axios.request(config)
             setLoading(false)
             if (request?.data?.success) {
-                toast.success('Company Added', toastConfig)
+                notifyUser('success', 'Company Added')
                 router.push('/manage-companies')
             }
         } catch (error) {
-            errorToast(
-                'Failed Add Company',
-                error?.response?.data?.message || error.message || '',
+            notifyUser(
+                'error',
+                error?.response?.data?.message ||
+                    error?.response?.data?.data?.message ||
+                    'Failed Add Company',
             )
             setLoading(false)
             if (error?.response?.status === 401) {
@@ -108,13 +113,15 @@ export const useCompany = () => {
             const request = await axios.request(config)
             setLoading(false)
             if (request?.status === 200) {
-                toast.success('Company Updated', toastConfig)
+                notifyUser('success', 'Company Updated')
                 router.push('/manage-companies')
             }
         } catch (error) {
-            errorToast(
-                'Failed Update Company',
-                error?.response?.data?.message || error.message || '',
+            notifyUser(
+                'error',
+                error?.response?.data?.message ||
+                    error?.response?.data?.data?.message ||
+                    'Failed Update Company',
             )
             setLoading(false)
             if (error?.response?.status === 401) {
@@ -137,13 +144,15 @@ export const useCompany = () => {
             const request = await axios.request(config)
             setLoading(false)
             if (request?.status === 200) {
-                toast.success('Company Deleted', toastConfig)
+                notifyUser('success', 'Company Deleted')
                 await getCompanies({ setLoading, url, setData })
             }
         } catch (error) {
-            errorToast(
-                'Failed delete Company',
-                error?.response?.data?.message || error.message || '',
+            notifyUser(
+                'success',
+                error?.response?.data?.message ||
+                    error?.response?.data?.data?.message ||
+                    'Failed delete Company',
             )
             setLoading(false)
             if (error?.response?.status === 401) {

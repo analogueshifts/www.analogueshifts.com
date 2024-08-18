@@ -1,12 +1,36 @@
+'use client'
 import axios from '@/app/lib/axios'
-
 import Cookies from 'js-cookie'
-import { errorToast } from '@/utils/error-toast'
-import { clearUserSession } from '@/utils/clear-user-session'
-import { successToast } from '@/utils/success-toast'
+import { clearUserSession } from '@/configs/clear-user-session'
+import { useToast } from '@/contexts/toast'
 
 export const useJobs = () => {
+    const { notifyUser } = useToast()
     const token = Cookies.get('analogueshifts')
+
+    const getJobs = async ({ url, setLoading, setInfo, setData }) => {
+        const config = {
+            url: url,
+            method: 'GET',
+        }
+
+        try {
+            setLoading(true)
+            const res = await axios.request(config)
+            setInfo(res.data.data.jobs)
+            setData(res.data.data.jobs.data)
+            setLoading(false)
+        } catch (error) {
+            console.log(error)
+            setLoading(false)
+            notifyUser(
+                'error',
+                error?.response?.data?.message ||
+                    error?.response?.data?.data?.message ||
+                    'Error',
+            )
+        }
+    }
 
     const getRecommendedJobs = async ({ url, setData, setLoading }) => {
         const config = {
@@ -25,9 +49,11 @@ export const useJobs = () => {
             setLoading(false)
         } catch (error) {
             setLoading(false)
-            errorToast(
-                'Error Fetching Jobs',
-                error?.response?.data?.message || error.message || '',
+            notifyUser(
+                'error',
+                error?.response?.data?.message ||
+                    error?.response?.data?.message ||
+                    'Error Fetching Jobs',
             )
             if (error?.response?.status === 401) {
                 clearUserSession()
@@ -47,14 +73,16 @@ export const useJobs = () => {
             setLoading(true)
             const request = await axios.request(config)
             if (request?.data?.success) {
-                successToast('Applied Job Stored', '')
+                notifyUser('success', 'Applied Job Stored')
             }
             setLoading(false)
         } catch (error) {
             setLoading(false)
-            errorToast(
-                'Error Storing Job',
-                error?.response?.data?.message || error.message || '',
+            notifyUser(
+                'error',
+                error?.response?.data?.message ||
+                    error?.response?.data?.message ||
+                    'Error Storing Job',
             )
             if (error?.response?.status === 401) {
                 clearUserSession()
@@ -65,5 +93,7 @@ export const useJobs = () => {
     return {
         getRecommendedJobs,
         storeAppliedJob,
+        notifyUser,
+        getJobs,
     }
 }

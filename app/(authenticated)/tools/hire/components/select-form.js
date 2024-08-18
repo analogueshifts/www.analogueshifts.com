@@ -1,5 +1,6 @@
 'use client'
 import { useState } from 'react'
+import { useToast } from '@/contexts/toast'
 import {
     Dialog,
     DialogContent,
@@ -22,14 +23,15 @@ import { Button } from '@/components/ui/button'
 import Cookies from 'js-cookie'
 import FormGridTile from './form-grid-tile'
 import { ChevronDown } from 'lucide-react'
-import { clearUserSession } from '@/utils/clear-user-session'
-import { errorToast } from '@/utils/error-toast'
+import { clearUserSession } from '@/configs/clear-user-session'
 import { Plus } from 'lucide-react'
 
 export default function SelectForm({ selectedForm, setSelectedForm }) {
     const [loading, setLoading] = useState(false)
     const [forms, setForms] = useState([])
     const [currentPageInfo, setCurrentPageInfo] = useState(null)
+    const { notifyUser } = useToast()
+
     const getFormUrl = `${process.env.NEXT_PUBLIC_BACKEND_URL}/tools/form`
     const token = Cookies.get('analogueshifts')
 
@@ -48,9 +50,11 @@ export default function SelectForm({ selectedForm, setSelectedForm }) {
             setForms(response.data.data.forms.data)
             setLoading(false)
         } catch (error) {
-            errorToast(
-                'Error Fetching Forms',
-                error?.response?.data?.message || error.message || '',
+            notifyUser(
+                'error',
+                error?.response?.data?.data?.message ||
+                    error?.response?.data?.message ||
+                    'Error Fetching Forms',
             )
             setLoading(false)
             if (error?.response?.status === 401) {

@@ -2,8 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@import '/scss/_footer.scss';
-
 :root {
     --light: #fefefe;
     --as: #e5be39;
@@ -83,6 +81,7 @@
     }
     body {
         @apply bg-background text-foreground;
+        @apply font-sans;
     }
 }
 
@@ -456,14 +455,175 @@ body::-webkit-scrollbar-thumb:hover {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     z-index: 1000;
 }
-@keyframes lds-roller {
+
+.hamburger {
+    cursor: pointer;
+    width: 24px;
+    height: 24px;
+    transition: all 0.25s;
+    position: relative;
+}
+
+.hamburger-top,
+.hamburger-middle,
+.hamburger-bottom {
+    content: '';
+    position: absolute;
+    width: 24px;
+    height: 3px;
+    top: 0;
+    right: 0;
+    transform: rotate(0);
+    transition: all 0.5s;
+}
+
+.hamburger-middle {
+    transform: translateY(7px);
+    width: 14px;
+}
+
+.hamburger-bottom {
+    transform: translateY(14px);
+}
+
+.open {
+    transform: rotate(90deg);
+    transform: translateY(0px);
+}
+
+.open .hamburger-top {
+    transform: rotate(45deg) translateY(6px) translateX(6px);
+}
+
+.open .hamburger-middle {
+    display: none;
+}
+
+.open .hamburger-bottom {
+    transform: rotate(-45deg) translateY(6px) translateX(-6px);
+}
+
+/* Switch Style */
+.switch {
+    width: 60px;
+    height: 30px;
+    background-color: var(--grey);
+    display: flex;
+    justify-content: flex-start;
+    border-radius: 50px;
+    padding: 5px;
+    cursor: pointer;
+}
+
+.switch[data-isOn='true'] {
+    justify-content: flex-end;
+}
+
+.handle {
+    width: 20px;
+    height: 20px;
+    background-color: white;
+    border-radius: 40px;
+}
+
+.scrollbar-hidden::-webkit-scrollbar {
+    display: none;
+}
+
+input[type='password']::-webkit-textfield-decoration-container {
+    display: none;
+}
+
+input[type='password']::-moz-svg-anonymous {
+    display: none;
+}
+
+input[type='password']::-ms-reveal {
+    display: none;
+}
+
+.products-menu {
+    box-shadow: 0px 20px 417px 0px #00000012;
+}
+
+.right-arrow {
+    animation: move 0.7s infinite alternate;
+}
+.verified-img-card {
+    box-shadow: 0px 2.89px 23.35px 0px #00000006;
+    box-shadow: 0px 12.92px 53.95px 0px #00000009;
+    box-shadow: 0px 32.14px 123.2px 0px #0000000b;
+    box-shadow: 0px 62.58px 262.51px 0px #0000000f;
+    box-shadow: 0px 106.29px 503.27px 0px #00000014;
+}
+
+.our-apps-menu {
+    box-shadow: 0px 2.89px 23.35px 0px #00000006;
+    box-shadow: 0px 12.92px 53.95px 0px #00000003;
+    box-shadow: 0px 32.14px 123.2px 0px #0000000b;
+    box-shadow: 0px 62.58px 262.51px 0px #00000005;
+    box-shadow: 0px 106.29px 503.27px 0px #0000000a;
+}
+
+.profile-menu:hover .profile-chevron {
+    transform: translateY(2px);
+}
+
+.talent-pool-card {
+    border: 0.86px solid #ffbb0a;
+}
+.review-box {
+    border: 0.67px solid #ffbb0a;
+}
+.scroll-hidden::-webkit-scrollbar {
+    display: none;
+}
+
+.slide-up-text {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+}
+
+/* tiptap.css */
+.prose ol,
+.prose ul {
+    margin-left: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.prose ol {
+    list-style-type: decimal;
+}
+.prose ul {
+    list-style: disc;
+}
+
+@keyframes move {
+    0% {
+        transform: translateX(0px);
+    }
+    100% {
+        transform: translateX(5px);
+    }
+}
+@keyframes right-to-left {
+    0% {
+        transform: translateX(0%);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+/* @keyframes lds-roller {
     0% {
         transform: rotate(0deg);
     }
     100% {
         transform: rotate(360deg);
     }
-}
+} */
 
 @keyframes ballAnimation {
     0%,
@@ -559,90 +719,4 @@ body::-webkit-scrollbar-thumb:hover {
     .content main {
         max-height: calc(100vh - 80px);
     }
-}
-
-.hamburger {
-    cursor: pointer;
-    width: 24px;
-    height: 24px;
-    transition: all 0.25s;
-    position: relative;
-}
-
-.hamburger-top,
-.hamburger-middle,
-.hamburger-bottom {
-    content: '';
-    position: absolute;
-    width: 24px;
-    height: 3px;
-    top: 0;
-    right: 0;
-    transform: rotate(0);
-    transition: all 0.5s;
-}
-
-.hamburger-middle {
-    transform: translateY(7px);
-    width: 14px;
-}
-
-.hamburger-bottom {
-    transform: translateY(14px);
-}
-
-.open {
-    transform: rotate(90deg);
-    transform: translateY(0px);
-}
-
-.open .hamburger-top {
-    transform: rotate(45deg) translateY(6px) translateX(6px);
-}
-
-.open .hamburger-middle {
-    display: none;
-}
-
-.open .hamburger-bottom {
-    transform: rotate(-45deg) translateY(6px) translateX(-6px);
-}
-
-/* Switch Style */
-.switch {
-    width: 60px;
-    height: 30px;
-    background-color: var(--grey);
-    display: flex;
-    justify-content: flex-start;
-    border-radius: 50px;
-    padding: 5px;
-    cursor: pointer;
-}
-
-.switch[data-isOn='true'] {
-    justify-content: flex-end;
-}
-
-.handle {
-    width: 20px;
-    height: 20px;
-    background-color: white;
-    border-radius: 40px;
-}
-
-.scrollbar-hidden::-webkit-scrollbar {
-    display: none;
-}
-
-input[type='password']::-webkit-textfield-decoration-container {
-    display: none;
-}
-
-input[type='password']::-moz-svg-anonymous {
-    display: none;
-}
-
-input[type='password']::-ms-reveal {
-    display: none;
 }
