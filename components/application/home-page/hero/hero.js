@@ -6,9 +6,9 @@ import Briefcase from '@/public/images/guest-layout/hero/filled_briefcase.svg'
 
 function Hero() {
     return (
-        <section className="w-full overflow-hidden large:h-hero h-mobileHero relative">
+        <section className="w-full overflow-hidden h-max large:pb-[216px] tablet:pb-[120px] pb-[170px] large:pt-[91px] pt-16 relative">
             <BackgroundImages />
-            <div className="w-full h-full absolute z-20 top-0 left-0 bg-transparent flex flex-col items-center justify-center">
+            <div className="w-full h-max sticky z-20  bg-transparent flex flex-col items-center justify-center">
                 <div className="w-max max-w-full h-max tablet:mb-3 mb-5 rounded-full tablet:py-1 py-1.5 large:py-2.5 tablet:px-2.5 px-3.5 large:px-6 flex items-center tablet:gap-1 gap-2.5 bg-tremor-background-darkYellow/10">
                     <Image
                         className="large:w-max h-max tablet:w-2.5 w-4"

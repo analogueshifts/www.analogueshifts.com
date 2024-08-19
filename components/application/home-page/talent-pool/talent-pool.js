@@ -9,7 +9,7 @@ import SectionMessage from '../section-message'
 
 export default function TalentPool() {
     return (
-        <section className="w-full relative items-end flex flex-col gap-6 large:gap-12 large:pb-69 tablet:pb-4 pb-6 large:pt-168 tablet:pt-3 pt-6 tablet:px-6 px-20 large:px-112">
+        <section className="w-full relative items-end flex flex-col gap-6 large:gap-12 large:pb-69 tablet:pb-4 pb-6 large:pt-168 tablet:pt-3 pt-16 tablet:px-6 px-20 large:px-112">
             <Image
                 src={Briefcase}
                 alt=""

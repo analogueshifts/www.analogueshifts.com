@@ -558,11 +558,7 @@ input[type='password']::-ms-reveal {
 }
 
 .our-apps-menu {
-    box-shadow: 0px 2.89px 23.35px 0px #00000006;
-    box-shadow: 0px 12.92px 53.95px 0px #00000003;
-    box-shadow: 0px 32.14px 123.2px 0px #0000000b;
-    box-shadow: 0px 62.58px 262.51px 0px #00000005;
-    box-shadow: 0px 106.29px 503.27px 0px #0000000a;
+    box-shadow: 0px 106.29px 503.27px 0px rgba(0, 0, 0, 0.08);
 }
 
 .profile-menu:hover .profile-chevron {
