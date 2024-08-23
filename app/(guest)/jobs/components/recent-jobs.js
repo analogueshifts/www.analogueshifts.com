@@ -23,7 +23,7 @@ export default function RecentJobs({ jobs }) {
                         return (
                             <div
                                 key={item.slug}
-                                className="border gap-4 border-tremor-brand-boulder200 w-max h-max rounded-2xl py-5 px-6 flex flex-col">
+                                className="border gap-4 border-tremor-brand-boulder200 w-max rounded-2xl py-5 px-6 flex flex-col">
                                 <div className="w-max flex items-center gap-3">
                                     <Image
                                         src={Briefcase}

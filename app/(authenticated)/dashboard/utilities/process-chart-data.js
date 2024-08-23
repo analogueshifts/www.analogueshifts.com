@@ -1,16 +1,10 @@
-export const processChartData = data => {
+export const processHireChartData = data => {
     const dates = []
     const hiresCount = []
-    const formsCount = []
 
     data.hires.forEach(item => {
         dates.push(item.date)
         hiresCount.push(item.count)
-    })
-
-    data.forms.forEach(item => {
-        dates.push(item.date)
-        formsCount.push(item.count)
     })
 
     return {
@@ -23,11 +17,27 @@ export const processChartData = data => {
                 backgroundColor: '#876307',
                 fill: true,
             },
+        ],
+    }
+}
+
+export const processJobsChartData = data => {
+    const dates = []
+    const appliedCount = []
+
+    data.applied.forEach(item => {
+        dates.push(item.date)
+        appliedCount.push(item.count)
+    })
+
+    return {
+        labels: dates,
+        datasets: [
             {
-                label: 'Forms',
-                data: formsCount,
-                borderColor: '#D5AE35',
-                backgroundColor: '#D5AE35',
+                label: 'Jobs Applied',
+                data: appliedCount,
+                borderColor: '#876307',
+                backgroundColor: '#876307',
                 fill: true,
             },
         ],

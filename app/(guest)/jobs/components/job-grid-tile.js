@@ -15,7 +15,7 @@ export default function JobGridTile({ item, index, total, handleApply }) {
                         '/images/guest-layout/hero/filled_briefcase.svg'
                     }
                     alt=""
-                    className="large:w-16 w-[50px] tablet:w-10 h-max rounded-full object-cover"
+                    className="large:w-16 large:h-16 w-[50px] tablet:w-10 tablet:h-10 h-[50px] rounded-full object-cover"
                 />
                 <div className="flex flex-col gap-1 large:gap-2.5 w-[calc(100%-64px)]">
                     <h2 className="text-black truncate tablet:text-sm text-base large:text-xl font-semibold">

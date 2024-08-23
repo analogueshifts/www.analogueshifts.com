@@ -20,7 +20,7 @@ ChartJS.register(
     Legend,
 )
 
-export default function RenderChart({ chartData }) {
+export default function RenderChart({ chartData, title }) {
     const options = {
         responsive: true,
         plugins: {
@@ -29,7 +29,7 @@ export default function RenderChart({ chartData }) {
             },
             title: {
                 display: true,
-                text: 'Hires and Forms Over Time',
+                text: title,
             },
         },
         scales: {

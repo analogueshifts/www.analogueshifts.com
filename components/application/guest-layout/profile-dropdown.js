@@ -58,7 +58,7 @@ export default function LoggedInProfileDropdown({ user, handleLogout }) {
                 <Avatar className="w-7 h-7">
                     <AvatarImage
                         className="object-cover"
-                        src={user?.profile}
+                        src={user?.user_profile?.avatar}
                         alt="Profile"
                     />
                     <AvatarFallback className="bg-background-darkYellow text-white text-sm font-bold ">

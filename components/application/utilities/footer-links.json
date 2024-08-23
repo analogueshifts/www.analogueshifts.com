@@ -3,62 +3,62 @@
         "title": "Discover Talents",
         "links": [
             {
-                "name": "For Companies",
+                "name": "Job seeker",
                 "path": "mailto:hello@analogueshifts.com"
             },
             {
-                "name": "Enterprises",
+                "name": "Recruiter",
                 "path": "mailto:hello@analogueshifts.com"
             },
             {
-                "name": "Case Study",
-                "path": "mailto:hello@analogueshifts.com"
+                "name": "Post a job",
+                "path": "/dashboard"
             }
         ]
     },
     {
-        "title": "Find Work",
+        "title": "Our Products",
         "links": [
             {
-                "name": "For Technologies",
-                "path": "mailto:hello@analogueshifts.com"
+                "name": "Vetting System",
+                "path": "https://forms.analogueshifts.com/"
             },
             {
-                "name": "Learning Community",
-                "path": "mailto:hello@analogueshifts.com"
+                "name": "Payment Gateway",
+                "path": "https://pay.analogueshifts.com/"
             },
             {
-                "name": "Leadership Program",
-                "path": "mailto:hello@analogueshifts.com"
+                "name": "Learning platform",
+                "path": "https://pay.analogueshifts.com/"
             },
             {
-                "name": "Resources",
-                "path": "mailto:hello@analogueshifts.com"
+                "name": "Resume Builder",
+                "path": "https://resume.analogueshifts.com/"
+            },
+            {
+                "name": "Event Planner",
+                "path": "https://events.analogueshifts.com/"
             }
         ]
     },
     {
-        "title": "Analogue Shifts",
+        "title": "Company",
         "links": [
             {
                 "name": "About Us",
                 "path": "/about"
             },
             {
-                "name": "Events",
-                "path": "mailto:hello@analogueshifts.com"
+                "name": "Jobs",
+                "path": "/jobs"
             },
             {
-                "name": "Blog",
+                "name": "Blogs",
                 "path": "https://blog.analogueshifts.com"
             },
             {
-                "name": "Press Center",
-                "path": "mailto:hello@analogueshifts.com"
-            },
-            {
-                "name": "Careers",
-                "path": "mailto:hello@analogueshifts.com"
+                "name": "Contact Us",
+                "path": "/contact"
             }
         ]
     },

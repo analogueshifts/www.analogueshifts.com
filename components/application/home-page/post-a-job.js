@@ -1,3 +1,7 @@
+'use client'
+import { useUser } from '@/contexts/user'
+import { useRouter } from 'next/navigation'
+
 import Image from 'next/image'
 
 import SectionMessage from './section-message'
@@ -6,6 +10,9 @@ import FormImage from '@/public/images/guest-layout/post-a-job/form.svg'
 import VerifiedImage from '@/public/images/guest-layout/post-a-job/verified.svg'
 
 export default function PostAJob() {
+    const { user } = useUser()
+    const router = useRouter()
+
     return (
         <section className="w-full relative overflow-hidden large:py-168 tablet:py-14 py-24 tablet:px-6 px-20 items-center large:px-112 tablet:flex flex-col-reverse grid large:grid grid-cols-2 tablet:gap-10 gap-88">
             <div className=" col-span-1  w-max max-w-full">
@@ -22,6 +29,13 @@ export default function PostAJob() {
             />
             <div className="col-span-1 z-20 w-full">
                 <SectionMessage
+                    action={() => {
+                        router.push(
+                            user
+                                ? '/dashboard'
+                                : 'https://auth.analogueshifts.app?app=main',
+                        )
+                    }}
                     title="Post A Job"
                     highlighted="Today"
                     buttonChildren="Get Started"

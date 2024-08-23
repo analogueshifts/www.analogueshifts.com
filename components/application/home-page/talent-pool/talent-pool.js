@@ -1,3 +1,4 @@
+'use client'
 import Card from './card'
 
 import Image from 'next/image'
@@ -7,7 +8,13 @@ import WorkIcon from '@/public/images/guest-layout/hero/filled_briefcase.svg'
 import EfficientIcon from '@/public/images/guest-layout/talent-pool/efficient-icon.svg'
 import SectionMessage from '../section-message'
 
+import { useUser } from '@/contexts/user'
+import { useRouter } from 'next/navigation'
+
 export default function TalentPool() {
+    const router = useRouter()
+    const { user } = useUser()
+
     return (
         <section className="w-full relative items-end flex flex-col gap-6 large:gap-12 large:pb-69 tablet:pb-4 pb-6 large:pt-168 tablet:pt-3 pt-16 tablet:px-6 px-20 large:px-112">
             <Image
@@ -17,6 +24,13 @@ export default function TalentPool() {
             />
             <div className="1186:absolute static  large:left-[112px] sm:left-20 left-6 max-w-full  1186:max-w-564 w-max">
                 <SectionMessage
+                    action={() =>
+                        router.push(
+                            user
+                                ? '/dashboard'
+                                : 'https://auth.analogueshifts.app?app=main',
+                        )
+                    }
                     title="Connecting you to the Right Tech"
                     highlighted="Talents"
                     description="The global talent pool is at your fingertips. We take the hassle  out of remote recruitment, connecting you with highly skilled tech professionals worldwide."

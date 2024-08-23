@@ -3,39 +3,10 @@ import { useToast } from '@/contexts/toast'
 import axios from '@/app/lib/axios'
 import Cookies from 'js-cookie'
 import { clearUserSession } from '@/configs/clear-user-session'
-import { processChartData } from '@/app/(authenticated)/dashboard/utilities/process-chart-data'
 
 export const useHire = () => {
     const { notifyUser } = useToast()
     const token = Cookies.get('analogueshifts')
-
-    const getStats = async ({ url, setData }) => {
-        const config = {
-            url: url,
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-                Accept: 'application/json',
-                Authorization: 'Bearer ' + token,
-            },
-        }
-        try {
-            const request = await axios.request(config)
-            if (request?.data) {
-                setData(processChartData(request.data.data.dashboard))
-            }
-        } catch (error) {
-            notifyUser(
-                'error',
-                error?.response?.data?.message ||
-                    error?.response?.data?.data?.message ||
-                    'Failed To Fetch Statistics Data',
-            )
-            if (error?.response?.status === 401) {
-                clearUserSession()
-            }
-        }
-    }
 
     const uploadFile = async ({ fileValue, setLoading, setData }) => {
         const formData = new FormData()
@@ -207,7 +178,6 @@ export const useHire = () => {
     }
 
     return {
-        getStats,
         uploadFile,
         createJob,
         updateJob,

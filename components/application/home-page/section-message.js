@@ -3,6 +3,7 @@ export default function SectionMessage({
     highlighted,
     description,
     buttonChildren,
+    action,
 }) {
     return (
         <div className="section w-max max-w-full flex flex-col">
@@ -18,6 +19,7 @@ export default function SectionMessage({
                 {description}
             </p>
             <button
+                onClick={action}
                 className={`flex gap-1 items-center py-2.5 h-12 large:h-14 px-12 bg-tremor-background-darkYellow rounded-2xl text-sm large:text-base text-tremor-brand-boulder50 font-semibold w-max `}>
                 {buttonChildren}
             </button>

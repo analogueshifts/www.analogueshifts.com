@@ -1,36 +1,16 @@
 'use client'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import Curve from '@/public/images/curve.png'
 import Image from 'next/image'
-import RenderChart from './chart'
 import EditProfile from './edit-profile'
 import DashboardLoader from '@/components/application/dashboard-loader'
-import { stats } from '../utilities/stats'
-import VerifiedCheckMark from './verified-check'
-import Filter, { formatDate } from './filter'
-import { getOneMonthAgoDate } from '../utilities/one-month-ago'
 import { useUser } from '@/contexts/user'
-import { useHire } from '@/hooks/hires'
 import UserModeSwitch from './user-mode'
+import UserStats from './user-stats'
 
 export default function Dashboard() {
     const [loading, setLoading] = useState(false)
-    const [data, setData] = useState(stats)
     const { user } = useUser()
-    const { getStats } = useHire()
-
-    useEffect(() => {
-        if (user) {
-            getStats({
-                url:
-                    '/dashboard?start=' +
-                    `${formatDate(getOneMonthAgoDate())}${
-                        '&stop=' + formatDate(new Date())
-                    }`,
-                setData,
-            })
-        }
-    }, [user])
 
     return (
         <>
@@ -48,9 +28,8 @@ export default function Dashboard() {
                             width={112}
                             height={112}
                             src={
-                                user?.profile
-                                    ? user.profile
-                                    : '/images/profile_avatar.JPG'
+                                user?.user_profile?.avatar ||
+                                '/images/profile_avatar.JPG'
                             }
                             alt="Profile"
                             className="rounded-full object-cover h-28 w-28 "
@@ -59,10 +38,9 @@ export default function Dashboard() {
                     <div className="-translate-y-5">
                         <div className="w-full gap-2 flex items-center">
                             <h2 className="text-2xl font-bold truncate w-max max-w-[90%] text-gray-800">
-                                {user?.first_name}{' '}
-                                {user?.last_name && ' ' + user.last_name}
+                                {user?.user_profile?.first_name}{' '}
+                                {user?.user_profile?.last_name}
                             </h2>
-                            {user?.email_verified_at && <VerifiedCheckMark />}
                         </div>
                         <p className="text-gray-600">{user?.email}</p>
                         {/* <p className="text-blue-500">Nigeria</p> */}
@@ -71,8 +49,7 @@ export default function Dashboard() {
 
                     {user && <EditProfile updateLoading={setLoading} />}
 
-                    <RenderChart chartData={data} />
-                    <Filter submit={url => getStats({ url, setData })} />
+                    <UserStats />
                     {/* <OurApps /> */}
                 </div>
 

@@ -1,10 +1,13 @@
+'use client'
 import Image from 'next/image'
 import products from './utilities/data.json'
 import SectionMessage from '../section-message'
 import RightArrow from '@/public/images/guest-layout/products/right-arrow.svg'
 import Payroll from '@/public/images/guest-layout/payroll.svg'
+import { useRouter } from 'next/navigation'
 
 export default function Products() {
+    const router = useRouter()
     return (
         <>
             <div className="w-full z-10 h-max pb-10 large:pb-20 large:pt-168 pt-12 sticky top-12 large:top-0 bg-white items-center flex flex-col tablet:px-6 px-20 large:px-112">
@@ -44,6 +47,7 @@ export default function Products() {
                                 </div>
                                 <div className="col-span-1">
                                     <SectionMessage
+                                        action={() => router.push(item.href)}
                                         title={item.title}
                                         highlighted={item?.highlighted || ''}
                                         buttonChildren={

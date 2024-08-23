@@ -1,9 +1,9 @@
 [
     {
-        "title": "Build your winning",
-        "highlighted": "Resume",
+        "title": "Create ",
+        "highlighted": "Forms",
         "href": "https://forms.analogueshifts.com",
-        "description": "Our resume builder empowers you to create a standout resume that gets you noticed by top employers. Start building your winning resume today and open the door to new opportunities!",
+        "description": "Create and customize surveys, quizzes, and forms with ease on our intuitive platform. Gather valuable insights, streamline data collection, and make informed decisions. Start building your forms today and simplify your workflow!",
         "image": "/images/guest-layout/products/vetting-system.svg",
         "payroll": false
     },
@@ -24,7 +24,7 @@
     {
         "title": "Resume Builder",
         "href": "https://resume.analogueshifts.com",
-        "description": "Experience the ease of our AI-driven resume builder. Harness the capabilities of our Genius resume maker to swiftly and effortlessly craft your professional resume",
+        "description": "Our resume builder empowers you to create a standout resume that gets you noticed by top employers. Start building your winning resume today and open the door to new opportunities!",
         "image": "/images/guest-layout/products/resume-builder.svg",
         "payroll": false
     },

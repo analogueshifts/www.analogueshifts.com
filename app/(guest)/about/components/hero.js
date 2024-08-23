@@ -1,7 +1,6 @@
 'use client'
 import BackgroundImages from './bg-images'
 
-import Link from 'next/link'
 import Image from 'next/image'
 
 import Briefcase from '@/public/images/guest-layout/hero/filled_briefcase.svg'
