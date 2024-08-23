@@ -25,7 +25,7 @@ export const useAuth = () => {
                 window.location.href = '/'
             }
         } catch (error) {
-            notifyUser('error', 'Invalid Request')
+            notifyUser('error', error.messsage || 'Invalid Request')
             window.location.href = '/'
         }
     }

@@ -54,7 +54,7 @@ export default function LoggedInProfileDropdown({ user, handleLogout }) {
         <div ref={dropdownRef} className="relative">
             <div
                 onClick={toggleDropdown}
-                className="profile-menu flex gap-2 bg-gray-50 items-center cursor-pointer p-1 rounded-full">
+                className="profile-menu hidden lg:flex gap-2 bg-gray-50 items-center cursor-pointer p-1 rounded-full">
                 <Avatar className="w-7 h-7">
                     <AvatarImage
                         className="object-cover"
