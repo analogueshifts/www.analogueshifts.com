@@ -2,6 +2,7 @@
 import { useRouter, useSearchParams } from 'next/navigation'
 import { useEffect } from 'react'
 import { useAuth } from '@/hooks/auth'
+import Cookies from 'js-cookie'
 
 export default function Validate() {
     const searchParams = useSearchParams()
@@ -14,7 +15,8 @@ export default function Validate() {
         if (token) {
             validateApp({ appToken: token })
         } else {
-            router.push('/')
+            let RedirectionLink = Cookies.get('RedirectionLink')
+            router.push(RedirectionLink || '/')
         }
     }, [])
 

@@ -36,7 +36,7 @@ export default function AuthenticatedLayout({ children }) {
         // Redirect To Login if User is not Authenticated
         if (!user && !token) {
             Cookies.set('RedirectionLink', pathname)
-            window.location.href = '/login'
+            window.location.href = '/'
             return null
         } else if (!user && token) {
             //    Fetch User

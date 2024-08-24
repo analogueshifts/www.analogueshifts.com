@@ -27,7 +27,7 @@ export default function AboutJob({ job, slug }) {
             setIdiomModal(true)
         } else {
             Cookies.set('RedirectionLink', pathname)
-            router.push('/login')
+            router.push('https://auth.analogueshifts.app?app=main')
         }
     }
 

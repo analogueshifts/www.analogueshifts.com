@@ -19,7 +19,7 @@ export default function AsideSection({ user }) {
                     <div className="w-max text-tremor-brand-boulder400 flex items-center text-sm large:text-base font-normal">
                         Already have an account?&nbsp;
                         <Link
-                            href="/login"
+                            href="https://auth.analogueshifts.app?app=main"
                             className="text-tremor-background-darkYellow">
                             Login
                         </Link>
@@ -31,7 +31,11 @@ export default function AsideSection({ user }) {
                     Post a job
                 </p>
                 <Link
-                    href={user ? '/tools/hire' : '/login'}
+                    href={
+                        user
+                            ? '/tools/hire'
+                            : 'https://auth.analogueshifts.app?app=main'
+                    }
                     className="w-full h-14 mb-4 rounded-2xl bg-white border border-tremor-background-darkYellow text-tremor-background-darkYellow flex justify-center items-center text-sm large:text-base font-semibold">
                     Post job
                 </Link>

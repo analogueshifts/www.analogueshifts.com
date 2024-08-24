@@ -3,7 +3,7 @@ import Validate from './components/validate'
 
 export default function Page() {
     return (
-        <Suspense fallback={<p>Redirecting...</p>}>
+        <Suspense fallback={<p></p>}>
             <Validate />
         </Suspense>
     )

@@ -1,4 +1,5 @@
 {
+  "/(guest)/page": "app/(guest)/page.js",
   "/(guest)/callback/auth/page": "app/(guest)/callback/auth/page.js",
-  "/(guest)/page": "app/(guest)/page.js"
+  "/(guest)/jobs/page": "app/(guest)/jobs/page.js"
 }

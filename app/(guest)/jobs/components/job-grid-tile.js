@@ -1,8 +1,11 @@
 'use client'
 import Link from 'next/link'
 import { formatNumber, formatUnitText } from '@/configs/jobs/format'
+import { useRouter } from 'next/navigation'
 
 export default function JobGridTile({ item, index, total, handleApply }) {
+    const router = useRouter()
+
     return (
         <div
             className={`w-full flex pb-7  large:pb-10 items-start tablet:gap-7 gap-12 large:gap-16 justify-between flex-row tablet:flex-col ${
@@ -58,7 +61,7 @@ export default function JobGridTile({ item, index, total, handleApply }) {
                         if (handleApply) {
                             handleApply()
                         } else {
-                            console.log('Apply')
+                            router.push('/jobs/' + item?.slug)
                         }
                     }}
                     className="rounded-2xl tablet:h-10  h-14 bg-tremor-background-darkYellow flex justify-center items-center text-tremor-brand-boulder50  text-sm large:text-base font-semibold large:w-[141px] w-28">

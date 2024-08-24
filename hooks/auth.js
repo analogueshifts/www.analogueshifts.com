@@ -14,6 +14,7 @@ export const useAuth = () => {
     const token = Cookies.get('analogueshifts')
 
     const validateApp = async ({ appToken }) => {
+        let RedirectionLink = Cookies.get('RedirectionLink')
         try {
             const response = await axios.request({
                 url: '/app/callback/' + appToken,
@@ -22,11 +23,12 @@ export const useAuth = () => {
             if (response.data?.success) {
                 Cookies.set('analogueshifts', response.data?.data.token)
                 notifyUser('success', 'success')
-                window.location.href = '/'
+                window.location.href = RedirectionLink || '/'
             }
         } catch (error) {
             notifyUser('error', error.messsage || 'Invalid Request')
-            window.location.href = '/'
+            router.push(RedirectionLink || '/')
+            console.log(error)
         }
     }
 
@@ -147,7 +149,7 @@ export const useAuth = () => {
             .request(config)
             .then(res => {
                 Cookies.remove('analogueshifts')
-                window.location.href = '/login'
+                window.location.href = '/'
             })
             .catch(error => {
                 setLoading(false)

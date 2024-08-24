@@ -23,8 +23,8 @@ export default function RecentJobs({ jobs }) {
                         return (
                             <div
                                 key={item.slug}
-                                className="border gap-4 border-tremor-brand-boulder200 w-max rounded-2xl py-5 px-6 flex flex-col">
-                                <div className="w-max flex items-center gap-3">
+                                className="border h-[262px] gap-4 border-tremor-brand-boulder200 w-max rounded-2xl py-5 px-6 justify-between flex flex-col">
+                                <div className="w-max h-10 flex items-center gap-3">
                                     <Image
                                         src={Briefcase}
                                         alt=""
@@ -77,11 +77,11 @@ export default function RecentJobs({ jobs }) {
                                     dangerouslySetInnerHTML={{
                                         __html: item?.description,
                                     }}
-                                    className="font-normal tablet:max-w-[200px] max-w-[279px] text-xs overflow-hidden text-ellipsis line-clamp-2 leading-6 text-[#909090]"></span>
+                                    className="font-normal h-12 tablet:max-w-[200px] max-w-[279px] text-xs overflow-hidden text-ellipsis line-clamp-2 leading-6 text-[#909090]"></span>
                                 <div className="w-full border-b border-[#DBDBDB] mb-1"></div>
                                 <Link
                                     href={'/jobs/' + item?.slug}
-                                    className="w-full flex justify-between items-center">
+                                    className="w-full h-6 flex justify-between items-center">
                                     <span className="text-black text-[11px] font-normal">
                                         Actively Hiring
                                     </span>
