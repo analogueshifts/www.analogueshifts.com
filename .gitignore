@@ -4,16 +4,17 @@
 /node_modules
 /.pnp
 .pnp.js
+.yarn/install-state.gz
 
 # testing
 /coverage
 
 # next.js
 /.next/
-# /out/
+/out/
 
 # production
-# /build
+/build
 
 # misc
 .DS_Store
@@ -33,3 +34,7 @@ yarn-error.log*
 
 # vercel
 .vercel
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
