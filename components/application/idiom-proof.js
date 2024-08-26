@@ -2,6 +2,9 @@
 import { Fragment, useRef } from 'react'
 import { Transition, Dialog } from '@headlessui/react'
 
+import Image from 'next/image'
+import Spinner from '@/public/images/spinner-white.svg'
+
 export default function IdiomProof({
     title,
     description,
@@ -9,7 +12,7 @@ export default function IdiomProof({
     action,
     close,
     buttonLabel,
-    success,
+    loading,
 }) {
     const cancelButtonRef = useRef(null)
     return (
@@ -43,19 +46,6 @@ export default function IdiomProof({
                             <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
                                 <div className="bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
                                     <div className="sm:flex sm:items-start">
-                                        <div
-                                            className={`mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full  sm:mx-0 sm:h-10 sm:w-10 ${
-                                                success
-                                                    ? 'bg-tremor-background-darkYellow/40'
-                                                    : 'bg-red-100'
-                                            }`}>
-                                            {!success && (
-                                                <i
-                                                    className=" text-red-600 fas fa-triangle-exclamation"
-                                                    aria-hidden="true"></i>
-                                            )}
-                                            {success && <p>😊</p>}
-                                        </div>
                                         <div className="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left">
                                             <Dialog.Title
                                                 as="h3"
@@ -63,27 +53,31 @@ export default function IdiomProof({
                                                 {title}
                                             </Dialog.Title>
                                             <div className="mt-2">
-                                                <p className="text-sm text-gray-500">
+                                                <p className="text-sm text-tremor-brand-boulder400">
                                                     {description}
                                                 </p>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div className="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
+                                <div className=" px-4 pb-6 pt-4 sm:flex sm:flex-row-reverse sm:px-6">
                                     <button
                                         type="button"
-                                        className={`inline-flex w-full justify-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm  sm:ml-3 sm:w-auto ${
-                                            success
-                                                ? 'bg-tremor-background-lightYellow'
-                                                : 'hover:bg-red-500'
-                                        }`}
+                                        className={`inline-flex items-center gap-1.5 w-full justify-center rounded-xl  h-10  text-xs font-semibold text-tremor-brand-boulder50  sm:ml-3 sm:w-auto px-10 bg-tremor-background-darkYellow`}
                                         onClick={action}>
-                                        {buttonLabel ? buttonLabel : title}
+                                        {loading ? (
+                                            <Image
+                                                src={Spinner}
+                                                alt=""
+                                                className="w-8"
+                                            />
+                                        ) : (
+                                            buttonLabel || title
+                                        )}
                                     </button>
                                     <button
                                         type="button"
-                                        className="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto"
+                                        className="mt-3 inline-flex border w-full items-center h-10 px-8 rounded-xl justify-center py-2 text-xs font-semibold text-tremor-brand-boulder400 sm:mt-0 sm:w-auto"
                                         onClick={close}
                                         ref={cancelButtonRef}>
                                         Cancel

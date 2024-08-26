@@ -1,5 +1,4 @@
 'use client'
-import { useToast } from '@/contexts/toast'
 import Cookies from 'js-cookie'
 
 export const handleSubmit = (
@@ -12,8 +11,8 @@ export const handleSubmit = (
     salaryCurrency,
     salaryUnitText,
     router,
+    notifyUser,
 ) => {
-    const { notifyUser } = useToast()
     // If salary is not a valid number, Throw an Error
     if (isNaN(salaryValue)) {
         notifyUser('error', 'Salary value must be a valid number')

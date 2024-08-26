@@ -1,28 +1,26 @@
 'use client'
 import React, { useState, useEffect } from 'react'
-import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import Cookies from 'js-cookie'
-import DashboardLoader from '@/components/application/dashboard-loader'
-import ApplicationLogo from '@/components/application/application-logo'
-import MenuDropDown from '@/components/application/menu-dropdown'
-import IdiomProof from '@/components/application/idiom-proof'
-import SidebarMenu from '@/components/application/side-bar-menu'
-import NotificationSection from '@/components/application/notifications-section'
-import UnverifiedBanner from '@/components/application/unverified-banner'
-import { handleResize, toggleDrawer } from './utilities/utilities'
+import MenuDropDown from '@/components/application/user-layout/menu-dropdown'
+import LogoutIdiom from '@/components/application/guest-layout/logout-idiom'
+import SidebarMenu from '@/components/application/user-layout/side-bar-menu'
+import NotificationSection from '@/components/application/user-layout/notifications-section'
+import { handleResize } from './utilities/utilities'
 import { useUser } from '@/contexts/user'
 import { useAuth } from '@/hooks/auth'
+import Link from 'next/link'
+import NavLogo from '@/public/images/guest-layout/nav-logo.svg'
+import Image from 'next/image'
+import { Menu } from 'lucide-react'
 
 export default function AuthenticatedLayout({ children }) {
     const pathname = usePathname()
-    const { getUser, logout } = useAuth()
+    const { getUser } = useAuth()
     const { user } = useUser()
     const [open, setOpen] = useState(false)
     const [mobileOpen, setMobileOpen] = useState(false)
-    const [navAnimationClass, setNavAnimationClass] = useState('')
     const [loading, setLoading] = useState(false)
-    const [showUnverifiedBanner, setShowUnverifiedBanner] = useState(false)
 
     const token = Cookies.get('analogueshifts')
 
@@ -43,32 +41,18 @@ export default function AuthenticatedLayout({ children }) {
             getUser({ setLoading, layout: 'authenticated' })
         }
 
-        handleResize(setMobileOpen, setNavAnimationClass)
+        handleResize(setMobileOpen)
     }, [])
 
-    // Display Unverified Email Banner if the user's email is unverified
     useEffect(() => {
-        if (user && !user.email_verified_at) {
-            setShowUnverifiedBanner(true)
+        if (mobileOpen) {
+            setMobileOpen(false)
         }
-    }, [user])
+    }, [pathname])
 
     return (
         <main className="body">
-            {loading && <DashboardLoader />}
-
-            <IdiomProof
-                close={() => setOpen(false)}
-                open={open}
-                action={() => {
-                    setOpen(false)
-                    logout({ setLoading })
-                }}
-                title={'Log Out'}
-                description={
-                    'Are you sure you want to sign out of your account? You can always sign in at anytime.'
-                }
-            />
+            <LogoutIdiom close={() => setOpen(false)} open={open} />
 
             {/* SideBar Menu */}
             <SidebarMenu
@@ -80,71 +64,50 @@ export default function AuthenticatedLayout({ children }) {
 
             <section className="content">
                 <nav className=" justify-between z-50">
-                    <Link
-                        href="https://www.analogueshifts.com"
-                        className="sm:hidden flex">
-                        <ApplicationLogo />
-                    </Link>
-                    <i
+                    <Menu
                         onClick={() => toggleMenu('hide')}
-                        className="fas fa-bars menu-btn"></i>
+                        className="menu-btn cursor-pointer text-tremor-brand-boulder900 w-5"
+                    />
+
                     {/* Notification */}
                     <NotificationSection user={user} />
 
-                    {/* Hamburger */}
-                    <button
-                        className={`${navAnimationClass} block z-60 hamburger sm:hidden outline-none`}
-                        type="button"
-                        onClick={() =>
-                            toggleDrawer(
-                                setNavAnimationClass,
-                                setMobileOpen,
-                                mobileOpen,
-                            )
-                        }>
-                        <span
-                            className={`hamburger-top ${
-                                mobileOpen ? 'bg-black/80' : 'bg-[#342e37]'
-                            }`}></span>
-                        <span
-                            className={`hamburger-middle ${
-                                mobileOpen ? 'bg-black/80' : 'bg-[#342e37]'
-                            }`}></span>
-                        <span
-                            className={`hamburger-bottom ${
-                                mobileOpen ? 'bg-black/80' : 'bg-[#342e37]'
-                            }`}></span>
-                    </button>
+                    <Link href="/" className="sm:hidden block">
+                        <Image src={NavLogo} alt="" className="w-40 h-max" />
+                    </Link>
 
-                    {mobileOpen && (
-                        <MenuDropDown
-                            user={user}
-                            close={() => {
-                                setMobileOpen(false)
-                                setNavAnimationClass('')
-                            }}
-                            handleLogout={() => {
-                                toggleDrawer(
-                                    setNavAnimationClass,
-                                    setMobileOpen,
-                                    mobileOpen,
-                                )
-                                setOpen(true)
-                            }}
-                        />
-                    )}
+                    {/* Hamburger */}
+                    <div className="flex items-center sm:hidden">
+                        <button
+                            onClick={() => setMobileOpen(prev => !prev)}
+                            className="w-18 flex flex-col gap-1.5 bg-transparent border-none outline-none">
+                            <div
+                                className={`w-full h-[1px] bg-tremor-brand-boulder700 duration-300 ${
+                                    mobileOpen
+                                        ? 'rotate-[45deg] translate-y-[3.6px]'
+                                        : 'rotate-0 translate-y-0'
+                                }`}></div>
+                            <div
+                                className={`w-full h-[1px] bg-tremor-brand-boulder700 duration-300 ${
+                                    mobileOpen
+                                        ? '-rotate-[45deg] -translate-y-[3.6px]'
+                                        : 'rotate-0 translate-y-0'
+                                }`}></div>
+                        </button>
+                    </div>
+                    <MenuDropDown
+                        handleLogout={() => {
+                            setMobileOpen(false)
+                            setOpen(true)
+                        }}
+                        user={user}
+                        open={mobileOpen}
+                    />
                 </nav>
 
                 <main className="md:p-7 bg-white sm:bg-transparent p-0 h-[calc(100dvh-56px)] overflow-y-auto">
                     {children}
                 </main>
-                {/*  UnVerified Banner */}
-                <UnverifiedBanner
-                    visible={showUnverifiedBanner}
-                    setVisible={setShowUnverifiedBanner}
-                    token={token}
-                    setLoading={setLoading}
-                />
             </section>
         </main>
     )

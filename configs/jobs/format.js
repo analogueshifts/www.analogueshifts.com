@@ -14,5 +14,7 @@ export function formatUnitText(unit) {
         return 'mo'
     } else if (unit.startsWith('W')) {
         return 'wk'
+    } else if (unit.startsWith('H')) {
+        return 'hr'
     }
 }

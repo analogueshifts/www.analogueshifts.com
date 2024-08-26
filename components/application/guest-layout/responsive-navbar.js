@@ -10,7 +10,12 @@ import ChevronDown from '@/public/images/guest-layout/chevron-down.svg'
 import ourApps from '../utilities/our-apps.json'
 import Link from 'next/link'
 
-export default function ResponsiveNavBar({ handleBlogNavigation, user, open }) {
+export default function ResponsiveNavBar({
+    handleBlogNavigation,
+    user,
+    open,
+    handleLogout,
+}) {
     const [showApps, setShowApps] = useState(false)
 
     const MenuLink = ({ item }) => (
@@ -88,9 +93,16 @@ export default function ResponsiveNavBar({ handleBlogNavigation, user, open }) {
 
                         {/* Responsive Settings Options */}
                         {user ? (
-                            <ResponsiveNavLink href="/dashboard">
-                                Dashboard
-                            </ResponsiveNavLink>
+                            <>
+                                <ResponsiveNavLink href="/dashboard">
+                                    Dashboard
+                                </ResponsiveNavLink>
+                                <ResponsiveNavLink
+                                    onClick={handleLogout}
+                                    href="">
+                                    Logout
+                                </ResponsiveNavLink>
+                            </>
                         ) : (
                             <>
                                 <ResponsiveNavLink href="https://auth.analogueshifts.app?app=main">

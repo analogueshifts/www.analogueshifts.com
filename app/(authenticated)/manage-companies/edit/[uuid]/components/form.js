@@ -5,10 +5,12 @@ import { useUser } from '@/contexts/user'
 import { useRouter } from 'next/navigation'
 
 import InputGroup from '../../../create/components/input-group'
-import DashboardLoader from '@/components/application/dashboard-loader'
 import UploadFile from '../../../create/components/upload-file'
 
 import { useToast } from '@/contexts/toast'
+
+import Image from 'next/image'
+import Spinner from '@/public/images/spinner-white.svg'
 
 export default function EditCompanyForm({ uuid }) {
     const [loading, setLoading] = useState(false)
@@ -78,7 +80,6 @@ export default function EditCompanyForm({ uuid }) {
         <form
             onSubmit={handleSubmit}
             className="bg-[#FEFEFE] flex flex-col gap-6 mt-2 border border-[#E7E7E7] h-max px-4 lg:px-7 py-10 rounded-3xl">
-            {loading && <DashboardLoader />}
             <h4 className="text-tremor-brand-boulder900 text-base font-medium mb-2">
                 Edit Company
             </h4>
@@ -160,7 +161,14 @@ export default function EditCompanyForm({ uuid }) {
                 <button
                     type="submit"
                     className={`px-6 text-[#FEFEFE] text-base duration-300 hover:scale-105 font-normal flex items-center gap-2 h-10 bg-tremor-background-darkYellow rounded-full border-none`}>
-                    Update Company
+                    {loading ? (
+                        <>
+                            Updating{' '}
+                            <Image src={Spinner} alt="" className="w-8" />
+                        </>
+                    ) : (
+                        <>Update Company</>
+                    )}
                 </button>
             </div>
         </form>

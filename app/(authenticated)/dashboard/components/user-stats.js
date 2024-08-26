@@ -33,11 +33,15 @@ export default function UserStats() {
                 title={
                     user?.user_mode === 'job'
                         ? 'Applied jobs over time'
-                        : 'Hires over time'
+                        : 'Hires and Applicants over time'
                 }
                 chartData={data}
             />
-            <Filter submit={url => getStats({ url, setData })} />
+            <Filter
+                submit={url =>
+                    getStats({ url, setData, mode: user?.user_mode })
+                }
+            />
         </>
     )
 }

@@ -7,16 +7,14 @@ import {
     DialogTitle,
     DialogTrigger,
 } from '@/components/ui/dialog'
-import { useState } from 'react'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 
 export default function NotificationGridTile({ item, user }) {
-    const [loading, setLoading] = useState(false)
     return (
         <Dialog>
             <DialogTrigger asChild>
                 <div
-                    className={`cursor-pointer w-full flex items-center gap-3 h-20 border-b p-3 hover:bg-black/5 ${
+                    className={`cursor-pointer w-full flex items-center gap-3 h-20 border-b border-tremor-background-darkYellow/10 p-3 hover:bg-tremor-background-darkYellow/5 ${
                         item.viewed === '1'
                             ? 'bg-transparent'
                             : 'bg-tremor-background-lightYellow/10'
@@ -46,20 +44,6 @@ export default function NotificationGridTile({ item, user }) {
                 </div>
             </DialogTrigger>
             <DialogContent className="sm:max-w-[500px]">
-                {loading && (
-                    <div className="w-full h-full absolute top-0 left-0  bg-gray-300/30 flex items-center justify-center rounded-md">
-                        <div className="lds-roller">
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                        </div>
-                    </div>
-                )}
                 <DialogHeader>
                     <DialogTitle className="text-tremor-brand-boulder950 truncate">
                         {item.title}

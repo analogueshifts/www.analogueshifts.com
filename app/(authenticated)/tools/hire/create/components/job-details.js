@@ -1,4 +1,5 @@
 'use client'
+import { useToast } from '@/contexts/toast'
 import { useState, useEffect, useRef } from 'react'
 import CreateJobLayout from './form-layout'
 import Cookies from 'js-cookie'
@@ -28,6 +29,7 @@ export default function JobDetails() {
     const [salaryUnitText, setSalaryUnitText] = useState(salaryUnitTextData[0])
     const router = useRouter()
     const submitButtonRef = useRef()
+    const { notifyUser } = useToast()
 
     // Apply URLS
     const [internalApplicationURL, setInternalApplicationURL] = useState('')
@@ -84,6 +86,7 @@ export default function JobDetails() {
             salaryCurrency,
             salaryUnitText,
             router,
+            notifyUser,
         )
     }
 

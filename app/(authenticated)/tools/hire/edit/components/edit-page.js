@@ -3,7 +3,6 @@ import { useUser } from '@/contexts/user'
 import { useToast } from '@/contexts/toast'
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
-import DashboardLoader from '@/components/application/dashboard-loader'
 import Cookies from 'js-cookie'
 
 export default function Edit({ slug }) {
@@ -111,5 +110,5 @@ export default function Edit({ slug }) {
         }
     }, [user])
 
-    return <> {loading && <DashboardLoader />}</>
+    return <></>
 }

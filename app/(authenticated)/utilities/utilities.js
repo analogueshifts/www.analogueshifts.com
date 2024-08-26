@@ -1,16 +1,10 @@
 // Toggle Sidebar Drawer
-export const toggleDrawer = (
-    setNavAnimationClass,
-    setMobileOpen,
-    mobileOpen,
-) => {
+export const toggleDrawer = (setMobileOpen, mobileOpen) => {
     if (mobileOpen) {
-        setNavAnimationClass('')
         setMobileOpen(prevExpenses => {
             return !prevExpenses
         })
     } else {
-        setNavAnimationClass('open')
         setMobileOpen(prevExpenses => {
             return !prevExpenses
         })
@@ -18,7 +12,7 @@ export const toggleDrawer = (
 }
 
 // Handle Resize
-export const handleResize = (setMobileOpen, setNavAnimationClass) => {
+export const handleResize = setMobileOpen => {
     // Handle Resize Event Listener
     const sideBar = document.querySelector('.sidebar')
     window.addEventListener('resize', () => {
@@ -31,10 +25,8 @@ export const handleResize = (setMobileOpen, setNavAnimationClass) => {
     }
     window.addEventListener('resize', () => {
         setMobileOpen(false)
-        setNavAnimationClass('')
     })
     return window.removeEventListener('resize', () => {
         setMobileOpen(false)
-        setNavAnimationClass('')
     })
 }

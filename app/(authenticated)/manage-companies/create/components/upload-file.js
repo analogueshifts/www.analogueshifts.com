@@ -4,6 +4,7 @@ import { useHire } from '@/hooks/hires'
 import { motion } from 'framer-motion'
 
 import FileInput from '@/components/application/file-input'
+import Primary from '@/components/spinners/primary'
 
 export default function UploadFile({
     title,
@@ -24,10 +25,11 @@ export default function UploadFile({
             await uploadFile({
                 fileValue: value,
                 setLoading: setFileUploading,
-                setData: setFileUrl,
+                setData: url => {
+                    setFileUrl(url)
+                    setLogoFile(value)
+                },
             })
-
-            setLogoFile(value)
         } catch (error) {
             console.log(error)
         }
@@ -67,17 +69,8 @@ export default function UploadFile({
                         {fileUploading && (
                             <div
                                 style={{ zIndex: 3000 }}
-                                className="absolute top-0 left-0 w-full h-full flex justify-center items-center bg-gray-300/30 bg-opacity-80">
-                                <div className="lds-roller">
-                                    <div></div>
-                                    <div></div>
-                                    <div></div>
-                                    <div></div>
-                                    <div></div>
-                                    <div></div>
-                                    <div></div>
-                                    <div></div>
-                                </div>
+                                className="absolute top-0 left-0 w-full h-full flex justify-center items-center bg-white border border-dashed rounded-3xl border-tremor-brand-boulder200">
+                                <Primary color="#FFBB0A70" />
                             </div>
                         )}
                         <FileInput value={logoFile} setValue={uploadImage} />

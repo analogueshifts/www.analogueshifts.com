@@ -9,14 +9,8 @@ import {
     DialogDescription,
     DialogFooter,
 } from '@/components/ui/dialog'
-import {
-    Pagination,
-    PaginationContent,
-    PaginationItem,
-    PaginationLink,
-    PaginationNext,
-    PaginationPrevious,
-} from '@/components/ui/pagination'
+import Primary from '@/components/spinners/primary'
+
 import Cookies from 'js-cookie'
 import { useCompany } from '@/hooks/companies'
 import Link from 'next/link'
@@ -44,6 +38,21 @@ export default function SelectCompany() {
             },
             setLoading,
         })
+    }
+
+    const handleFetchMore = async () => {
+        try {
+            await getCompanies({
+                setLoading,
+                setData: res => {
+                    setCurrentPageInfo(res.companies)
+                    setData(prev => [...prev, ...res.companies.data])
+                },
+                url: currentPageInfo.next_page_url.slice(34),
+            })
+        } catch (error) {
+            console.log(error)
+        }
     }
 
     const handlePrefill = item => {
@@ -110,16 +119,7 @@ export default function SelectCompany() {
                 {/* Content */}
                 {loading && (
                     <div className="w-full h-screen absolute top-[-50px] bg-gray-300/30 flex items-center justify-center rounded-md">
-                        <div className="lds-roller">
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                        </div>
+                        <Primary color="#ffffff" />
                     </div>
                 )}
                 <div className="w-full overflow-y-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3 md:gap-5 my-5">
@@ -139,7 +139,7 @@ export default function SelectCompany() {
                                 whileHover={{ scale: 1.02 }}
                                 onClick={() => handlePrefill(item)}
                                 className="w-full cursor-pointer col-span-1 h-max  sm:min-h-[200px] border-none duration-200 flex flex-wrap pb-5 justify-between  md:flex-col items-center gap-y-2">
-                                <div className="flex gap-5 flex-wrap md:flex-col items-center justify-center md:items-center">
+                                <div className="flex gap-5  flex-wrap md:flex-col items-center justify-center md:items-center">
                                     <img
                                         src={
                                             item?.logo &&
@@ -154,7 +154,7 @@ export default function SelectCompany() {
                                         <p className="text-sm font-normal text-[#B0B0B0]">
                                             {item?.name}
                                         </p>
-                                        <p className="text-xl font-semibold text-black/90">
+                                        <p className="text-lg font-semibold text-black/90">
                                             {item?.industry}
                                         </p>
                                     </div>
@@ -166,60 +166,12 @@ export default function SelectCompany() {
 
                 {/* Footer */}
                 <DialogFooter className="w-full h-max">
-                    {currentPageInfo && (
-                        <Pagination>
-                            <PaginationContent>
-                                <PaginationItem className="cursor-pointer">
-                                    <PaginationPrevious
-                                        onClick={() => {
-                                            if (
-                                                currentPageInfo?.prev_page_url
-                                            ) {
-                                                getData(
-                                                    currentPageInfo.prev_page_url,
-                                                )
-                                            }
-                                        }}
-                                    />
-                                </PaginationItem>
-
-                                {currentPageInfo?.links &&
-                                    currentPageInfo.links
-                                        .slice(
-                                            1,
-                                            currentPageInfo.links.length - 1,
-                                        )
-                                        .map(item => {
-                                            return (
-                                                <PaginationItem
-                                                    className="cursor-pointer"
-                                                    key={item.label}>
-                                                    <PaginationLink
-                                                        isActive={item.active}
-                                                        onClick={() =>
-                                                            getData(item.url)
-                                                        }>
-                                                        {item.label}
-                                                    </PaginationLink>
-                                                </PaginationItem>
-                                            )
-                                        })}
-
-                                <PaginationItem className="cursor-pointer">
-                                    <PaginationNext
-                                        onClick={() => {
-                                            if (
-                                                currentPageInfo?.next_page_url
-                                            ) {
-                                                getData(
-                                                    currentPageInfo.next_page_url,
-                                                )
-                                            }
-                                        }}
-                                    />
-                                </PaginationItem>
-                            </PaginationContent>
-                        </Pagination>
+                    {currentPageInfo?.next_page_url && (
+                        <button
+                            onClick={handleFetchMore}
+                            className={`outline-none mx-auto bg-transparent text-tremor-background-darkYellow text-base large:text-xl font-medium pb-0.5 large:pb-2 border-b mt-3 border-b-tremor-background-darkYellow`}>
+                            'View More'
+                        </button>
                     )}
                 </DialogFooter>
             </DialogContent>

@@ -10,15 +10,8 @@ import {
     DialogDescription,
     DialogFooter,
 } from '@/components/ui/dialog'
-import {
-    Pagination,
-    PaginationContent,
-    PaginationEllipsis,
-    PaginationItem,
-    PaginationLink,
-    PaginationNext,
-    PaginationPrevious,
-} from '@/components/ui/pagination'
+import Primary from '@/components/spinners/primary'
+
 import { Button } from '@/components/ui/button'
 import Cookies from 'js-cookie'
 import FormGridTile from './form-grid-tile'
@@ -35,7 +28,7 @@ export default function SelectForm({ selectedForm, setSelectedForm }) {
     const getFormUrl = `${process.env.NEXT_PUBLIC_BACKEND_URL}/tools/form`
     const token = Cookies.get('analogueshifts')
 
-    const fetchForms = async url => {
+    const fetchForms = async (url, success) => {
         const axios = require('axios')
         const config = {
             method: 'GET',
@@ -46,8 +39,12 @@ export default function SelectForm({ selectedForm, setSelectedForm }) {
         try {
             setLoading(true)
             const response = await axios.request(config)
-            setCurrentPageInfo(response.data.data.forms)
-            setForms(response.data.data.forms.data)
+            if (success) {
+                success(response)
+            } else {
+                setCurrentPageInfo(response.data.data.forms)
+                setForms(response.data.data.forms.data)
+            }
             setLoading(false)
         } catch (error) {
             notifyUser(
@@ -63,21 +60,30 @@ export default function SelectForm({ selectedForm, setSelectedForm }) {
         }
     }
 
+    const handleFetchMore = async () => {
+        try {
+            await fetchForms(
+                process.env.NEXT_PUBLIC_BACKEND_URL +
+                    currentPageInfo.next_page_url.slice(34),
+                response => {
+                    setCurrentPageInfo(response.data.data.forms)
+                    setForms(prev => [
+                        ...prev,
+                        ...response.data.data.forms.data,
+                    ])
+                },
+            )
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
     return (
         <Dialog className="">
             {loading && (
                 <div className="w-full top-0 left-0 z-[3100] fixed h-full flex justify-center items-center bg-opacity-80">
                     <div className="md:w-[70%] w-[90%] max-w-[1000px] h-[80dvh] max-h-[80dvh] bg-gray-300/30 flex items-center justify-center rounded-md">
-                        <div className="lds-roller">
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                        </div>
+                        <Primary color="#ffffff" />
                     </div>
                 </div>
             )}
@@ -137,63 +143,12 @@ export default function SelectForm({ selectedForm, setSelectedForm }) {
 
                 {/* Footer */}
                 <DialogFooter className="w-full h-max">
-                    {currentPageInfo && (
-                        <Pagination>
-                            <PaginationContent>
-                                <PaginationItem className="cursor-pointer">
-                                    <PaginationPrevious
-                                        onClick={() => {
-                                            if (
-                                                currentPageInfo?.prev_page_url
-                                            ) {
-                                                fetchForms(
-                                                    currentPageInfo.prev_page_url,
-                                                )
-                                            }
-                                        }}
-                                    />
-                                </PaginationItem>
-
-                                {currentPageInfo?.links &&
-                                    currentPageInfo.links
-                                        .slice(
-                                            1,
-                                            currentPageInfo.links.length - 1,
-                                        )
-                                        .map(item => {
-                                            return (
-                                                <PaginationItem
-                                                    className="cursor-pointer"
-                                                    key={item.label}>
-                                                    <PaginationLink
-                                                        isActive={item.active}
-                                                        onClick={() =>
-                                                            fetchForms(item.url)
-                                                        }>
-                                                        {item.label}
-                                                    </PaginationLink>
-                                                </PaginationItem>
-                                            )
-                                        })}
-
-                                <PaginationItem>
-                                    <PaginationEllipsis />
-                                </PaginationItem>
-                                <PaginationItem className="cursor-pointer">
-                                    <PaginationNext
-                                        onClick={() => {
-                                            if (
-                                                currentPageInfo?.next_page_url
-                                            ) {
-                                                fetchForms(
-                                                    currentPageInfo.next_page_url,
-                                                )
-                                            }
-                                        }}
-                                    />
-                                </PaginationItem>
-                            </PaginationContent>
-                        </Pagination>
+                    {currentPageInfo?.next_page_url && (
+                        <button
+                            onClick={handleFetchMore}
+                            className={`outline-none mx-auto bg-transparent text-tremor-background-darkYellow text-base large:text-xl font-medium pb-0.5 large:pb-2 border-b mt-3 border-b-tremor-background-darkYellow`}>
+                            'View More'
+                        </button>
                     )}
                 </DialogFooter>
             </DialogContent>

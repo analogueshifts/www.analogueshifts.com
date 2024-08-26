@@ -1,5 +1,4 @@
 import Cookies from 'js-cookie'
-import { useHire } from '@/hooks/hires'
 
 export const handleSubmit = (
     setLoading,
@@ -7,10 +6,10 @@ export const handleSubmit = (
     organizationUrl,
     logoUrl,
     router,
+    createJob,
 ) => {
     let storedData = Cookies.get('jobPostData')
     let existingItem = JSON.parse(storedData)
-    const { createJob } = useHire()
 
     // Arrange The Data Structure
     let data = {

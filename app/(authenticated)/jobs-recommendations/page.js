@@ -1,5 +1,4 @@
 import { Suspense } from 'react'
-import DashboardLoader from '@/components/application/dashboard-loader'
 import JobsRecommendationsPage from './components/page-details'
 
 export const metadata = {
@@ -29,7 +28,7 @@ export const metadata = {
 
 export default function Page() {
     return (
-        <Suspense fallback={<DashboardLoader />}>
+        <Suspense fallback={<p></p>}>
             <JobsRecommendationsPage />
         </Suspense>
     )

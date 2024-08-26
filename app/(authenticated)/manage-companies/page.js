@@ -1,6 +1,4 @@
-import { Suspense } from 'react'
 import CompaniesOverview from './companies/companies-overview'
-import DashboardLoader from '@/components/application/dashboard-loader'
 
 export const metadata = {
     title: 'Manage Companies | AnalogueShifts',
@@ -28,9 +26,5 @@ export const metadata = {
 }
 
 export default function Page() {
-    return (
-        <Suspense fallback={<DashboardLoader />}>
-            <CompaniesOverview />
-        </Suspense>
-    )
+    return <CompaniesOverview />
 }

@@ -118,6 +118,10 @@ const Navigation = ({ user }) => {
                 user={user}
                 open={open}
                 handleBlogNavigation={() => setOpen(false)}
+                handleLogout={() => {
+                    setOpen(false)
+                    setLogoutIdiomDisplay(true)
+                }}
             />
         </div>
     )

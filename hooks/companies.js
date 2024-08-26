@@ -31,6 +31,8 @@ export const useCompany = () => {
                     error?.response?.data?.data?.message ||
                     'Error Fetching Saved Companies',
             )
+            console.log(error)
+
             if (error?.response?.status === 401) {
                 clearUserSession()
             }

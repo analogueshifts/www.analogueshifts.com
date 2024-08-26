@@ -4,10 +4,12 @@ import CreateJobLayout from './form-layout'
 import Cookies from 'js-cookie'
 import { usePathname, useRouter } from 'next/navigation'
 import Link from 'next/link'
-import DashboardLoader from '@/components/application/dashboard-loader'
 import { useHire } from '@/hooks/hires'
 import InputGroup from '@/app/(authenticated)/manage-companies/create/components/input-group'
 import UploadFile from '@/app/(authenticated)/manage-companies/create/components/upload-file'
+
+import Image from 'next/image'
+import Spinner from '@/public/images/spinner-white.svg'
 
 export default function OrganizationInformation() {
     const pathname = usePathname()
@@ -117,7 +119,6 @@ export default function OrganizationInformation() {
 
     return (
         <CreateJobLayout>
-            {loading && <DashboardLoader />}
             <form onSubmit={submit} className="w-full flex flex-col gap-6">
                 <InputGroup
                     label="ORGANIZATION NAME"
@@ -160,13 +161,20 @@ export default function OrganizationInformation() {
                     <i className="fas fa-arrow-left "></i> Previous
                 </Link>
                 <button
-                    disabled={allFieldEntered}
+                    disabled={allFieldEntered || loading}
                     onClick={() => submitButtonRef.current.click()}
                     type="button"
                     className={`px-6 text-[#FEFEFE] text-base duration-300 hover:scale-105 font-normal flex items-center gap-2 h-10 bg-tremor-background-darkYellow rounded-full border-none ${
                         allFieldEntered ? 'opacity-50' : 'opacity-100'
                     }`}>
-                    Edit Job
+                    {loading ? (
+                        <>
+                            Editing{' '}
+                            <Image src={Spinner} alt="" className="w-8" />
+                        </>
+                    ) : (
+                        'Edit Job'
+                    )}
                 </button>
             </div>
         </CreateJobLayout>

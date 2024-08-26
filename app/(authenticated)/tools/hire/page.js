@@ -1,6 +1,4 @@
-import { Suspense } from 'react'
 import HirePageDetails from './components/hire-home'
-import DashboardLoader from '@/components/application/dashboard-loader'
 
 export const metadata = {
     title: 'Hire Talents | AnalogueShifts',
@@ -28,9 +26,5 @@ export const metadata = {
 }
 
 export default function Page() {
-    return (
-        <Suspense fallback={<DashboardLoader />}>
-            <HirePageDetails />
-        </Suspense>
-    )
+    return <HirePageDetails />
 }

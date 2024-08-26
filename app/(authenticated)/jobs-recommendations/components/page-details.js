@@ -1,8 +1,5 @@
 'use client'
-import Link from 'next/link'
-import IdiomProof from '@/components/application/idiom-proof'
-import DashboardLoader from '@/components/application/dashboard-loader'
-import SkeletonCard from '@/components/application/skeleton-card'
+import GridTile from './grid-tile'
 
 import { useUser } from '@/contexts/user'
 import { useJobs } from '@/hooks/jobs'
@@ -10,13 +7,10 @@ import React, { useState, useEffect } from 'react'
 
 export default function JobsRecommendationsPage() {
     const { user } = useUser()
-    const { getRecommendedJobs, storeAppliedJob } = useJobs()
-    const [idiomModal, setIdiomModal] = useState(false)
+    const { getRecommendedJobs } = useJobs()
+
     const [data, setData] = useState(null)
     const [loading, setLoading] = useState(false)
-    const [loadingTwo, setLoadingTwo] = useState(false)
-
-    const [appliedJob, setAppliedJob] = useState(null)
 
     let url = `/jobs/recommend`
 
@@ -30,137 +24,21 @@ export default function JobsRecommendationsPage() {
         }
     }, [user])
 
-    const handleStoreAppliedJob = async () => {
-        try {
-            await storeAppliedJob({
-                setLoading: setLoadingTwo,
-                slug: appliedJob,
-            })
-            setAppliedJob(null)
-        } catch (error) {
-            console.log(error)
-        }
-    }
-
     return (
         <>
-            <IdiomProof
-                success={true}
-                buttonLabel="Yes"
-                title={'Did you apply'}
-                action={() => {
-                    setIdiomModal(false)
-                    handleStoreAppliedJob()
-                }}
-                close={() => {
-                    setIdiomModal(false)
-                    setAppliedJob(null)
-                }}
-                description={'Did you apply?'}
-                open={idiomModal}
-            />
-            {loadingTwo && <DashboardLoader />}
             <div className="w-full md:px-1.5 min-h-[calc(100dvh-80px)] lg:min-h-[calc(100dvh-112px)]">
-                <div className="bg-white z-50 border border-[#e7e7e7] min-h-[calc(100vh-192px)] md:min-h-[200px] py-5 h-max w-full px-5 pb-5 md:rounded-xl flex flex-col">
-                    {loading ? (
-                        <div className="w-full h-max min-h-[200px] items-center grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-                            <SkeletonCard /> <SkeletonCard /> <SkeletonCard />{' '}
-                            <SkeletonCard /> <SkeletonCard /> <SkeletonCard />
-                        </div>
-                    ) : (
-                        <div className="w-full h-max min-h-full flex flex-wrap gap-6">
+                {data && (
+                    <div className="bg-white z-50 border border-[#e7e7e7] min-h-[calc(100vh-192px)] md:min-h-[200px] tablet:p-7 p-10 h-max w-full md:rounded-xl flex flex-col">
+                        <div className="w-full h-max min-h-full items-center flex flex-col gap-7 large:gap-10">
                             {data &&
-                                data.map(item => {
+                                data.map((item, index) => {
                                     return (
-                                        <div
+                                        <GridTile
                                             key={item.id}
-                                            className="w-full h-max md:w-[calc(50%-12px)] min-h-[205px] border-b md:border-none flex flex-wrap pb-5 justify-between  md:flex-col items-center gap-y-2">
-                                            <div className="flex gap-5 flex-wrap md:flex-col items-center justify-center md:items-center">
-                                                <img
-                                                    src={
-                                                        item?.hiringOrganization
-                                                            ?.logo &&
-                                                        item?.hiringOrganization?.logo?.trim()
-                                                            .length
-                                                            ? item
-                                                                  .hiringOrganization
-                                                                  .logo
-                                                            : '/images/jobs/company_logo.JPG'
-                                                    }
-                                                    alt="LOGO"
-                                                    className={`md:w-max md:h-[100px] object-contain w-[156px] h-[100px]`}
-                                                />
-                                                <div className="flex flex-col gap-1.5 items-center md:items-center">
-                                                    <p className="text-sm font-normal text-[#B0B0B0]">
-                                                        {
-                                                            item
-                                                                ?.hiringOrganization
-                                                                ?.name
-                                                        }
-                                                    </p>
-                                                    <p className="text-xl font-semibold text-black/90">
-                                                        {item.title}
-                                                    </p>
-                                                    <p
-                                                        className="text-[15px] font-normal text-[#7B7B7B] md:text-center"
-                                                        dangerouslySetInnerHTML={{
-                                                            __html:
-                                                                item.description
-                                                                    ?.length >
-                                                                100
-                                                                    ? item?.description
-                                                                          ?.slice(
-                                                                              0,
-                                                                              100,
-                                                                          )
-                                                                          .concat(
-                                                                              '...',
-                                                                          )
-                                                                    : item?.description,
-                                                        }}></p>
-                                                    <div className="flex gap-1.5 flex-wrap">
-                                                        <div className="px-5 bg-[#E2E2E2] rounded py-1 text-black/80 text-[10px] font-normal">
-                                                            {item?.baseSalary
-                                                                ?.value.value +
-                                                                ' ' +
-                                                                item?.baseSalary
-                                                                    ?.currency +
-                                                                ' ' +
-                                                                'Per' +
-                                                                ' ' +
-                                                                item?.baseSalary
-                                                                    ?.value
-                                                                    ?.unitText}
-                                                        </div>
-                                                        <div className="px-5 bg-[#E2E2E2] rounded py-1 text-black/80 text-[10px] font-normal">
-                                                            {
-                                                                item?.jobLocationType
-                                                            }
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div className="flex gap-2 mx-auto items-center md:mt-2 md:mx-auto">
-                                                <a
-                                                    rel="noreferrer"
-                                                    onClick={() => {
-                                                        setIdiomModal(true)
-                                                        setAppliedJob(
-                                                            item?.slug,
-                                                        )
-                                                    }}
-                                                    target="_blank"
-                                                    href={item?.apply || ''}
-                                                    className={`w-24 lg:w-28 py-2 hover:scale-105 rounded-full text-xs font-bold duration-300 text-white bg-yellow-500 flex justify-center`}>
-                                                    Apply
-                                                </a>
-                                                <Link
-                                                    href={'/jobs/' + item?.slug}
-                                                    className="text-xs font-normal text-black/60">
-                                                    View Job
-                                                </Link>
-                                            </div>
-                                        </div>
+                                            item={item}
+                                            index={index}
+                                            total={data.length}
+                                        />
                                     )
                                 })}
                             {data && data?.length === 0 && (
@@ -171,9 +49,8 @@ export default function JobsRecommendationsPage() {
                                 </div>
                             )}
                         </div>
-                    )}
-                </div>
-                <div className="flex flex-col overflow-hidden"></div>
+                    </div>
+                )}
             </div>
         </>
     )

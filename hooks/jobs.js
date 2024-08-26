@@ -40,6 +40,7 @@ export const useJobs = () => {
                 'error',
                 error?.response?.data?.message ||
                     error?.response?.data?.data?.message ||
+                    error.message ||
                     'Failed To Fetch Statistics Data',
             )
 

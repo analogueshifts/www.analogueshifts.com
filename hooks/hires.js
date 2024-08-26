@@ -14,7 +14,7 @@ export const useHire = () => {
         formData.append('type', 'image')
         let config = {
             method: 'POST',
-            url: '/upload',
+            url: process.env.NEXT_PUBLIC_FILE_UPLOAD_URL + '/upload',
             headers: {
                 Accept: 'application/json',
                 'Content-Type': 'multipart/form-data',
@@ -26,9 +26,11 @@ export const useHire = () => {
         setLoading(true)
         try {
             const data = await axios.request(config)
-            setData(data.data.data.full_path)
-            setLoading(false)
-            notifyUser('success', 'File uploaded successfully')
+            if (data.data.success) {
+                setData(data.data.data.full_path)
+                setLoading(false)
+                notifyUser('success', 'File uploaded successfully')
+            }
         } catch (error) {
             setLoading(false)
             notifyUser(
@@ -119,6 +121,7 @@ export const useHire = () => {
             },
         }
         try {
+            setLoading(true)
             const response = await axios.request(config)
             if (response?.data?.success) {
                 setData(response.data.data.hires.data)

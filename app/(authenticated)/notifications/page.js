@@ -1,6 +1,4 @@
-import DashboardLoader from '@/components/application/dashboard-loader'
 import Notifications from './components'
-import { Suspense } from 'react'
 
 export const metadata = {
     title: 'Notifications | AnalogueShifts',
@@ -28,9 +26,5 @@ export const metadata = {
 }
 
 export default function Page() {
-    return (
-        <Suspense fallback={<DashboardLoader />}>
-            <Notifications />
-        </Suspense>
-    )
+    return <Notifications />
 }

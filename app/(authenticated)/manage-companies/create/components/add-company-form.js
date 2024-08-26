@@ -5,10 +5,12 @@ import { useRouter } from 'next/navigation'
 import { useToast } from '@/contexts/toast'
 
 import InputGroup from './input-group'
-import DashboardLoader from '@/components/application/dashboard-loader'
 
 import { Plus } from 'lucide-react'
 import UploadFile from './upload-file'
+
+import Image from 'next/image'
+import Spinner from '@/public/images/spinner-white.svg'
 
 export default function AddCompanyForm() {
     const [loading, setLoading] = useState(false)
@@ -54,7 +56,6 @@ export default function AddCompanyForm() {
         <form
             onSubmit={handleSubmit}
             className="bg-[#FEFEFE] flex flex-col gap-6 mt-2 border border-[#E7E7E7] h-max px-4 lg:px-7 py-10 rounded-3xl">
-            {loading && <DashboardLoader />}
             <h4 className="text-tremor-brand-boulder900 text-base font-medium mb-2">
                 Add Company
             </h4>
@@ -132,9 +133,19 @@ export default function AddCompanyForm() {
             <div className="flex w-full justify-end">
                 <button
                     type="submit"
-                    className={`px-6 text-[#FEFEFE] text-base duration-300 hover:scale-105 font-normal flex items-center gap-2 h-10 bg-tremor-background-darkYellow rounded-full border-none`}>
-                    Add Company
-                    <Plus width={15} />
+                    disabled={loading}
+                    className={`px-6 text-[#FEFEFE] text-base duration-300 hover:scale-105 font-normal flex items-center h-10 bg-tremor-background-darkYellow rounded-full border-none`}>
+                    {loading ? (
+                        <>
+                            Adding{' '}
+                            <Image src={Spinner} alt="" className="w-8" />
+                        </>
+                    ) : (
+                        <>
+                            Add Company
+                            <Plus width={15} className="ml-1" />
+                        </>
+                    )}
                 </button>
             </div>
         </form>
