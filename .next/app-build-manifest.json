@@ -1,5 +1,10 @@
 {
   "pages": {
+    "/(guest)/layout": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/(guest)/layout.js"
+    ],
     "/layout": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
@@ -11,25 +16,25 @@
       "static/chunks/main-app.js",
       "static/chunks/app/not-found.js"
     ],
-    "/(guest)/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/(guest)/page.js"
-    ],
-    "/(guest)/layout": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/(guest)/layout.js"
-    ],
     "/(guest)/callback/auth/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/(guest)/callback/auth/page.js"
     ],
-    "/(guest)/jobs/page": [
+    "/(guest)/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/(guest)/jobs/page.js"
+      "static/chunks/app/(guest)/page.js"
+    ],
+    "/(authenticated)/layout": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/(authenticated)/layout.js"
+    ],
+    "/(authenticated)/dashboard/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/(authenticated)/dashboard/page.js"
     ]
   }
 }
