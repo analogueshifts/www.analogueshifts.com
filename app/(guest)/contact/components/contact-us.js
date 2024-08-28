@@ -50,8 +50,9 @@ export default function ContactUs() {
                         Address
                     </p>
                     <p className="text-tremor-brand-vulcan950 large:text-xl text-base font-normal large:leading-8 leading-6">
-                        5 Chief Sunday Olaiya Close Salawe Avenue, Off Love All
-                        Street Ikosi, Lagos-Nigeria
+                        {/* 5 Chief Sunday Olaiya Close Salawe Avenue, Off Love All
+                        Street Ikosi, Lagos-Nigeria */}{' '}
+                        Remote Tech Company
                     </p>
                 </div>
             </div>

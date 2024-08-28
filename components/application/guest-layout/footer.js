@@ -27,8 +27,9 @@ function Footer() {
                         Mail: hello@analogueshifts.com
                     </Link>
                     <p className="text-tremor-brand-boulder950 tablet:text-base text-lg  leading-7 font-normal">
-                        Address: 5 Chief Sunday Olaiya Close Salawe Avenue, Off
-                        Love All Street Ikosi, Lagos-Nigeria
+                        {/* Address: 5 Chief Sunday Olaiya Close Salawe Avenue, Off
+                        Love All Street Ikosi, Lagos-Nigeria */}
+                        Address: Remote Tech Company
                     </p>
                 </div>
                 <div className="flex flex-wrap gap-y-8 gap-x-16 items-start">
