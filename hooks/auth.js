@@ -133,37 +133,8 @@ export const useAuth = () => {
     }
 
     const logout = async ({ setLoading }) => {
-        const url = '/logout'
-
-        let config = {
-            url: url,
-            method: 'POST',
-            headers: {
-                Authorization: 'Bearer ' + token,
-            },
-        }
-
-        setLoading(true)
-
-        axios
-            .request(config)
-            .then(res => {
-                Cookies.remove('analogueshifts')
-                window.location.href = '/'
-            })
-            .catch(error => {
-                setLoading(false)
-                notifyUser(
-                    'error',
-                    error?.response?.data?.message ||
-                        error?.response?.data?.data?.message ||
-                        '',
-                    toastConfig,
-                )
-                if (error?.response?.status === 401) {
-                    clearUserSession()
-                }
-            })
+        Cookies.remove('analogueshifts')
+        window.location.href = '/'
     }
 
     return {

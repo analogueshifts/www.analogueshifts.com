@@ -1,10 +1,25 @@
+'use client'
+import Link from 'next/link'
 import Image from 'next/image'
-
 import BackgroundImages from './bg-images'
-
 import Briefcase from '@/public/images/guest-layout/hero/filled_briefcase.svg'
 
+import { useState } from 'react'
+import { useRouter } from 'next/navigation'
+import { useUser } from '@/contexts/user'
+
 function Hero() {
+    const { user } = useUser()
+    const [keyword, setKeyword] = useState('')
+
+    const router = useRouter()
+
+    const handleSearch = () => {
+        router.push(
+            `/jobs${keyword.trim().length > 0 ? '?keywords=' + keyword : ''}`,
+        )
+    }
+
     return (
         <section className="w-full overflow-hidden h-max large:pb-[216px] tablet:pb-[120px] pb-[170px] large:pt-[91px] pt-16 relative">
             <BackgroundImages />
@@ -33,15 +48,25 @@ function Hero() {
                 </p>
                 <div className="tablet:w-4/5 w-max max-w-full tablet:mb-5 mb-10 tablet:grid grid-cols-2 flex large:flex items-center large:h-14 h-14 tablet:h-max  gap-3">
                     <input
+                        value={keyword}
+                        onChange={e => setKeyword(e.target.value)}
                         className="w-415 tablet:w-full tablet:col-span-2 tablet:h-12 h-full outline-none rounded-2xl border border-tremor-brand-boulder200 px-6 tablet:text-sm text-sm large:text-base font-normal text-tremor-brand-boulder700 placeholder:text-tremor-brand-boulder200"
                         placeholder="Search for jobs by title, skill, or company"
                     />
-                    <button className="rounded-2xl tablet:h-12  h-full bg-tremor-background-darkYellow flex justify-center items-center text-tremor-brand-boulder50 tablet:text-sm text-sm large:text-base font-semibold tablet:px-5 px-12">
+                    <button
+                        onClick={handleSearch}
+                        className="rounded-2xl tablet:h-12  h-full bg-tremor-background-darkYellow flex justify-center items-center text-tremor-brand-boulder50 tablet:text-sm text-sm large:text-base font-semibold tablet:px-5 px-12">
                         Search
                     </button>
-                    <button className="rounded-2xl tablet:h-12  h-full bg-transparent flex justify-center items-center text-tremor-background-darkYellow tablet:text-sm text-sm large:text-base font-semibold tablet:px-5 px-12 border border-tremor-background-darkYellow">
+                    <Link
+                        href={
+                            user
+                                ? '/dashboard'
+                                : 'https://auth.analogueshifts.app?app=main'
+                        }
+                        className="rounded-2xl tablet:h-12  h-full bg-transparent flex justify-center items-center text-tremor-background-darkYellow tablet:text-sm text-sm large:text-base font-semibold tablet:px-5 px-12 border border-tremor-background-darkYellow">
                         Post a Job
-                    </button>
+                    </Link>
                 </div>
                 <p className="text-base tablet:text-xs tablet:px-5 px-0 text-center font-medium text-tremor-brand-boulder400">
                     You can quickly search for remote tech jobs or post a job
