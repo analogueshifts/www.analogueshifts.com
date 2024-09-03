@@ -34,6 +34,10 @@ export default async function Page({ searchParams }) {
     const page = searchParams.page || '1'
     const jobs = await getJobs(page)
 
+    if (jobs) {
+        console.log(jobs)
+    }
+
     return (
         <>
             <Hero />
@@ -47,7 +51,7 @@ export default async function Page({ searchParams }) {
 
 const getJobs = async page => {
     try {
-        const url = new URL('https://api.analogueshifts.com/api/jobs')
+        const url = new URL('https://api.analogueshifts.app/api/jobs')
         url.searchParams.append('page', page)
 
         const res = await fetch(url.toString(), {

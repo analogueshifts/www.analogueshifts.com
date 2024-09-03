@@ -31,7 +31,7 @@ export default function OrganizationInformation() {
             var organizationInformationData = JSON.parse(storedData)
                 .organizationInformation
             if (organizationInformationData) {
-                setLogoUrl(organizationInformationData?.organizationLogo || '')
+                setLogoUrl(organizationInformationData?.organizationLogo || ' ')
                 setOrganizationName(
                     organizationInformationData?.organizationName,
                 )

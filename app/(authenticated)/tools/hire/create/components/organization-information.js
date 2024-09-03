@@ -31,12 +31,14 @@ export default function OrganizationInformation() {
             if (organizationInformationData) {
                 setLogoUrl(organizationInformationData?.organizationLogo || '')
                 setOrganizationName(
-                    organizationInformationData?.organizationName,
+                    organizationInformationData?.organizationName || '',
                 )
-                setOrganizationUrl(organizationInformationData?.organizationUrl)
+                setOrganizationUrl(
+                    organizationInformationData?.organizationUrl || ' ',
+                )
+            } else {
+                setLogoUrl(' ')
             }
-        } else {
-            setLogoUrl('')
         }
         if (
             !storedData ||
