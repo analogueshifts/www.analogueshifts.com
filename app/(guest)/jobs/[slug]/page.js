@@ -78,7 +78,7 @@ export default async function Page({ params }) {
 
 const getJob = async slug => {
     try {
-        const url = 'https://api.analogueshifts.com/api/job/' + slug
+        const url = 'https://api.analogueshifts.app/api/job/' + slug
 
         const res = await fetch(url, {
             next: {
