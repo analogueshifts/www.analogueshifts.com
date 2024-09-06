@@ -1,9 +1,19 @@
 'use client'
+import { useState } from 'react'
+import { useSearchParams } from 'next/navigation'
+
 import Image from 'next/image'
 import Briefcase from '@/public/images/guest-layout/hero/filled_briefcase.svg'
 import DropdownMenu from './dropdown'
 
+import employmentTypes from '../resources/employment-types.json'
+
 function Hero() {
+    const searchParams = useSearchParams()
+
+    const [keyword, setKeyword] = useState(searchParams.get('keywords') || '')
+    const [employmentType, setEmploymentType] = useState('')
+
     return (
         <section className="w-full h-max flex flex-col items-center py-16 large:py-[91px]">
             <div className="w-max max-w-full h-max tablet:mb-3 mb-5 rounded-full tablet:py-1 py-1.5 large:py-2.5 tablet:px-2.5 px-3.5 large:px-6 flex items-center tablet:gap-1 gap-2.5 bg-tremor-background-darkYellow/10">
@@ -30,13 +40,16 @@ function Hero() {
                 <input
                     className="w-[325px] tablet:h-12 h-full tablet:w-full tablet:col-span-2 outline-none rounded-2xl border border-tremor-brand-boulder200 px-6 tablet:text-sm text-sm large:text-base font-normal text-tremor-brand-boulder700 placeholder:text-tremor-brand-boulder200"
                     placeholder="Search Role"
+                    value={keyword}
+                    onChange={e => setKeyword(e.target.value)}
+                    required
                 />
                 <div className="w-52 tablet:w-full tablet:col-span-2 h-max">
                     <DropdownMenu
-                        list={['Frontend', 'Backend']}
-                        onChange={value => {}}
-                        value=""
-                        placeholder="Select field"
+                        list={employmentTypes}
+                        onChange={value => setEmploymentType(value)}
+                        value={employmentType}
+                        placeholder="Employment Type"
                     />
                 </div>
                 <div className="w-52 tablet:w-full tablet:col-span-2 h-max">
@@ -44,7 +57,7 @@ function Hero() {
                         list={['Full-time', 'Part-time']}
                         onChange={value => {}}
                         value=""
-                        placeholder="Select job type"
+                        placeholder="Date Posted"
                     />
                 </div>
 

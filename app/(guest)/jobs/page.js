@@ -4,6 +4,7 @@ import RecentJobs from './components/recent-jobs'
 import AvailableJobs from './components/available-jobs'
 import PostAJob from '@/components/application/home-page/post-a-job'
 import DownloadApp from '@/components/application/home-page/download-app'
+import { Suspense } from 'react'
 
 export const metadata = {
     title: 'Find High Paying Remote Tech Jobs | Analogue Shifts',
@@ -34,13 +35,11 @@ export default async function Page({ searchParams }) {
     const page = searchParams.page || '1'
     const jobs = await getJobs(page)
 
-    if (jobs) {
-        console.log(jobs)
-    }
-
     return (
         <>
-            <Hero />
+            <Suspense fallback={<p></p>}>
+                <Hero />
+            </Suspense>
             <RecentJobs jobs={jobs?.data?.jobs?.data} />
             <AvailableJobs initialData={jobs?.data?.jobs} />
             <PostAJob />

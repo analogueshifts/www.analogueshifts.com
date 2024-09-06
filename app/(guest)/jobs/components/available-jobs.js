@@ -19,7 +19,7 @@ export default function AvailableJobs({ initialData }) {
 
     const handleFetchMore = () => {
         getJobs({
-            url: jobsInfo.next_page_url,
+            url: jobsInfo?.next_page_url?.slice(33) || '/jobs',
             setLoading,
             setInfo: setJobsInfo,
             setData: newJobs => {

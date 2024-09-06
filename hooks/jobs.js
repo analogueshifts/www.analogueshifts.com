@@ -63,12 +63,12 @@ export const useJobs = () => {
             setData(res.data.data.jobs.data)
             setLoading(false)
         } catch (error) {
-            console.log(error)
             setLoading(false)
             notifyUser(
                 'error',
                 error?.response?.data?.message ||
                     error?.response?.data?.data?.message ||
+                    error.message ||
                     'Error',
             )
         }
