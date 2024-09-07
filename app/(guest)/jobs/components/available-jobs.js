@@ -2,6 +2,7 @@
 import { useState } from 'react'
 import { useUser } from '@/contexts/user'
 import { useJobs } from '@/hooks/jobs'
+import { useSearchParams } from 'next/navigation'
 
 import AsideSection from './aside'
 import JobGridTile from './job-grid-tile'
@@ -11,15 +12,35 @@ import Image from 'next/image'
 import Spinner from '@/public/images/jobs/spinner.svg'
 
 export default function AvailableJobs({ initialData }) {
+    const searchParams = useSearchParams()
     const { user } = useUser()
     const { getJobs } = useJobs()
     const [loading, setLoading] = useState(false)
     const [jobs, setJobs] = useState(initialData?.data || [])
     const [jobsInfo, setJobsInfo] = useState(initialData || {})
 
+    const searchQueries = {
+        keywords: searchParams.get('search') || '',
+        employmentType: searchParams.get('employmentType') || '',
+        date: searchParams.get('date') || '',
+    }
+
     const handleFetchMore = () => {
+        let searchUrl = `${
+            searchQueries.keywords.trim().length > 0
+                ? '&?search=' + searchQueries.keywords
+                : ''
+        }${
+            searchQueries.employmentType.trim().length > 0
+                ? '&employmentType=' + searchQueries.employmentType
+                : ''
+        }${
+            searchQueries.date.trim().length > 0
+                ? '&date=' + searchQueries.date
+                : ''
+        }`
         getJobs({
-            url: jobsInfo?.next_page_url?.slice(33) || '/jobs',
+            url: jobsInfo?.next_page_url?.slice(33) + searchUrl || '/jobs',
             setLoading,
             setInfo: setJobsInfo,
             setData: newJobs => {

@@ -33,7 +33,7 @@ export const metadata = {
 
 export default async function Page({ searchParams }) {
     const page = searchParams.page || '1'
-    const jobs = await getJobs(page)
+    const jobs = await getJobs(page, searchParams)
 
     return (
         <>
@@ -41,17 +41,35 @@ export default async function Page({ searchParams }) {
                 <Hero />
             </Suspense>
             <RecentJobs jobs={jobs?.data?.jobs?.data} />
-            <AvailableJobs initialData={jobs?.data?.jobs} />
+            <Suspense fallback={<p></p>}>
+                <AvailableJobs initialData={jobs?.data?.jobs} />
+            </Suspense>
             <PostAJob />
             <DownloadApp />
         </>
     )
 }
 
-const getJobs = async page => {
+const getJobs = async (page, searchParams) => {
     try {
         const url = new URL('https://api.analogueshifts.app/api/jobs')
+
+        // Always include the page query parameter
         url.searchParams.append('page', page)
+
+        // Append optional query parameters if they exist
+        if (searchParams.search) {
+            url.searchParams.append('search', searchParams.search)
+        }
+        if (searchParams.employmentType) {
+            url.searchParams.append(
+                'employmentType',
+                searchParams.employmentType,
+            )
+        }
+        if (searchParams.date) {
+            url.searchParams.append('date', searchParams.date)
+        }
 
         const res = await fetch(url.toString(), {
             next: {

@@ -16,7 +16,7 @@ function Hero() {
 
     const handleSearch = () => {
         router.push(
-            `/jobs${keyword.trim().length > 0 ? '?keywords=' + keyword : ''}`,
+            `/jobs${keyword.trim().length > 0 ? '?search=' + keyword : ''}`,
         )
     }
 

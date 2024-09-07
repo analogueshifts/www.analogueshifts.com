@@ -13,6 +13,7 @@ export const employmentTypesData = [
 
 export const statusData = ['Online', 'Offline']
 
+// Add 'false' to enable internal job posting
 export const directApplyData = ['true']
 
 export const salaryCurrencyData = ['USD', 'EUR', 'GBP', 'NGN']

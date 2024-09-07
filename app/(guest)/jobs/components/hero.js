@@ -1,18 +1,40 @@
 'use client'
 import { useState } from 'react'
 import { useSearchParams } from 'next/navigation'
+import { useToast } from '@/contexts/toast'
 
 import Image from 'next/image'
 import Briefcase from '@/public/images/guest-layout/hero/filled_briefcase.svg'
 import DropdownMenu from './dropdown'
+import DateTimeDropdown from './date-dropdown'
 
 import employmentTypes from '../resources/employment-types.json'
 
 function Hero() {
     const searchParams = useSearchParams()
+    const { notifyUser } = useToast()
 
-    const [keyword, setKeyword] = useState(searchParams.get('keywords') || '')
-    const [employmentType, setEmploymentType] = useState('')
+    const [datePosted, setDatePosted] = useState(searchParams.get('date') || '')
+    const [employmentType, setEmploymentType] = useState(
+        searchParams.get('employmentType') || '',
+    )
+    const [keyword, setKeyword] = useState(searchParams.get('search') || '')
+
+    const handleSubmit = e => {
+        e.preventDefault()
+        if (keyword.trim().length === 0) {
+            notifyUser('error', 'Search keyword is missing', 'center')
+            return
+        }
+
+        let url = `/jobs?search=${keyword}${
+            employmentType.trim().length > 0
+                ? '&employmentType=' + employmentType
+                : ''
+        }${datePosted.trim().length > 0 ? '&date=' + datePosted : ''}`
+
+        window.location.href = url
+    }
 
     return (
         <section className="w-full h-max flex flex-col items-center py-16 large:py-[91px]">
@@ -36,7 +58,9 @@ function Hero() {
                 Join our team and revolutionize the job search experience for
                 countless individuals in emerging markets.
             </p>
-            <form className="tablet:w-4/5 w-max max-w-full tablet:mb-5 mb-10 tablet:grid grid-cols-2 flex large:flex items-center large:h-14 h-14 tablet:h-max  gap-3">
+            <form
+                onSubmit={handleSubmit}
+                className="tablet:w-4/5 w-max max-w-full tablet:mb-5 mb-10 tablet:grid grid-cols-2 flex large:flex items-center large:h-14 h-14 tablet:h-max  gap-3">
                 <input
                     className="w-[325px] tablet:h-12 h-full tablet:w-full tablet:col-span-2 outline-none rounded-2xl border border-tremor-brand-boulder200 px-6 tablet:text-sm text-sm large:text-base font-normal text-tremor-brand-boulder700 placeholder:text-tremor-brand-boulder200"
                     placeholder="Search Role"
@@ -44,7 +68,7 @@ function Hero() {
                     onChange={e => setKeyword(e.target.value)}
                     required
                 />
-                <div className="w-52 tablet:w-full tablet:col-span-2 h-max">
+                <div className="w-56 tablet:w-full tablet:col-span-2 h-max">
                     <DropdownMenu
                         list={employmentTypes}
                         onChange={value => setEmploymentType(value)}
@@ -52,12 +76,11 @@ function Hero() {
                         placeholder="Employment Type"
                     />
                 </div>
-                <div className="w-52 tablet:w-full tablet:col-span-2 h-max">
-                    <DropdownMenu
-                        list={['Full-time', 'Part-time']}
-                        onChange={value => {}}
-                        value=""
+                <div className="w-56 tablet:w-full tablet:col-span-2 h-max">
+                    <DateTimeDropdown
+                        dateTime={datePosted}
                         placeholder="Date Posted"
+                        onChange={v => setDatePosted(v)}
                     />
                 </div>
 
