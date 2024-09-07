@@ -14,7 +14,7 @@ export default function Dashboard() {
     return (
         <>
             <div className="w-full min-w-[300px] px-1.5 min-h-[calc(100dvh-80px)] lg:min-h-[calc(100dvh-112px)]">
-                <div className="w-full relative h-60 md:rounded-2xl bg-tremor-background-brown flex justify-end">
+                <div className="w-full relative h-48 md:rounded-2xl bg-tremor-background-brown flex justify-end">
                     <Image src={Curve} alt="" />
                     <UserModeSwitch setLoading={setLoading} />
                 </div>

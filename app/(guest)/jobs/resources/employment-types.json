@@ -1,9 +1,10 @@
 [
-    "fullTime",
-    "partTime",
-    "contract",
-    "temporary",
-    "intern",
-    "perDiem",
-    "volunteer"
+    "FULL_TIME",
+    "PART_TIME",
+    "CONTRACTOR",
+    "TEMPORARY",
+    "INTERN",
+    "VOLUNTEER",
+    "PER_DIEM",
+    "OTHER"
 ]

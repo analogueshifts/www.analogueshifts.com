@@ -94,7 +94,7 @@ export default function CompaniesOverview() {
 
             <div className="w-full md:px-1.5 min-h-[calc(100dvh-80px)] lg:min-h-[calc(100dvh-112px)]">
                 <div className="sticky top-0 z-20">
-                    <div className="w-full relative h-60 md:h-max overflow-hidden pb-6 md:rounded-2xl bg-tremor-background-brown flex justify-end">
+                    <div className="w-full relative h-24 md:h-max overflow-hidden pb-6 md:rounded-2xl bg-tremor-background-brown flex justify-end">
                         <Image src={Curve} alt="" className="absolute z-10" />
                         <div className="w-full flex-wrap gap-y-4 items-center flex justify-center  pt-8 px-5">
                             {/* Hire Button */}

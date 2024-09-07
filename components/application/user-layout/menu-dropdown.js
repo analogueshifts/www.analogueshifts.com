@@ -1,5 +1,6 @@
 import ResponsiveNavLink from '../guest-layout/responsive-navlink'
 import { motion, AnimatePresence } from 'framer-motion'
+import NotificationSection from '@/components/application/user-layout/notifications-section'
 
 export default function MenuDropDown({ user, open, handleLogout }) {
     return (
@@ -10,13 +11,14 @@ export default function MenuDropDown({ user, open, handleLogout }) {
                     animate={{ x: 0 }}
                     initial={{ x: '-100%' }}
                     transition={{ ease: 'easeInOut', duration: 0.3 }}
-                    className="bg-white z-40 overflow-y-auto  h-screen absolute overflow-hidden top-0 w-2/3 left-0 block lg:hidden">
+                    className="bg-white z-40 overflow-y-auto  h-screen absolute overflow-hidden top-0 w-3/4 left-0 block lg:hidden">
                     <div className="pt-7 pb-5 px-8 w-full flex-col flex gap-8">
                         <ResponsiveNavLink href="/dashboard">
                             Dashboard
                         </ResponsiveNavLink>
                         <ResponsiveNavLink href="/notifications">
-                            Notifications
+                            Notifications{' '}
+                            <NotificationSection user={user} sidebar={true} />
                         </ResponsiveNavLink>
                         <ResponsiveNavLink
                             href={

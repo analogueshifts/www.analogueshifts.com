@@ -4,7 +4,7 @@ const ResponsiveNavLink = ({ children, ...props }) => (
     <Link
         {...props}
         className={`text-xl text-tremor-brand-boulder700 font-bold  focus:outline-none  `}>
-        <b>{children}</b>
+        <b className="flex items-center gap-1.5 flex-row ">{children}</b>
     </Link>
 )
 
