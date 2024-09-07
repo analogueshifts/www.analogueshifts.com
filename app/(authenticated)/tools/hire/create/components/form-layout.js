@@ -1,9 +1,12 @@
 'use client'
-import { usePathname } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 import { useState, useEffect } from 'react'
+import { useUser } from '@/contexts/user'
 
 export default function CreateJobLayout({ children }) {
     const pathname = usePathname()
+    const router = useRouter()
+    const { user } = useUser()
     const [fieldForms, setFieldForms] = useState(['job-information'])
 
     useEffect(() => {
@@ -24,6 +27,14 @@ export default function CreateJobLayout({ children }) {
             ])
         }
     }, [pathname])
+
+    useEffect(() => {
+        if (user) {
+            if (user?.user_mode !== 'hire') {
+                router.push('/dashboard')
+            }
+        }
+    }, [user])
 
     return (
         <>

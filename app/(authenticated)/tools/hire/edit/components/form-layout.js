@@ -1,14 +1,15 @@
 'use client'
-import { usePathname } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 import { useState, useEffect } from 'react'
 import Cookies from 'js-cookie'
-import { useRouter } from 'next/navigation'
+import { useUser } from '@/contexts/user'
 
 export default function EditJobLayout({ children }) {
     const pathname = usePathname()
     const [fieldForms, setFieldForms] = useState(['job-information'])
     const [initialData, setInitialData] = useState(null)
     const router = useRouter()
+    const { user } = useUser()
 
     useEffect(() => {
         let jobEditIngData = Cookies.get('jobEditingData')
@@ -35,6 +36,14 @@ export default function EditJobLayout({ children }) {
             ])
         }
     }, [pathname])
+
+    useEffect(() => {
+        if (user) {
+            if (user?.user_mode !== 'hire') {
+                router.push('/dashboard')
+            }
+        }
+    }, [user])
 
     return (
         <>

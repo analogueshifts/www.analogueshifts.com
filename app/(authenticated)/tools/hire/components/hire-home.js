@@ -9,6 +9,7 @@ import SelectCompany from './select-company'
 
 import Spinner from '@/public/images/jobs/spinner.svg'
 import Curve from '@/public/images/curve.png'
+import { useRouter } from 'next/navigation'
 
 export default function HirePageDetails() {
     const { user } = useUser()
@@ -18,6 +19,7 @@ export default function HirePageDetails() {
     const [data, setData] = useState(null)
     const [loading, setLoading] = useState(false)
     const { deleteJob, fetchJobs } = useHire()
+    const router = useRouter()
 
     const deleteJobPost = async () => {
         try {
@@ -50,13 +52,17 @@ export default function HirePageDetails() {
 
     useEffect(() => {
         if (user) {
-            setLoading(true)
-            fetchJobs({
-                setLoading,
-                setCurrentPageInfo,
-                setData,
-                url: '/hire/dashboard',
-            })
+            if (user?.user_mode === 'hire') {
+                setLoading(true)
+                fetchJobs({
+                    setLoading,
+                    setCurrentPageInfo,
+                    setData,
+                    url: '/hire/dashboard',
+                })
+            } else {
+                router.push('/dashboard')
+            }
         }
     }, [user])
 

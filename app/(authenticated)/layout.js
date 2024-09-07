@@ -34,7 +34,7 @@ export default function AuthenticatedLayout({ children }) {
         // Redirect To Login if User is not Authenticated
         if (!user && !token) {
             Cookies.set('RedirectionLink', pathname)
-            window.location.href = '/'
+            window.location.href = 'https://auth.analogueshifts.app?app=main'
             return null
         } else if (!user && token) {
             //    Fetch User
