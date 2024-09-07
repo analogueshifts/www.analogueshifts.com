@@ -13,7 +13,7 @@ export const employmentTypesData = [
 
 export const statusData = ['Online', 'Offline']
 
-export const directApplyData = ['true', 'false']
+export const directApplyData = ['true']
 
 export const salaryCurrencyData = ['USD', 'EUR', 'GBP', 'NGN']
 
