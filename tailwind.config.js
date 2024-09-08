@@ -35,6 +35,7 @@ module.exports = {
                 564: '564px',
             },
             screens: {
+                380: '380px',
                 1186: '1186px',
                 '2xl': '1400px',
                 large: { raw: '(min-width: 1440px) and (min-height: 1040px)' },

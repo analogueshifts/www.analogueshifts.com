@@ -32,6 +32,26 @@ export const useAuth = () => {
         }
     }
 
+    const getNotificationCount = async ({ token, setCount }) => {
+        const config = {
+            method: 'GET',
+            url: '/notification/count',
+            headers: {
+                Authorization: 'Bearer ' + token,
+                'Content-Type': 'application/json',
+                Accept: 'application/json',
+            },
+        }
+        try {
+            let response = await axios.request(config)
+            if (response.data?.success) {
+                setCount(response.data.data.notifications)
+            }
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
     const getUser = async ({ setLoading, layout }) => {
         setLoading(true)
         try {
@@ -143,5 +163,6 @@ export const useAuth = () => {
         getUser,
         updateProfile,
         updateProfileMode,
+        getNotificationCount,
     }
 }

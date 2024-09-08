@@ -45,7 +45,7 @@ export default function Dashboard() {
                     </div>
                     {/* Metric Overview */}
 
-                    {user && <EditProfile updateLoading={setLoading} />}
+                    {/* {user && <EditProfile updateLoading={setLoading} />} */}
 
                     <UserStats />
                     {/* <OurApps /> */}

@@ -6,7 +6,12 @@ import AppStore from '@/public/images/guest-layout/download-app/appstore.svg'
 
 export default function DownloadAppBtn({ platform }) {
     return (
-        <Link href="">
+        <Link
+            href={
+                platform === 'playstore'
+                    ? 'https://play.google.com/store/apps/details?id=com.analogueShifts.app'
+                    : ''
+            }>
             <Image
                 src={platform === 'playstore' ? PlayStore : AppStore}
                 alt=""

@@ -16,10 +16,11 @@ import { Menu } from 'lucide-react'
 
 export default function AuthenticatedLayout({ children }) {
     const pathname = usePathname()
-    const { getUser } = useAuth()
+    const { getUser, getNotificationCount } = useAuth()
     const { user } = useUser()
     const [open, setOpen] = useState(false)
     const [mobileOpen, setMobileOpen] = useState(false)
+    const [notificationCount, setNotificationCount] = useState(0)
     const [loading, setLoading] = useState(false)
 
     const token = Cookies.get('analogueshifts')
@@ -39,10 +40,17 @@ export default function AuthenticatedLayout({ children }) {
         } else if (!user && token) {
             //    Fetch User
             getUser({ setLoading, layout: 'authenticated' })
+            getNotificationCount({ token, setCount: setNotificationCount })
         }
 
         handleResize(setMobileOpen)
     }, [])
+
+    useEffect(() => {
+        if (pathname === '/notifications') {
+            getNotificationCount({ token, setCount: setNotificationCount })
+        }
+    }, [pathname])
 
     useEffect(() => {
         if (mobileOpen) {
@@ -70,7 +78,10 @@ export default function AuthenticatedLayout({ children }) {
                     />
 
                     {/* Notification */}
-                    <NotificationSection user={user} />
+                    <NotificationSection
+                        notificationCount={notificationCount}
+                        user={user}
+                    />
 
                     <Link href="/" className="sm:hidden block">
                         <Image src={NavLogo} alt="" className="w-40 h-max" />
@@ -100,6 +111,7 @@ export default function AuthenticatedLayout({ children }) {
                             setMobileOpen(false)
                             setOpen(true)
                         }}
+                        notificationCount={notificationCount}
                         user={user}
                         open={mobileOpen}
                     />

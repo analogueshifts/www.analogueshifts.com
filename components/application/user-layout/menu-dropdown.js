@@ -2,7 +2,12 @@ import ResponsiveNavLink from '../guest-layout/responsive-navlink'
 import { motion, AnimatePresence } from 'framer-motion'
 import NotificationSection from '@/components/application/user-layout/notifications-section'
 
-export default function MenuDropDown({ user, open, handleLogout }) {
+export default function MenuDropDown({
+    user,
+    open,
+    handleLogout,
+    notificationCount,
+}) {
     return (
         <AnimatePresence>
             {open && (
@@ -18,7 +23,11 @@ export default function MenuDropDown({ user, open, handleLogout }) {
                         </ResponsiveNavLink>
                         <ResponsiveNavLink href="/notifications">
                             Notifications{' '}
-                            <NotificationSection user={user} sidebar={true} />
+                            <NotificationSection
+                                notificationCount={notificationCount}
+                                user={user}
+                                sidebar={true}
+                            />
                         </ResponsiveNavLink>
                         <ResponsiveNavLink
                             href={

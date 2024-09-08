@@ -9,8 +9,8 @@ import DownloadAppBtn from '../home-page/download-app-btn'
 function Footer() {
     return (
         <footer className="z-20 sticky bg-white tablet:pt-20 pt-168 pb-9 tablet:px-6 px-20 large:px-112 flex flex-col">
-            <div className="w-full flex gap-5 tablet:flex-col tablet:gap-10 justify-between">
-                <div className="min-w-[320px] tablet:max-w-full max-w-[320px] flex flex-col">
+            <div className="w-full flex 1186:gap-5 flex-col 1186:flex-row gap-10 justify-between">
+                <div className="380:min-w-[320px] min-w-0 tablet:max-w-full max-w-[320px] flex flex-col">
                     <Link
                         href="/"
                         className="max-w-full h-max tablet:mb-8 mb-12">
@@ -32,7 +32,7 @@ function Footer() {
                         Address: Remote Tech Company
                     </p>
                 </div>
-                <div className="flex flex-wrap gap-y-8 gap-x-16 items-start">
+                <div className="grid grid-cols-1 380:grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-y-8 gap-x-16 items-start">
                     {footerLinks.map(item => {
                         return (
                             <div

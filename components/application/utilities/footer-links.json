@@ -72,6 +72,10 @@
             {
                 "name": "Terms & Conditions",
                 "path": "/docs/terms-and-conditions"
+            },
+            {
+                "name": "Partnership",
+                "path": "/contact"
             }
         ]
     }
