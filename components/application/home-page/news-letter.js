@@ -5,9 +5,9 @@ export default function NewsLetter() {
                 backgroundImage: 'url(/images/guest-layout/lines-bg.png)',
             }}
             className="w-full z-20 sticky bg-no-repeat bg-cover overflow-hidden bg-tremor-background-darkYellow large:py-[160px] tablet:py-14 py-24 px-6 items-center flex flex-col">
-            <h1 className="large:text-32 tablet:text-xl text-2xl text-center font-semibold text-black">
+            <h2 className="large:text-32 tablet:text-xl text-2xl text-center font-semibold text-black">
                 Subscribe To <span className="text-white">Our Newsletter</span>
-            </h1>
+            </h2>
             <p className="max-w-[881px] tablet:max-w-full large:text-xl text-base leading-9 large:leading-48 font-normal text-[#907222]  text-center mt-5 mb-10">
                 Gain instant access to exclusive remote job opportunities,
                 personalized career guidance, and Tech industry insights
