@@ -28,10 +28,10 @@ export default function Hero() {
                         </span>
                     </h1>
                     <p className="text-center tablet:mb-5 mb-7 large:mb-10 px-5  tablet:leading-7 leading-8 large:leading-48 font-normal tablet:text-sm text-base large:text-xl text-tremor-brand-boulder400">
-                        AnalogueShifts is a Project Management and Talent
-                        Acquisition Company. Our mission is to solve the problem
-                        of cost for startups and Large scale companies abroad by
-                        sourcing the best talents for clients.
+                        AnalogueShifts is a Project Management and Remote Tech
+                        Recruitment Agency. Our mission is to solve the problem
+                        of cost for startups and large scale companies abroad by
+                        sourcing the best remote tech talents for clients.
                     </p>
                 </div>
             </div>

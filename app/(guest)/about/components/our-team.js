@@ -9,8 +9,8 @@ export default function OurTeam() {
                 <span className="text-tremor-background-darkYellow">Team</span>
             </h2>
             <p className="font-normal large:max-w-[761px] max-w-564 tablet:max-w-full text-center large:mb-[72px] mb-12 text-tremor-brand-boulder400 leading-10 large:leading-48 text-base large:text-xl">
-                We’re a dedicated, diverse, close-knit team on an adventure to
-                deliver quality and your success
+                We’re a dedicated, diverse, and close-knit team on an adventure
+                to deliver quality and your success
             </p>
             <div className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-10">
                 {data.map(item => {

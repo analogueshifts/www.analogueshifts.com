@@ -28,7 +28,7 @@ export default function DownloadApp({ dark }) {
                     className={`max-w-[500px] w-max tablet:w-10/12 tablet:leading-8 tablet:text-base text-xl  font-normal leading-48 ${
                         dark ? 'text-[#DCDBDB]' : 'text-[#907222]'
                     }`}>
-                    Download Analogue Shift’s app for global remote tech job
+                    Download the AnalogueShifts app for global remote tech job
                     opportunities and job postings on the go!
                 </p>
                 <div className="flex max-w-full items-center tablet:gap-4 flex-wrap gap-8 mt-8  h-max">
