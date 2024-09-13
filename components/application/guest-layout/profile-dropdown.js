@@ -61,7 +61,7 @@ export default function LoggedInProfileDropdown({ user, handleLogout }) {
                         src={user?.user_profile?.avatar}
                         alt="Profile"
                     />
-                    <AvatarFallback className="bg-background-darkYellow text-white text-sm font-bold ">
+                    <AvatarFallback className="bg-tremor-background-darkYellow text-white text-sm font-bold ">
                         {user?.email.slice(0, 1)?.toUpperCase()}
                     </AvatarFallback>
                 </Avatar>
