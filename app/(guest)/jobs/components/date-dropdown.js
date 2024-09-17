@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { ChevronDown } from 'lucide-react'
 import { AnimatePresence, motion } from 'framer-motion'
 
@@ -6,6 +6,7 @@ const DateTimeDropdown = ({ onChange, dateTime, placeholder }) => {
     const [selectedDate, setSelectedDate] = useState('')
     const [selectedTime, setSelectedTime] = useState('')
     const [open, setOpen] = useState(false)
+    const dropdownRef = useRef(null)
 
     const generateTimeOptions = () => {
         const hours = [...Array(24).keys()].map(h => ('0' + h).slice(-2))
@@ -42,8 +43,31 @@ const DateTimeDropdown = ({ onChange, dateTime, placeholder }) => {
 
     const timeOptions = generateTimeOptions()
 
+    // Function to handle clicks outside the dropdown
+    const handleClickOutside = event => {
+        if (
+            dropdownRef.current &&
+            !dropdownRef.current.contains(event.target)
+        ) {
+            setOpen(false)
+        }
+    }
+
+    // Add and clean up event listener for clicks outside
+    useEffect(() => {
+        if (open) {
+            document.addEventListener('mousedown', handleClickOutside)
+        } else {
+            document.removeEventListener('mousedown', handleClickOutside)
+        }
+
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside)
+        }
+    }, [open])
+
     return (
-        <div className="w-full relative flex flex-col">
+        <div className="w-full relative flex flex-col" ref={dropdownRef}>
             <button
                 type="button"
                 onClick={() => setOpen(p => !p)}

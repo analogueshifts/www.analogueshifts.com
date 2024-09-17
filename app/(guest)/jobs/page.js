@@ -72,9 +72,7 @@ const getJobs = async (page, searchParams) => {
         }
 
         const res = await fetch(url.toString(), {
-            next: {
-                revalidate: 60,
-            },
+            cache: 'no-store',
         })
 
         // Check if the response content type is JSON
@@ -91,7 +89,6 @@ const getJobs = async (page, searchParams) => {
             )
         }
     } catch (error) {
-        console.error('Error fetching jobs:', error)
         return null
     }
 }

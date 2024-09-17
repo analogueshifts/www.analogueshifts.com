@@ -81,9 +81,7 @@ const getJob = async slug => {
         const url = 'https://api.analogueshifts.app/api/job/' + slug
 
         const res = await fetch(url, {
-            next: {
-                revalidate: 60,
-            },
+            cache: 'no-store',
         })
 
         // Check if the response content type is JSON
@@ -100,7 +98,6 @@ const getJob = async slug => {
             )
         }
     } catch (error) {
-        console.error('Error fetching jobs:', error)
         return null
     }
 }
