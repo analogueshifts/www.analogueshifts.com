@@ -3,6 +3,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import BackgroundImages from './bg-images'
 import Briefcase from '@/public/images/guest-layout/hero/filled_briefcase.svg'
+import Search from '@/public/icons/glass.png'
 
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
@@ -14,7 +15,8 @@ function Hero() {
 
     const router = useRouter()
 
-    const handleSearch = () => {
+    const handleSearch = e => {
+        e.preventDefault()
         router.push(
             `/jobs${keyword.trim().length > 0 ? '?search=' + keyword : ''}`,
         )
@@ -47,16 +49,29 @@ function Hero() {
                     career opportunities.
                 </p>
                 <div className="tablet:w-4/5 w-max max-w-full tablet:mb-5 mb-10 tablet:grid grid-cols-2 flex large:flex items-center large:h-14 h-14 tablet:h-max  gap-3">
-                    <input
-                        value={keyword}
-                        onChange={e => setKeyword(e.target.value)}
-                        className="w-415 tablet:w-full tablet:col-span-2 tablet:h-12 h-full outline-none rounded-2xl border border-tremor-brand-boulder200 px-6 tablet:text-sm text-sm large:text-base font-normal text-tremor-brand-boulder700 placeholder:text-tremor-brand-boulder200"
-                        placeholder="Search for jobs by title, skill, or company"
-                    />
+                    <form
+                        onSubmit={handleSearch}
+                        className="w-415 tablet:w-full overflow-hidden flex tablet:col-span-2 rounded-2xl tablet:h-12 h-full border border-tremor-brand-boulder200">
+                        <input
+                            value={keyword}
+                            onChange={e => setKeyword(e.target.value)}
+                            className="h-full w-full outline-none border-none bg-transparent px-6 tablet:text-sm text-sm large:text-base font-normal text-tremor-brand-boulder700 placeholder:text-tremor-brand-boulder200"
+                            placeholder="Search for jobs "
+                        />
+                        <button
+                            type="submit"
+                            className="h-full bg-[#F8F8F8] w-[84px] min-w-[84px] border-none outline-none flex justify-center items-center">
+                            <Image
+                                src={Search}
+                                alt=""
+                                className="w-max large:h-max h-7"
+                            />
+                        </button>
+                    </form>
                     <button
-                        onClick={handleSearch}
+                        onClick={() => router.push('/direct-hire')}
                         className="rounded-2xl tablet:h-12  h-full bg-tremor-background-darkYellow flex justify-center items-center text-tremor-brand-boulder50 tablet:text-sm text-sm large:text-base font-semibold tablet:px-5 px-12">
-                        Search
+                        Direct Hire
                     </button>
                     <Link
                         href={

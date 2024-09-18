@@ -53,6 +53,11 @@ const Navigation = ({ user }) => {
                     <NavLink href="/" active={pathname === '/'}>
                         Home
                     </NavLink>
+                    <NavLink
+                        href="/direct-hire"
+                        active={pathname === '/direct-hire'}>
+                        Direct Hire
+                    </NavLink>
 
                     <OurApps />
 

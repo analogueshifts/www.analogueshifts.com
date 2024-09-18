@@ -39,7 +39,7 @@ export default function ResponsiveNavBar({
                     animate={{ x: 0 }}
                     initial={{ x: '-100%' }}
                     transition={{ ease: 'easeInOut', duration: 0.3 }}
-                    className="bg-white z-40 overflow-y-auto  h-screen absolute overflow-hidden top-0 w-2/3 left-0 block lg:hidden">
+                    className="bg-white z-40 overflow-y-auto  h-screen absolute overflow-hidden top-0 w-[70%] left-0 block lg:hidden">
                     <div className="pt-7 pb-5 px-8 w-full flex-col flex gap-8">
                         <ResponsiveNavLink href="/jobs">Jobs</ResponsiveNavLink>
                         <ResponsiveNavLink
@@ -48,6 +48,7 @@ export default function ResponsiveNavBar({
                             Blog
                         </ResponsiveNavLink>
                         <ResponsiveNavLink href="/">Home</ResponsiveNavLink>
+
                         <ResponsiveNavLink href="/about">
                             About
                         </ResponsiveNavLink>
@@ -90,6 +91,9 @@ export default function ResponsiveNavBar({
                                 })}
                             </motion.div>
                         )}
+                        <ResponsiveNavLink href="/direct-hire">
+                            Direct Hire
+                        </ResponsiveNavLink>
 
                         {/* Responsive Settings Options */}
                         {user ? (

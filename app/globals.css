@@ -91,9 +91,36 @@ body {
     -ms-user-select: none;
     user-select: none;
 }
-
 ::-webkit-scrollbar {
+    width: 0.1em;
+    background-color: #f5f5f500;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #ffbb0a;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: #ffbb0a;
+}
+
+.dropdown-list::-webkit-scrollbar {
+    width: 4px;
+    background-color: #f5f5f500;
+}
+.dropdown-list::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    height: 24px;
+    width: 4px;
+}
+
+body::-webkit-scrollbar {
     display: none;
+}
+
+.form-dropdown {
+    box-shadow: 0px 4px 67.76px 0px #00000009;
+    box-shadow: 0px 20px 417px 0px #00000012;
 }
 
 body::-webkit-scrollbar {
@@ -346,7 +373,7 @@ body::-webkit-scrollbar-thumb:hover {
     color: var(--dark);
 }
 
-::-webkit-scrollbar {
+/* ::-webkit-scrollbar {
     width: 0.2rem;
     height: 0.2rem;
 }
@@ -358,7 +385,7 @@ body::-webkit-scrollbar-thumb:hover {
 ::-webkit-scrollbar-thumb {
     background: var(--as);
     border-radius: 5rem;
-}
+} */
 
 .success-popup {
     position: fixed;
