@@ -45,7 +45,7 @@ export default function Dropdown({
         <div ref={dropdownRef} className={` relative h-max w-full`}>
             <div
                 onClick={() => setOpen(prev => !prev)}
-                className={`w-full  cursor-pointer text-tremor-content-boulder300 text-sm large:text-base font-normal h-14 large:h-16 rounded-2xl outline-none focus-visible:ring-0 border border-tremor-border-boulder200 px-6 flex justify-between items-center ${
+                className={`w-full  cursor-pointer text-tremor-brand-boulder300 text-sm large:text-base font-normal h-14 large:h-16 rounded-2xl outline-none focus-visible:ring-0 border border-tremor-brand-boulder200 px-6 flex justify-between items-center ${
                     value.trim().length === 0
                         ? 'text-[#B0B0B0]'
                         : 'text-tremor-brand-boulder950'
@@ -80,7 +80,7 @@ export default function Dropdown({
                                             setSearchValue(e.target.value)
                                         }
                                         placeholder={'Search'}
-                                        className="w-full outline-none bg-none border-none font-normal text-xs text-tremor-border-boulder200 py-2"
+                                        className="w-full outline-none bg-none border-none font-normal text-xs text-tremor-brand-boulder200 py-2"
                                     />
                                 </div>
                             )}
@@ -101,11 +101,11 @@ export default function Dropdown({
                                             onClick={() =>
                                                 handleAction(item.name)
                                             }
-                                            className={`large:px-6 cursor-pointer rounded-none w-full px-5 py-2 text-[13px] font-normal leading-[26px] border hover:bg-[#FFBB0A0F] hover:border-[#FFBB0A0D] hover:text-tremor-content-boulder950 flex gap-2.5 items-center  ${
+                                            className={`large:px-6 cursor-pointer rounded-none w-full px-5 py-2 text-[13px] font-normal leading-[26px] border hover:bg-[#FFBB0A0F] hover:border-[#FFBB0A0D] hover:text-tremor-brand-boulder950 flex gap-2.5 items-center  ${
                                                 item.name === value ||
                                                 value.includes(item.name)
-                                                    ? 'border-[#FFBB0A0D] bg-[#FFBB0A0F] text-tremor-content-boulder950'
-                                                    : 'bg-transparent  border-transparent  text-tremor-content-boulder400 '
+                                                    ? 'border-[#FFBB0A0D] bg-[#FFBB0A0F] text-tremor-brand-boulder950'
+                                                    : 'bg-transparent  border-transparent  text-tremor-brand-boulder400 '
                                             }`}>
                                             {item.flag && (
                                                 <img

@@ -60,11 +60,11 @@ function Hero() {
                         />
                         <button
                             type="submit"
-                            className="h-full bg-[#F8F8F8] w-[84px] min-w-[84px] border-none outline-none flex justify-center items-center">
+                            className="h-full bg-[#F8F8F8] large:w-[84px] min-w-[60px] w-[60px] large:min-w-[84px] border-none outline-none flex justify-center items-center">
                             <Image
                                 src={Search}
                                 alt=""
-                                className="w-max large:h-max h-7"
+                                className="w-max large:h-max h-6"
                             />
                         </button>
                     </form>
