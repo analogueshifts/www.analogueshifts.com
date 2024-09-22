@@ -252,7 +252,7 @@ export default function Form() {
                     Want to speak to us on a call instead?{' '}
                 </p>
                 <Link
-                    href="https://calendly.com/kennethmalaka/30min"
+                    href="https://calendly.com/kennethmalaka/analogue-shifts-bookings"
                     className="flex items-center gap-1.5 large:gap-2.5 font-normal text-sm large:text-base text-tremor-background-darkYellow">
                     <Image src={Calendar} alt="" /> Schedule a call
                 </Link>

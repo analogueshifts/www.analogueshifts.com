@@ -60,7 +60,7 @@ export default function Hero() {
                         To get started, submit the direct hire form, and we'll
                         handle the rest <br /> — or{' '}
                         <Link
-                            href="https://calendly.com/kennethmalaka/30min"
+                            href="https://calendly.com/kennethmalaka/analogue-shifts-bookings"
                             className="text-tremor-background-darkYellow underline ">
                             schedule a call!
                         </Link>
