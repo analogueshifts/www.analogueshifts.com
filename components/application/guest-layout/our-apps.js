@@ -42,7 +42,7 @@ export default function OurApps() {
             className="relative"
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}>
-            <button className="font-medium text-tremor-brand-boulder950 large:text-base text-xs h-6 leading-5 flex items-center">
+            <button className="font-medium text-tremor-brand-boulder950 large:text-base text-xs h-6 leading-5 flex items-start">
                 Products{' '}
                 <Image
                     src={ChevronDown}

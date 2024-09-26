@@ -41,12 +41,12 @@ export default function DownloadApp({ dark }) {
                 <Image
                     src={dark ? PreviewOneDark : PreviewOne}
                     alt=""
-                    className="z-20  large:translate-x-[74px] translate-x-[50px] xl:max-w-[40%] max-w-[25%] large:max-w-[50%]  h-max large:max-h-none max-h-full"
+                    className="z-20  large:translate-x-[74px] translate-x-[50px] xl:max-w-[38%] max-w-[25%] large:max-w-[50%]  h-max large:max-h-none max-h-full"
                 />
                 <Image
                     src={dark ? PreviewTwoDark : PreviewTwo}
                     alt=""
-                    className="-translate-x-[51px] z-10 large:max-h-none xl:max-w-[40%] max-w-[25%] large:max-w-[50%]  h-max max-h-full"
+                    className="-translate-x-[51px] z-10 large:max-h-none xl:max-w-[40%] max-w-[38%] large:max-w-[50%]  h-max max-h-full"
                 />
             </div>
         </section>
