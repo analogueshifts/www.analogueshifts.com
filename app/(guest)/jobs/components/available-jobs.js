@@ -39,6 +39,7 @@ export default function AvailableJobs({ initialData }) {
                 ? '&date=' + searchQueries.date
                 : ''
         }`
+
         getJobs({
             url: jobsInfo?.next_page_url?.slice(33) + searchUrl || '/jobs',
             setLoading,

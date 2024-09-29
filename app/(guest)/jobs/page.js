@@ -52,7 +52,11 @@ export default async function Page({ searchParams }) {
 
 const getJobs = async (page, searchParams) => {
     try {
-        const url = new URL('https://api.analogueshifts.app/api/jobs')
+        const url = new URL(
+            searchParams.search
+                ? 'https://api.analogueshifts.app/api/job/search'
+                : 'https://api.analogueshifts.app/api/jobs',
+        )
 
         // Always include the page query parameter
         url.searchParams.append('page', page)
