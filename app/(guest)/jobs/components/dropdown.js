@@ -56,7 +56,7 @@ export default function DropdownMenu({ value, onChange, list, placeholder }) {
                         initial={{ opacity: 0.5, scale: 0.93 }}
                         exit={{ opacity: 0, scale: 1 }}
                         animate={{ opacity: 1, scale: 1 }}
-                        className="rounded-3xl bg-white top-[60px] border flex flex-col w-full tablet:top-[52px] absolute origin-top text-base shadow-lg focus:outline-none sm:text-sm py-3"
+                        className="rounded-3xl z-40 bg-white top-[60px] border flex flex-col w-full tablet:top-[52px] absolute origin-top text-base shadow-lg focus:outline-none sm:text-sm py-3"
                         style={{
                             boxShadow: '0px 20px 417px 0px #00000012',
                         }}>

@@ -93,7 +93,7 @@ const DateTimeDropdown = ({ onChange, dateTime, placeholder }) => {
                         style={{
                             boxShadow: '0px 20px 417px 0px #00000012',
                         }}
-                        className="space-y-4 origin-top px-5 py-6 absolute w-full max-w-md top-[60px] tablet:top-[52px] border rounded-3xl bg-white text-base focus:outline-none sm:text-sm">
+                        className="space-y-4 z-40 origin-top px-5 py-6 absolute w-full max-w-md top-[60px] tablet:top-[52px] border rounded-3xl bg-white text-base focus:outline-none sm:text-sm">
                         {/* Date Selector */}
                         <div>
                             <label className="block text-tremor-brand-boulder500 font-medium text-sm mb-2.5">

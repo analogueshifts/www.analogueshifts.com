@@ -14,7 +14,7 @@ const InputGroup = ({
     const [focus, setFocus] = useState(false)
 
     const handleTextAreaChange = e => {
-        onChange(e.target.value.slice(0, 300))
+        onChange(e.target.value.slice(0, 600))
     }
 
     return (
@@ -48,7 +48,7 @@ const InputGroup = ({
                         className="outline-none large:leading-[32px] leading-[28px] large:text-base text-sm font-normal text-tremor-brand-boulder950 placeholder:text-[#B0B0B0] bg-transparent border-none w-full h-[85%]"
                     />
                     <p className="text-xs text-[#B0B0B0] font-normal">
-                        {value?.length}/300
+                        {value?.length}/600
                     </p>
                 </div>
             )}
