@@ -54,7 +54,13 @@ export default function AsideSection({ user }) {
                             : 'https://auth.analogueshifts.app?app=main'
                     }
                     className="w-full h-14 mb-4 rounded-2xl bg-white border border-tremor-background-darkYellow text-tremor-background-darkYellow flex justify-center items-center text-sm large:text-base font-semibold">
-                    Post job
+                    {user
+                        ? `${
+                              user?.user_mode === 'hire'
+                                  ? ' Post job'
+                                  : 'Applied jobs'
+                          }`
+                        : ' Post job'}
                 </Link>
             </div>
         </aside>

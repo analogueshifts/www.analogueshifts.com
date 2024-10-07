@@ -24,7 +24,6 @@ export default function AppliedJobsPage() {
                 setData: res => {
                     setData(res.applied.data)
                     setCurrentPageInfo(res.applied)
-                    console.log(res)
                 },
             })
         }
