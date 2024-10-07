@@ -24,6 +24,7 @@ export default function AppliedJobsPage() {
                 setData: res => {
                     setData(res.applied.data)
                     setCurrentPageInfo(res.applied)
+                    console.log(res)
                 },
             })
         }
@@ -50,7 +51,7 @@ export default function AppliedJobsPage() {
                                 return (
                                     <GridTile
                                         key={index}
-                                        item={item}
+                                        item={item?.job}
                                         index={index}
                                         total={data.length}
                                     />
