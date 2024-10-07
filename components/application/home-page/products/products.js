@@ -47,17 +47,25 @@ export default function Products() {
                                 </div>
                                 <div className="col-span-1">
                                     <SectionMessage
-                                        action={() => router.push(item.href)}
+                                        action={() => {
+                                            if (item.href !== '#') {
+                                                router.push(item.href)
+                                            }
+                                        }}
                                         title={item.title}
                                         highlighted={item?.highlighted || ''}
                                         buttonChildren={
-                                            <>
-                                                Try it for free{' '}
-                                                <Image
-                                                    src={RightArrow}
-                                                    alt=""
-                                                />
-                                            </>
+                                            item.href === '#' ? (
+                                                'Coming Soon'
+                                            ) : (
+                                                <>
+                                                    Try it for free{' '}
+                                                    <Image
+                                                        src={RightArrow}
+                                                        alt=""
+                                                    />
+                                                </>
+                                            )
                                         }
                                         description={item.description}
                                     />

@@ -62,9 +62,7 @@ const getBlogs = async () => {
         let res = await fetch(
             'https://blog.analogueshifts.com/wp-json/wp/v2/posts',
             {
-                next: {
-                    revalidate: 60,
-                },
+                cache: 'no-store',
             },
         )
 

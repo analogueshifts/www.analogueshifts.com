@@ -6,7 +6,7 @@ import Image from 'next/image'
 import LeftArrow from '@/public/images/guest-layout/blogs/left-arrow.svg'
 import RightArrow from '@/public/images/guest-layout/blogs/right-arrow.svg'
 import RightArrowWhite from '@/public/images/guest-layout/products/right-arrow.svg'
-import DummyBlogImage from '@/public/images/guest-layout/blogs/dummy-blog.svg'
+import { generateImageName, formatDate, extractMonth } from './utils'
 
 const Carousel = ({ posts }) => {
     const [currentIndex, setCurrentIndex] = useState(0)
@@ -61,27 +61,34 @@ const Carousel = ({ posts }) => {
                     }%)`,
                 }}>
                 {posts.map((item, index) => (
-                    <div
+                    <Link
                         key={index}
+                        href={item?.link}
                         className="sm:pr-5 lg:pr-10 pr-0  flex-shrink-0 flex w-full sm:w-1/2 lg:w-1/3">
                         <div className="flex flex-col w-full">
                             <div className="w-full h-[245px] rounded-2xl mb-8">
-                                <Image
-                                    src={DummyBlogImage}
-                                    alt=""
+                                <img
+                                    src={generateImageName(
+                                        extractMonth(item?.date),
+                                        item?.title?.rendered,
+                                    )}
+                                    alt={item?.title?.rendered || 'Blog Image'}
                                     className="rounded-2xl w-full h-full object-cover"
+                                    onError={e => {
+                                        e.currentTarget.src =
+                                            '/images/guest-layout/blogs/dummy-blog.svg'
+                                    }}
                                 />
                             </div>
                             <div className="w-full flex gap-x-8 gap-y-5 flex-wrap items-center">
                                 <p className="text-[15px] text-tremor-brand-boulder400 font-normal mb-4">
                                     Tech
                                 </p>
-                                <h2 className="large:text-[22px] text-lg mb-2 large:mb-[18px] leading-8 large:leading-10 font-medium text-tremor-brand-tan">
-                                    5 Things to watch out when hiring for a
-                                    cybersecurity expert.
+                                <h2 className="large:text-[22px] line-clamp-2 text-lg mb-2 large:mb-[18px] leading-8 large:leading-10 font-medium text-tremor-brand-tan">
+                                    {item?.title?.rendered}
                                 </h2>
                                 <p className="text-tremor-brand-boulder400 mb-8 large:mb-[49px] font-normal text-[15px]">
-                                    Feb 22, 2024 — by{' '}
+                                    {formatDate(item?.date)} — by{' '}
                                     <span className="text-tremor-brand-tan">
                                         analogueshifts
                                     </span>{' '}
@@ -92,7 +99,7 @@ const Carousel = ({ posts }) => {
                                 </p>
                             </div>
                         </div>
-                    </div>
+                    </Link>
                 ))}
             </div>
 

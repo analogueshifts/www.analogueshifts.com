@@ -94,9 +94,11 @@ export const useJobs = () => {
             notifyUser(
                 'error',
                 error?.response?.data?.message ||
-                    error?.response?.data?.message ||
+                    error?.response?.data?.data?.message ||
                     'Error Fetching Jobs',
             )
+            console.log(error)
+
             if (error?.response?.status === 401) {
                 clearUserSession()
             }

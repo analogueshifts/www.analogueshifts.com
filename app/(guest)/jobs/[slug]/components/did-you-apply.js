@@ -21,7 +21,6 @@ export default function DidYouApply({ open, close, slug }) {
             close()
         } catch (error) {
             close()
-            console.log(error)
         }
     }
 
