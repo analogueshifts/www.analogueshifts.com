@@ -50,7 +50,7 @@ export default async function Page() {
             <DownloadApp />
             <Products />
             <Reviews />
-            <Blogs blogs={blogs} />
+            {blogs && blogs[0] && <Blogs blogs={blogs} />}
             <ContactUs />
             <NewsLetter />
         </>
@@ -66,7 +66,6 @@ const getBlogs = async () => {
             },
         )
 
-        // Check if the response content type is JSON
         const contentType = res.headers.get('Content-Type') || ''
         if (!contentType.includes('application/json')) {
             throw new Error('Invalid response type')
