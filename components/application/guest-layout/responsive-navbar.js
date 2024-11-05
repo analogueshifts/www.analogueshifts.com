@@ -98,7 +98,12 @@ export default function ResponsiveNavBar({
                         {/* Responsive Settings Options */}
                         {user ? (
                             <>
-                                <ResponsiveNavLink href="/dashboard">
+                                <ResponsiveNavLink
+                                    href={
+                                        user?.user_mode === 'hire'
+                                            ? '/recruiter/dashboard'
+                                            : '/job-seeker/dashboard'
+                                    }>
                                     Dashboard
                                 </ResponsiveNavLink>
                                 <ResponsiveNavLink

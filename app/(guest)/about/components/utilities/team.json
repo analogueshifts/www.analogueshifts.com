@@ -30,33 +30,13 @@
         "name": "Honeybell Jolomi Omadeli",
         "image": "/images/team/designer.png"
     },
-    {
-        "role": "Project Manager ",
-        "name": "Ali Richard",
-        "image": "/images/team/product-manager.png"
-    },
-    {
-        "role": "Partnership and Strategy Associate ",
-        "name": "Marvellous SUNMIBOYE",
-        "image": "/images/team/content.png"
-    },
+
     {
         "role": "Recruiter",
         "name": "Ojo Elizabeth Oreoluwa ",
         "image": "/images/team/recruiter.png"
     },
 
-    {
-        "role": "SEO Specialist",
-        "name": "Fagbola Joshua",
-        "image": "/images/team/SEO.png"
-    },
-
-    {
-        "role": "Mobile Application Engineer",
-        "name": "Achu-ulim Akem Agbama",
-        "image": "/images/team/mobile.png"
-    },
     {
         "role": "Partnership Strategist",
         "name": "Eniola Bamidele",
@@ -72,10 +52,5 @@
         "role": "Legal Officer",
         "name": "Suleman Halimat Opeyemi",
         "image": "/images/team/legal-officer.png"
-    },
-    {
-        "role": "Partnership and Strategy Lead",
-        "name": "Adepeju Bello",
-        "image": "/images/team/partnership-specialist-lead.png"
     }
 ]
