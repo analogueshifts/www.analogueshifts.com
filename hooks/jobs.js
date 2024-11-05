@@ -2,10 +2,7 @@
 import axios from '@/app/lib/axios'
 import Cookies from 'js-cookie'
 import { clearUserSession } from '@/configs/clear-user-session'
-import {
-    processJobsChartData,
-    processHireChartData,
-} from '@/app/(authenticated)/dashboard/utilities/process-chart-data'
+import { extractJobsData } from '../configs/extract-chart-data'
 import { useToast } from '@/contexts/toast'
 
 export const useJobs = () => {
@@ -27,12 +24,8 @@ export const useJobs = () => {
             if (request?.data?.success) {
                 setData(
                     mode === 'job'
-                        ? processJobsChartData(
-                              request.data.data.dashboard.chart,
-                          )
-                        : processHireChartData(
-                              request.data.data.dashboard.chart,
-                          ),
+                        ? extractJobsData(request.data.data.dashboard.chart)
+                        : request.data.data.dashboard.chart,
                 )
             }
         } catch (error) {
@@ -74,6 +67,36 @@ export const useJobs = () => {
         }
     }
 
+    const getJob = async ({ setLoading, slug, setJob }) => {
+        const config = {
+            url: '/job/' + slug,
+            method: 'GET',
+            headers: {
+                Authorization: 'Bearer ' + token,
+            },
+        }
+        try {
+            setLoading(true)
+            const request = await axios.request(config)
+            if (request?.data?.success) {
+                setJob(request.data?.data?.job)
+            }
+            setLoading(false)
+        } catch (error) {
+            setLoading(false)
+            notifyUser(
+                'error',
+                error?.response?.data?.message ||
+                    error?.response?.data?.data?.message ||
+                    'Error Fetching Jobs',
+            )
+
+            if (error?.response?.status === 401) {
+                clearUserSession()
+            }
+        }
+    }
+
     const getRecommendedJobs = async ({ url, setData, setLoading }) => {
         const config = {
             url: url,
@@ -97,7 +120,6 @@ export const useJobs = () => {
                     error?.response?.data?.data?.message ||
                     'Error Fetching Jobs',
             )
-            console.log(error)
 
             if (error?.response?.status === 401) {
                 clearUserSession()
@@ -140,5 +162,6 @@ export const useJobs = () => {
         notifyUser,
         getJobs,
         getStats,
+        getJob,
     }
 }

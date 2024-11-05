@@ -203,7 +203,7 @@ export default function Form() {
             <div className="col-span-2">
                 <DropdownGroup
                     image={Wallet}
-                    label="Salary Range"
+                    label="Monthly Salary Range"
                     placeholder="Select salary range"
                     value={salaryRange}
                     onChange={setSalaryRange}

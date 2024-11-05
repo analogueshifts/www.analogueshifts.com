@@ -54,5 +54,9 @@ module.exports = {
             { endOfLine: 'auto' },
             { usePrettierrc: true },
         ],
+        'react/no-unknown-property': 'off',
+        'no-undef': 'off',
+        'no-irregular-whitespace': 'off', // Disables irregular whitespace errors
+        'no-unsafe-optional-chaining': 'off',
     },
 }

@@ -66,6 +66,15 @@ const DateTimeDropdown = ({ onChange, dateTime, placeholder }) => {
         }
     }, [open])
 
+    // Prefill selectedDate and selectedTime on component mount
+    useEffect(() => {
+        if (dateTime) {
+            const [datePart, timePart] = dateTime.split(' ')
+            setSelectedDate(datePart || '')
+            setSelectedTime(timePart || '')
+        }
+    }, [dateTime])
+
     return (
         <div className="w-full relative flex flex-col" ref={dropdownRef}>
             <button

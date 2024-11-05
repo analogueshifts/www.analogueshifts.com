@@ -1,0 +1,10 @@
+[
+    {
+        "label": "External",
+        "value": "true"
+    },
+    {
+        "label": "Internal (AnalogueShifts Forms)",
+        "value": "false"
+    }
+]

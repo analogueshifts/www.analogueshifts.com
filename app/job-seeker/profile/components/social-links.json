@@ -1,0 +1,18 @@
+{
+    "behance": {
+        "image": "/images/user-layout/profile/behance.svg",
+        "title": "Behance"
+    },
+    "linkedin": {
+        "image": "/images/user-layout/profile/linkedin.svg",
+        "title": "LinkedIn"
+    },
+    "dribble": {
+        "image": "/images/user-layout/profile/dribble.svg",
+        "title": "Dribble"
+    },
+    "tiktok": {
+        "image": "/images/user-layout/profile/tiktok.svg",
+        "title": "TikTok"
+    }
+}

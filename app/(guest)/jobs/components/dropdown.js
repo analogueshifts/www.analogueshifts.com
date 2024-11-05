@@ -64,10 +64,10 @@ export default function DropdownMenu({ value, onChange, list, placeholder }) {
                             return (
                                 <button
                                     type="button"
-                                    onClick={() => onChange(item)}
+                                    onClick={() => onChange(item.value)}
                                     className="text-tremor-brand-boulder300 text-start w-full cursor-pointer border-transparent relative h-[42px] text-[13px] border py-2 px-6 hover:bg-[#FFBB0A0F] hover:text-tremor-brand-boulder950 hover:border-[#FFBB0A0D]"
-                                    key={item}>
-                                    {item}
+                                    key={item.label}>
+                                    {item.label}
                                 </button>
                             )
                         })}

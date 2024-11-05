@@ -41,7 +41,7 @@ export default function AvailableJobs({ initialData }) {
         }`
 
         getJobs({
-            url: jobsInfo?.next_page_url?.slice(33) + searchUrl || '/jobs',
+            url: jobsInfo?.next_page_url + searchUrl || '/jobs',
             setLoading,
             setInfo: setJobsInfo,
             setData: newJobs => {
@@ -76,39 +76,47 @@ export default function AvailableJobs({ initialData }) {
                         </button>
                     )}
                 </div>
-                <div className="w-full flex flex-col gap-7 large:gap-10">
-                    {jobs.map((item, index) => {
-                        return (
-                            <JobGridTile
-                                key={index}
-                                index={index}
-                                item={item}
-                                total={jobs?.length}
-                            />
-                        )
-                    })}
-                    {jobsInfo?.next_page_url && (
-                        <button
-                            onClick={handleFetchMore}
-                            disabled={loading}
-                            id="viewMoreButton"
-                            className={`outline-none mx-auto bg-transparent text-tremor-background-darkYellow text-base large:text-xl font-medium pb-0.5 large:pb-2 border-b ${
-                                loading
-                                    ? 'border-transparent'
-                                    : 'border-b-tremor-background-darkYellow'
-                            }`}>
-                            {loading ? (
-                                <Image
-                                    src={Spinner}
-                                    alt=""
-                                    className="h-max w-10"
+                {jobs?.length > 0 ? (
+                    <div className="w-full flex flex-col gap-7 large:gap-10">
+                        {jobs?.map((item, index) => {
+                            return (
+                                <JobGridTile
+                                    key={index}
+                                    index={index}
+                                    item={item}
+                                    total={jobs?.length}
                                 />
-                            ) : (
-                                'View More'
-                            )}
-                        </button>
-                    )}
-                </div>
+                            )
+                        })}
+                        {jobsInfo?.next_page_url && (
+                            <button
+                                onClick={handleFetchMore}
+                                disabled={loading}
+                                id="viewMoreButton"
+                                className={`outline-none mx-auto bg-transparent text-tremor-background-darkYellow text-base large:text-xl font-medium pb-0.5 large:pb-2 border-b ${
+                                    loading
+                                        ? 'border-transparent'
+                                        : 'border-b-tremor-background-darkYellow'
+                                }`}>
+                                {loading ? (
+                                    <Image
+                                        src={Spinner}
+                                        alt=""
+                                        className="h-max w-10"
+                                    />
+                                ) : (
+                                    'View More'
+                                )}
+                            </button>
+                        )}
+                    </div>
+                ) : (
+                    <div className="w-full h-max py-8 flex justify-center items-center">
+                        <p className="text-center  tablet:max-w-full max-w-full  tablet:leading-7 leading-8 large:leading-48 font-normal tablet:text-sm text-base large:text-xl text-tremor-brand-boulder400">
+                            No job found
+                        </p>
+                    </div>
+                )}
             </div>
             <div className="xl:w-355 w-[710px] tablet:w-full static xl:sticky large:top-28 top-24">
                 <AsideSection user={user} />

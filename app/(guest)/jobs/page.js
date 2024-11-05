@@ -40,10 +40,11 @@ export default async function Page({ searchParams }) {
             <Suspense fallback={<p></p>}>
                 <Hero />
             </Suspense>
-            <RecentJobs />
+
             <Suspense fallback={<p></p>}>
                 <AvailableJobs initialData={jobs?.data?.jobs} />
             </Suspense>
+            <RecentJobs />
             <PostAJob />
             <DownloadApp />
         </>

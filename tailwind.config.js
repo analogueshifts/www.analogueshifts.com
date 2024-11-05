@@ -18,10 +18,12 @@ module.exports = {
                 18: '18px',
                 621: '621px',
                 221: '221px',
+                259: '259px',
                 415: '415px',
                 364: '364px',
                 250: '250px',
                 407: '407px',
+                484: '484px',
                 355: '355px',
                 minus355: 'calc(100% - 415px)',
                 navBarWidth: '1074px',
@@ -43,6 +45,7 @@ module.exports = {
                 mobile: { 'min-width': '767px' },
             },
             height: {
+                50: '50px',
                 104: '104px',
                 18: '18px',
                 68: '68px',
@@ -70,6 +73,21 @@ module.exports = {
 
             colors: {
                 as: '#E5BE39',
+                gold600: '#E28D00',
+                white50: '#FFFEEA',
+                mediumDarkGray: '#5E5E5E',
+                gainsBoro: '#DCDCDC',
+                neutral100: '#989898',
+                neutral200: '#7C7C7C',
+                amber: '#FFB800',
+                vibrantRed: '#FF3823',
+                emeraldGreen: '#2ECC71',
+                shadowDark: '#292929',
+                paleGray: '#BDBDBD',
+                platinum: '#F9F9F9',
+                grayishWhite: '#FEFEFE',
+                cyangreen: '#009951',
+                greenPea: '#1D9C53',
                 tremor: {
                     brand: {
                         faint: '#eff6ff', // blue-50
@@ -171,7 +189,7 @@ module.exports = {
                 48: '48px',
                 64: '64px',
             },
-            gap: { 88: '88px' },
+            gap: { 88: '88px', 108: '108px' },
             keyframes: {
                 'accordion-down': {
                     from: { height: '0' },

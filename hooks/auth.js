@@ -76,52 +76,29 @@ export const useAuth = () => {
         }
     }
 
-    const updateProfile = ({
-        setLoading,
-        firstName,
-        lastName,
-        userName,
-        profile,
-    }) => {
-        const url = '/update/profile'
-        let config = {
-            method: 'POST',
-            url: url,
-            headers: {
-                'Content-Type': 'application/json',
-                Authorization: 'Bearer ' + token,
-            },
-            data: {
-                first_name: firstName,
-                last_name: lastName,
-                username: userName,
-                profile: profile,
-            },
-        }
+    const getKycDetails = async ({ setLoading, setData }) => {
         setLoading(true)
-        axios
-            .request(config)
-            .then(response => {
-                setLoading(false)
-                if (response.data.success) {
-                    setUser(response.data.data.user)
-                    notifyUser('success', 'Your Profile has been updated.')
-                } else {
-                    notifyUser('error', response?.data?.message)
-                }
+        try {
+            const response = await axios.request({
+                url: '/profile/kyc',
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    Accept: 'application/json',
+                    Authorization: 'Bearer ' + token,
+                },
             })
-            .catch(error => {
-                notifyUser(
-                    'error',
-                    error?.response?.data?.message ||
-                        error?.response?.data?.data.data?.message ||
-                        'Failed To Update Your Profile',
-                )
-                setLoading(false)
-                if (error?.response?.status === 401) {
-                    clearUserSession()
-                }
-            })
+
+            if (response?.data?.success) {
+                setData(response.data?.data)
+            }
+            setLoading(false)
+        } catch (error) {
+            setLoading(false)
+            if (error?.response?.status === 401) {
+                clearUserSession()
+            }
+        }
     }
 
     const updateProfileMode = async ({ setLoading }) => {
@@ -138,17 +115,43 @@ export const useAuth = () => {
             }
 
             await axios.request(config)
-            notifyUser('Profile Mode Updated', '')
+            notifyUser('success', 'Profile Mode Updated', 'right')
             await getUser({ setLoading, layout: 'authenticated' })
             setLoading(false)
         } catch (error) {
             setLoading(false)
             notifyUser(
-                'Failed to update mode',
+                'error',
                 error?.response?.data?.message ||
                     error?.response?.data?.data?.message ||
-                    '',
+                    error?.message,
+                'right',
             )
+        }
+    }
+    const updateProfile = async ({ data, url }) => {
+        try {
+            const config = {
+                url,
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    Accept: 'application/json',
+                    Authorization: 'Bearer ' + token,
+                },
+                data,
+            }
+            const res = await axios.request(config)
+            console.log(res)
+        } catch (error) {
+            notifyUser(
+                'error',
+                error?.response?.data?.message ||
+                    error?.response?.data?.data?.message ||
+                    error?.message,
+                'right',
+            )
+            console.log(error)
         }
     }
 
@@ -161,8 +164,9 @@ export const useAuth = () => {
         validateApp,
         logout,
         getUser,
-        updateProfile,
         updateProfileMode,
+        getKycDetails,
         getNotificationCount,
+        updateProfile,
     }
 }

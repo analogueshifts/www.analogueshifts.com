@@ -1,0 +1,22 @@
+[
+    {
+        "path": "/job-seeker/settings",
+        "name": "Account Settings"
+    },
+    {
+        "path": "/job-seeker/settings/privacy",
+        "name": "Privacy  & Settings"
+    },
+    {
+        "path": "/job-seeker/settings/notifications",
+        "name": "Notifications"
+    },
+    {
+        "path": "/job-seeker/settings/preferences",
+        "name": "Preferences"
+    },
+    {
+        "path": "/job-seeker/settings/feedback",
+        "name": "Support/Feedback"
+    }
+]

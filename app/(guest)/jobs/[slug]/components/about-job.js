@@ -38,6 +38,7 @@ export default function AboutJob({ job, slug }) {
                 index={1}
                 total={1}
                 item={job}
+                details={true}
                 handleApply={handleApply}
             />
             <h2 className="text-black mt-8 font-semibold large:mb-10 mb-7 large:text-32 tablet:text-2xl text-[28px] large:mt-11">

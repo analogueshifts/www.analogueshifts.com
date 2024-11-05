@@ -8,10 +8,10 @@ export const useHire = () => {
     const { notifyUser } = useToast()
     const token = Cookies.get('analogueshifts')
 
-    const uploadFile = async ({ fileValue, setLoading, setData }) => {
+    const uploadFile = async ({ fileValue, setLoading, setData, fileType }) => {
         const formData = new FormData()
         formData.append('upload', fileValue)
-        formData.append('type', 'image')
+        formData.append('type', fileType || 'image')
         let config = {
             method: 'POST',
             url: process.env.NEXT_PUBLIC_FILE_UPLOAD_URL + '/upload',
@@ -37,8 +37,10 @@ export const useHire = () => {
                 'error',
                 error?.response?.data?.message ||
                     error?.response?.data?.data?.message ||
-                    'Failed To Upload Logo',
+                    error?.message ||
+                    'Failed To Upload',
             )
+
             if (error?.response?.status === 401) {
                 clearUserSession()
             }
@@ -134,6 +136,7 @@ export const useHire = () => {
                 'error',
                 error?.response?.data?.message ||
                     error?.response?.data?.data?.message ||
+                    error?.message ||
                     'Error',
             )
             if (error?.response?.status === 401) {

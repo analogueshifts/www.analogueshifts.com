@@ -83,7 +83,12 @@ export default function LoggedInProfileDropdown({ user, handleLogout }) {
                                 description: 'Overview of your activity.',
                                 image:
                                     '/images/guest-layout/profile/dashboard.svg',
-                                action: () => router.push('/dashboard'),
+                                action: () =>
+                                    router.push(
+                                        user?.user_mode === 'hire'
+                                            ? '/recruiter/dashboard'
+                                            : '/job-seeker/dashboard',
+                                    ),
                             }}
                         />
                         <RenderMenu
@@ -103,8 +108,8 @@ export default function LoggedInProfileDropdown({ user, handleLogout }) {
                                 action: () =>
                                     router.push(
                                         user?.user_mode === 'hire'
-                                            ? '/tools/hire'
-                                            : '/jobs-recommendations',
+                                            ? '/recruiter/hire'
+                                            : '/job-seeker/jobs',
                                     ),
                             }}
                         />
@@ -113,7 +118,7 @@ export default function LoggedInProfileDropdown({ user, handleLogout }) {
                                 title: 'Notifications',
                                 description: 'Real-time job updates',
                                 image: '/images/guest-layout/profile/bell.svg',
-                                action: () => router.push('/notifications'),
+                                action: () => {},
                             }}
                         />
                         <RenderMenu
