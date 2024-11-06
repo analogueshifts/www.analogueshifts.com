@@ -1,22 +1,22 @@
 [
     {
-        "path": "/job-seeker/settings",
+        "path": "/recruiter/settings",
         "name": "Account Settings"
     },
     {
-        "path": "/job-seeker/settings/privacy",
+        "path": "/recruiter/settings/privacy",
         "name": "Privacy  & Settings"
     },
     {
-        "path": "/job-seeker/settings/notifications",
+        "path": "/recruiter/settings/notifications",
         "name": "Notifications"
     },
     {
-        "path": "/job-seeker/settings/preferences",
+        "path": "/recruiter/settings/preferences",
         "name": "Preferences"
     },
     {
-        "path": "/job-seeker/settings/feedback",
+        "path": "/recruiter/settings/feedback",
         "name": "Support/Feedback"
     }
 ]
