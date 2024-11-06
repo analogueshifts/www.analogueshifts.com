@@ -11,7 +11,7 @@ import SocialLinks from './social-links'
 import Calendar from '@/public/images/user-layout/calendar.svg'
 import Image from 'next/image'
 
-export default function ProfileOverview() {
+export default function ProfileOverview({ recruiter }) {
     const token = Cookies.get('analogueshifts')
     const [kycDetails, setKycDetails] = useState(null)
     const [loading, setLoading] = useState(false)
@@ -60,7 +60,12 @@ export default function ProfileOverview() {
                             'url(/images/user-layout/profile/line.png)',
                     }}
                     className="w-full large:h-[168px] h-[150px] bg-cover bg-no-repeat  bg-[#575346] rounded-[25px] "></div>
-                <Stats kycDetails={kycDetails} user={user} counts={counts} />
+                <Stats
+                    recruiter={recruiter ? true : false}
+                    kycDetails={kycDetails}
+                    user={user}
+                    counts={counts}
+                />
             </div>
             <div className="w-full h-max relative overflow-hidden p-8 tablet:pb-10 tablet:p-5 bg-white rounded-[32px] flex flex-col gap-2.5">
                 <h3 className="text-black text-base font-semibold">Bio</h3>

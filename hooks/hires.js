@@ -62,8 +62,9 @@ export const useHire = () => {
             await axios.request(config)
             setLoading(false)
             notifyUser('success', 'Your Hire Request Has Been Sent')
-            Cookies.remove('jobPostData')
-            router.push('/tools/hire')
+            localStorage.removeItem('newJob')
+            localStorage.removeItem('newJobCompany')
+            router.push('/recruiter/hire')
         } catch (error) {
             notifyUser(
                 'error',
@@ -93,14 +94,20 @@ export const useHire = () => {
         try {
             await axios.request(config)
             setLoading(false)
-            notifyUser('success', 'Your Post Has Been Edited Successfully')
-            router.push('/tools/hire')
+            notifyUser(
+                'success',
+                'Your Post Has Been Edited Successfully',
+                'right',
+            )
+            router.push('/recruiter/hire')
         } catch (error) {
             notifyUser(
                 'error',
                 error?.response?.data?.message ||
                     error?.response?.data?.data?.message ||
+                    error?.message ||
                     'Failed To Post Job',
+                'right',
             )
             setLoading(false)
             if (error?.response?.status === 401) {

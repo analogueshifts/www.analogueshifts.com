@@ -4,9 +4,14 @@ import Image from 'next/image'
 import Avatar from '@/public/images/user-layout/profile/avatar.svg'
 import ProfileStat from './profile-stat'
 import Link from 'next/link'
+import { useHire } from '@/hooks/hires'
+import Cookies from 'js-cookie'
 
-export default function Stats({ user, kycDetails, counts }) {
+export default function Stats({ user, kycDetails, counts, recruiter }) {
     const [total, setTotal] = useState(0)
+    const [jobsPosted, setJobsPosted] = useState(0)
+    const { fetchJobs } = useHire()
+    const token = Cookies.get('analogueshifts')
 
     useEffect(() => {
         if (user || kycDetails) {
@@ -19,6 +24,17 @@ export default function Stats({ user, kycDetails, counts }) {
             setTotal(count)
         }
     }, [user, kycDetails])
+
+    useEffect(() => {
+        if (token) {
+            fetchJobs({
+                setLoading: v => {},
+                setCurrentPageInfo: item => setJobsPosted(item?.total || 0),
+                setData: v => {},
+                url: '/hire/dashboard',
+            })
+        }
+    }, [token])
 
     return (
         <div className="w-full flex flex-col -translate-y-8 tablet:-translate-y-5">
@@ -66,7 +82,11 @@ export default function Stats({ user, kycDetails, counts }) {
                             </div>
                         </div>
                         <Link
-                            href="/job-seeker/profile/edit"
+                            href={
+                                recruiter
+                                    ? '/recruiter/profile/edit'
+                                    : '/job-seeker/profile/edit'
+                            }
                             className="flex tablet:absolute tablet:-top-6 tablet:right-2 items-center gap-1 text-xs text-tremor-background-darkYellow font-normal">
                             <img
                                 src="/images/user-layout/profile/pen.svg"
@@ -89,8 +109,8 @@ export default function Stats({ user, kycDetails, counts }) {
                 />
                 <ProfileStat
                     border={true}
-                    count={counts.jobsApplied}
-                    label={'Jobs Applied'}
+                    count={recruiter ? jobsPosted : counts.jobsApplied}
+                    label={recruiter ? 'Jobs Posted' : 'Jobs Applied'}
                     image={'/images/user-layout/profile/briefcase.svg'}
                 />
                 <ProfileStat

@@ -88,7 +88,6 @@ export default function SelectCompany() {
             <div className="col-span-1 flex flex-col tablet:gap-2.5 gap-5">
                 <h3 className="large:text-base text-sm font-semibold text-tremor-brand-boulder950 max-w-[80%] tablet:max-w-full w-max">
                     Company Name
-                    <span className="text-[#FF0000]">*</span>
                 </h3>
                 <p className="max-w-[80%] tablet:text-xs tablet:max-w-full w-max text-sm font-normal text-tremor-brand-boulder900">
                     You can select company if added or type in name manually

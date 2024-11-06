@@ -27,6 +27,7 @@ export default function InputGroup({
                 type={type}
                 placeholder={placeholder}
                 value={value}
+                required={required}
                 onChange={e => setValue(e.target.value)}
                 className="col-span-1 h-50 border border-tremor-brand-boulder100 px-6 text-sm large:text-base font-normal placeholder:text-tremor-brand-boulder300 text-tremor-brand-boulder900 outline-none rounded-2xl bg-white"
             />

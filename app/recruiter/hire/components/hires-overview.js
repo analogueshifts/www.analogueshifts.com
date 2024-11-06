@@ -222,7 +222,10 @@ export default function HiresOverview() {
                                                 setData={setAllJobs}
                                             />
                                             <Link
-                                                href=""
+                                                href={
+                                                    '/recruiter/hire/edit/' +
+                                                    item?.uuid
+                                                }
                                                 className="h-8 col-span-1 tablet:px-6 border border-[#FFBB0A59] flex justify-center items-center text-tremor-brand-boulder50 bg-tremor-background-darkYellow duration-300 hover:bg-white hover:text-tremor-background-darkYellow font-semibold text-xs rounded-xl">
                                                 Edit
                                             </Link>

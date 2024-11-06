@@ -1,27 +1,30 @@
 'use client'
 import { useState, useEffect } from 'react'
-import InputGroup from '../../components/input-group'
+import InputGroup from '../../../../create/components/input-group'
 import UploadFile from './upload-file'
-import { useRouter } from 'next/navigation'
-import { handleUpload } from '../../utilities/upload'
+import { usePathname, useRouter } from 'next/navigation'
+import { handleUpload } from '../handle-upload'
 import { useHire } from '@/hooks/hires'
 import { Switch } from '@/components/ui/switch'
 import Spinner from '@/public/images/spinner-white.svg'
 import Image from 'next/image'
 
 export default function Form() {
-    const [newJob, setNewJob] = useState({
+    const [editJob, setEditJob] = useState({
         stepOne: null,
         stepTwo: null,
         stepThree: null,
     })
     const [isUrlType, setIsUrlType] = useState(false)
     const [loading, setLoading] = useState(false)
-    const { createJob } = useHire()
+    const { updateJob } = useHire()
     const router = useRouter()
+    const pathname = usePathname()
+    const segments = pathname.split('/')
+    const uuid = segments[4]
 
     const updateStepThree = (newValue, label) => {
-        setNewJob(prev => {
+        setEditJob(prev => {
             return {
                 ...prev,
                 stepThree: { ...prev.stepThree, [label]: newValue },
@@ -30,9 +33,9 @@ export default function Form() {
     }
 
     useEffect(() => {
-        let storedData = localStorage.getItem('newJob')
+        let storedData = localStorage.getItem('editJob')
         if (storedData) {
-            setNewJob(JSON.parse(storedData))
+            setEditJob(JSON.parse(storedData))
         }
 
         let companyData = localStorage.getItem('newJobCompany')
@@ -47,7 +50,7 @@ export default function Form() {
 
     const handleFormSubmit = e => {
         e.preventDefault()
-        handleUpload(setLoading, router, createJob, newJob)
+        handleUpload(setLoading, router, updateJob, editJob, editJob?.id)
     }
 
     return (
@@ -62,7 +65,7 @@ export default function Form() {
                 placeholder="Enter Company Name"
                 setValue={value => updateStepThree(value, 'companyName')}
                 type="text"
-                value={newJob.stepThree?.companyName}
+                value={editJob.stepThree?.companyName}
             />
             <InputGroup
                 border={true}
@@ -72,7 +75,7 @@ export default function Form() {
                 placeholder="Enter Company Website URL"
                 setValue={value => updateStepThree(value, 'companyWebsite')}
                 type="url"
-                value={newJob.stepThree?.companyWebsite}
+                value={editJob.stepThree?.companyWebsite}
             />
 
             <div
@@ -99,7 +102,7 @@ export default function Form() {
                         <input
                             type="url"
                             placeholder="Enter Logo URL"
-                            value={newJob.stepThree?.companyLogo}
+                            value={editJob.stepThree?.companyLogo}
                             onChange={e =>
                                 updateStepThree(e.target.value, 'companyLogo')
                             }
@@ -107,7 +110,7 @@ export default function Form() {
                         />
                     ) : (
                         <UploadFile
-                            value={newJob.stepThree?.companyLogo}
+                            value={editJob.stepThree?.companyLogo}
                             setValue={value =>
                                 updateStepThree(value, 'companyLogo')
                             }
@@ -120,7 +123,9 @@ export default function Form() {
                 <button
                     type="button"
                     onClick={() =>
-                        router.push('/recruiter/hire/create/step-two')
+                        router.push(
+                            '/recruiter/hire/edit/' + uuid + '/step-two',
+                        )
                     }
                     className="w-[109px] border border-tremor-background-darkYellow duration-300 hover:opacity-90 h-[42px] rounded-xl bg-transparent flex justify-center items-center text-base font-semibold text-tremor-background-darkYellow">
                     Previous

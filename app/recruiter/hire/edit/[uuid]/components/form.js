@@ -1,54 +1,83 @@
 'use client'
 import { useState, useEffect } from 'react'
-import InputGroup from './input-group'
-import SelectCompany from './select-company'
-import ActionListGroup from './action-list-group'
-import SelectGroup from './select-group'
+import { useToast } from '@/contexts/toast'
+import InputGroup from '../../../create/components/input-group'
+import SelectCompany from '../../../create/components/select-company'
+import ActionListGroup from '../../../create/components/action-list-group'
+import SelectGroup from '../../../create/components/select-group'
 import employmentTypes from '@/app/(guest)/jobs/resources/employment-types.json'
-import locationTypes from '../resources/location-types.json'
+import locationTypes from '../../../create/resources/location-types.json'
 import { useRouter } from 'next/navigation'
+import axios from '@/app/lib/axios'
+import Cookies from 'js-cookie'
+import { prefill } from '../utilities/prefill'
 
-export default function Form() {
-    const [newJob, setNewJob] = useState({
+export default function Form({ uuid }) {
+    const [editJob, setEditJob] = useState({
         stepOne: null,
         stepTwo: null,
         stepThree: null,
     })
+    const { notifyUser } = useToast()
     const router = useRouter()
+    const token = Cookies.get('analogueshifts')
 
     const updateStepOne = (newValue, label) => {
-        setNewJob(prev => {
+        setEditJob(prev => {
             return { ...prev, stepOne: { ...prev.stepOne, [label]: newValue } }
         })
     }
 
     useEffect(() => {
-        let storedData = localStorage.getItem('newJob')
         let companyData = localStorage.getItem('newJobCompany')
-        if (storedData) {
-            let parsed = JSON.parse(storedData)
-            setNewJob(
-                parsed?.stepOne
-                    ? parsed
-                    : {
-                          ...parsed,
-                          stepOne: {
-                              employmentType: 'FULL_TIME',
-                              applicantLocationRequirementsState: [],
-                              applicantLocationRequirementsCountry: [],
-                          },
-                      },
-            )
-        }
+
         if (companyData) {
             updateStepOne(JSON.parse(companyData)?.location, 'streetAddress')
         }
     }, [])
 
+    useEffect(() => {
+        if (token) {
+            fetchJob()
+        }
+    }, [token])
+
     const handleFormSubmit = e => {
         e.preventDefault()
-        localStorage.setItem('newJob', JSON.stringify(newJob))
-        router.push('/recruiter/hire/create/step-two')
+        localStorage.setItem('editJob', JSON.stringify(editJob))
+        router.push('/recruiter/hire/edit/' + uuid + '/step-two')
+    }
+
+    const fetchJob = () => {
+        let config = {
+            method: 'GET',
+            url: '/hire/edit/' + uuid,
+            headers: {
+                Authorization: 'Bearer ' + token,
+            },
+        }
+        axios
+            .request(config)
+            .then(res => {
+                let jobData = res.data.data.hire
+                if (jobData) {
+                    prefill(jobData, setEditJob)
+                } else {
+                    notifyUser('error', 'Job not found', 'right')
+                    router.push('/recruiter/hire')
+                }
+            })
+            .catch(error => {
+                router.push('/recruiter/hire')
+                notifyUser(
+                    'error',
+                    error?.response?.data?.message ||
+                        error?.response?.data?.data?.message ||
+                        error?.message ||
+                        'Error Getting Job',
+                    'right',
+                )
+            })
     }
 
     return (
@@ -63,7 +92,7 @@ export default function Form() {
                 description="A Job posting must describe one position only"
                 placeholder="e.g “Product designer”"
                 type="text"
-                value={newJob?.stepOne?.title}
+                value={editJob?.stepOne?.title}
                 setValue={value => updateStepOne(value, 'title')}
             />
             <SelectGroup
@@ -73,7 +102,7 @@ export default function Form() {
                 list={employmentTypes}
                 placeholder="Select employment type"
                 required={true}
-                value={newJob?.stepOne?.employmentType}
+                value={editJob?.stepOne?.employmentType}
                 setValue={value => updateStepOne(value, 'employmentType')}
             />
             <InputGroup
@@ -83,7 +112,7 @@ export default function Form() {
                 description="A label for tracking the job internally"
                 placeholder="e.g “Job ID”"
                 type="text"
-                value={newJob?.stepOne?.identifierName}
+                value={editJob?.stepOne?.identifierName}
                 setValue={value => updateStepOne(value, 'identifierName')}
             />
             <InputGroup
@@ -93,7 +122,7 @@ export default function Form() {
                 description="A corresponding code or value assigned to the identifier name, serving as a unique identifier"
                 placeholder="e.g “Job 123456”"
                 type="text"
-                value={newJob?.stepOne?.identifierValue}
+                value={editJob?.stepOne?.identifierValue}
                 setValue={value => updateStepOne(value, 'identifierValue')}
             />
             <InputGroup
@@ -103,7 +132,7 @@ export default function Form() {
                 description="The deadline for applying for the job"
                 placeholder=""
                 type="date"
-                value={newJob?.stepOne?.validThrough}
+                value={editJob?.stepOne?.validThrough}
                 setValue={value => updateStepOne(value, 'validThrough')}
             />
             <InputGroup
@@ -113,7 +142,7 @@ export default function Form() {
                 description="A specific street or building address of the company's location"
                 placeholder="e.g “5th Avenue”"
                 type="text"
-                value={newJob?.stepOne?.streetAddress}
+                value={editJob?.stepOne?.streetAddress}
                 setValue={value => updateStepOne(value, 'streetAddress')}
             />
             <InputGroup
@@ -123,7 +152,7 @@ export default function Form() {
                 description="The region or state/province where the company is located."
                 placeholder="e.g “Manhattan”"
                 type="text"
-                value={newJob?.stepOne?.state}
+                value={editJob?.stepOne?.state}
                 setValue={value => updateStepOne(value, 'state')}
             />
             <InputGroup
@@ -133,7 +162,7 @@ export default function Form() {
                 description="The company's address region"
                 placeholder="e.g “Midwest”"
                 type="text"
-                value={newJob?.stepOne?.region}
+                value={editJob?.stepOne?.region}
                 setValue={value => updateStepOne(value, 'region')}
             />
             <InputGroup
@@ -143,7 +172,7 @@ export default function Form() {
                 description="The country where the company is located"
                 placeholder="e.g “USA”"
                 type="text"
-                value={newJob?.stepOne?.country}
+                value={editJob?.stepOne?.country}
                 setValue={value => updateStepOne(value, 'country')}
             />
             <InputGroup
@@ -153,7 +182,7 @@ export default function Form() {
                 description="The postal code or zip code associated with the company's location."
                 placeholder="e.g “000000”"
                 type="text"
-                value={newJob?.stepOne?.postalCode}
+                value={editJob?.stepOne?.postalCode}
                 setValue={value => updateStepOne(value, 'postalCode')}
             />
             <SelectGroup
@@ -163,7 +192,7 @@ export default function Form() {
                 list={locationTypes}
                 placeholder="Select location type"
                 required={true}
-                value={newJob?.stepOne?.locationType}
+                value={editJob?.stepOne?.locationType}
                 setValue={value => updateStepOne(value, 'locationType')}
             />
             <ActionListGroup
@@ -173,7 +202,7 @@ export default function Form() {
                 description="Countries where the applicants must work from."
                 placeholder="e.g “USA”"
                 type="text"
-                value={newJob?.stepOne?.applicantLocationRequirementsCountry}
+                value={editJob?.stepOne?.applicantLocationRequirementsCountry}
                 setValue={value =>
                     updateStepOne(value, 'applicantLocationRequirementsCountry')
                 }
@@ -185,7 +214,7 @@ export default function Form() {
                 description="States where the applicants must work from."
                 placeholder="e.g “Texas”"
                 type="text"
-                value={newJob?.stepOne?.applicantLocationRequirementsState}
+                value={editJob?.stepOne?.applicantLocationRequirementsState}
                 setValue={value =>
                     updateStepOne(value, 'applicantLocationRequirementsState')
                 }

@@ -1,4 +1,4 @@
-export const handleUpload = (setLoading, router, createJob, newJob) => {
+export const handleUpload = (setLoading, router, editJob, newJob, editId) => {
     // Arrange The Data Structure
     let data = {
         title: newJob?.stepOne?.title,
@@ -55,5 +55,5 @@ export const handleUpload = (setLoading, router, createJob, newJob) => {
     }
 
     // Call the Create Function with the data as Parameter
-    createJob({ setLoading, data, router })
+    editJob({ setLoading, data, router, editId })
 }

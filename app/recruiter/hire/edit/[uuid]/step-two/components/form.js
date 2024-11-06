@@ -1,34 +1,36 @@
 'use client'
 import { useState, useEffect } from 'react'
-import InputGroup from '../../components/input-group'
-import SelectGroup from '../../components/select-group'
+import InputGroup from '../../../../create/components/input-group'
+import SelectGroup from '../../../../create/components/select-group'
 import SelectForm from './select-form'
-import jobStatus from '../../resources/job-status.json'
-import currencies from '../../resources/currencies.json'
-import unitTexts from '../../resources/unit-texts.json'
-import directApply from '../../resources/direct-apply.json'
-import Tiptap from '../../../../../job-seeker/profile/edit/components/tiptap'
-import { useRouter } from 'next/navigation'
+import jobStatus from '../../../../create/resources/job-status.json'
+import currencies from '../../../../create/resources/currencies.json'
+import unitTexts from '../../../../create/resources/unit-texts.json'
+import directApply from '../../../../create/resources/direct-apply.json'
+import Tiptap from '../../../../../../job-seeker/profile/edit/components/tiptap'
+import { usePathname, useRouter } from 'next/navigation'
 
 export default function Form() {
-    const [newJob, setNewJob] = useState({
+    const [editJob, setEditJob] = useState({
         stepOne: null,
         stepTwo: null,
         stepThree: null,
     })
     const router = useRouter()
-
+    const pathname = usePathname()
+    const segments = pathname.split('/')
+    const uuid = segments[4]
     const updateStepTwo = (newValue, label) => {
-        setNewJob(prev => {
+        setEditJob(prev => {
             return { ...prev, stepTwo: { ...prev.stepTwo, [label]: newValue } }
         })
     }
 
     useEffect(() => {
-        let storedData = localStorage.getItem('newJob')
+        let storedData = localStorage.getItem('editJob')
         if (storedData) {
             let parsed = JSON.parse(storedData)
-            setNewJob(
+            setEditJob(
                 parsed?.stepTwo
                     ? parsed
                     : {
@@ -47,8 +49,8 @@ export default function Form() {
 
     const handleFormSubmit = e => {
         e.preventDefault()
-        localStorage.setItem('newJob', JSON.stringify(newJob))
-        router.push('/recruiter/hire/create/step-three')
+        localStorage.setItem('editJob', JSON.stringify(editJob))
+        router.push('/recruiter/hire/edit/' + uuid + '/step-three')
     }
 
     return (
@@ -58,7 +60,7 @@ export default function Form() {
             <SelectGroup
                 border={true}
                 required={true}
-                value={newJob.stepTwo?.jobStatus}
+                value={editJob.stepTwo?.jobStatus}
                 description="The status of the job post."
                 label="Job Status"
                 list={jobStatus}
@@ -68,7 +70,7 @@ export default function Form() {
             <SelectGroup
                 border={true}
                 required={true}
-                value={newJob.stepTwo?.salaryCurrency}
+                value={editJob.stepTwo?.salaryCurrency}
                 description="The currency in which the salary is denoted, such as USD, NGN, etc."
                 label="Salary Currency"
                 list={currencies}
@@ -84,13 +86,13 @@ export default function Form() {
                 placeholder="Enter Salary Value"
                 setValue={value => updateStepTwo(value, 'salaryValue')}
                 type="number"
-                value={newJob.stepTwo?.salaryValue}
+                value={editJob.stepTwo?.salaryValue}
             />
 
             <SelectGroup
                 border={true}
                 required={true}
-                value={newJob.stepTwo?.salaryUnitText}
+                value={editJob.stepTwo?.salaryUnitText}
                 description="Indicate the time unit associated with the salary value."
                 label="Salary Unit Text"
                 list={unitTexts}
@@ -101,7 +103,7 @@ export default function Form() {
             <SelectGroup
                 border={true}
                 required={true}
-                value={newJob.stepTwo?.directApply}
+                value={editJob.stepTwo?.directApply}
                 description="The job application link type (set this to false if you want to use an internal form URL)"
                 label="Direct Apply"
                 list={directApply}
@@ -123,7 +125,7 @@ export default function Form() {
 
                 <div
                     className={`col-span-1 ${
-                        newJob?.stepTwo?.directApply === 'false'
+                        editJob?.stepTwo?.directApply === 'false'
                             ? 'block'
                             : 'hidden'
                     }`}>
@@ -136,10 +138,10 @@ export default function Form() {
                     required
                     type="url"
                     placeholder="Enter URL"
-                    value={newJob.stepTwo?.apply}
+                    value={editJob.stepTwo?.apply}
                     onChange={e => updateStepTwo(e.target.value, 'apply')}
                     className={`col-span-1 h-50 border border-tremor-brand-boulder100 px-6 text-sm large:text-base font-normal placeholder:text-tremor-brand-boulder300 text-tremor-brand-boulder900 outline-none rounded-2xl bg-white ${
-                        newJob?.stepTwo?.directApply !== 'false'
+                        editJob?.stepTwo?.directApply !== 'false'
                             ? 'flex'
                             : 'hidden'
                     }`}
@@ -156,10 +158,10 @@ export default function Form() {
                     </p>
                 </div>
                 <div className="col-span-1">
-                    {newJob?.stepTwo?.jobDescription && (
+                    {editJob?.stepTwo?.jobDescription && (
                         <Tiptap
                             placeholder="Enter job description"
-                            initialData={newJob.stepTwo.jobDescription}
+                            initialData={editJob.stepTwo.jobDescription}
                             changed={value => {
                                 updateStepTwo(value, 'jobDescription')
                             }}
@@ -171,7 +173,7 @@ export default function Form() {
             <div className="w-full flex justify-between mt-6">
                 <button
                     type="button"
-                    onClick={() => router.push('/recruiter/hire/create')}
+                    onClick={() => router.push('/recruiter/hire/edit/' + uuid)}
                     className="w-[109px] border border-tremor-background-darkYellow duration-300 hover:opacity-90 h-[42px] rounded-xl bg-transparent flex justify-center items-center text-base font-semibold text-tremor-background-darkYellow">
                     Previous
                 </button>{' '}
