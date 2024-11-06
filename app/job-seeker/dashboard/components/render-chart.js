@@ -51,7 +51,9 @@ export default function RenderChart({ chartData }) {
     }, [chartData])
 
     return (
-        <ChartContainer className="h-[180px]" config={chartConfig}>
+        <ChartContainer
+            className="h-[180px] overflow-x-hidden"
+            config={chartConfig}>
             <ResponsiveContainer height="100%" width="100%">
                 <AreaChart accessibilityLayer data={data}>
                     {' '}

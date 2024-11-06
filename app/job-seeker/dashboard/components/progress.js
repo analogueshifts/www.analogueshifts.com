@@ -28,8 +28,16 @@ export default function Progress({ hideMoreJobs, hideProgress }) {
             if (kycDetails?.preferences && kycDetails.preferences?.length > 0)
                 count += 50
             if (user?.user_profile?.avatar) count += 10
-            if (user?.user_job_profile?.resume_cv) count += 20
-            if (user?.user_job_profile?.experience) count += 10
+            if (
+                user?.user_job_profile?.resume_cv &&
+                user?.user_job_profile?.resume_cv?.length > 0
+            )
+                count += 20
+            if (
+                user?.user_job_profile?.experience &&
+                user?.user_job_profile?.experience?.length > 0
+            )
+                count += 10
             if (user?.user_job_profile?.website) count += 10
             setPercentage(count)
         }
@@ -64,12 +72,24 @@ export default function Progress({ hideMoreJobs, hideProgress }) {
                         />
                         <ProgressText
                             text="Resume/CV"
-                            completed={!!user?.user_job_profile?.resume_cv}
+                            completed={
+                                !!(
+                                    user?.user_job_profile?.resume_cv &&
+                                    user?.user_job_profile?.resume_cv?.length >
+                                        0
+                                )
+                            }
                             path=""
                         />
                         <ProgressText
                             text="Add Experience"
-                            completed={!!user?.user_job_profile?.experience}
+                            completed={
+                                !!(
+                                    user?.user_job_profile?.experience &&
+                                    user?.user_job_profile?.experience?.length >
+                                        0
+                                )
+                            }
                             path=""
                         />
                         <ProgressText

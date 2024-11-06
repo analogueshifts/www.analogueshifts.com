@@ -41,7 +41,7 @@ export default function AvailableJobs({ initialData }) {
         }`
 
         getJobs({
-            url: jobsInfo?.next_page_url + searchUrl || '/jobs',
+            url: jobsInfo?.next_page_url?.slice(33) + searchUrl || '/jobs',
             setLoading,
             setInfo: setJobsInfo,
             setData: newJobs => {
