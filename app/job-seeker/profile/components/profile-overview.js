@@ -62,7 +62,7 @@ export default function ProfileOverview() {
                     className="w-full large:h-[168px] h-[150px] bg-cover bg-no-repeat  bg-[#575346] rounded-[25px] "></div>
                 <Stats kycDetails={kycDetails} user={user} counts={counts} />
             </div>
-            <div className="w-full h-max relative overflow-hidden p-8 tablet:p-5 bg-white rounded-[32px] flex flex-col gap-2.5">
+            <div className="w-full h-max relative overflow-hidden p-8 tablet:pb-10 tablet:p-5 bg-white rounded-[32px] flex flex-col gap-2.5">
                 <h3 className="text-black text-base font-semibold">Bio</h3>
                 <div
                     dangerouslySetInnerHTML={{
@@ -74,11 +74,11 @@ export default function ProfileOverview() {
                                 : user.user_profile.biography
                             : 'Your Bio',
                     }}
-                    className={`text-sm font-normal leading-6 text-tremor-brand-boulder400 `}></div>
+                    className={`text-sm tablet:text-xs font-normal leading-6 text-tremor-brand-boulder400 `}></div>
                 {user?.user_profile?.biography?.length > 300 && (
                     <button
                         onClick={() => setSeeMoreBio(prev => !prev)}
-                        className="text-sm font-normal leading-6 text-tremor-brand-boulder300 absolute bottom-2.5 right-6">
+                        className="text-sm font-normal tablet:text-xs leading-6 text-tremor-brand-boulder300 absolute bottom-3 right-6">
                         See {seeMoreBio ? 'less' : 'more'}...
                     </button>
                 )}
@@ -88,46 +88,46 @@ export default function ProfileOverview() {
                     Qualifications
                 </h3>
                 <div className="w-full flex flex-col gap-4">
-                    <div className="w-full justify-between flex items-center">
-                        <p className="text-sm text-tremor-brand-boulder400 font-normal leading-4">
+                    <div className="w-full justify-between gap-2.5 flex items-center">
+                        <p className="text-sm text-tremor-brand-boulder400 font-normal leading-4 tablet:text-xs">
                             Role:
                         </p>
-                        <p className="text-sm text-black font-normal leading-4">
+                        <p className="text-sm text-black font-normal leading-4 tablet:text-xs">
                             {kycDetails?.userJobProfile?.headline ||
-                                'Not added'}
+                                'Not added'}{' '}
                         </p>
                     </div>
-                    <div className="w-full justify-between flex items-center">
-                        <p className="text-sm text-tremor-brand-boulder400 font-normal leading-4">
+                    <div className="w-full justify-between gap-2.5 flex items-center">
+                        <p className="text-sm text-tremor-brand-boulder400 font-normal leading-4 tablet:text-xs">
                             Years of Experience:
                         </p>
-                        <p className="text-sm text-black font-normal leading-4">
+                        <p className="text-sm text-black font-normal leading-4 tablet:text-xs">
                             {kycDetails?.userJobProfile?.years_of_experience ||
                                 'Not added'}
                         </p>
                     </div>
-                    <div className="w-full justify-between flex items-center">
-                        <p className="text-sm text-tremor-brand-boulder400 font-normal leading-4">
+                    <div className="w-full justify-between gap-2.5 flex items-center">
+                        <p className="text-sm text-tremor-brand-boulder400 font-normal leading-4 tablet:text-xs">
                             Experience Level:
                         </p>
-                        <p className="text-sm text-black font-normal leading-4">
+                        <p className="text-sm text-black font-normal leading-4 tablet:text-xs">
                             {kycDetails?.userJobProfile?.experience_level ||
                                 'Not added'}
                         </p>
                     </div>
-                    <div className="w-full justify-between flex items-center">
-                        <p className="text-sm text-tremor-brand-boulder400 font-normal leading-4">
+                    <div className="w-full justify-between gap-2.5 flex items-center">
+                        <p className="text-sm text-tremor-brand-boulder400 font-normal leading-4 tablet:text-xs">
                             Phone Number:
                         </p>
-                        <p className="text-sm text-black font-normal leading-4">
+                        <p className="text-sm text-black font-normal leading-4 tablet:text-xs">
                             {user?.phone_number || 'Not added'}
                         </p>
                     </div>
-                    <div className="w-full justify-between flex items-center">
-                        <p className="text-sm text-tremor-brand-boulder400 font-normal leading-4">
+                    <div className="w-full justify-between gap-2.5 flex items-center">
+                        <p className="text-sm text-tremor-brand-boulder400 font-normal leading-4 tablet:text-xs">
                             Email Address:
                         </p>
-                        <p className="text-sm text-black font-normal leading-4">
+                        <p className="text-sm text-black font-normal leading-4 tablet:text-xs">
                             {user?.email || 'Not added'}
                         </p>
                     </div>
@@ -142,12 +142,12 @@ export default function ProfileOverview() {
                         </h3>
                         {user?.user_job_profile?.website && (
                             <div className="w-full flex-wrap flex items-center justify-between mt-5 large:mt-6">
-                                <p className="text-tremor-brand-boulder400 font-normal text-sm">
+                                <p className="text-tremor-brand-boulder400 tablet:text-xs font-normal text-sm">
                                     Visit Website
                                 </p>
                                 <Link
                                     href={user.user_job_profile.website}
-                                    className="text-sm font-normal text-tremor-background-darkYellow">
+                                    className="text-sm font-normal tablet:text-xs text-tremor-background-darkYellow">
                                     {user.user_job_profile.website}
                                 </Link>
                             </div>
@@ -170,13 +170,13 @@ export default function ProfileOverview() {
                                                 <Image
                                                     src={Calendar}
                                                     alt=""
-                                                    className="min-w-10 h-max"
+                                                    className="min-w-10 tablet:min-w-8 h-max"
                                                 />
                                                 <div className="flex w-[calc(100%-52px)] max-w-full flex-col gap-1.5">
-                                                    <p className="truncate max-w-full text-sm text-black font-normal">
+                                                    <p className="truncate max-w-full text-sm tablet:text-xs text-black font-normal">
                                                         {item.name}
                                                     </p>
-                                                    <p className="truncate max-w-full text-[11px] text-[#0000005C] font-normal">
+                                                    <p className="truncate max-w-full text-[11px] tablet:text-[9px] text-[#0000005C] font-normal">
                                                         {item.dateAdded}
                                                     </p>
                                                 </div>

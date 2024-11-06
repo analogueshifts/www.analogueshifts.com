@@ -39,6 +39,9 @@ export default function JobSeekerLayout({ children }) {
         if (token) {
             getNotificationCount({ token, setCount: setNotificationCount })
         }
+        if (openSidebar) {
+            setOpenSidebar(false)
+        }
     }, [pathname])
 
     useEffect(() => {

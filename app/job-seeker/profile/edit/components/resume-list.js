@@ -27,13 +27,13 @@ export default function ResumeList({ resumes, setResumes }) {
                                 <Image
                                     src={Calendar}
                                     alt=""
-                                    className="min-w-10 h-max"
+                                    className="min-w-10 tablet:min-w-8 h-max"
                                 />
                                 <div className="flex w-[calc(100%-52px)] max-w-full flex-col gap-1.5">
-                                    <p className="truncate max-w-full text-sm text-black font-normal">
+                                    <p className="truncate max-w-full tablet:text-xs text-sm text-black font-normal">
                                         {item.name}
                                     </p>
-                                    <p className="truncate max-w-full text-[11px] text-[#0000005C] font-normal">
+                                    <p className="truncate max-w-full tablet:text-[9px] text-[11px] text-[#0000005C] font-normal">
                                         {item.dateAdded}
                                     </p>
                                 </div>
