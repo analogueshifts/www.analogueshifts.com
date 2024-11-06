@@ -31,7 +31,7 @@ export default function Notifications() {
 
     const handleFetchMore = () => {
         getNotifications({
-            url: currentPageInfo.next_page_url.slice(34),
+            url: currentPageInfo.next_page_url.slice(33),
             setLoading,
             setData: data => {
                 setCurrentPageInfo(data.notifications)

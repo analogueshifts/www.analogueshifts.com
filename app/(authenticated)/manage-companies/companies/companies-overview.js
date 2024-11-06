@@ -59,7 +59,7 @@ export default function CompaniesOverview() {
     const handleFetchMore = async () => {
         try {
             await getCompanies({
-                url: currentPageInfo.next_page_url.slice(34),
+                url: currentPageInfo.next_page_url.slice(33),
                 setData: res => {
                     setCurrentPageInfo(res.companies)
                     setData(prev => [...prev, ...res.companies.data])
