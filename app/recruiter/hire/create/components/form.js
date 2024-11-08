@@ -10,7 +10,12 @@ import { useRouter } from 'next/navigation'
 
 export default function Form() {
     const [newJob, setNewJob] = useState({
-        stepOne: null,
+        stepOne: {
+            employmentType: 'FULL_TIME',
+            locationType: 'TELECOMMUTE',
+            applicantLocationRequirementsState: [],
+            applicantLocationRequirementsCountry: [],
+        },
         stepTwo: null,
         stepThree: null,
     })
@@ -27,18 +32,7 @@ export default function Form() {
         let companyData = localStorage.getItem('newJobCompany')
         if (storedData) {
             let parsed = JSON.parse(storedData)
-            setNewJob(
-                parsed?.stepOne
-                    ? parsed
-                    : {
-                          ...parsed,
-                          stepOne: {
-                              employmentType: 'FULL_TIME',
-                              applicantLocationRequirementsState: [],
-                              applicantLocationRequirementsCountry: [],
-                          },
-                      },
-            )
+            setNewJob(parsed)
         }
         if (companyData) {
             updateStepOne(JSON.parse(companyData)?.location, 'streetAddress')

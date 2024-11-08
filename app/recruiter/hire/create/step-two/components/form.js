@@ -9,14 +9,22 @@ import unitTexts from '../../resources/unit-texts.json'
 import directApply from '../../resources/direct-apply.json'
 import Tiptap from '../../../../../job-seeker/profile/edit/components/tiptap'
 import { useRouter } from 'next/navigation'
+import { useToast } from '@/contexts/toast'
 
 export default function Form() {
     const [newJob, setNewJob] = useState({
         stepOne: null,
-        stepTwo: null,
+        stepTwo: {
+            jobStatus: 'Online',
+            salaryCurrency: 'USD',
+            salaryUnitText: 'HOUR',
+            directApply: 'true',
+            jobDescription: ' ',
+        },
         stepThree: null,
     })
     const router = useRouter()
+    const { notifyUser } = useToast()
 
     const updateStepTwo = (newValue, label) => {
         setNewJob(prev => {
@@ -42,11 +50,22 @@ export default function Form() {
                           },
                       },
             )
+        } else {
+            router.push('/recruiter/hire/create')
         }
     }, [])
 
     const handleFormSubmit = e => {
         e.preventDefault()
+        if (newJob?.stepTwo?.jobDescription?.length <= 100) {
+            notifyUser(
+                'error',
+                'Job Description must be up to 100 characters',
+                'right',
+            )
+            return
+        }
+
         localStorage.setItem('newJob', JSON.stringify(newJob))
         router.push('/recruiter/hire/create/step-three')
     }

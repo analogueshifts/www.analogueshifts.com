@@ -29,7 +29,7 @@ export default function PaginationLink({ path, data, title }) {
                 }`}>
                 {formFilled() && (
                     <Image
-                        className="tablet:w-1 h-max"
+                        className="tablet:w-1.5 h-max"
                         src={CheckMark}
                         alt=""
                     />

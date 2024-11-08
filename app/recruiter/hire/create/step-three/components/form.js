@@ -33,6 +33,8 @@ export default function Form() {
         let storedData = localStorage.getItem('newJob')
         if (storedData) {
             setNewJob(JSON.parse(storedData))
+        } else {
+            router.push('/recruiter/hire/create')
         }
 
         let companyData = localStorage.getItem('newJobCompany')

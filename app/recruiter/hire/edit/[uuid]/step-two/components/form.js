@@ -9,6 +9,7 @@ import unitTexts from '../../../../create/resources/unit-texts.json'
 import directApply from '../../../../create/resources/direct-apply.json'
 import Tiptap from '../../../../../../job-seeker/profile/edit/components/tiptap'
 import { usePathname, useRouter } from 'next/navigation'
+import { useToast } from '@/contexts/toast'
 
 export default function Form() {
     const [editJob, setEditJob] = useState({
@@ -16,6 +17,7 @@ export default function Form() {
         stepTwo: null,
         stepThree: null,
     })
+    const { notifyUser } = useToast()
     const router = useRouter()
     const pathname = usePathname()
     const segments = pathname.split('/')
@@ -44,11 +46,21 @@ export default function Form() {
                           },
                       },
             )
+        } else {
+            router.push('/recruiter/hire')
         }
     }, [])
 
     const handleFormSubmit = e => {
         e.preventDefault()
+        if (editJob?.stepTwo?.jobDescription?.length <= 100) {
+            notifyUser(
+                'error',
+                'Job Description must be up to 100 characters',
+                'right',
+            )
+            return
+        }
         localStorage.setItem('editJob', JSON.stringify(editJob))
         router.push('/recruiter/hire/edit/' + uuid + '/step-three')
     }
