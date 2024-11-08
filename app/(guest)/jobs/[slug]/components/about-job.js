@@ -40,6 +40,7 @@ export default function AboutJob({ job, slug }) {
                 item={job}
                 details={true}
                 handleApply={handleApply}
+                notruncate={true}
             />
             <h2 className="text-black mt-8 font-semibold large:mb-10 mb-7 large:text-32 tablet:text-2xl text-[28px] large:mt-11">
                 About the job

@@ -53,6 +53,7 @@ export default function JobDetails({ slug }) {
                         details={true}
                         item={job}
                         handleApply={handleApply}
+                        notruncate={true}
                     />
                     <h2 className="text-black font-semibold my-7  large:text-[22px] tablet:text-base text-xl">
                         About the job

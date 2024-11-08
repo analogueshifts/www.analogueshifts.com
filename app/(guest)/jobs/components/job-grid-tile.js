@@ -11,6 +11,7 @@ export default function JobGridTile({
     dashboard,
     details,
     hideActions,
+    notruncate,
 }) {
     const router = useRouter()
 
@@ -25,7 +26,7 @@ export default function JobGridTile({
                         ? hideActions
                             ? 'w-full'
                             : 'w-[50%] tablet:w-full'
-                        : 'w-[calc(100%-304px)] tablet:w-full large:w-[calc(100%-384px)]'
+                        : 'w-[calc(100%-350px)] tablet:w-full large:w-[calc(100%-384px)]'
                 }`}>
                 <img
                     src={
@@ -44,7 +45,9 @@ export default function JobGridTile({
                         dashboard ? 'gap-2' : 'gap-1 large:gap-2.5'
                     }`}>
                     <h2
-                        className={`text-black truncate font-semibold ${
+                        className={`text-black font-semibold ${
+                            notruncate ? '' : 'truncate'
+                        } ${
                             dashboard
                                 ? 'large:text-[15px] text-sm'
                                 : 'tablet:text-sm text-base large:text-xl'
