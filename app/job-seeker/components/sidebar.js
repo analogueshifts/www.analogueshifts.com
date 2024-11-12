@@ -16,7 +16,7 @@ export default function SideBar({
     return (
         <>
             <section className="fixed z-50 tablet:hidden top-0 left-0 w-[305px] large:w-[344px] h-screen px-0.5 border-r border-[#E7E7E7] bg-white  ">
-                <div className=" w-full h-full flex items-center flex-col px-[31px] h-lg:py-16 py-7">
+                <div className=" w-full h-full flex items-center flex-col px-[31px] large:py-16 py-7">
                     {/* Logo */}
                     <Link
                         href="/"
@@ -43,7 +43,7 @@ export default function SideBar({
                         </div>
                     </div>
 
-                    <div className="w-max h-24 large:h-32 absolute bottom-5 large:bottom-12 flex flex-col">
+                    <div className="w-[73%]  items-start  h-24 large:h-32 absolute bottom-5 large:bottom-12 flex flex-col">
                         {sidebarMenuLinks.bottom.map(item => {
                             return (
                                 <SideBarMenuLink item={item} key={item.title} />

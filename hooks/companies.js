@@ -68,7 +68,7 @@ export const useCompany = () => {
         }
     }
 
-    const addCompany = async ({ setLoading, router, data }) => {
+    const addCompany = async ({ setLoading, setSuccess, data }) => {
         let config = {
             method: 'POST',
             url: '/profile/create/company',
@@ -83,8 +83,7 @@ export const useCompany = () => {
             const request = await axios.request(config)
             setLoading(false)
             if (request?.data?.success) {
-                notifyUser('success', 'Company Added')
-                router.push('/manage-companies')
+                setSuccess(true)
             }
         } catch (error) {
             notifyUser(
@@ -100,7 +99,7 @@ export const useCompany = () => {
         }
     }
 
-    const updateCompany = async ({ setLoading, router, data, uuid }) => {
+    const updateCompany = async ({ setLoading, setSuccess, data, uuid }) => {
         let config = {
             method: 'PUT',
             url: '/profile/update/company/' + uuid,
@@ -115,8 +114,7 @@ export const useCompany = () => {
             const request = await axios.request(config)
             setLoading(false)
             if (request?.status === 200) {
-                notifyUser('success', 'Company Updated')
-                router.push('/manage-companies')
+                setSuccess(true)
             }
         } catch (error) {
             notifyUser(

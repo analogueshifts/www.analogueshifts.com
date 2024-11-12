@@ -1,12 +1,11 @@
 'use client'
-import { useEffect } from 'react'
 import { useRouter } from 'next/navigation'
+import { useEffect } from 'react'
 
 export default function Page() {
     const router = useRouter()
     useEffect(() => {
-        router.push('/manage-companies')
+        router.replace('/recruiter/companies')
     }, [])
-
-    return <></>
+    return null
 }
