@@ -29,6 +29,11 @@ export default function MoreJobsPosted({ data }) {
                                         item?.hiringOrganization?.logo ||
                                         '/images/guest-layout/hero/filled_briefcase.svg'
                                     }
+                                    onError={e => {
+                                        e.target.onerror = null
+                                        e.target.src =
+                                            '/images/guest-layout/hero/filled_briefcase.svg'
+                                    }}
                                     alt=""
                                     className="w-[33px] h-[33px] rounded-full object-cover"
                                 />

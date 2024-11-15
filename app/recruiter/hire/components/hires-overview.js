@@ -193,6 +193,11 @@ export default function HiresOverview() {
                                                         ?.logo ||
                                                     '/images/guest-layout/hero/filled_briefcase.svg'
                                                 }
+                                                onError={e => {
+                                                    e.target.onerror = null
+                                                    e.target.src =
+                                                        '/images/guest-layout/hero/filled_briefcase.svg'
+                                                }}
                                                 alt=""
                                                 className={`w-10 min-w-10 min-h-10 h-10 rounded-full object-cover`}
                                             />

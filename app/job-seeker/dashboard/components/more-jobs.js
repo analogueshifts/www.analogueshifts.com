@@ -2,7 +2,6 @@
 import { useJobs } from '@/hooks/jobs'
 import React, { useState, useEffect } from 'react'
 import Cookies from 'js-cookie'
-import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { formatNumber, formatUnitText } from '@/configs/jobs/format'
 
@@ -10,7 +9,6 @@ export default function MoreJobs() {
     const { getRecommendedJobs } = useJobs()
     const [data, setData] = useState(null)
     const [loading, setLoading] = useState(false)
-    const router = useRouter()
 
     let url = `/jobs/recommend`
     const token = Cookies.get('analogueshifts')
@@ -47,6 +45,11 @@ export default function MoreJobs() {
                                         item?.hiringOrganization?.logo ||
                                         '/images/guest-layout/hero/filled_briefcase.svg'
                                     }
+                                    onError={e => {
+                                        e.target.onerror = null
+                                        e.target.src =
+                                            '/images/guest-layout/hero/filled_briefcase.svg'
+                                    }}
                                     alt=""
                                     className="w-[33px] h-[33px] rounded-full object-cover"
                                 />

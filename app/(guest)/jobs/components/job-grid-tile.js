@@ -2,6 +2,7 @@
 import Link from 'next/link'
 import { formatNumber, formatUnitText } from '@/configs/jobs/format'
 import { useRouter } from 'next/navigation'
+import { useState } from 'react'
 
 export default function JobGridTile({
     item,
@@ -14,6 +15,10 @@ export default function JobGridTile({
     notruncate,
 }) {
     const router = useRouter()
+    const [imgSrc, setImgSrc] = useState(
+        item?.hiringOrganization?.logo ||
+            '/images/guest-layout/hero/filled_briefcase.svg',
+    )
 
     return (
         <div
@@ -29,16 +34,18 @@ export default function JobGridTile({
                         : 'w-[calc(100%-350px)] tablet:w-full large:w-[calc(100%-384px)]'
                 }`}>
                 <img
-                    src={
-                        item?.hiringOrganization?.logo ||
-                        '/images/guest-layout/hero/filled_briefcase.svg'
-                    }
+                    src={imgSrc}
                     alt=""
                     className={`${
                         dashboard
                             ? 'large:w-[49px] large:h-[49px] w-10 h-10 tablet:w-8 tablet:h-8'
                             : 'large:w-16 large:h-16 w-[50px] tablet:w-10 tablet:h-10 h-[50px]'
                     } rounded-full object-cover`}
+                    onError={() =>
+                        setImgSrc(
+                            '/images/guest-layout/hero/filled_briefcase.svg',
+                        )
+                    }
                 />
                 <div
                     className={`flex flex-col w-[calc(100%-64px)] ${
