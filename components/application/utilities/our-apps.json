@@ -22,7 +22,7 @@
     "comingSoon": [
         {
             "title": "Payment Gateway",
-            "href": "#",
+            "href": "https://pay.analogueshifts.app",
             "description": "Streamline payroll/bulk payments",
             "image": "/images/guest-layout/our-apps/payment.svg"
         },

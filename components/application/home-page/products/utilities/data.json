@@ -16,7 +16,7 @@
     },
     {
         "title": "Payment Gateway",
-        "href": "#",
+        "href": "https://pay.analogueshifts.com",
         "description": "Our payment gateway platform enables companies to make bulk payments and create payrolls, while individuals can track their salaries and make bulk payments. It serves both companies and individual staff efficiently.",
         "image": "/images/guest-layout/products/payment-gateway.svg",
         "payroll": true
