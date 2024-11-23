@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { formatNumber, formatUnitText } from '@/configs/jobs/format'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
+import employmentTypes from '../resources/employment-types.json'
 
 export default function JobGridTile({
     item,
@@ -78,7 +79,14 @@ export default function JobGridTile({
                                         ? 'large:text-[15px] text-[13px]'
                                         : 'tablet:text-xs text-sm large:text-base'
                                 }`}>
-                                • &nbsp;{item.employmentType}
+                                • &nbsp;
+                                {employmentTypes.find(
+                                    e => e.value === item.employmentType,
+                                )?.label || item.employmentType}{' '}
+                                &nbsp; • &nbsp; Date Posted:{' '}
+                                {new Date(
+                                    item?.created_at || '',
+                                ).toLocaleDateString()}
                             </p>
                         )}
                         {item?.baseSalary?.value?.value && (
