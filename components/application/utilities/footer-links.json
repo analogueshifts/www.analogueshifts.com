@@ -12,7 +12,7 @@
             },
             {
                 "name": "Post a job",
-                "path": "/dashboard"
+                "path": "/recruiter/hire"
             }
         ]
     },

@@ -27,7 +27,7 @@ export default function TalentPool() {
                     action={() =>
                         router.push(
                             user
-                                ? '/dashboard'
+                                ? '/recruiter/dashboard'
                                 : 'https://auth.analogueshifts.app?app=main',
                         )
                     }

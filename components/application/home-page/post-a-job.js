@@ -32,7 +32,7 @@ export default function PostAJob() {
                     action={() => {
                         router.push(
                             user
-                                ? '/dashboard'
+                                ? '/recruiter/hire'
                                 : 'https://auth.analogueshifts.app?app=main',
                         )
                     }}
