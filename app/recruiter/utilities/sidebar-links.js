@@ -218,7 +218,7 @@ export const sidebarMenuLinks = {
     ],
     bottom: [
         {
-            path: '/recruiter/help-center',
+            path: '#',
             title: 'Help Center',
             icon: ({ color, size }) => (
                 <svg

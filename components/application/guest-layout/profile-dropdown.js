@@ -118,7 +118,12 @@ export default function LoggedInProfileDropdown({ user, handleLogout }) {
                                 title: 'Notifications',
                                 description: 'Real-time job updates',
                                 image: '/images/guest-layout/profile/bell.svg',
-                                action: () => {},
+                                action: () =>
+                                    router.push(
+                                        user?.user_mode === 'hire'
+                                            ? '/recruiter/notifications'
+                                            : '/job-seeker/notifications',
+                                    ),
                             }}
                         />
                         <RenderMenu

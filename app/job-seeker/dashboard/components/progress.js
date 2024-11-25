@@ -68,7 +68,7 @@ export default function Progress({ hideMoreJobs, hideProgress }) {
                         <ProgressText
                             text="Upload your photo"
                             completed={!!user?.user_profile?.avatar}
-                            path=""
+                            path="/job-seeker/profile/edit"
                         />
                         <ProgressText
                             text="Resume/CV"
@@ -79,7 +79,7 @@ export default function Progress({ hideMoreJobs, hideProgress }) {
                                         0
                                 )
                             }
-                            path=""
+                            path="/job-seeker/profile/edit"
                         />
                         <ProgressText
                             text="Add Experience"
@@ -90,12 +90,12 @@ export default function Progress({ hideMoreJobs, hideProgress }) {
                                         0
                                 )
                             }
-                            path=""
+                            path="/job-seeker/profile/edit"
                         />
                         <ProgressText
                             text="Add Website"
                             completed={!!user?.user_job_profile?.website}
-                            path=""
+                            path="/job-seeker/profile/edit"
                         />
                     </div>
                 </div>

@@ -1,7 +1,10 @@
+'use client'
 import { Switch } from '@/components/ui/switch'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 
 export default function PrivacyForm() {
+    const pathname = usePathname()
     return (
         <form className="w-full flex  flex-col  tablet:pt-5 pt-10">
             <div className="w-full pb-10 border-b border-tremor-brand-boulder100 gap-44 tablet:gap-3.5 flex items-start">
@@ -26,7 +29,11 @@ export default function PrivacyForm() {
                         Enable/Disable 2-Factor Authentication
                     </p>
                     <Link
-                        href="/job-seeker/settings"
+                        href={
+                            pathname.startsWith('/recruiter')
+                                ? '/recruiter/settings'
+                                : '/job-seeker/settings'
+                        }
                         className="text-tremor-background-darkYellow font-semibold text-sm leading-8">
                         Password reset option
                     </Link>

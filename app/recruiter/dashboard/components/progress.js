@@ -64,12 +64,12 @@ export default function Progress({ hideJobPosted, hideProgress }) {
                         <ProgressText
                             text="Upload your photo"
                             completed={!!user?.user_profile?.avatar}
-                            path="/profile/edit"
+                            path="/recruiter/profile/edit"
                         />
                         <ProgressText
                             text="Add a Company"
                             completed={!!companies?.total > 0}
-                            path="/recruiter/company/create"
+                            path="/recruiter/companies/create"
                         />
                         <ProgressText
                             text="Post a Job"
