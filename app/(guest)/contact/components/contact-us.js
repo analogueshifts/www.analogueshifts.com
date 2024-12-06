@@ -41,7 +41,12 @@ export default function ContactUs() {
                         <Link
                             href="tel:+2348066708343"
                             className="text-tremor-brand-vulcan950 large:text-xl text-base font-normal large:leading-10 leading-7">
-                            +2348066708343
+                            NG +2348066708343
+                        </Link>
+                        <Link
+                            href="tel:+12524042733"
+                            className="text-tremor-brand-vulcan950 large:text-xl text-base font-normal large:leading-10 leading-7">
+                            US +12524042733
                         </Link>
                     </div>
                 </div>
