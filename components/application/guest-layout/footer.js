@@ -19,7 +19,12 @@ function Footer() {
                     <Link
                         href="tel:+2348066708343"
                         className="text-tremor-brand-boulder950 tablet:text-base text-lg mb-3 leading-7 font-normal">
-                        Call: +2348066708343
+                        Call (NG): +2348066708343
+                    </Link>
+                    <Link
+                        href="tel:+12524042733"
+                        className="text-tremor-brand-boulder950 tablet:text-base text-lg mb-3 leading-7 font-normal">
+                        Call (US): +12524042733
                     </Link>
                     <Link
                         href="mailto:hello@analogueshifts.com"
