@@ -55,8 +55,8 @@ const getJobs = async (page, searchParams) => {
     try {
         const url = new URL(
             searchParams.search
-                ? 'https://api.analogueshifts.app/api/job/search'
-                : 'https://api.analogueshifts.app/api/jobs',
+                ? `${process.env.NEXT_PUBLIC_BACKEND_URL}/job/search`
+                : `${process.env.NEXT_PUBLIC_BACKEND_URL}/jobs`,
         )
 
         // Always include the page query parameter

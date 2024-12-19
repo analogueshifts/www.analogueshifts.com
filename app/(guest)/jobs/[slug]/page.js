@@ -78,7 +78,7 @@ export default async function Page({ params }) {
 
 const getJob = async slug => {
     try {
-        const url = 'https://api.analogueshifts.app/api/job/' + slug
+        const url = `${process.env.NEXT_PUBLIC_BACKEND_URL}/job/` + slug
 
         const res = await fetch(url, {
             cache: 'no-store',
