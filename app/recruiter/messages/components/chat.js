@@ -56,7 +56,7 @@ export default function Chat({
                 {/* Chat Header */}
                 <div className="flex items-center p-4 border-b border-gray-100">
                     <button
-                        onClick={() => backButton}
+                        onClick={backButton}
                         className="mr-4 text-gray-500 hover:text-yellow-500">
                         <MdArrowBackIos />
                     </button>
