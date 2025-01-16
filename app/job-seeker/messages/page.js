@@ -15,7 +15,7 @@ export default function Page() {
     return (
         <section className="w-full flex justify-center">
             <div className="w-full max-w-[1003px] xl:flex-row flex-col flex gap-8">
-                <div className="xl:w-[calc(100%-320px)] h-[645px] md:h-[515px] sticky top-[112px] large:top-[120px] tablet:static z-30 w-full bg-white rounded-[32px] flex justify-center items-center">
+                <div className="xl:w-[calc(100%-320px)] h-[655px] md:h-[485px] sticky top-[112px] large:top-[120px] tablet:static z-30 w-full bg-white rounded-[32px] flex justify-center items-center">
                     <div className="h-full w-full rounded-lg overflow-hidden">
                         {selectedTab === 'chats' && !selectedChat && (
                             <Chats
