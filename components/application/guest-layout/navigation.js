@@ -85,12 +85,12 @@ const Navigation = ({ user }) => {
                     />
                 ) : (
                     <div className="hidden lg:flex lg:items-center gap-6">
-                        <NavLink href="https://auth.analogueshifts.app?app=local">
+                        <NavLink href="https://auth.analogueshifts.app?app=main">
                             Login
                         </NavLink>
                         <Link
                             className="text-[13px] large:text-base font-medium h-11 large:h-14 px-10  large:px-12 duration-200 rounded-2xl bg-tremor-background-darkYellow text-white hover:bg-transparent hover:text-tremor-background-darkYellow hover:ring-1 ring-tremor-background-darkYellow flex items-center justify-center"
-                            href="https://auth.analogueshifts.app?app=local">
+                            href="https://auth.analogueshifts.app?app=main">
                             Sign Up
                         </Link>
                     </div>
