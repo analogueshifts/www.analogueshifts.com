@@ -83,7 +83,7 @@ export default function Chat({
                 </div>
 
                 {/* Messages List */}
-                <div className="flex flex-col p-4 space-y-4 overflow-y-auto h-[500px] md:h-[330px] scroll">
+                <div className="flex flex-col-reverse p-4 space-y-4 overflow-y-auto h-[500px] md:h-[330px] scroll">
                     {messages.map((msg, index) => (
                         <div
                             key={msg.uuid || index}
