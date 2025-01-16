@@ -17,15 +17,15 @@
             "href": "https://events.analogueshifts.com",
             "description": "Create Events and share with guests",
             "image": "/images/guest-layout/our-apps/events.svg"
-        }
-    ],
-    "comingSoon": [
+        },
         {
             "title": "Payment Gateway",
             "href": "https://pay.analogueshifts.app",
             "description": "Streamline payroll/bulk payments",
             "image": "/images/guest-layout/our-apps/payment.svg"
-        },
+        }
+    ],
+    "comingSoon": [
         {
             "title": "Resume Builder",
             "href": "#",
