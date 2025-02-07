@@ -1,6 +1,6 @@
 'use client'
 import { useChat } from '@/hooks/chat'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { MdArrowBackIos, MdSend } from 'react-icons/md'
 
 export default function Chat({
@@ -14,6 +14,11 @@ export default function Chat({
     const [message, setMessage] = useState('')
     const [loading, setLoading] = useState(true)
     const { getChat, createChat } = useChat()
+    const messagesEndRef = useRef(null)
+
+    useEffect(() => {
+        messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
+    }, [messages])
 
     useEffect(() => {
         getChat({
@@ -50,6 +55,15 @@ export default function Chat({
         setSelectedTab('chats')
     }
 
+    const handleCreateMessage = e => {
+        e.preventDefault()
+        handleSendMessage()
+    }
+
+    useEffect(() => {
+        console.log(messages)
+    }, [messages])
+
     return (
         <div>
             {/* Chat Header */}
@@ -78,22 +92,44 @@ export default function Chat({
             </div>
 
             {/* Messages List */}
-            <div className="flex flex-col-reverse p-4 space-y-4 overflow-y-auto h-[500px] md:h-[330px] scroll">
-                {messages.map((msg, index) => (
-                    <div
-                        key={msg.uuid || index}
-                        className={`py-2 px-4 rounded-lg ${
-                            msg.user_uuid === user.uuid
-                                ? 'self-end bg-yellow-500 text-white'
-                                : 'self-start bg-gray-100 text-gray-600'
-                        }`}>
-                        {msg.message}
-                    </div>
-                ))}
+            <div
+                className="w-full h-[500px] md:h-[330px] flex flex-col scroll-hidden overflow-y-auto scroll-smooth"
+                role="log"
+                aria-live="polite">
+                <div className="flex flex-col p-4 space-y-4">
+                    {messages.map((msg, index) => (
+                        <div
+                            key={msg.uuid || index}
+                            className={`py-2 px-4 rounded-lg max-w-xs break-words ${
+                                msg.user_uuid === user.uuid
+                                    ? 'self-end bg-yellow-500 text-white'
+                                    : 'self-start bg-gray-100 text-gray-600'
+                            }`}
+                            role="article"
+                            aria-label="chat message">
+                            <p>{msg.message}</p>
+                            {msg.timestamp && (
+                                <span className="block text-xs text-right mt-1">
+                                    {new Date(msg.timestamp).toLocaleTimeString(
+                                        [],
+                                        {
+                                            hour: '2-digit',
+                                            minute: '2-digit',
+                                        },
+                                    )}
+                                </span>
+                            )}
+                        </div>
+                    ))}
+                    {/* Dummy div to allow auto-scrolling to the bottom */}
+                    <div ref={messagesEndRef} />
+                </div>
             </div>
 
             {/* Message Input */}
-            <div className="flex items-center p-4">
+            <form
+                onSubmit={handleCreateMessage}
+                className="flex items-center p-4">
                 <input
                     type="text"
                     value={message}
@@ -104,7 +140,7 @@ export default function Chat({
                 />
                 <button
                     disabled={loading || !message.trim()}
-                    onClick={handleSendMessage}
+                    type="submit"
                     className={`flex h-full ml-3 px-4 py-2 rounded-lg ${
                         loading
                             ? 'bg-gray-300'
@@ -112,7 +148,7 @@ export default function Chat({
                     }`}>
                     <MdSend />
                 </button>
-            </div>
+            </form>
         </div>
     )
 }

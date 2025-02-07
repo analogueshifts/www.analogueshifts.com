@@ -49,6 +49,11 @@ export default function NewChat({ setSelectedTab }) {
         })
     }
 
+    const handleFormSubmit = e => {
+        e.preventDefault()
+        handleSendMessage()
+    }
+
     return (
         <div>
             {!selectedUser ? (
@@ -94,7 +99,9 @@ export default function NewChat({ setSelectedTab }) {
                         </button>
                         <h2>Send message to {selectedUser.username}</h2>
                     </div>
-                    <div className="flex items-center p-4">
+                    <form
+                        onSubmit={handleFormSubmit}
+                        className="flex items-center p-4">
                         <input
                             type="text"
                             value={message}
@@ -105,7 +112,7 @@ export default function NewChat({ setSelectedTab }) {
                         />
                         <button
                             disabled={loading || !message.trim()}
-                            onClick={handleSendMessage}
+                            type="submit"
                             className={`flex h-full ml-3 px-4 py-2 rounded-lg ${
                                 loading
                                     ? 'bg-gray-300'
@@ -113,7 +120,7 @@ export default function NewChat({ setSelectedTab }) {
                             }`}>
                             <MdSend />
                         </button>
-                    </div>
+                    </form>
                 </div>
             )}
         </div>

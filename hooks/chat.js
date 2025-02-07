@@ -9,7 +9,13 @@ export const useChat = () => {
     const { notifyUser } = useToast()
     const token = Cookies.get('analogueshifts')
 
-    const createChat = async ({ setSelectedTab, setMessage, setLoading, url, data }) => {
+    const createChat = async ({
+        setSelectedTab,
+        setMessage,
+        setLoading,
+        url,
+        data,
+    }) => {
         const config = {
             url: url,
             method: 'POST',
