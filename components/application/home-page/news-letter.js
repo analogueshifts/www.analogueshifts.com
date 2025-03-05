@@ -21,7 +21,7 @@ export default function NewsLetter() {
                 },
                 {
                     headers: {
-                        "api-key": "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", // Replace with your API Key
+                        "api-key": process.env.NEXT_PUBLIC_BREVO_KEY, // Replace with your API Key
                         "Content-Type": "application/json",
                     },
                 }
