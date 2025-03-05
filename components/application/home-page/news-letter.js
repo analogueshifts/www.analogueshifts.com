@@ -21,7 +21,7 @@ export default function NewsLetter() {
                 },
                 {
                     headers: {
-                        "api-key": process.env.NEXT_PUBLIC_BREVO_KEY, // Replace with your API Key
+                        "api-key": process.env.NEXT_PUBLIC_BREVO_KEY, 
                         "Content-Type": "application/json",
                     },
                 }
