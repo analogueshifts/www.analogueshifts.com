@@ -34,7 +34,7 @@
     "@tiptap/react": "^2.1.16",
     "@tiptap/starter-kit": "^2.1.16",
     "@tremor/react": "^3.13.1",
-    "axios": "^0.21.1",
+    "axios": "^0.21.4",
     "chart.js": "^4.4.3",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
