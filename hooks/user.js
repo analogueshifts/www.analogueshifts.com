@@ -5,7 +5,7 @@ import Cookies from 'js-cookie'
 import { clearUserSession } from '@/configs/clear-user-session'
 import { useToast } from '@/contexts/toast'
 
-export const useUser = () => {
+export const useUserProfile = () => {
     const { notifyUser } = useToast()
     const token = Cookies.get('analogueshifts')
 
@@ -89,7 +89,7 @@ export const useUser = () => {
             setLoading(true)
             const request = await axios.request(config)
             if (request?.data?.success) {
-                setUser(request.data.data)
+                setUser(request.data.data.user)
             }
             setLoading(false)
         } catch (error) {

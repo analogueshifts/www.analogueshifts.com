@@ -1,9 +1,5 @@
-import Overview from './components/overview'
+import ProfileOverview from '@/app/job-seeker/profile/components/profile-overview'
 
 export default function Page() {
-    return (
-        <section className="w-full flex justify-center">
-            <Overview />
-        </section>
-    )
+    return <ProfileOverview recruiter={true} />
 }

@@ -10,6 +10,7 @@ import Cookies from 'js-cookie'
 import LogoutIdiom from '@/components/application/guest-layout/logout-idiom'
 import SideBarMenuLinks, { sidebarMenuLinks } from './utilities/sidebar-links'
 import { usePathname, useRouter } from 'next/navigation'
+import Progress from './dashboard/components/progress'
 
 export default function RecruiterLayout({ children }) {
     const { user } = useUser()
@@ -68,7 +69,16 @@ export default function RecruiterLayout({ children }) {
                     logout={() => setOpen(true)}
                 />
                 <div className="w-full large:py-8 py-6 px-8 tablet:px-5 flex justify-center">
-                    {children}
+                    <div className="w-full max-w-[1003px] xl:flex-row flex-col flex gap-8">
+                        {children}
+                        {!pathname.startsWith('/recruiter/settings') &&
+                            pathname !== '/recruiter/companies/create' &&
+                            !pathname.startsWith('/recruiter/companies/edit') &&
+                            !pathname.startsWith('/recruiter/hire/edit') &&
+                            !pathname.startsWith('/recruiter/hire/create') && (
+                                <Progress />
+                            )}
+                    </div>
                 </div>
             </div>
         </main>

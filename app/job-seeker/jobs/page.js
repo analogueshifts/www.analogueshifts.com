@@ -1,9 +1,5 @@
-import Overview from './components/overview'
+import JobsOverview from './components/jobs-overview'
 
 export default function Page() {
-    return (
-        <section className="w-full flex justify-center">
-            <Overview />
-        </section>
-    )
+    return <JobsOverview />
 }

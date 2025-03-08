@@ -1,11 +1,7 @@
-import Overview from './components/overview'
+import JobDetails from './components/job-details'
 
 export default function Page({ params }) {
     const slug = params.slug
 
-    return (
-        <section className="w-full flex justify-center">
-            <Overview slug={slug} />
-        </section>
-    )
+    return <JobDetails slug={slug} />
 }

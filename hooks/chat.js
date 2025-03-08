@@ -10,11 +10,11 @@ export const useChat = () => {
     const token = Cookies.get('analogueshifts')
 
     const createChat = async ({
-        setSelectedTab,
         setMessage,
         setLoading,
         url,
         data,
+        addMessage,
     }) => {
         const config = {
             url: url,
@@ -30,7 +30,7 @@ export const useChat = () => {
             setLoading(true)
             const request = await axios.request(config)
             if (request?.data?.success) {
-                setSelectedTab('chats')
+                addMessage()
                 setMessage('')
             }
             setLoading(false)
