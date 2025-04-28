@@ -63,7 +63,7 @@ export default function SelectForm({ setValue }) {
         try {
             await fetchForms(
                 process.env.NEXT_PUBLIC_BACKEND_URL +
-                    currentPageInfo.next_page_url.slice(33),
+                    currentPageInfo.next_page_url.slice(35),
                 response => {
                     setCurrentPageInfo(response.data.data.forms)
                     setForms(prev => [

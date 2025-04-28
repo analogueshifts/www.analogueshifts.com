@@ -54,7 +54,7 @@ export default function HiresOverview() {
 
     const handleFetchMoreJobs = () => {
         fetchJobs({
-            url: allJobsInfo?.next_page_url?.slice(33),
+            url: allJobsInfo?.next_page_url?.slice(35),
             setLoading: setFetchMoreLoading,
             setCurrentPageInfo: setAllJobsInfo,
             setData: newJobs => {

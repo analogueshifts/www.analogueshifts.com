@@ -7,6 +7,7 @@ import ProfileDropdown from './profile-dropdown'
 import SwitchMode from './switch-mode'
 import Link from 'next/link'
 import NavLogo from '@/public/images/guest-layout/nav-logo.svg'
+import { useRouter } from 'next/navigation'
 
 export default function NavBar({
     user,
@@ -15,6 +16,7 @@ export default function NavBar({
     setOpen,
     notificationCount,
 }) {
+    const router = useRouter()
     return (
         <nav className="w-full z-40 sticky top-0 h-[88px] bg-white flex justify-between items-center pr-16 pl-8 tablet:px-6 ">
             <div className="w-full h-max tablet:hidden">
@@ -29,7 +31,15 @@ export default function NavBar({
                 <div className="h-full tablet:hidden w-[230px] xl:w-[477px] mr-6">
                     <SearchBar />
                 </div>
-                <div className="h-max w-max tablet:mr-5 mr-6 relative  flex items-center justify-center cursor-pointer">
+                <div
+                    onClick={() => {
+                        router.push(
+                            user?.user_mode === 'hire'
+                                ? '/recruiter/notifications'
+                                : '/job-seeker/notifications',
+                        )
+                    }}
+                    className="h-max w-max tablet:mr-5 mr-6 relative  flex items-center justify-center cursor-pointer">
                     <Image src={Bell} alt="" />{' '}
                     <div className="w-3 h-3 rounded-full text-white flex justify-center items-center text-[6px] font-medium absolute top-0 right-0 translate-y-[-30%] bg-vibrantRed">
                         {notificationCount}

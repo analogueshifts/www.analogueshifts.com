@@ -50,7 +50,7 @@ export default function CompaniesOverview() {
 
     const handleFetchMoreJobs = () => {
         getCompanies({
-            url: allCompaniessInfo.next_page_url.slice(33),
+            url: allCompaniessInfo.next_page_url.slice(35),
             setData: res => {
                 setAllCompaniesInfo(res.companies)
                 setAllCompanies(prev => [...prev, ...res.companies.data])

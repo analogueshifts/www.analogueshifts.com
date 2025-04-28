@@ -87,7 +87,7 @@ export default function JobsOverview() {
     const handleFetchMoreJobs = () => {
         getJobs({
             url:
-                allJobsInfo?.next_page_url.slice(33) + '&' + +searchUrl ||
+                allJobsInfo?.next_page_url.slice(35) + '&' + +searchUrl ||
                 '/jobs',
             setLoading: setFetchMoreLoading,
             setInfo: setAllJobsInfo,

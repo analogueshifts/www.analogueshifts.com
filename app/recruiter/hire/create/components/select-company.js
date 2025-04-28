@@ -54,7 +54,7 @@ export default function SelectCompany() {
     const handleFetchMore = async () => {
         try {
             await getCompanies({
-                url: currentPageInfo?.next_page_url.slice(33),
+                url: currentPageInfo?.next_page_url.slice(35),
                 setData: res => {
                     setCurrentPageInfo(res.companies)
                     setCompanies(prev => [...prev, ...res.companies.data])
