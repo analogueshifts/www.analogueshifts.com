@@ -1,0 +1,30 @@
+[
+    {
+        "message": "From onsite workshops to online conferences, this platform handles everything seamlessly. A game-changer!",
+        "ratings": [1, 2, 3, 4, 5],
+        "userName": "Bola S.",
+        "userRole": "Event Coordinator",
+        "userImage": "/images/guest-layout/ratings/bola.svg"
+    },
+    {
+        "message": "I love how easy it is to set up and manage webinars. The sharing features are top-notch!",
+        "ratings": [1, 2, 3, 4, 5],
+        "userName": "Grace O.",
+        "userRole": "Webinar host",
+        "userImage": "/images/guest-layout/ratings/grace.svg"
+    },
+    {
+        "message": "This platform has made organizing my tech meetups a breeze. I can create and share events in minutes!",
+        "ratings": [1, 2, 3, 4, 5],
+        "userName": "Tunde A.",
+        "userRole": "Tech Enthusiast",
+        "userImage": "/images/guest-layout/ratings/tunde.svg"
+    },
+    {
+        "message": "From onsite workshops to online conferences, this platform handles everything seamlessly. A game-changer!",
+        "ratings": [1, 2, 3, 4, 5],
+        "userName": "Bola S.",
+        "userRole": "Event Coordinator",
+        "userImage": "/images/guest-layout/ratings/bola.svg"
+    }
+]

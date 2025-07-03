@@ -1,0 +1,82 @@
+[
+    {
+        "title": "Discover Talents",
+        "links": [
+            {
+                "name": "Job seeker",
+                "path": "mailto:hello@analogueshifts.com"
+            },
+            {
+                "name": "Recruiter",
+                "path": "mailto:hello@analogueshifts.com"
+            },
+            {
+                "name": "Post a job",
+                "path": "/recruiter/hire"
+            }
+        ]
+    },
+    {
+        "title": "Our Products",
+        "links": [
+            {
+                "name": "Vetting System",
+                "path": "https://forms.analogueshifts.com/"
+            },
+            {
+                "name": "Payment Gateway",
+                "path": "https://pay.analogueshifts.com/"
+            },
+            {
+                "name": "Learning platform",
+                "path": "https://pay.analogueshifts.com/"
+            },
+            {
+                "name": "Resume Builder",
+                "path": "https://resume.analogueshifts.com/"
+            },
+            {
+                "name": "Event Planner",
+                "path": "https://events.analogueshifts.com/"
+            }
+        ]
+    },
+    {
+        "title": "Company",
+        "links": [
+            {
+                "name": "About Us",
+                "path": "/about"
+            },
+            {
+                "name": "Jobs",
+                "path": "/jobs"
+            },
+            {
+                "name": "Blogs",
+                "path": "https://blog.analogueshifts.com"
+            },
+            {
+                "name": "Contact Us",
+                "path": "/contact"
+            }
+        ]
+    },
+    {
+        "title": "Pages",
+        "links": [
+            {
+                "name": "Privacy Policy",
+                "path": "/docs/privacy-policy"
+            },
+            {
+                "name": "Terms & Conditions",
+                "path": "/docs/terms-and-conditions"
+            },
+            {
+                "name": "Partnership",
+                "path": "/contact"
+            }
+        ]
+    }
+]

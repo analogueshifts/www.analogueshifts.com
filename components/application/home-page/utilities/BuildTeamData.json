@@ -1,0 +1,60 @@
+{
+    "BuildTeamData" : [
+        {
+            "image": "/images/buildTeam/product-managers.png",
+            "title": "Product Managers",
+            "datails": "Highly skilled product managers trained in the development and release of products. That is, create and manage the product roadmap, track product performance, and provide feedback to stakeholders.",
+            "url": "/tools/hire/product-manager"
+        },
+        {
+            "image": "/images/buildTeam/project-managers.png",
+            "title": "Project Managers",
+            "datails": "Hire skilled professionals who organize, plan, and execute projects within constraints like budgets and schedules. Also, lead entire teams, define project goals, communicate with stakeholders, and see a project through to its closure.",
+            "url": "/tools/hire/project-manager"
+        },
+        {
+            "image": "/images/buildTeam/ui-ux.png",
+            "title": "UI/UX",
+            "datails": "Hire skilled professionals who can identify new opportunities to create better user experiences. Aesthetically pleasing branding strategies help them effectively reach more customers. They also ensure that the end-to-end product or service journey meets desired outcomes.",
+            "url": "/tools/hire/ui-ux"
+        },
+        {
+            "image": "/images/buildTeam/data-analysis.png",
+            "title": "Data analysts",
+            "datails": "Hire highly skilled data analysts trained in collecting and interpreting data, analysing results, reporting the results back to the relevant stakeholders.",
+            "url": "/tools/hire/data-analysis"
+        },
+        {
+            "image": "/images/buildTeam/developers.png",
+            "title": "Developers",
+            "datails": "Hire skilled developers trained to build and create software and applications. In addition, our professionals can debug and execute a software application's source code.",
+            "url": "/tools/hire/developer"
+        },
+        {
+            "image": "/images/buildTeam/devops-engineer.png",
+            "title": "DevOps Engineers",
+            "datails": "Hire skilled professionals trained to oversee code release and combine an understanding of both engineering and coding. Our professionals can create and implement systems software, analyze data, and improve existing ones.",
+            "url": "/tools/hire/devops-engineer"
+        },
+        {
+            "image": "/images/buildTeam/virtual-assistant.png",
+             "title": "Virtual Assistants",
+             "datails": "Hire highly skilled virtual assistants that can perform tasks that are difficult or time-consuming and provide a level of convenience and flexibility. Schedule appointments, travel arrangements, manage email and social media accounts and provide customer service.",
+             "url": "/tools/hire/virtual-assistant"
+         },
+        
+       
+        {
+            "image": "/images/buildTeam/social-media-manager.png",
+            "title": "Social media managers",
+            "datails": "Hire top social media managers that can represent your company globally through your social channels. They are trained in the right tips for building a brand voice and online presence.",
+            "url": "/tools/hire/social-media-manager"
+        },
+        {
+            "image": "/images/buildTeam/business-analysis.png",
+            "title": "Business Analysts",
+            "datails": "Hire top business analysts trained in the how-to guide of improving processes, products, and services through data analysis.",
+            "url": "/tools/hire/business-analysis"
+        }
+    ]
+}

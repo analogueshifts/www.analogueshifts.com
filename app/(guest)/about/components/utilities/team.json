@@ -1,0 +1,56 @@
+[
+    {
+        "role": "CEO",
+        "name": "Kenneth Malaka",
+        "image": "/images/team/ceo.png"
+    },
+
+    {
+        "role": "Public Relations Manager",
+        "name": "Akinola Temiloluwa ",
+        "image": "/images/team/social.png"
+    },
+    {
+        "role": "Senior Software Engineer",
+        "name": "Teslim Abdulwahab",
+        "image": "/images/team/dev.png"
+    },
+    {
+        "role": "Content Writer",
+        "name": "Grace Evumovwe",
+        "image": "/images/team/writer.png"
+    },
+    {
+        "role": "Frontend Developer",
+        "name": "Promise Onuoha",
+        "image": "/images/team/frontend.png"
+    },
+    {
+        "role": "Creative Designer",
+        "name": "Honeybell Jolomi Omadeli",
+        "image": "/images/team/designer.png"
+    },
+
+    {
+        "role": "Recruiter",
+        "name": "Ojo Elizabeth Oreoluwa ",
+        "image": "/images/team/recruiter.png"
+    },
+
+    {
+        "role": "Partnership Strategist",
+        "name": "Eniola Bamidele",
+        "image": "/images/team/eniola.png"
+    },
+
+    {
+        "role": "Lead, Human Resource Officer ",
+        "name": "Moniola  Lawal",
+        "image": "/images/team/human-resource.png"
+    },
+    {
+        "role": "Legal Officer",
+        "name": "Suleman Halimat Opeyemi",
+        "image": "/images/team/legal-officer.png"
+    }
+]

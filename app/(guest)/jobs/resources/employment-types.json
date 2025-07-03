@@ -1,0 +1,9 @@
+[
+    { "label": "Full Time", "value": "FULL_TIME" },
+    { "label": "Part Time", "value": "PART_TIME" },
+    { "label": "Contractor", "value": "CONTRACTOR" },
+    { "label": "Intern", "value": "INTERN" },
+    { "label": "Temporary", "value": "TEMPORARY" },
+    { "label": "Volunteer", "value": "VOLUNTEER" },
+    { "label": "Per Diem", "value": "PER_DIEM" }
+]

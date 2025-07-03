@@ -1,0 +1,18 @@
+[
+    {
+        "path": "https://www.facebook.com/profile.php?id=100078666855898",
+        "icon": "/images/footer/facebook.svg"
+    },
+    {
+        "path": "https://www.instagram.com/analogueshifts_/",
+        "icon": "/images/footer/instagram.svg"
+    },
+    {
+        "path": "https://twitter.com/AnalogueShifts",
+        "icon": "/images/footer/twitter.svg"
+    },
+    {
+        "path": "https://www.linkedin.com/company/analogue-shifts/",
+        "icon": "/images/footer/linkedin.svg"
+    }
+]

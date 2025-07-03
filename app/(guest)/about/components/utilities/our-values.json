@@ -1,0 +1,17 @@
+[
+    {
+        "title": "Efficient",
+        "description": "Our streamlined recruitment process ensures efficiency and reduces the time-to-fill positions, saving you valuable resources.",
+        "image": "/images/guest-layout/talent-pool/efficient-icon.svg"
+    },
+    {
+        "title": "Focused",
+        "description": "We focus on cultural fit, talent acquisition, and matching your candidate pool with the talent you need.",
+        "image": "/images/guest-layout/talent-pool/focus-icon.svg"
+    },
+    {
+        "title": "Best Work",
+        "description": "We tailor our services to understand exactly what kind of tech talent you want, delivering the best results for businesses in all industries",
+        "image": "/images/guest-layout/hero/filled_briefcase.svg"
+    }
+]

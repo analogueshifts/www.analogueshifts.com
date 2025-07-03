@@ -1,0 +1,5 @@
+[
+    { "label": "Remote", "value": "TELECOMMUTE" },
+    { "label": "Hybrid", "value": "Hybrid" },
+    { "label": "Onsite", "value": "Onsite" }
+]

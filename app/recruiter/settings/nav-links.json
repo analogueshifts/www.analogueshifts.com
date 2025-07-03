@@ -1,0 +1,22 @@
+[
+    {
+        "path": "/recruiter/settings",
+        "name": "Account Settings"
+    },
+    {
+        "path": "/recruiter/settings/privacy",
+        "name": "Privacy  & Settings"
+    },
+    {
+        "path": "/recruiter/settings/notifications",
+        "name": "Notifications"
+    },
+    {
+        "path": "/recruiter/settings/preferences",
+        "name": "Preferences"
+    },
+    {
+        "path": "/recruiter/settings/feedback",
+        "name": "Support/Feedback"
+    }
+]
