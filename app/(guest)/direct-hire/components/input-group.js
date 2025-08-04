@@ -48,7 +48,7 @@ const InputGroup = ({
                         className="outline-none large:leading-[32px] leading-[28px] large:text-base text-sm font-normal text-tremor-brand-boulder950 placeholder:text-[#B0B0B0] bg-transparent border-none w-full h-[85%]"
                     />
                     <p className="text-xs text-[#B0B0B0] font-normal">
-                        {value?.length}/600
+                        {value?.length}/3000
                     </p>
                 </div>
             )}
