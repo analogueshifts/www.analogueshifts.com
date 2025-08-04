@@ -14,7 +14,7 @@ const InputGroup = ({
     const [focus, setFocus] = useState(false)
 
     const handleTextAreaChange = e => {
-        onChange(e.target.value.slice(0, 600))
+        onChange(e.target.value.slice(0, 3000))
     }
 
     return (

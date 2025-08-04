@@ -94,6 +94,7 @@ const getJobs = async (page, searchParams) => {
             )
         }
     } catch (error) {
+        console.log(error)
         return null
     }
 }
