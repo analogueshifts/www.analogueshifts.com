@@ -7,6 +7,8 @@ export default function AsideSection({ user }) {
         window.location.href = 'https://auth.analogueshifts.app/register'
     }
 
+    const app = process.env.NEXT_PUBLIC_SITE_BUILD_UUID;
+
     return (
         <aside className="h-max w-full  flex tablet:flex-col flex-row xl:flex-col large:gap-10 gap-7">
             {!user && (
@@ -26,7 +28,7 @@ export default function AsideSection({ user }) {
                     <div className="w-max text-tremor-brand-boulder400 flex items-center text-sm large:text-base font-normal">
                         Already have an account?&nbsp;
                         <Link
-                            href="https://auth.analogueshifts.app?app=main"
+                            href={`https://auth.analogueshifts.app?app=${app}`}
                             className="text-tremor-background-darkYellow">
                             Login
                         </Link>
@@ -51,7 +53,7 @@ export default function AsideSection({ user }) {
                                       ? '/tools/hire'
                                       : '/applied-jobs'
                               }`
-                            : 'https://auth.analogueshifts.app?app=main'
+                            : `https://auth.analogueshifts.app?app=${app}`
                     }
                     className="w-full h-14 mb-4 rounded-2xl bg-white border border-tremor-background-darkYellow text-tremor-background-darkYellow flex justify-center items-center text-sm large:text-base font-semibold">
                     {user
