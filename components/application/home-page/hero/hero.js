@@ -15,7 +15,7 @@ function Hero() {
 
     const router = useRouter()
 
-    const authLink = process.env.NEXT_PUBLIC_AUTH_URL;
+    const authLink = process.env.NEXT_PUBLIC_AUTH_URL
     const app = process.env.NEXT_PUBLIC_SITE_BUILD_UUID
 
     const handleSearch = e => {
@@ -78,9 +78,7 @@ function Hero() {
                     </button>
                     <Link
                         href={
-                            user
-                                ? '/recruiter/hire'
-                                : `${authLink}?app=${app}`
+                            user ? '/recruiter/hire' : `${authLink}?app=${app}`
                         }
                         className="rounded-2xl tablet:h-12  h-full bg-transparent flex justify-center items-center text-tremor-background-darkYellow tablet:text-sm text-sm large:text-base font-semibold tablet:px-5 px-12 border border-tremor-background-darkYellow">
                         Post a Job
