@@ -18,6 +18,7 @@ export default function ResponsiveNavBar({
 }) {
     const [showApps, setShowApps] = useState(false)
 
+    const authLink = process.env.NEXT_PUBLIC_AUTH_URL;
     const app = process.env.NEXT_PUBLIC_SITE_BUILD_UUID
 
     const MenuLink = ({ item }) => (
@@ -117,11 +118,11 @@ export default function ResponsiveNavBar({
                         ) : (
                             <>
                                 <ResponsiveNavLink
-                                    href={`https://auth.analogueshifts.app?app=${app}`}>
+                                    href={`${authLink}?app=${app}`}>
                                     Login
                                 </ResponsiveNavLink>
                                 <ResponsiveNavLink
-                                    href={`https://auth.analogueshifts.app?app=${app}`}>
+                                    href={`${authLink}?app=${app}`}>
                                     Sign Up
                                 </ResponsiveNavLink>
                             </>

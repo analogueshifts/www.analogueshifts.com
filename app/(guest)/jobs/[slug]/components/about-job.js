@@ -21,6 +21,7 @@ export default function AboutJob({ job, slug }) {
     const { user } = useUser()
     const { notifyUser } = useToast()
 
+    const authLink = process.env.NEXT_PUBLIC_AUTH_URL;
     const app = process.env.NEXT_PUBLIC_SITE_BUILD_UUID
 
     const handleApply = () => {
@@ -29,7 +30,7 @@ export default function AboutJob({ job, slug }) {
             setIdiomModal(true)
         } else {
             Cookies.set('RedirectionLink', pathname)
-            router.push(`https://auth.analogueshifts.app?app=${app}`)
+            router.push(`${authLink}?app=${app}`)
         }
     }
 
