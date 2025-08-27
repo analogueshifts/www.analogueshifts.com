@@ -23,6 +23,8 @@ export default function AboutJob({ job, slug }) {
     const { user } = useUser()
     const { notifyUser } = useToast()
 
+    const app = process.env.NEXT_PUBLIC_SITE_BUILD_UUID;
+
     const handleApply = () => {
         if (user) {
             window.open(job?.apply, 'blank')

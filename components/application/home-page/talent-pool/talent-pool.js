@@ -14,6 +14,7 @@ import { useRouter } from 'next/navigation'
 export default function TalentPool() {
     const router = useRouter()
     const { user } = useUser()
+    const app = process.env.NEXT_PUBLIC_SITE_BUILD_UUID;
 
     const app = process.env.NEXT_PUBLIC_SITE_BUILD_UUID
 
