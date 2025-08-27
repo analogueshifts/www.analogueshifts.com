@@ -13,6 +13,8 @@ export default function PostAJob() {
     const { user } = useUser()
     const router = useRouter()
 
+    const app = process.env.NEXT_PUBLIC_SITE_BUILD_UUID;
+
     return (
         <section className="w-full relative overflow-hidden large:py-168 tablet:py-14 py-24 tablet:px-6 px-20 items-center large:px-112 tablet:flex flex-col-reverse grid large:grid grid-cols-2 tablet:gap-10 gap-88">
             <div className=" col-span-1  w-max max-w-full">
@@ -33,7 +35,7 @@ export default function PostAJob() {
                         router.push(
                             user
                                 ? '/recruiter/hire'
-                                : 'https://auth.analogueshifts.app?app=main',
+                                : `https://auth.analogueshifts.app?app=${app}`,
                         )
                     }}
                     title="Post A Job"

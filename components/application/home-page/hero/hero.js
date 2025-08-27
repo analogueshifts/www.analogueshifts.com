@@ -15,6 +15,8 @@ function Hero() {
 
     const router = useRouter()
 
+    const app = process.env.NEXT_PUBLIC_SITE_BUILD_UUID;
+
     const handleSearch = e => {
         e.preventDefault()
         router.push(
@@ -77,7 +79,7 @@ function Hero() {
                         href={
                             user
                                 ? '/recruiter/hire'
-                                : 'https://auth.analogueshifts.app?app=main'
+                                : `https://auth.analogueshifts.app?app=${app}`
                         }
                         className="rounded-2xl tablet:h-12  h-full bg-transparent flex justify-center items-center text-tremor-background-darkYellow tablet:text-sm text-sm large:text-base font-semibold tablet:px-5 px-12 border border-tremor-background-darkYellow">
                         Post a Job

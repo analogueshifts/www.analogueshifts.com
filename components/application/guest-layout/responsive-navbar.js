@@ -18,6 +18,8 @@ export default function ResponsiveNavBar({
 }) {
     const [showApps, setShowApps] = useState(false)
 
+    const app = process.env.NEXT_PUBLIC_SITE_BUILD_UUID;
+
     const MenuLink = ({ item }) => (
         <div>
             <Link href={item.href} className="w-full flex items-center gap-2">
@@ -114,10 +116,10 @@ export default function ResponsiveNavBar({
                             </>
                         ) : (
                             <>
-                                <ResponsiveNavLink href="https://auth.analogueshifts.app?app=main">
+                                <ResponsiveNavLink href={`https://auth.analogueshifts.app?app=${app}`}>
                                     Login
                                 </ResponsiveNavLink>
-                                <ResponsiveNavLink href="https://auth.analogueshifts.app?app=main">
+                                <ResponsiveNavLink href={`https://auth.analogueshifts.app?app=${app}`}>
                                     Sign Up
                                 </ResponsiveNavLink>
                             </>
