@@ -19,6 +19,7 @@ const Navigation = ({ user }) => {
     const [open, setOpen] = useState(false)
     const [logoutIdiomDisplay, setLogoutIdiomDisplay] = useState(false)
 
+    const authLink = process.env.NEXT_PUBLIC_AUTH_URL;
     const app = process.env.NEXT_PUBLIC_SITE_BUILD_UUID
 
     //Close the Nav bar whenever the pathname changes
@@ -88,12 +89,12 @@ const Navigation = ({ user }) => {
                 ) : (
                     <div className="hidden lg:flex lg:items-center gap-6">
                         <NavLink
-                            href={`https://auth.analogueshifts.app?app=${app}`}>
+                            href={`${authLink}?app=${app}`}>
                             Login
                         </NavLink>
                         <Link
                             className="text-[13px] large:text-base font-medium h-11 large:h-14 px-10  large:px-12 duration-200 rounded-2xl bg-tremor-background-darkYellow text-white hover:bg-transparent hover:text-tremor-background-darkYellow hover:ring-1 ring-tremor-background-darkYellow flex items-center justify-center"
-                            href={`https://auth.analogueshifts.app?app=${app}`}>
+                            href={`${authLink}?app=${app}`}>
                             Sign Up
                         </Link>
                     </div>

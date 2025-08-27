@@ -4,9 +4,10 @@ import Link from 'next/link'
 export default function AsideSection({ user }) {
     const handleSubmit = e => {
         e.preventDefault()
-        window.location.href = 'https://auth.analogueshifts.app/register'
+        window.location.href = `${authLink}/register`
     }
 
+    const authLink = process.env.NEXT_PUBLIC_AUTH_URL;
     const app = process.env.NEXT_PUBLIC_SITE_BUILD_UUID
 
     return (
@@ -28,7 +29,7 @@ export default function AsideSection({ user }) {
                     <div className="w-max text-tremor-brand-boulder400 flex items-center text-sm large:text-base font-normal">
                         Already have an account?&nbsp;
                         <Link
-                            href={`https://auth.analogueshifts.app?app=${app}`}
+                            href={`${authLink}?app=${app}`}
                             className="text-tremor-background-darkYellow">
                             Login
                         </Link>
@@ -53,7 +54,7 @@ export default function AsideSection({ user }) {
                                       ? '/tools/hire'
                                       : '/applied-jobs'
                               }`
-                            : `https://auth.analogueshifts.app?app=${app}`
+                            : `${authLink}?app=${app}`
                     }
                     className="w-full h-14 mb-4 rounded-2xl bg-white border border-tremor-background-darkYellow text-tremor-background-darkYellow flex justify-center items-center text-sm large:text-base font-semibold">
                     {user

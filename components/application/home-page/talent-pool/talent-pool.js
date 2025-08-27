@@ -15,6 +15,7 @@ export default function TalentPool() {
     const router = useRouter()
     const { user } = useUser()
 
+    const authLink = process.env.NEXT_PUBLIC_AUTH_URL;
     const app = process.env.NEXT_PUBLIC_SITE_BUILD_UUID
 
     return (
@@ -30,7 +31,7 @@ export default function TalentPool() {
                         router.push(
                             user
                                 ? '/recruiter/dashboard'
-                                : `https://auth.analogueshifts.app?app=${app}`,
+                                : `${authLink}?app=${app}`,
                         )
                     }
                     title="Connecting you to the Right Tech"
