@@ -24,7 +24,7 @@ export default function RecruiterLayout({ children }) {
 
     const token = Cookies.get('analogueshifts')
 
-    const app = process.env.NEXT_PUBLIC_SITE_BUILD_UUID;
+    const app = process.env.NEXT_PUBLIC_SITE_BUILD_UUID
 
     useEffect(() => {
         // Redirect To Login if User is not Authenticated

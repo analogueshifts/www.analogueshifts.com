@@ -19,7 +19,7 @@ const Navigation = ({ user }) => {
     const [open, setOpen] = useState(false)
     const [logoutIdiomDisplay, setLogoutIdiomDisplay] = useState(false)
 
-    const app = process.env.NEXT_PUBLIC_SITE_BUILD_UUID;
+    const app = process.env.NEXT_PUBLIC_SITE_BUILD_UUID
 
     //Close the Nav bar whenever the pathname changes
     useEffect(() => {
@@ -87,7 +87,8 @@ const Navigation = ({ user }) => {
                     />
                 ) : (
                     <div className="hidden lg:flex lg:items-center gap-6">
-                        <NavLink href={`https://auth.analogueshifts.app?app=${app}`}>
+                        <NavLink
+                            href={`https://auth.analogueshifts.app?app=${app}`}>
                             Login
                         </NavLink>
                         <Link

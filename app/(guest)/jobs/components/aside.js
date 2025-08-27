@@ -7,7 +7,7 @@ export default function AsideSection({ user }) {
         window.location.href = 'https://auth.analogueshifts.app/register'
     }
 
-    const app = process.env.NEXT_PUBLIC_SITE_BUILD_UUID;
+    const app = process.env.NEXT_PUBLIC_SITE_BUILD_UUID
 
     return (
         <aside className="h-max w-full  flex tablet:flex-col flex-row xl:flex-col large:gap-10 gap-7">

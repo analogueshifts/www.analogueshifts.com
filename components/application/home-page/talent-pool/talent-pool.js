@@ -16,6 +16,8 @@ export default function TalentPool() {
     const { user } = useUser()
     const app = process.env.NEXT_PUBLIC_SITE_BUILD_UUID;
 
+    const app = process.env.NEXT_PUBLIC_SITE_BUILD_UUID
+
     return (
         <section className="w-full relative items-end flex flex-col gap-6 large:gap-12 large:pb-69 tablet:pb-4 pb-6 large:pt-168 tablet:pt-3 pt-16 tablet:px-6 px-20 large:px-112">
             <Image
