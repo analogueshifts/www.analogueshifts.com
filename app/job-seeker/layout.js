@@ -24,11 +24,13 @@ export default function JobSeekerLayout({ children }) {
 
     const token = Cookies.get('analogueshifts')
 
+    const app = process.env.NEXT_PUBLIC_SITE_BUILD_UUID
+
     useEffect(() => {
         // Redirect To Login if User is not Authenticated
         if (!user && !token) {
             Cookies.set('RedirectionLink', pathname)
-            window.location.href = 'https://auth.analogueshifts.app?app=main'
+            window.location.href = `https://auth.analogueshifts.app?app=${app}`
             return null
         } else if (!user && token) {
             //    Fetch User
