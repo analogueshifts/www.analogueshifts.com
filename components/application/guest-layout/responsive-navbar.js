@@ -18,7 +18,7 @@ export default function ResponsiveNavBar({
 }) {
     const [showApps, setShowApps] = useState(false)
 
-    const authLink = process.env.NEXT_PUBLIC_AUTH_URL;
+    const authLink = process.env.NEXT_PUBLIC_AUTH_URL
     const app = process.env.NEXT_PUBLIC_SITE_BUILD_UUID
 
     const MenuLink = ({ item }) => (

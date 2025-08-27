@@ -15,7 +15,7 @@ function Hero() {
 
     const router = useRouter()
 
-    const authLink = process.env.NEXT_PUBLIC_AUTH_URL;
+    const authLink = process.env.NEXT_PUBLIC_AUTH_URL
     const app = process.env.NEXT_PUBLIC_SITE_BUILD_UUID
 
     const handleSearch = e => {

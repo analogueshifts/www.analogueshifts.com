@@ -19,7 +19,7 @@ const Navigation = ({ user }) => {
     const [open, setOpen] = useState(false)
     const [logoutIdiomDisplay, setLogoutIdiomDisplay] = useState(false)
 
-    const authLink = process.env.NEXT_PUBLIC_AUTH_URL;
+    const authLink = process.env.NEXT_PUBLIC_AUTH_URL
     const app = process.env.NEXT_PUBLIC_SITE_BUILD_UUID
 
     //Close the Nav bar whenever the pathname changes

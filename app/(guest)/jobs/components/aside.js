@@ -7,7 +7,7 @@ export default function AsideSection({ user }) {
         window.location.href = `${authLink}/register`
     }
 
-    const authLink = process.env.NEXT_PUBLIC_AUTH_URL;
+    const authLink = process.env.NEXT_PUBLIC_AUTH_URL
     const app = process.env.NEXT_PUBLIC_SITE_BUILD_UUID
 
     return (

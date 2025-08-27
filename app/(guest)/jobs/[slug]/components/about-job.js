@@ -21,7 +21,7 @@ export default function AboutJob({ job, slug }) {
     const { user } = useUser()
     const { notifyUser } = useToast()
 
-    const authLink = process.env.NEXT_PUBLIC_AUTH_URL;
+    const authLink = process.env.NEXT_PUBLIC_AUTH_URL
     const app = process.env.NEXT_PUBLIC_SITE_BUILD_UUID
 
     const handleApply = () => {

@@ -24,7 +24,7 @@ export default function RecruiterLayout({ children }) {
 
     const token = Cookies.get('analogueshifts')
 
-    const authLink = process.env.NEXT_PUBLIC_AUTH_URL;
+    const authLink = process.env.NEXT_PUBLIC_AUTH_URL
     const app = process.env.NEXT_PUBLIC_SITE_BUILD_UUID
 
     useEffect(() => {
