@@ -34,9 +34,7 @@ export default function PostAJob() {
                 <SectionMessage
                     action={() => {
                         router.push(
-                            user
-                                ? '/recruiter/hire'
-                                : `${authLink}?app=${app}`,
+                            user ? '/recruiter/hire' : `${authLink}?app=${app}`,
                         )
                     }}
                     title="Post A Job"

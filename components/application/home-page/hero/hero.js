@@ -78,9 +78,7 @@ function Hero() {
                     </button>
                     <Link
                         href={
-                            user
-                                ? '/recruiter/hire'
-                                : `${authLink}?app=${app}`
+                            user ? '/recruiter/hire' : `${authLink}?app=${app}`
                         }
                         className="rounded-2xl tablet:h-12  h-full bg-transparent flex justify-center items-center text-tremor-background-darkYellow tablet:text-sm text-sm large:text-base font-semibold tablet:px-5 px-12 border border-tremor-background-darkYellow">
                         Post a Job
