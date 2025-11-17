@@ -20,7 +20,7 @@ export default function RecentJobs() {
         if (token) {
             getRecommendedJobs({
                 setData: data => setData(data.recommendation),
-                setLoading: () => {},
+                setLoading: () => { },
                 url: '/jobs/recommend',
             })
         }
@@ -77,14 +77,14 @@ export default function RecentJobs() {
                                                 )}
                                                 {item?.baseSalary?.value
                                                     ?.unitText && (
-                                                    <span>
-                                                        /
-                                                        {formatUnitText(
-                                                            item.baseSalary
-                                                                .value.unitText,
-                                                        )}
-                                                    </span>
-                                                )}
+                                                        <span>
+                                                            /
+                                                            {formatUnitText(
+                                                                item.baseSalary
+                                                                    .value.unitText,
+                                                            )}
+                                                        </span>
+                                                    )}
                                             </div>
                                         )}
                                         {item?.jobLocationType && (

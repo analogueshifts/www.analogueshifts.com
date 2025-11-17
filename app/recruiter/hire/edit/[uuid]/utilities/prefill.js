@@ -36,6 +36,7 @@ export function prefill(data, setData, easy_apply) {
             directApply: data?.apply === 'easyApply' ? 'easy' : data?.directApply,
             apply: data?.apply === 'easyApply' ? '' : data?.apply,
             jobDescription: data?.description,
+            documents: [...(easy_apply?.resume ? ['Resume/CV'] : []), ...(easy_apply?.cover_letter ? ['Cover Letter'] : [])],
             screeningQuestions: easy_apply?.questions?.map(item => {
                 return {
                     id: item.id,

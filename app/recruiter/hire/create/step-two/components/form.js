@@ -251,8 +251,8 @@ export default function Form() {
 
                     <div
                         className={`col-span-1 ${newJob?.stepTwo?.directApply === 'false'
-                                ? 'block'
-                                : 'hidden'
+                            ? 'block'
+                            : 'hidden'
                             }`}>
                         <SelectForm
                             setValue={value => updateStepTwo(value, 'apply')}
@@ -266,8 +266,8 @@ export default function Form() {
                         value={newJob.stepTwo?.apply}
                         onChange={e => updateStepTwo(e.target.value, 'apply')}
                         className={`col-span-1 h-50 border border-tremor-brand-boulder100 px-6 text-sm large:text-base font-normal placeholder:text-tremor-brand-boulder300 text-tremor-brand-boulder900 outline-none rounded-2xl bg-white ${newJob?.stepTwo?.directApply !== 'false'
-                                ? 'flex'
-                                : 'hidden'
+                            ? 'flex'
+                            : 'hidden'
                             }`}
                     />
                 </div>
