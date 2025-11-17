@@ -18,7 +18,7 @@ export async function generateMetadata({ params }) {
             let filteredData = response.data.data.job
             return filteredData
         })
-        .catch(error => {})
+        .catch(error => { })
 
     return {
         '@context': 'https://schema.org/',
@@ -64,7 +64,7 @@ export default async function Page({ params }) {
     return (
         <section className="w-full h-max flex justify-center large:pt-[91px] pt-16 tablet:pt-10">
             {job ? (
-                <AboutJob slug={params.slug} job={job?.data?.job} />
+                <AboutJob easyApply={job?.data?.easy_apply} slug={params.slug} job={job?.data?.job} />
             ) : (
                 <div className="py-16 ">
                     <h2 className="text-tremor-brand-boulder950 text-center font-bold text-2xl">
@@ -98,6 +98,7 @@ const getJob = async slug => {
             )
         }
     } catch (error) {
+        console.log(error)
         return null
     }
 }

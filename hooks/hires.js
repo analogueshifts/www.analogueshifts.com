@@ -36,9 +36,9 @@ export const useHire = () => {
             notifyUser(
                 'error',
                 error?.response?.data?.message ||
-                    error?.response?.data?.data?.message ||
-                    error?.message ||
-                    'Failed To Upload',
+                error?.response?.data?.data?.message ||
+                error?.message ||
+                'Failed To Upload',
             )
 
             if (error?.response?.status === 401) {
@@ -69,8 +69,8 @@ export const useHire = () => {
             notifyUser(
                 'error',
                 error?.response?.data?.message ||
-                    error?.response?.data?.data?.message ||
-                    'Failed To Post Job',
+                error?.response?.data?.data?.message ||
+                'Failed To Post Job',
             )
             setLoading(false)
             if (error?.response?.status === 401) {
@@ -104,9 +104,9 @@ export const useHire = () => {
             notifyUser(
                 'error',
                 error?.response?.data?.message ||
-                    error?.response?.data?.data?.message ||
-                    error?.message ||
-                    'Failed To Post Job',
+                error?.response?.data?.data?.message ||
+                error?.message ||
+                'Failed To Post Job',
                 'right',
             )
             setLoading(false)
@@ -142,9 +142,9 @@ export const useHire = () => {
             notifyUser(
                 'error',
                 error?.response?.data?.message ||
-                    error?.response?.data?.data?.message ||
-                    error?.message ||
-                    'Error',
+                error?.response?.data?.data?.message ||
+                error?.message ||
+                'Error',
             )
             if (error?.response?.status === 401) {
                 clearUserSession()
@@ -180,8 +180,8 @@ export const useHire = () => {
             notifyUser(
                 'error',
                 error?.response?.data?.message ||
-                    error?.response?.data?.data?.message ||
-                    'Error Deleting Job',
+                error?.response?.data?.data?.message ||
+                'Error Deleting Job',
             )
             setLoading(false)
             if (error?.response?.status === 401) {

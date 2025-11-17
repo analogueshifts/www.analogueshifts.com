@@ -61,7 +61,7 @@ export default function Form({ uuid }) {
             .then(res => {
                 let jobData = res.data.data.hire
                 if (jobData) {
-                    prefill(jobData, setEditJob)
+                    prefill(jobData, setEditJob, res?.data?.data?.easy_apply)
                 } else {
                     notifyUser('error', 'Job not found', 'right')
                     router.push('/recruiter/hire')
@@ -72,9 +72,9 @@ export default function Form({ uuid }) {
                 notifyUser(
                     'error',
                     error?.response?.data?.message ||
-                        error?.response?.data?.data?.message ||
-                        error?.message ||
-                        'Error Getting Job',
+                    error?.response?.data?.data?.message ||
+                    error?.message ||
+                    'Error Getting Job',
                     'right',
                 )
             })

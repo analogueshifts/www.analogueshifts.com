@@ -1,4 +1,4 @@
-export function prefill(data, setData) {
+export function prefill(data, setData, easy_apply) {
     let structure = {
         stepOne: {
             title: data?.title,
@@ -15,17 +15,17 @@ export function prefill(data, setData) {
                 data?.jobLocation?.address?.jobLocationType || 'TELECOMMUTE',
             applicantLocationRequirementsCountry: data?.applicantLocationRequirements
                 ? [
-                      ...data.applicantLocationRequirements
-                          ?.filter(item => item['@type'] === 'country')
-                          ?.map(item => item?.name),
-                  ]
+                    ...data.applicantLocationRequirements
+                        ?.filter(item => item['@type'] === 'country')
+                        ?.map(item => item?.name),
+                ]
                 : [],
             applicantLocationRequirementsState: data?.applicantLocationRequirements
                 ? [
-                      ...data.applicantLocationRequirements
-                          ?.filter(item => item['@type'] === 'state')
-                          ?.map(item => item?.name),
-                  ]
+                    ...data.applicantLocationRequirements
+                        ?.filter(item => item['@type'] === 'state')
+                        ?.map(item => item?.name),
+                ]
                 : [],
         },
         stepTwo: {
@@ -33,9 +33,19 @@ export function prefill(data, setData) {
             salaryCurrency: data?.baseSalary?.currency,
             salaryValue: data?.baseSalary?.value?.value,
             salaryUnitText: data?.baseSalary?.value?.unitText,
-            directApply: data?.directApply,
-            apply: data?.apply,
+            directApply: data?.apply === 'easyApply' ? 'easy' : data?.directApply,
+            apply: data?.apply === 'easyApply' ? '' : data?.apply,
             jobDescription: data?.description,
+            screeningQuestions: easy_apply?.questions?.map(item => {
+                return {
+                    id: item.id,
+                    question: item.question,
+                    uuid: item.uuid
+                }
+            }) || [{
+                id: '1',
+                question: '',
+            },],
         },
         stepThree: {
             companyName: data?.hiringOrganization?.name,

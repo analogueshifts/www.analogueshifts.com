@@ -15,6 +15,9 @@ export default function InputGroup({
     setValue,
     type,
     required,
+    noImage,
+    small,
+    dangerousHtml,
 }) {
     const handleTextareaChange = e => {
         if (e.target.value.length <= 300) {
@@ -24,28 +27,39 @@ export default function InputGroup({
 
     return (
         <div className="w-full flex flex-col gap-3.5 large:gap-5 items-start">
-            <label
-                className="font-medium text-tremor-brand-boulder950 text-base large:text-xl"
+            {!dangerousHtml ? <label
+                className={`font-medium text-tremor-brand-boulder950 ${small ? 'text-sm' : 'text-base'
+                    } large:text-x"`}
                 id={label}>
                 {label}
-            </label>
+            </label> :
+                <p
+                    dangerouslySetInnerHTML={{ __html: label }}
+                    className={`font-medium text-tremor-brand-boulder950 ${small ? 'text-sm' : 'text-base'
+                        } large:text-x"`}
+                >
+
+                </p>}
             {(type === 'text' || type === 'email') && (
                 <div
-                    className={`w-full h-14 border gap-3 overflow-hidden border-tremor-brand-boulder200 rounded-2xl flex items-center ${
-                        label !== 'Phone Number' ? 'px-6' : 'pr-6'
-                    }`}>
-                    {label !== 'Phone Number' ? (
-                        <Image
-                            width={24}
-                            height={24}
-                            alt=""
-                            className="large:w-6 h-max w-4"
-                            src={image}
-                        />
-                    ) : (
-                        <div className="h-full w-[84px] bg-[#F8F8F8] flex justify-center items-center">
-                            <div className="w-6 h-6 rounded-full bg-[#039855]"></div>
-                        </div>
+                    className={`w-full border gap-3 overflow-hidden border-tremor-brand-boulder200 rounded-2xl flex items-center ${label !== 'Phone Number' ? 'px-6' : 'pr-6'
+                        } ${small ? 'h-12' : 'h-14'}`}>
+                    {!noImage && (
+                        <>
+                            {label !== 'Phone Number' ? (
+                                <Image
+                                    width={24}
+                                    height={24}
+                                    alt=""
+                                    className="large:w-6 h-max w-4"
+                                    src={image}
+                                />
+                            ) : (
+                                <div className="h-full w-[84px] bg-[#F8F8F8] flex justify-center items-center">
+                                    <div className="w-6 h-6 rounded-full bg-[#039855]"></div>
+                                </div>
+                            )}
+                        </>
                     )}
                     <input
                         placeholder={placeholder}
@@ -53,7 +67,10 @@ export default function InputGroup({
                         type={type}
                         value={value}
                         onChange={e => setValue(e.target.value)}
-                        className="w-full bg-none border-none outline-none font-normal text-sm large:text-base placeholder:text-tremor-brand-boulder200 text-tremor-brand-boulder400"
+                        className={`w-full bg-none border-none outline-none font-normal large:text-base placeholder:text-tremor-brand-boulder200 ${small
+                            ? 'text-tremor-brand-boulder950 text-xs'
+                            : 'text-tremor-brand-boulder400 text-sm'
+                            }`}
                     />
                     {label === 'Phone Number' && (
                         <TooltipProvider>

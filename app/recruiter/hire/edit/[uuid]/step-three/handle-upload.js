@@ -49,9 +49,37 @@ export const handleUpload = (setLoading, router, editJob, newJob, editId) => {
                 unitText: newJob?.stepTwo?.salaryUnitText,
             },
         },
-        apply: newJob?.stepTwo?.apply,
-        directApply: newJob?.stepTwo?.directApply,
+        apply:
+            newJob?.stepTwo?.directApply === 'easy'
+                ? 'easyApply'
+                : newJob?.stepTwo?.apply,
+        directApply:
+            newJob?.stepTwo?.directApply === 'easy'
+                ? 'true'
+                : newJob?.stepTwo?.directApply,
         status: newJob?.stepTwo?.jobStatus,
+        easyApply: newJob?.stepTwo?.directApply === 'easy' ? true : false,
+        ...(newJob?.stepTwo?.directApply === 'easy'
+            ? {
+                email: true,
+                contact: true,
+                name: true,
+                resume: newJob?.stepTwo?.documents?.includes('Resume/CV'),
+                cover_letter: newJob?.stepTwo?.documents?.includes(
+                    'Cover Letter',
+                ),
+                questions: newJob?.stepTwo?.screeningQuestions?.map(
+                    (q, index) => {
+                        return {
+                            number: index + 1,
+                            type: 'text',
+                            question: q.question,
+                            ...(q?.uuid ? { uuid: q.uuid } : {})
+                        }
+                    },
+                ),
+            }
+            : {}),
     }
 
     // Call the Create Function with the data as Parameter

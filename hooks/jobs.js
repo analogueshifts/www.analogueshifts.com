@@ -32,9 +32,9 @@ export const useJobs = () => {
             notifyUser(
                 'error',
                 error?.response?.data?.message ||
-                    error?.response?.data?.data?.message ||
-                    error.message ||
-                    'Failed To Fetch Statistics Data',
+                error?.response?.data?.data?.message ||
+                error.message ||
+                'Failed To Fetch Statistics Data',
             )
 
             if (error?.response?.status === 401) {
@@ -60,9 +60,9 @@ export const useJobs = () => {
             notifyUser(
                 'error',
                 error?.response?.data?.message ||
-                    error?.response?.data?.data?.message ||
-                    error.message ||
-                    'Error',
+                error?.response?.data?.data?.message ||
+                error.message ||
+                'Error',
             )
         }
     }
@@ -87,8 +87,8 @@ export const useJobs = () => {
             notifyUser(
                 'error',
                 error?.response?.data?.message ||
-                    error?.response?.data?.data?.message ||
-                    'Error Fetching Jobs',
+                error?.response?.data?.data?.message ||
+                'Error Fetching Jobs',
             )
 
             if (error?.response?.status === 401) {
@@ -117,13 +117,46 @@ export const useJobs = () => {
             notifyUser(
                 'error',
                 error?.response?.data?.message ||
-                    error?.response?.data?.data?.message ||
-                    'Error Fetching Jobs',
+                error?.response?.data?.data?.message ||
+                'Error Fetching Jobs',
             )
 
             if (error?.response?.status === 401) {
                 clearUserSession()
             }
+        }
+    }
+
+    const apply = async ({ setLoading, data, uuid }) => {
+        let config = {
+            method: 'POST',
+            url: `/job/easy-apply/${uuid}`,
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: 'Bearer ' + token,
+            },
+            data: data,
+        }
+        setLoading(true)
+        try {
+            await axios.request(config)
+            setLoading(false)
+            notifyUser('success', 'Your Application Has Been Sent')
+            return true
+        } catch (error) {
+            notifyUser(
+                'error',
+                error?.response?.data?.message ||
+                error?.response?.data?.data?.message ||
+                'Failed To Apply',
+            )
+            console.log(error?.response?.data?.message ||
+                error?.response?.data?.data?.message);
+            setLoading(false)
+            if (error?.response?.status === 401) {
+                clearUserSession()
+            }
+            return false
         }
     }
 
@@ -147,8 +180,8 @@ export const useJobs = () => {
             notifyUser(
                 'error',
                 error?.response?.data?.message ||
-                    error?.response?.data?.message ||
-                    'Error Storing Job',
+                error?.response?.data?.message ||
+                'Error Storing Job',
             )
             if (error?.response?.status === 401) {
                 clearUserSession()
@@ -163,5 +196,6 @@ export const useJobs = () => {
         getJobs,
         getStats,
         getJob,
+        apply
     }
 }

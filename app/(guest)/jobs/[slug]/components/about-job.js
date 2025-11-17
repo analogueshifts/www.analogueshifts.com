@@ -11,12 +11,14 @@ import Cookies from 'js-cookie'
 import Share from '@/public/images/jobs/share.svg'
 import JobGridTile from '../../components/job-grid-tile'
 import DidYouApply from './did-you-apply'
+import Apply from './apply'
 import GoBack from './go-back'
 
-export default function AboutJob({ job, slug }) {
+export default function AboutJob({ job, slug, easyApply }) {
     const router = useRouter()
     const pathname = usePathname()
     const [idiomModal, setIdiomModal] = useState(false)
+    const [applyModal, setApplyModal] = useState(false)
 
     const { user } = useUser()
     const { notifyUser } = useToast()
@@ -26,8 +28,13 @@ export default function AboutJob({ job, slug }) {
 
     const handleApply = () => {
         if (user) {
-            window.open(job?.apply, 'blank')
-            setIdiomModal(true)
+            if (job?.apply === 'easyApply') {
+                setApplyModal(true)
+
+            } else {
+                window.open(job?.apply, 'blank')
+                setIdiomModal(true)
+            }
         } else {
             Cookies.set('RedirectionLink', pathname)
             router.push(`${authLink}?app=${app}`)
@@ -76,6 +83,12 @@ export default function AboutJob({ job, slug }) {
                 open={idiomModal}
                 close={() => setIdiomModal(false)}
             />
+            {applyModal && <Apply
+                job={job}
+                open={applyModal}
+                close={() => setApplyModal(false)}
+                easyApply={easyApply}
+            />}
         </div>
     )
 }

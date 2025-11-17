@@ -3,7 +3,7 @@ import { useState, useRef } from 'react'
 import { useToast } from '@/contexts/toast'
 import { useHire } from '@/hooks/hires'
 
-export default function UploadFile({ setValue, value }) {
+export default function UploadFile({ setValue, value, label, isPDF }) {
     const [loading, setLoading] = useState(false)
     const fileRef = useRef()
     const { notifyUser } = useToast()
@@ -21,7 +21,7 @@ export default function UploadFile({ setValue, value }) {
                 fileValue: selectedFile,
                 setLoading,
                 setData: path => setValue(path),
-                fileType: 'image',
+                fileType: isPDF ? 'file' : 'image',
             })
         } else {
             setUploadState('')
@@ -32,7 +32,7 @@ export default function UploadFile({ setValue, value }) {
         <section>
             {/* The File Input */}
             <input
-                accept=".jpg,.jpeg,.png"
+                accept={isPDF ? ".pdf" : ".jpg,.jpeg,.png"}
                 onChange={handleFileChange}
                 ref={fileRef}
                 type="file"
@@ -66,11 +66,11 @@ export default function UploadFile({ setValue, value }) {
                             {' '}
                             <p className="flex text-[#292929] items-center gap-1.5 mb-1">
                                 <span className="font-medium text-xs">
-                                    {value ? 'File Uploaded' : 'Upload Logo'}
+                                    {value ? 'File Uploaded' : label || 'Upload Logo'}
                                 </span>
                             </p>
                             <p className="font-light text-[8px] text-[#525252] mb-1 truncate">
-                                {value ? '' : 'Supported file types: jpg, png'}
+                                {value ? '' : isPDF ? 'Supported file types: pdf' : 'Supported file types: jpg, png'}
                             </p>
                             <p className="font-light text-[8px] text-[#525252]">
                                 {value ? '' : ' The file size can be up to 5MB'}

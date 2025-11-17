@@ -1,6 +1,10 @@
 [
     {
-        "label": "External",
+        "label": "Easy Apply",
+        "value": "easy"
+    },
+    {
+        "label": "External url",
         "value": "true"
     },
     {

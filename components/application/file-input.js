@@ -2,7 +2,7 @@
 import { useState, useRef, useEffect } from 'react'
 import { useToast } from '@/contexts/toast'
 
-export default function FileInput({ value, setValue }) {
+export default function FileInput({ value, setValue, small }) {
     const [uploadState, setUploadState] = useState(value ? 'Success' : '')
     const fileRef = useRef()
     const { notifyUser } = useToast()
@@ -47,27 +47,48 @@ export default function FileInput({ value, setValue }) {
                 {uploadState !== 'Success' ? (
                     <>
                         <p className="flex text-tremor-brand-boulder700 items-center gap-1.5 mb-1">
-                            <span className="font-medium text-sm">
+                            <span
+                                className={`${
+                                    small ? 'text-xs' : 'font-medium text-sm'
+                                }`}>
                                 Upload Here
                             </span>
-                            <i className="fas fa-cloud-arrow-up text-sm"></i>
+                            <i
+                                className={`fas fa-cloud-arrow-up ${
+                                    small ? 'text-xs' : 'text-sm'
+                                }`}></i>
                         </p>
-                        <p className="font-light text-[13px] text-tremor-brand-boulder500 mb-1">
+                        <p
+                            className={`font-light text-tremor-brand-boulder500 mb-1 ${
+                                small ? 'text-[11px]' : 'text-[13px]'
+                            }`}>
                             Supports JPG, JPEG, PNG
                         </p>
-                        <p className="font-light text-[13px] text-tremor-brand-boulder500 mb-1">
+                        <p
+                            className={`${
+                                small ? 'text-[11px]' : 'text-[13px]'
+                            } font-light text-tremor-brand-boulder500 mb-1`}>
                             Maximum file size 5mb
                         </p>
                     </>
                 ) : (
                     <>
                         <p className="flex text-tremor-brand-success items-center gap-1.5 mb-1">
-                            <span className="font-medium text-sm">
+                            <span
+                                className={`font-medium ${
+                                    small ? 'text-xs' : 'text-sm'
+                                }`}>
                                 Upload Successful
                             </span>
-                            <i className="fas fa-circle-check text-sm"></i>
+                            <i
+                                className={`fas fa-circle-check ${
+                                    small ? 'text-xs' : 'text-sm'
+                                }`}></i>
                         </p>
-                        <p className="font-light text-[13px] text-tremor-brand-success mb-1">
+                        <p
+                            className={`font-light text-tremor-brand-success mb-1 ${
+                                small ? 'text-[11px]' : 'text-[13px]'
+                            }`}>
                             {value?.name}
                         </p>
                     </>

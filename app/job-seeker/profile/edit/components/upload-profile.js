@@ -74,9 +74,8 @@ export default function UploadProfile({ url, setUrl }) {
                     <div
                         className="absolute inset-0 rounded-full"
                         style={{
-                            background: `conic-gradient(#4CAF50 ${
-                                progress * 3.6
-                            }deg, white 0deg)`,
+                            background: `conic-gradient(#4CAF50 ${progress * 3.6
+                                }deg, white 0deg)`,
                         }}
                     />
                 )}
@@ -85,9 +84,8 @@ export default function UploadProfile({ url, setUrl }) {
                 <div className="relative w-[70px] h-[70px] bg-white rounded-full overflow-hidden">
                     <div
                         style={{
-                            backgroundImage: `url(${
-                                url || '/images/user-layout/profile/avatar.svg'
-                            })`,
+                            backgroundImage: `url(${url || '/images/user-layout/profile/avatar.svg'
+                                })`,
                         }}
                         className="w-full h-full bg-no-repeat overflow-hidden rounded-full bg-cover bg-center">
                         <div className="w-full h-full scale-[1.1] bg-[#000000A3] flex items-end">
