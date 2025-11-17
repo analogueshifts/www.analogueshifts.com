@@ -1,5 +1,5 @@
 'use client'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useUser } from '@/contexts/user'
 import { useJobs } from '@/hooks/jobs'
 import { useSearchParams } from 'next/navigation'
@@ -19,6 +19,14 @@ export default function AvailableJobs({ initialData }) {
     const [jobs, setJobs] = useState(initialData?.data || [])
     const [jobsInfo, setJobsInfo] = useState(initialData || {})
 
+    useEffect(() => {
+        console.log({
+            type: 'jobs',
+            initialData
+        });
+
+    }, [initialData])
+
     const searchQueries = {
         keywords: searchParams.get('search') || '',
         employmentType: searchParams.get('employmentType') || '',
@@ -26,19 +34,16 @@ export default function AvailableJobs({ initialData }) {
     }
 
     const handleFetchMore = () => {
-        let searchUrl = `${
-            searchQueries.keywords.trim().length > 0
-                ? '&?search=' + searchQueries.keywords
-                : ''
-        }${
-            searchQueries.employmentType.trim().length > 0
+        let searchUrl = `${searchQueries.keywords.trim().length > 0
+            ? '&?search=' + searchQueries.keywords
+            : ''
+            }${searchQueries.employmentType.trim().length > 0
                 ? '&employmentType=' + searchQueries.employmentType
                 : ''
-        }${
-            searchQueries.date.trim().length > 0
+            }${searchQueries.date.trim().length > 0
                 ? '&date=' + searchQueries.date
                 : ''
-        }`
+            }`
 
         getJobs({
             url: jobsInfo?.next_page_url + searchUrl || '/jobs',
@@ -60,11 +65,10 @@ export default function AvailableJobs({ initialData }) {
                         </p>
                         <div className="large:px-4 px-3 py-1.5 tablet:py-1 large:py-2 tablet:text-xs text-sm large:text-base font-extrabold text-tremor-background-darkYellow bg-tremor-brand-tulip100 rounded-full">
                             {initialData?.total
-                                ? `${
-                                      initialData.total > 1000
-                                          ? '1000+'
-                                          : initialData.total
-                                  }`
+                                ? `${initialData.total > 1000
+                                    ? '1000+'
+                                    : initialData.total
+                                }`
                                 : 0}
                         </div>
                     </div>
@@ -93,11 +97,10 @@ export default function AvailableJobs({ initialData }) {
                                 onClick={handleFetchMore}
                                 disabled={loading}
                                 id="viewMoreButton"
-                                className={`outline-none mx-auto bg-transparent text-tremor-background-darkYellow text-base large:text-xl font-medium pb-0.5 large:pb-2 border-b ${
-                                    loading
-                                        ? 'border-transparent'
-                                        : 'border-b-tremor-background-darkYellow'
-                                }`}>
+                                className={`outline-none mx-auto bg-transparent text-tremor-background-darkYellow text-base large:text-xl font-medium pb-0.5 large:pb-2 border-b ${loading
+                                    ? 'border-transparent'
+                                    : 'border-b-tremor-background-darkYellow'
+                                    }`}>
                                 {loading ? (
                                     <Image
                                         src={Spinner}
