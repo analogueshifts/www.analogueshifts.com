@@ -1,5 +1,5 @@
 'use client'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { useUser } from '@/contexts/user'
 import { useJobs } from '@/hooks/jobs'
 import { useSearchParams } from 'next/navigation'
@@ -18,14 +18,6 @@ export default function AvailableJobs({ initialData }) {
     const [loading, setLoading] = useState(false)
     const [jobs, setJobs] = useState(initialData?.data || [])
     const [jobsInfo, setJobsInfo] = useState(initialData || {})
-
-    useEffect(() => {
-        console.log({
-            type: 'jobs',
-            initialData
-        });
-
-    }, [initialData])
 
     const searchQueries = {
         keywords: searchParams.get('search') || '',
