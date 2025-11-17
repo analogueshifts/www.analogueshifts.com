@@ -27,19 +27,19 @@ export default function InputGroup({
 
     return (
         <div className="w-full flex flex-col gap-3.5 large:gap-5 items-start">
-            {!dangerousHtml ? <label
-                className={`font-medium text-tremor-brand-boulder950 ${small ? 'text-sm' : 'text-base'
-                    } large:text-x"`}
-                id={label}>
-                {label}
-            </label> :
+            {!dangerousHtml ? (
+                <label
+                    className={`font-medium text-tremor-brand-boulder950 ${small ? 'text-sm' : 'text-base'
+                        } large:text-x"`}
+                    id={label}>
+                    {label}
+                </label>
+            ) : (
                 <p
                     dangerouslySetInnerHTML={{ __html: label }}
                     className={`font-medium text-tremor-brand-boulder950 ${small ? 'text-sm' : 'text-base'
-                        } large:text-x"`}
-                >
-
-                </p>}
+                        } large:text-x"`}></p>
+            )}
             {(type === 'text' || type === 'email') && (
                 <div
                     className={`w-full border gap-3 overflow-hidden border-tremor-brand-boulder200 rounded-2xl flex items-center ${label !== 'Phone Number' ? 'px-6' : 'pr-6'

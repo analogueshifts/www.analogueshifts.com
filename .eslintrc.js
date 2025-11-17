@@ -49,11 +49,7 @@ module.exports = {
         'react/self-closing-comp': 0,
         'linebreak-style': 'off',
         semi: ['error', 'never'],
-        'prettier/prettier': [
-            'error',
-            { endOfLine: 'auto' },
-            { usePrettierrc: true },
-        ],
+        'prettier/prettier': 'off',
         'react/no-unknown-property': 'off',
         'no-undef': 'off',
         'no-irregular-whitespace': 'off', // Disables irregular whitespace errors

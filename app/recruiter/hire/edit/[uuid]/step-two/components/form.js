@@ -111,7 +111,6 @@ export default function Form() {
         })
     }
 
-
     const updateScreeningQuestion = (id, newValue) => {
         setEditJob(p => {
             return {
@@ -237,8 +236,8 @@ export default function Form() {
 
                     <div
                         className={`col-span-1 ${editJob?.stepTwo?.directApply === 'false'
-                            ? 'block'
-                            : 'hidden'
+                                ? 'block'
+                                : 'hidden'
                             }`}>
                         <SelectForm
                             setValue={value => updateStepTwo(value, 'apply')}
@@ -252,8 +251,8 @@ export default function Form() {
                         value={editJob.stepTwo?.apply}
                         onChange={e => updateStepTwo(e.target.value, 'apply')}
                         className={`col-span-1 h-50 border border-tremor-brand-boulder100 px-6 text-sm large:text-base font-normal placeholder:text-tremor-brand-boulder300 text-tremor-brand-boulder900 outline-none rounded-2xl bg-white ${editJob?.stepTwo?.directApply !== 'false'
-                            ? 'flex'
-                            : 'hidden'
+                                ? 'flex'
+                                : 'hidden'
                             }`}
                     />
                 </div>
@@ -314,14 +313,17 @@ export default function Form() {
                         </div>
 
                         <div className={`col-span-1`}>
-                            {editJob.stepTwo?.screeningQuestions?.length < 4 && <div className="w-full mb-6 flex justify-end">
-                                <button
-                                    type="button"
-                                    onClick={addScreeningQuestion}
-                                    className="w-[181px] border border-tremor-background-darkYellow duration-300 hover:opacity-90 h-[42px] rounded-xl bg-transparent flex justify-center items-center text-base font-semibold text-tremor-background-darkYellow">
-                                    Add Another
-                                </button>
-                            </div>}
+                            {editJob.stepTwo?.screeningQuestions?.length <
+                                4 && (
+                                    <div className="w-full mb-6 flex justify-end">
+                                        <button
+                                            type="button"
+                                            onClick={addScreeningQuestion}
+                                            className="w-[181px] border border-tremor-background-darkYellow duration-300 hover:opacity-90 h-[42px] rounded-xl bg-transparent flex justify-center items-center text-base font-semibold text-tremor-background-darkYellow">
+                                            Add Another
+                                        </button>
+                                    </div>
+                                )}
                             <div className="flex flex-col gap-7">
                                 {editJob.stepTwo.screeningQuestions?.map(
                                     (question, index) => {
@@ -359,8 +361,6 @@ export default function Form() {
                     </div>
                 </>
             )}
-
-
 
             <div className="w-full flex justify-between mt-6">
                 <button

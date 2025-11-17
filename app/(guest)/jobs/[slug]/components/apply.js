@@ -49,13 +49,15 @@ export default function Apply({ open, close, job, easyApply }) {
     useEffect(() => {
         setUuid(easyApply?.uuid || '')
         if (easyApply?.questions) {
-            setQuestions(easyApply.questions?.map(item => {
-                return {
-                    question: item.question,
-                    answer: '',
-                    uuid: item.uuid
-                }
-            }))
+            setQuestions(
+                easyApply.questions?.map(item => {
+                    return {
+                        question: item.question,
+                        answer: '',
+                        uuid: item.uuid,
+                    }
+                }),
+            )
         }
     }, [easyApply])
 
@@ -68,7 +70,8 @@ export default function Apply({ open, close, job, easyApply }) {
             (!job?.easy_apply?.resume ||
                 (job?.easy_apply?.resume && details.stepTwo.resume)) &&
             (!job?.easy_apply?.cover_letter ||
-                (job?.easy_apply?.cover_letter && details.stepTwo.coverLetter.length > 10))
+                (job?.easy_apply?.cover_letter &&
+                    details.stepTwo.coverLetter.length > 10))
         )
     }, [details, job])
 
@@ -106,10 +109,15 @@ export default function Apply({ open, close, job, easyApply }) {
             setStep(p => p + 1)
         } else {
             const res = await apply({
-                setLoading, uuid, data: {
+                setLoading,
+                uuid,
+                data: {
                     email: details.stepOne.email || '',
                     contact: details.stepOne.phoneNumber || '',
-                    name: details.stepOne.firstName + ' ' + details.stepOne.lastName,
+                    name:
+                        details.stepOne.firstName +
+                        ' ' +
+                        details.stepOne.lastName,
                     cover_letter: details.stepTwo.coverLetter || null,
                     resume: details.stepTwo.resume || null,
                     answers: questions.map(item => {
@@ -117,8 +125,8 @@ export default function Apply({ open, close, job, easyApply }) {
                             question_uuid: item.uuid,
                             answer: item.answer,
                         }
-                    })
-                }
+                    }),
+                },
             })
 
             if (res) {
@@ -126,8 +134,6 @@ export default function Apply({ open, close, job, easyApply }) {
             }
         }
     }
-
-
 
     const updateQuestions = (index, answer) => {
         setQuestions(prev => {
@@ -259,7 +265,8 @@ export default function Apply({ open, close, job, easyApply }) {
                                             className={`font-medium text-tremor-brand-boulder950 text-sm large:text-x"`}>
                                             Upload CV/Resume
                                         </label>
-                                        <UploadFile label="Upload Resume"
+                                        <UploadFile
+                                            label="Upload Resume"
                                             isPDF={true}
                                             value={details.stepTwo.resume}
                                             setValue={value =>
@@ -291,22 +298,25 @@ export default function Apply({ open, close, job, easyApply }) {
                                 )}
                             </div>
                         )}
-                        {((step === 3) || (!hasStepTwo && step === 2)) && (
+                        {(step === 3 || (!hasStepTwo && step === 2)) && (
                             <div className="w-full flex flex-col gap-5 large:gap-6">
                                 {questions.map((item, index) => {
-                                    return <InputGroup dangerousHtml={true} key={item.uuid}
-                                        small={true}
-                                        noImage={true}
-                                        label={item.question}
-                                        placeholder="Your answer"
-                                        required={true}
-                                        setValue={value => {
-                                            updateQuestions(index, value)
-                                        }
-                                        }
-                                        value={item.answer}
-                                        type="text"
-                                    />
+                                    return (
+                                        <InputGroup
+                                            dangerousHtml={true}
+                                            key={item.uuid}
+                                            small={true}
+                                            noImage={true}
+                                            label={item.question}
+                                            placeholder="Your answer"
+                                            required={true}
+                                            setValue={value => {
+                                                updateQuestions(index, value)
+                                            }}
+                                            value={item.answer}
+                                            type="text"
+                                        />
+                                    )
                                 })}
                             </div>
                         )}
@@ -322,11 +332,16 @@ export default function Apply({ open, close, job, easyApply }) {
                     <button
                         type="button"
                         onClick={handleNext}
-                        disabled={(step === 1 && !isStepOneCompleted) ||
+                        disabled={
+                            (step === 1 && !isStepOneCompleted) ||
                             (hasStepTwo && step === 2 && !isStepTwoCompleted)
                         }
                         className="h-10 w-40 disabled:opacity-60 disabled:cursor-not-allowed hover:opacity-90 flex justify-center bg-[#FFBB0A] items-center rounded-[10px] text-xs font-bold text-white">
-                        {loading ? "Submitting..." : step === 3 ? 'Submit' : 'Next'}
+                        {loading
+                            ? 'Submitting...'
+                            : step === 3
+                                ? 'Submit'
+                                : 'Next'}
                     </button>
                 </div>
             </DialogContent>

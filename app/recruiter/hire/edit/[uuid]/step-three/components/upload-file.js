@@ -32,7 +32,7 @@ export default function UploadFile({ setValue, value, label, isPDF }) {
         <section>
             {/* The File Input */}
             <input
-                accept={isPDF ? ".pdf" : ".jpg,.jpeg,.png"}
+                accept={isPDF ? '.pdf' : '.jpg,.jpeg,.png'}
                 onChange={handleFileChange}
                 ref={fileRef}
                 type="file"
@@ -66,11 +66,17 @@ export default function UploadFile({ setValue, value, label, isPDF }) {
                             {' '}
                             <p className="flex text-[#292929] items-center gap-1.5 mb-1">
                                 <span className="font-medium text-xs">
-                                    {value ? 'File Uploaded' : label || 'Upload Logo'}
+                                    {value
+                                        ? 'File Uploaded'
+                                        : label || 'Upload Logo'}
                                 </span>
                             </p>
                             <p className="font-light text-[8px] text-[#525252] mb-1 truncate">
-                                {value ? '' : isPDF ? 'Supported file types: pdf' : 'Supported file types: jpg, png'}
+                                {value
+                                    ? ''
+                                    : isPDF
+                                        ? 'Supported file types: pdf'
+                                        : 'Supported file types: jpg, png'}
                             </p>
                             <p className="font-light text-[8px] text-[#525252]">
                                 {value ? '' : ' The file size can be up to 5MB'}

@@ -35,8 +35,8 @@ export default function ToastMessage() {
                 />
                 <p
                     className={`font-normal text-sm ${toast === 'success'
-                        ? 'text-[#006633]'
-                        : 'text-[#F13562]'
+                            ? 'text-[#006633]'
+                            : 'text-[#F13562]'
                         }`}>
                     {message}
                 </p>

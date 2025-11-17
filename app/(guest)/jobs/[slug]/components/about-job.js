@@ -30,7 +30,6 @@ export default function AboutJob({ job, slug, easyApply }) {
         if (user) {
             if (job?.apply === 'easyApply') {
                 setApplyModal(true)
-
             } else {
                 window.open(job?.apply, 'blank')
                 setIdiomModal(true)
@@ -83,12 +82,14 @@ export default function AboutJob({ job, slug, easyApply }) {
                 open={idiomModal}
                 close={() => setIdiomModal(false)}
             />
-            {applyModal && <Apply
-                job={job}
-                open={applyModal}
-                close={() => setApplyModal(false)}
-                easyApply={easyApply}
-            />}
+            {applyModal && (
+                <Apply
+                    job={job}
+                    open={applyModal}
+                    close={() => setApplyModal(false)}
+                    easyApply={easyApply}
+                />
+            )}
         </div>
     )
 }

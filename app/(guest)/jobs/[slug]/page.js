@@ -64,7 +64,11 @@ export default async function Page({ params }) {
     return (
         <section className="w-full h-max flex justify-center large:pt-[91px] pt-16 tablet:pt-10">
             {job ? (
-                <AboutJob easyApply={job?.data?.easy_apply} slug={params.slug} job={job?.data?.job} />
+                <AboutJob
+                    easyApply={job?.data?.easy_apply}
+                    slug={params.slug}
+                    job={job?.data?.job}
+                />
             ) : (
                 <div className="py-16 ">
                     <h2 className="text-tremor-brand-boulder950 text-center font-bold text-2xl">

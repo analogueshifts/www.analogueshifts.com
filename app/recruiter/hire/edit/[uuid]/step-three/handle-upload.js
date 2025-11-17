@@ -74,7 +74,7 @@ export const handleUpload = (setLoading, router, editJob, newJob, editId) => {
                             number: index + 1,
                             type: 'text',
                             question: q.question,
-                            ...(q?.uuid ? { uuid: q.uuid } : {})
+                            ...(q?.uuid ? { uuid: q.uuid } : {}),
                         }
                     },
                 ),
