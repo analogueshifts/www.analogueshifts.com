@@ -1,4 +1,3 @@
-// Sections
 import Hero from './components/hero'
 import RecentJobs from './components/recent-jobs'
 import AvailableJobs from './components/available-jobs'
@@ -51,41 +50,27 @@ export default async function Page({ searchParams }) {
     )
 }
 
+
+
 const getJobs = async (page, searchParams) => {
     try {
-        const url = new URL(
+        const url =
             searchParams.search
-                ? `${process.env.NEXT_PUBLIC_BACKEND_URL}/job/search`
-                : `${process.env.NEXT_PUBLIC_BACKEND_URL}/jobs`,
-        )
+                ? `${process.env.NEXT_PUBLIC_BACKEND_URL}/job/search?page=${page}&search=${searchParams.search}${searchParams?.employmentType ? `&employmentType=${searchParams.employmentType} ` : ''}${searchParams?.date ? `&date=${searchParams.date}` : ''}`
+                : `${process.env.NEXT_PUBLIC_BACKEND_URL}/jobs?page=${page}${searchParams?.employmentType ? `&employmentType=${searchParams.employmentType} ` : ''}${searchParams?.date ? `&date=${searchParams.date}` : ''}`;
 
-        // Always include the page query parameter
-        url.searchParams.append('page', page)
-
-        // Append optional query parameters if they exist
-        if (searchParams.search) {
-            url.searchParams.append('search', searchParams.search)
-        }
-        if (searchParams.employmentType) {
-            url.searchParams.append(
-                'employmentType',
-                searchParams.employmentType,
-            )
-        }
-        if (searchParams.date) {
-            url.searchParams.append('date', searchParams.date)
-        }
-
-        const res = await fetch(url.toString(), {
+        const res = await fetch(url, {
             cache: 'no-store',
         })
 
-        console.log("Response URL:", url.toString());
-        console.log("Status:", res.status);
-        console.log("Content-Type:", contentType);
+        console.log(res);
+        console.log(url);
+
+
 
         // Check if the response content type is JSON
         const contentType = res.headers.get('Content-Type') || ''
+
         if (!contentType.includes('application/json')) {
             throw new Error('Invalid response type')
         }
