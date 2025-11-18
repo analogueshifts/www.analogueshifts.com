@@ -80,9 +80,9 @@ const getJobs = async (page, searchParams) => {
             cache: 'no-store',
         })
 
-        console.log("Response URL:", url.toString());
-        console.log("Status:", res.status);
-        console.log("Content-Type:", contentType);
+        console.log("Response URL:", url.toString())
+        console.log("Status:", res.status)
+        console.log("Content-Type:", contentType)
 
         // Check if the response content type is JSON
         const contentType = res.headers.get('Content-Type') || ''
