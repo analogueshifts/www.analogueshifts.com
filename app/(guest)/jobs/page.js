@@ -57,14 +57,14 @@ const getJobs = async (page, searchParams) => {
         const url =
             searchParams.search
                 ? `${process.env.NEXT_PUBLIC_BACKEND_URL}/job/search?page=${page}&search=${searchParams.search}${searchParams?.employmentType ? `&employmentType=${searchParams.employmentType} ` : ''}${searchParams?.date ? `&date=${searchParams.date}` : ''}`
-                : `${process.env.NEXT_PUBLIC_BACKEND_URL}/jobs?page=${page}${searchParams?.employmentType ? `&employmentType=${searchParams.employmentType} ` : ''}${searchParams?.date ? `&date=${searchParams.date}` : ''}`;
+                : `${process.env.NEXT_PUBLIC_BACKEND_URL}/jobs?page=${page}${searchParams?.employmentType ? `&employmentType=${searchParams.employmentType} ` : ''}${searchParams?.date ? `&date=${searchParams.date}` : ''}`
 
         const res = await fetch(url, {
             cache: 'no-store',
         })
 
-        console.log(res);
-        console.log(url);
+        console.log(res)
+        console.log(url)
 
 
 
