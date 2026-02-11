@@ -50,14 +50,21 @@ export default async function Page({ searchParams }) {
     )
 }
 
-
-
 const getJobs = async (page, searchParams) => {
     try {
-        const url =
-            searchParams.search
-                ? `${process.env.NEXT_PUBLIC_BACKEND_URL}/job/search?page=${page}&search=${searchParams.search}${searchParams?.employmentType ? `&employmentType=${searchParams.employmentType} ` : ''}${searchParams?.date ? `&date=${searchParams.date}` : ''}`
-                : `${process.env.NEXT_PUBLIC_BACKEND_URL}/jobs?page=${page}${searchParams?.employmentType ? `&employmentType=${searchParams.employmentType} ` : ''}${searchParams?.date ? `&date=${searchParams.date}` : ''}`
+        const url = searchParams.search
+            ? `${
+                  process.env.NEXT_PUBLIC_BACKEND_URL
+              }/job/search?page=${page}&search=${searchParams.search}${
+                  searchParams?.employmentType
+                      ? `&employmentType=${searchParams.employmentType} `
+                      : ''
+              }${searchParams?.date ? `&date=${searchParams.date}` : ''}`
+            : `${process.env.NEXT_PUBLIC_BACKEND_URL}/jobs?page=${page}${
+                  searchParams?.employmentType
+                      ? `&employmentType=${searchParams.employmentType} `
+                      : ''
+              }${searchParams?.date ? `&date=${searchParams.date}` : ''}`
 
         const res = await fetch(url, {
             cache: 'no-store',
@@ -65,8 +72,6 @@ const getJobs = async (page, searchParams) => {
 
         console.log(res)
         console.log(url)
-
-
 
         // Check if the response content type is JSON
         const contentType = res.headers.get('Content-Type') || ''
@@ -83,7 +88,6 @@ const getJobs = async (page, searchParams) => {
             )
         }
     } catch (error) {
-
         console.log(error)
         return null
     }

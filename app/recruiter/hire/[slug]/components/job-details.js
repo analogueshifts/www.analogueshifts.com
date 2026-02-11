@@ -70,9 +70,8 @@ export default function JobDetails({ slug }) {
                         onClick={() =>
                             share(
                                 job?.title,
-                                'https://www.analogueshifts.com/' + pathname,
-                                notifyUser,
-                                '',
+                                window.location.origin + pathname,
+                                'Analogueshifts Job',
                             )
                         }
                         className="flex items-center bg-transparent outline-none w-full justify-center gap-2.5 text-tremor-background-darkYellow text-sm font-semibold">
