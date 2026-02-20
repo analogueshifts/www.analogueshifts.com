@@ -67,11 +67,13 @@ export default function RootLayout({ children }) {
                      // Google tag (gtag.js) 
                 <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17888134679"></script>
                 <script>
+                {`
                   window.dataLayer = window.dataLayer || [];
                   function gtag(){dataLayer.push(arguments);}
                   gtag('js', new Date());
                 
                   gtag('config', 'AW-17888134679');
+                `}
                 </script>
 
             </head>
