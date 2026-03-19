@@ -36,16 +36,16 @@ export default async function Page({ searchParams }) {
 
     return (
         <>
-            <Suspense fallback={<div></div>}>
+            {/* <Suspense fallback={<div></div>}>
                 <Hero />
-            </Suspense>
+            </Suspense> */}
 
-            <Suspense fallback={<div></div>}>
+            {/* <Suspense fallback={<div></div>}>
                 <AvailableJobs initialData={jobs?.data?.jobs} />
             </Suspense>
             <RecentJobs />
             <PostAJob />
-            <DownloadApp />
+            <DownloadApp /> */}
         </>
     )
 }
