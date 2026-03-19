@@ -108,7 +108,7 @@ export default function JobGridTile({
                                 {item?.hiringOrganization?.name}
                             </span>
                         )}
-                        {item?.employmentType && (
+                        {/* {item?.employmentType && (
                             <p
                                 className={`text-tremor-brand-boulder400  font-normal ${
                                     dashboard
@@ -119,8 +119,8 @@ export default function JobGridTile({
                                 {employmentLabel} &nbsp; • &nbsp; Date Posted:{' '}
                                 {formatDate(item?.created_at)}
                             </p>
-                        )}
-                        {/* {item?.baseSalary?.value?.value && (
+                        )} */}
+                        {item?.baseSalary?.value?.value && (
                             <div
                                 className={`text-tremor-brand-boulder400 font-normal ${
                                     dashboard
@@ -140,7 +140,7 @@ export default function JobGridTile({
                                     </span>
                                 )}
                             </div>
-                        )} */}
+                        )}
                         {item?.jobLocationType && details && (
                             <p
                                 className={`text-tremor-brand-boulder400  font-normal ${
