@@ -154,7 +154,7 @@ export default function JobGridTile({
                     </div>
                 </div>
             </div>
-            {/* {!hideActions && (
+            {!hideActions && (
                 <div
                     className={`flex items-center ${
                         dashboard ? 'gap-3' : 'gap-4'
@@ -185,7 +185,7 @@ export default function JobGridTile({
                         {details ? 'Apply' : 'View Job'}
                     </button>
                 </div>
-            )} */}
+            )}
         </div>
     )
 }
