@@ -90,7 +90,7 @@ export default function AvailableJobs({ initialData }) {
                         </button>
                     )}
                 </div>
-                {jobs?.length > 0 ? (
+                {jobs && jobs?.length > 0 ? (
                     <div className="w-full flex flex-col gap-7 large:gap-10">
                         {jobs?.map((item, index) => {
                             return (

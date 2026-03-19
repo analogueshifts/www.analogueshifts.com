@@ -39,6 +39,8 @@ export default function JobGridTile({
         }
     }
 
+    if (!item) return null
+
     return (
         <div
             className={`w-full flex pb-7  large:pb-10 items-start tablet:gap-7 gap-12 large:gap-16 justify-between flex-row tablet:flex-col ${
@@ -52,7 +54,7 @@ export default function JobGridTile({
                             : 'w-[50%] tablet:w-full'
                         : 'w-[calc(100%-350px)] tablet:w-full large:w-[calc(100%-384px)]'
                 }`}>
-                <img
+                {/* <img
                     src={imgSrc}
                     alt=""
                     className={`${
@@ -70,7 +72,7 @@ export default function JobGridTile({
                             )
                         }
                     }}
-                />
+                /> */}
                 <div
                     className={`flex flex-col w-[calc(100%-64px)] ${
                         dashboard ? 'gap-2' : 'gap-1 large:gap-2.5'
@@ -114,8 +116,8 @@ export default function JobGridTile({
                                         : 'tablet:text-xs text-sm large:text-base'
                                 }`}>
                                 • &nbsp;
-                                {/* {employmentLabel} &nbsp; • &nbsp; Date Posted:{' '}
-                                {formatDate(item?.created_at)} */}
+                                {employmentLabel} &nbsp; • &nbsp; Date Posted:{' '}
+                                {formatDate(item?.created_at)}
                             </p>
                         )}
                         {item?.baseSalary?.value?.value && (
