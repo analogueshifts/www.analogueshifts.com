@@ -1,5 +1,5 @@
 'use client'
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 import { useUser } from '@/contexts/user'
 import { useJobs } from '@/hooks/jobs'
 import { useSearchParams } from 'next/navigation'
@@ -19,11 +19,21 @@ export default function AvailableJobs({ initialData }) {
     const [jobs, setJobs] = useState(initialData?.data ?? [])
     const [jobsInfo, setJobsInfo] = useState(initialData ?? {})
 
-    const searchQueries = {
-        keywords: searchParams.get('search') ?? '',
-        employmentType: searchParams.get('employmentType') ?? '',
-        date: searchParams.get('date') ?? '',
-    }
+    const searchQueries = useMemo(() => {
+        if (!searchParams) {
+            return {
+                keywords: '',
+                employmentType: '',
+                date: '',
+            }
+        }
+
+        return {
+            keywords: searchParams?.get?.('search') ?? '',
+            employmentType: searchParams?.get?.('employmentType') ?? '',
+            date: searchParams?.get?.('date') ?? '',
+        }
+    }, [searchParams])
 
     const handleFetchMore = () => {
         const params = new URLSearchParams()
@@ -65,9 +75,9 @@ export default function AvailableJobs({ initialData }) {
                         <div className="large:px-4 px-3 py-1.5 tablet:py-1 large:py-2 tablet:text-xs text-sm large:text-base font-extrabold text-tremor-background-darkYellow bg-tremor-brand-tulip100 rounded-full">
                             {initialData?.total
                                 ? `${
-                                      initialData.total > 1000
+                                      (initialData?.total ?? 0) > 1000
                                           ? '1000+'
-                                          : initialData.total
+                                          : initialData?.total
                                   }`
                                 : 0}
                         </div>
