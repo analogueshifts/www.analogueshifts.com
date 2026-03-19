@@ -17,12 +17,12 @@ export default function JobGridTile({
 }) {
     const router = useRouter()
     const [imgSrc, setImgSrc] = useState(
-        item?.hiringOrganization?.logo ||
+        item?.hiringOrganization?.logo ??
             '/images/guest-layout/hero/filled_briefcase.svg',
     )
 
     const employmentLabel =
-        employmentTypes?.find?.(e => e.value === item?.employmentType)?.label ||
+        employmentTypes?.find?.(e => e.value === item?.employmentType)?.label ??
         item?.employmentType
 
     const formatDate = date => {
@@ -110,8 +110,7 @@ export default function JobGridTile({
                                         : 'tablet:text-xs text-sm large:text-base'
                                 }`}>
                                 • &nbsp;
-                                {employmentLabel || item.employmentType} &nbsp;
-                                • &nbsp; Date Posted:{' '}
+                                {employmentLabe} &nbsp; • &nbsp; Date Posted:{' '}
                                 {formatDate(item?.created_at)}
                             </p>
                         )}
@@ -123,7 +122,9 @@ export default function JobGridTile({
                                         : 'tablet:text-xs text-sm large:text-base'
                                 }`}>
                                 • &nbsp;
-                                {formatNumber(item.baseSalary.value.value)}
+                                {formatNumber(
+                                    item?.baseSalary?.value?.value ?? 0,
+                                )}
                                 {item?.baseSalary?.value?.unitText && (
                                     <span>
                                         /
@@ -141,7 +142,7 @@ export default function JobGridTile({
                                         ? 'large:text-[15px] text-[13px]'
                                         : 'tablet:text-xs text-sm large:text-base'
                                 }`}>
-                                • &nbsp;{item.jobLocationType}
+                                • &nbsp;{item?.jobLocationType}
                             </p>
                         )}
                     </div>
