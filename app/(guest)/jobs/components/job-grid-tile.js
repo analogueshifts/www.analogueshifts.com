@@ -110,7 +110,7 @@ export default function JobGridTile({
                                         : 'tablet:text-xs text-sm large:text-base'
                                 }`}>
                                 • &nbsp;
-                                {employmentLabe} &nbsp; • &nbsp; Date Posted:{' '}
+                                {employmentLabel} &nbsp; • &nbsp; Date Posted:{' '}
                                 {formatDate(item?.created_at)}
                             </p>
                         )}

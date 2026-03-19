@@ -92,7 +92,7 @@ export default function AvailableJobs({ initialData }) {
                 </div>
                 {jobs?.length > 0 ? (
                     <div className="w-full flex flex-col gap-7 large:gap-10">
-                        {/* {jobs?.map((item, index) => {
+                        {jobs?.map((item, index) => {
                             return (
                                 <JobGridTile
                                     key={index}
@@ -101,7 +101,7 @@ export default function AvailableJobs({ initialData }) {
                                     total={jobs?.length}
                                 />
                             )
-                        })} */}
+                        })}
                         {jobsInfo?.next_page_url && (
                             <button
                                 onClick={handleFetchMore}
