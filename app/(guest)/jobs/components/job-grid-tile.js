@@ -90,7 +90,7 @@ export default function JobGridTile({
                             : String(item?.title ?? '')}
                     </h2>
                     <div className="flex items-center gap-2 flex-wrap">
-                        {/* {item?.hiringOrganization?.sameAs ? (
+                        {item?.hiringOrganization?.sameAs ? (
                             <Link
                                 href={item.hiringOrganization.sameAs}
                                 className={`truncate text-black font-normal ${
@@ -98,7 +98,12 @@ export default function JobGridTile({
                                         ? 'large:text-[15px] text-[13px]'
                                         : 'tablet:text-xs text-sm large:text-base'
                                 }`}>
-                                {item?.hiringOrganization?.name}
+                                {typeof item?.hiringOrganization?.name ===
+                                'string'
+                                    ? item.hiringOrganization.name
+                                    : String(
+                                          item?.hiringOrganization?.name ?? '',
+                                      )}
                             </Link>
                         ) : (
                             <span
@@ -107,9 +112,14 @@ export default function JobGridTile({
                                         ? 'large:text-[15px] text-[13px]'
                                         : 'tablet:text-xs text-sm large:text-base'
                                 }`}>
-                                {item?.hiringOrganization?.name}
+                                {typeof item?.hiringOrganization?.name ===
+                                'string'
+                                    ? item.hiringOrganization.name
+                                    : String(
+                                          item?.hiringOrganization?.name ?? '',
+                                      )}
                             </span>
-                        )} */}
+                        )}
                         {item?.employmentType && (
                             <p
                                 className={`text-tremor-brand-boulder400  font-normal ${
