@@ -98,7 +98,7 @@ export default function AvailableJobs({ initialData }) {
                                     key={index}
                                     index={index}
                                     item={item}
-                                    total={jobs?.length}
+                                    total={jobs?.length ?? 0}
                                 />
                             )
                         })}

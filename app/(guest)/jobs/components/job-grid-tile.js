@@ -26,13 +26,17 @@ export default function JobGridTile({
         item?.employmentType
 
     const formatDate = date => {
-        if (!date) return ''
+        try {
+            if (!date) return ''
 
-        const d = new Date(date)
+            const d = new Date(date)
 
-        if (isNaN(d.getTime())) return ''
+            if (isNaN(d.getTime())) return ''
 
-        return d.toLocaleDateString()
+            return d.toLocaleDateString()
+        } catch (error) {
+            return ''
+        }
     }
 
     return (
