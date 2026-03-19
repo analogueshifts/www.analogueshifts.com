@@ -91,7 +91,7 @@ export default function JobGridTile({
                     </h2>
                     <div className="flex items-center gap-2 flex-wrap">
                         {item?.hiringOrganization?.sameAs ? (
-                            <Link
+                            <a
                                 href={item.hiringOrganization.sameAs}
                                 className={`truncate text-black font-normal ${
                                     dashboard
@@ -104,7 +104,7 @@ export default function JobGridTile({
                                     : String(
                                           item?.hiringOrganization?.name ?? '',
                                       )}
-                            </Link>
+                            </a>
                         ) : (
                             <span
                                 className={`truncate text-black font-normal ${
