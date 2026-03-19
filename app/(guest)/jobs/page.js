@@ -43,9 +43,10 @@ export default async function Page({ searchParams }) {
             {/* <Suspense fallback={<div></div>}>
                 <AvailableJobs initialData={jobs?.data?.jobs} />
             </Suspense>
+         */}
             <RecentJobs />
             <PostAJob />
-            <DownloadApp /> */}
+            <DownloadApp />
         </>
     )
 }
