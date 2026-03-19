@@ -94,12 +94,11 @@ export default function AvailableJobs({ initialData }) {
                     <div className="w-full flex flex-col gap-7 large:gap-10">
                         {jobs?.map((item, index) => {
                             return (
-                                <div
-                                    className="border w-full h-10"
+                                <JobGridTile
                                     key={index}
-                                    // index={index}
-                                    // item={item}
-                                    // total={jobs?.length ?? 0}
+                                    index={index}
+                                    item={item}
+                                    total={jobs?.length ?? 0}
                                 />
                             )
                         })}

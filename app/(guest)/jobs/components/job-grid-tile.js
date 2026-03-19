@@ -73,7 +73,7 @@ export default function JobGridTile({
                         }
                     }}
                 />
-                <div
+                {/* <div
                     className={`flex flex-col w-[calc(100%-64px)] ${
                         dashboard ? 'gap-2' : 'gap-1 large:gap-2.5'
                     }`}>
@@ -152,7 +152,7 @@ export default function JobGridTile({
                             </p>
                         )}
                     </div>
-                </div>
+                </div> */}
             </div>
             {!hideActions && (
                 <div
