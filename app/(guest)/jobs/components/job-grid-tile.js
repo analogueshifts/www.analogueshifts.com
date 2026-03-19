@@ -21,6 +21,20 @@ export default function JobGridTile({
             '/images/guest-layout/hero/filled_briefcase.svg',
     )
 
+    const employmentLabel =
+        employmentTypes?.find?.(e => e.value === item?.employmentType)?.label ||
+        item?.employmentType
+
+    const formatDate = date => {
+        if (!date) return ''
+
+        const d = new Date(date)
+
+        if (isNaN(d.getTime())) return ''
+
+        return d.toLocaleDateString()
+    }
+
     return (
         <div
             className={`w-full flex pb-7  large:pb-10 items-start tablet:gap-7 gap-12 large:gap-16 justify-between flex-row tablet:flex-col ${
@@ -42,11 +56,16 @@ export default function JobGridTile({
                             ? 'large:w-[49px] large:h-[49px] w-10 h-10 tablet:w-8 tablet:h-8'
                             : 'large:w-16 large:h-16 w-[50px] tablet:w-10 tablet:h-10 h-[50px]'
                     } rounded-full object-cover`}
-                    onError={() =>
-                        setImgSrc(
-                            '/images/guest-layout/hero/filled_briefcase.svg',
-                        )
-                    }
+                    onError={() => {
+                        if (
+                            imgSrc !==
+                            '/images/guest-layout/hero/filled_briefcase.svg'
+                        ) {
+                            setImgSrc(
+                                '/images/guest-layout/hero/filled_briefcase.svg',
+                            )
+                        }
+                    }}
                 />
                 <div
                     className={`flex flex-col w-[calc(100%-64px)] ${
@@ -63,15 +82,26 @@ export default function JobGridTile({
                         {item?.title}
                     </h2>
                     <div className="flex items-center gap-2 flex-wrap">
-                        <Link
-                            href={item?.hiringOrganization?.sameAs || ''}
-                            className={`truncate text-black font-normal ${
-                                dashboard
-                                    ? 'large:text-[15px] text-[13px]'
-                                    : 'tablet:text-xs text-sm large:text-base'
-                            }`}>
-                            {item?.hiringOrganization?.name}
-                        </Link>
+                        {item?.hiringOrganization?.sameAs ? (
+                            <Link
+                                href={item.hiringOrganization.sameAs}
+                                className={`truncate text-black font-normal ${
+                                    dashboard
+                                        ? 'large:text-[15px] text-[13px]'
+                                        : 'tablet:text-xs text-sm large:text-base'
+                                }`}>
+                                {item?.hiringOrganization?.name}
+                            </Link>
+                        ) : (
+                            <span
+                                className={`truncate text-black font-normal ${
+                                    dashboard
+                                        ? 'large:text-[15px] text-[13px]'
+                                        : 'tablet:text-xs text-sm large:text-base'
+                                }`}>
+                                {item?.hiringOrganization?.name}
+                            </span>
+                        )}
                         {item?.employmentType && (
                             <p
                                 className={`text-tremor-brand-boulder400  font-normal ${
@@ -80,13 +110,9 @@ export default function JobGridTile({
                                         : 'tablet:text-xs text-sm large:text-base'
                                 }`}>
                                 • &nbsp;
-                                {employmentTypes.find(
-                                    e => e.value === item.employmentType,
-                                )?.label || item.employmentType}{' '}
-                                &nbsp; • &nbsp; Date Posted:{' '}
-                                {new Date(
-                                    item?.created_at || '',
-                                ).toLocaleDateString()}
+                                {employmentLabel || item.employmentType} &nbsp;
+                                • &nbsp; Date Posted:{' '}
+                                {formatDate(item?.created_at)}
                             </p>
                         )}
                         {item?.baseSalary?.value?.value && (
@@ -139,7 +165,9 @@ export default function JobGridTile({
                             if (handleApply) {
                                 handleApply()
                             } else {
-                                router.push('/jobs/' + item?.slug)
+                                if (item?.slug) {
+                                    router.push('/jobs/' + item.slug)
+                                }
                             }
                         }}
                         className={`rounded-2xl bg-tremor-background-darkYellow flex justify-center items-center text-tremor-brand-boulder50 font-semibold ${
