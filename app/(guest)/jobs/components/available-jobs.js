@@ -16,32 +16,36 @@ export default function AvailableJobs({ initialData }) {
     const { user } = useUser()
     const { getJobs } = useJobs()
     const [loading, setLoading] = useState(false)
-    const [jobs, setJobs] = useState(initialData?.data || [])
-    const [jobsInfo, setJobsInfo] = useState(initialData || {})
+    const [jobs, setJobs] = useState(initialData?.data ?? [])
+    const [jobsInfo, setJobsInfo] = useState(initialData ?? {})
 
     const searchQueries = {
-        keywords: searchParams.get('search') || '',
-        employmentType: searchParams.get('employmentType') || '',
-        date: searchParams.get('date') || '',
+        keywords: searchParams.get('search') ?? '',
+        employmentType: searchParams.get('employmentType') ?? '',
+        date: searchParams.get('date') ?? '',
     }
 
     const handleFetchMore = () => {
-        let searchUrl = `${
-            searchQueries.keywords.trim().length > 0
-                ? '&?search=' + searchQueries.keywords
-                : ''
-        }${
-            searchQueries.employmentType.trim().length > 0
-                ? '&employmentType=' + searchQueries.employmentType
-                : ''
-        }${
-            searchQueries.date.trim().length > 0
-                ? '&date=' + searchQueries.date
-                : ''
+        const params = new URLSearchParams()
+
+        if (searchQueries.keywords.trim()) {
+            params.append('search', searchQueries.keywords)
+        }
+
+        if (searchQueries.employmentType.trim()) {
+            params.append('employmentType', searchQueries.employmentType)
+        }
+
+        if (searchQueries.date.trim()) {
+            params.append('date', searchQueries.date)
+        }
+
+        const url = `${jobsInfo?.next_page_url ?? '/jobs'}${
+            params.toString() ? `&${params.toString()}` : ''
         }`
 
         getJobs({
-            url: jobsInfo?.next_page_url + searchUrl || '/jobs',
+            url,
             setLoading,
             setInfo: setJobsInfo,
             setData: newJobs => {
