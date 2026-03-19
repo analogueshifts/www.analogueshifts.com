@@ -31,16 +31,16 @@ export const metadata = {
 }
 
 export default async function Page({ searchParams }) {
-    const page = searchParams.page || '1'
+    const page = searchParams?.page || '1'
     const jobs = await getJobs(page, searchParams)
 
     return (
         <>
-            <Suspense fallback={<p></p>}>
+            <Suspense fallback={<div></div>}>
                 <Hero />
             </Suspense>
 
-            <Suspense fallback={<p></p>}>
+            <Suspense fallback={<div></div>}>
                 <AvailableJobs initialData={jobs?.data?.jobs} />
             </Suspense>
             <RecentJobs />
@@ -57,12 +57,12 @@ const getJobs = async (page, searchParams) => {
                   process.env.NEXT_PUBLIC_BACKEND_URL
               }/job/search?page=${page}&search=${searchParams.search}${
                   searchParams?.employmentType
-                      ? `&employmentType=${searchParams.employmentType} `
+                      ? `&employmentType=${searchParams.employmentType}`
                       : ''
               }${searchParams?.date ? `&date=${searchParams.date}` : ''}`
             : `${process.env.NEXT_PUBLIC_BACKEND_URL}/jobs?page=${page}${
                   searchParams?.employmentType
-                      ? `&employmentType=${searchParams.employmentType} `
+                      ? `&employmentType=${searchParams.employmentType}`
                       : ''
               }${searchParams?.date ? `&date=${searchParams.date}` : ''}`
 

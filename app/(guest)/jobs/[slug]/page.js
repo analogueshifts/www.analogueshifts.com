@@ -2,7 +2,7 @@ import AboutJob from './components/about-job'
 
 export async function generateMetadata({ params }) {
     // read route params
-    const slug = params.slug
+    const slug = params?.slug
 
     // Axios Config
     const axios = require('axios')
@@ -14,11 +14,11 @@ export async function generateMetadata({ params }) {
     // fetch data
     const job = await axios
         .request(config)
-        .then(response => {
-            let filteredData = response.data.data.job
-            return filteredData
+        .then(response => response.data?.data?.job)
+        .catch(error => {
+            console.log('Metadata fetch error:', error?.message)
+            return null
         })
-        .catch(error => { })
 
     return {
         '@context': 'https://schema.org/',
@@ -59,7 +59,7 @@ export async function generateMetadata({ params }) {
 }
 
 export default async function Page({ params }) {
-    const job = await getJob(params.slug)
+    const job = await getJob(params?.slug)
 
     return (
         <section className="w-full h-max flex justify-center large:pt-[91px] pt-16 tablet:pt-10">
