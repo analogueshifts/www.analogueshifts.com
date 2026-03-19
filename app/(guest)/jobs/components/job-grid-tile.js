@@ -114,8 +114,8 @@ export default function JobGridTile({
                                         : 'tablet:text-xs text-sm large:text-base'
                                 }`}>
                                 • &nbsp;
-                                {employmentLabel} &nbsp; • &nbsp; Date Posted:{' '}
-                                {formatDate(item?.created_at)}
+                                {/* {employmentLabel} &nbsp; • &nbsp; Date Posted:{' '}
+                                {formatDate(item?.created_at)} */}
                             </p>
                         )}
                         {item?.baseSalary?.value?.value && (
