@@ -77,7 +77,7 @@ export default function JobGridTile({
                     className={`flex flex-col w-[calc(100%-64px)] ${
                         dashboard ? 'gap-2' : 'gap-1 large:gap-2.5'
                     }`}>
-                    {/* <h2
+                    <h2
                         className={`text-black font-semibold ${
                             notruncate ? '' : 'truncate'
                         } ${
@@ -85,8 +85,10 @@ export default function JobGridTile({
                                 ? 'large:text-[15px] text-sm'
                                 : 'tablet:text-sm text-base large:text-xl'
                         }`}>
-                        {item?.title}
-                    </h2> */}
+                        {typeof item?.title === 'string'
+                            ? item.title
+                            : String(item?.title ?? '')}
+                    </h2>
                     <div className="flex items-center gap-2 flex-wrap">
                         {item?.hiringOrganization?.sameAs ? (
                             <Link
