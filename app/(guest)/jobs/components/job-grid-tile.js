@@ -89,8 +89,8 @@ export default function JobGridTile({
                             ? item.title
                             : String(item?.title ?? '')}
                     </h2>
-                    {/* <div className="flex items-center gap-2 flex-wrap">
-                        {item?.hiringOrganization?.sameAs ? (
+                    <div className="flex items-center gap-2 flex-wrap">
+                        {/* {item?.hiringOrganization?.sameAs ? (
                             <Link
                                 href={item.hiringOrganization.sameAs}
                                 className={`truncate text-black font-normal ${
@@ -109,7 +109,7 @@ export default function JobGridTile({
                                 }`}>
                                 {item?.hiringOrganization?.name}
                             </span>
-                        )}
+                        )} */}
                         {item?.employmentType && (
                             <p
                                 className={`text-tremor-brand-boulder400  font-normal ${
@@ -153,7 +153,7 @@ export default function JobGridTile({
                                 • &nbsp;{item?.jobLocationType}
                             </p>
                         )}
-                    </div> */}
+                    </div>
                 </div>
             </div>
             {!hideActions && (
