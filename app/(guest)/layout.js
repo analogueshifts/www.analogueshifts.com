@@ -8,16 +8,7 @@ import { useAuth } from '@/hooks/auth'
 
 export default function GuestLayout({ children }) {
     const { user } = useUser(null)
-    const { getUser } = useAuth()
     const token = Cookies.get('analogueshifts')
-
-    useEffect(() => {
-        const currentToken = Cookies.get('analogueshifts')
-        if (user === null && currentToken) {
-            //    Fetch User
-            getUser({ setLoading: value => {}, layout: 'guest' })
-        }
-    }, [user])
 
     return (
         <div className="w-full bg-white flex justify-center">

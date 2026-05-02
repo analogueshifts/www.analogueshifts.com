@@ -22,6 +22,7 @@ const Navigation = () => {
     const [open, setOpen] = useState(false)
     const [logoutIdiomDisplay, setLogoutIdiomDisplay] = useState(false)
     const [isChecking, setIsChecking] = useState(true)
+    const { getUser } = useAuth()
 
     const authLink = process.env.NEXT_PUBLIC_AUTH_URL
     const app = process.env.NEXT_PUBLIC_SITE_BUILD_UUID
@@ -34,18 +35,23 @@ const Navigation = () => {
     }, [pathname])
 
     useEffect(() => {
-        const token = Cookies.get('analogueshifts')
-        if (!token) {
-            setIsChecking(false)
-        }
-    }, [])
+        const verifyUser = async () => {
+            const token = Cookies.get('analogueshifts')
+            if (!token) {
+                setIsChecking(false)
+                return
+            }
 
-    useEffect(() => {
-        // Stop checking if user is no longer null (it might be an object, or undefined if fetch failed)
-        if (user !== null) {
+            if (!user) {
+                // Wait for the fetch to complete
+                await getUser({ setLoading: () => {}, layout: 'guest' })
+            }
+            
             setIsChecking(false)
         }
-    }, [user])
+
+        verifyUser()
+    }, [pathname, user])
 
     return (
         <div
