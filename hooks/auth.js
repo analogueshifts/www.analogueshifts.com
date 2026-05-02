@@ -64,8 +64,9 @@ export const useAuth = () => {
                     Authorization: 'Bearer ' + token,
                 },
             })
-            setUser(response.data?.user)
-            console.log(response.data.user)
+            const userData = response.data?.data?.user || response.data?.user
+            setUser(userData)
+            console.log(userData)
 
             setLoading(false)
         } catch (error) {

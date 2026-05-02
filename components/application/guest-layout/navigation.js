@@ -5,6 +5,7 @@ import { usePathname } from 'next/navigation'
 import Link from 'next/link'
 import Image from 'next/image'
 import NavLink from './navlink'
+import Cookies from 'js-cookie'
 
 import OurApps from './our-apps'
 import ResponsiveNavBar from './responsive-navbar'
@@ -31,16 +32,15 @@ const Navigation = ({ user }) => {
     }, [pathname])
 
     useEffect(() => {
-        import('js-cookie').then((Cookies) => {
-            const token = Cookies.default.get('analogueshifts')
-            if (!token) {
-                setIsChecking(false)
-            }
-        })
+        const token = Cookies.get('analogueshifts')
+        if (!token) {
+            setIsChecking(false)
+        }
     }, [])
 
     useEffect(() => {
-        if (user) {
+        // Stop checking if user is no longer null (it might be an object, or undefined if fetch failed)
+        if (user !== null) {
             setIsChecking(false)
         }
     }, [user])
