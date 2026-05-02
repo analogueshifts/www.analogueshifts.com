@@ -13,8 +13,10 @@ import LoggedInProfileDropdown from './profile-dropdown'
 
 import NavLogo from '@/public/images/guest-layout/nav-logo.svg'
 import LogoutIdiom from './logout-idiom'
+import { useUser } from '@/contexts/user'
 
-const Navigation = ({ user }) => {
+const Navigation = () => {
+    const { user } = useUser()
     const pathname = usePathname()
 
     const [open, setOpen] = useState(false)

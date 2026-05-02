@@ -12,16 +12,17 @@ export default function GuestLayout({ children }) {
     const token = Cookies.get('analogueshifts')
 
     useEffect(() => {
-        if (user === null && token) {
+        const currentToken = Cookies.get('analogueshifts')
+        if (user === null && currentToken) {
             //    Fetch User
             getUser({ setLoading: value => {}, layout: 'guest' })
         }
-    }, [])
+    }, [user])
 
     return (
         <div className="w-full bg-white flex justify-center">
             <section className="bg-white w-full large:pt-104 pt-20 max-w-[1600px]">
-                <Navigation user={user} />
+                <Navigation />
                 {children}
                 <Footer />
             </section>

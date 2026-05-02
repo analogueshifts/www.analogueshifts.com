@@ -21,7 +21,7 @@ export const useAuth = () => {
                 method: 'GET',
             })
             if (response.data?.success) {
-                Cookies.set('analogueshifts', response.data?.data.token)
+                Cookies.set('analogueshifts', response.data?.data.token, { path: '/' })
                 notifyUser('success', 'success')
                 window.location.href = RedirectionLink || '/'
             }
@@ -55,13 +55,14 @@ export const useAuth = () => {
     const getUser = async ({ setLoading, layout }) => {
         setLoading(true)
         try {
+            const freshToken = Cookies.get('analogueshifts')
             const response = await axios.request({
                 url: '/user',
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
                     Accept: 'application/json',
-                    Authorization: 'Bearer ' + token,
+                    Authorization: 'Bearer ' + freshToken,
                 },
             })
             const userData = response.data?.data?.user || response.data?.user
@@ -71,6 +72,7 @@ export const useAuth = () => {
             setLoading(false)
         } catch (error) {
             setLoading(false)
+            setUser(false)
             if (error?.response?.status === 401 && layout !== 'guest') {
                 clearUserSession()
             }
