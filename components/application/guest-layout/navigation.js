@@ -14,6 +14,7 @@ import LoggedInProfileDropdown from './profile-dropdown'
 import NavLogo from '@/public/images/guest-layout/nav-logo.svg'
 import LogoutIdiom from './logout-idiom'
 import { useUser } from '@/contexts/user'
+import { useAuth } from '@/hooks/auth'
 
 const Navigation = () => {
     const { user } = useUser()
