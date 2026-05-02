@@ -18,6 +18,7 @@ const Navigation = ({ user }) => {
 
     const [open, setOpen] = useState(false)
     const [logoutIdiomDisplay, setLogoutIdiomDisplay] = useState(false)
+    const [isChecking, setIsChecking] = useState(true)
 
     const authLink = process.env.NEXT_PUBLIC_AUTH_URL
     const app = process.env.NEXT_PUBLIC_SITE_BUILD_UUID
@@ -28,6 +29,21 @@ const Navigation = ({ user }) => {
             setOpen(previous => !previous)
         }
     }, [pathname])
+
+    useEffect(() => {
+        import('js-cookie').then((Cookies) => {
+            const token = Cookies.default.get('analogueshifts')
+            if (!token) {
+                setIsChecking(false)
+            }
+        })
+    }, [])
+
+    useEffect(() => {
+        if (user) {
+            setIsChecking(false)
+        }
+    }, [user])
 
     return (
         <div
@@ -86,6 +102,10 @@ const Navigation = ({ user }) => {
                         handleLogout={() => setLogoutIdiomDisplay(true)}
                         user={user}
                     />
+                ) : isChecking ? (
+                    <div className="hidden lg:flex lg:items-center gap-6">
+                        <div className="w-6 h-6 rounded-full border-2 border-tremor-background-darkYellow border-t-transparent animate-spin"></div>
+                    </div>
                 ) : (
                     <div className="hidden lg:flex lg:items-center gap-6">
                         <NavLink href={`${authLink}?app=${app}`}>Login</NavLink>
