@@ -1,5 +1,5 @@
 'use client'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import { usePathname } from 'next/navigation'
 
 import Link from 'next/link'
@@ -18,12 +18,12 @@ import { useAuth } from '@/hooks/auth'
 import { getAuthAppUrl } from '@/configs/auth'
 
 const Navigation = () => {
-    const { user } = useUser()
+    const { user, isUserLoading } = useUser()
     const pathname = usePathname()
 
     const [open, setOpen] = useState(false)
     const [logoutIdiomDisplay, setLogoutIdiomDisplay] = useState(false)
-    const [isChecking, setIsChecking] = useState(false)
+    const bootstrapped = useRef(false)
     const { getUser } = useAuth()
 
     const authUrl = getAuthAppUrl()
@@ -37,12 +37,14 @@ const Navigation = () => {
 
     useEffect(() => {
         const token = Cookies.get('analogueshifts')
-        if (!token || user !== null) return
-        console.log('Checking for user authentication...')
-        getUser({ setLoading: setIsChecking, layout: 'guest' }).finally(() =>{
-        console.log('done...done checking for user authentication')
-        })
+        if (!token || user !== null || bootstrapped.current) return
+        bootstrapped.current = true
+        getUser({ setLoading: () => {}, layout: 'guest' })
     }, [])
+
+    // Spinner: token present AND store hasn't resolved yet
+    const hasToken = Boolean(Cookies.get('analogueshifts'))
+    const isChecking = hasToken && user === null && (isUserLoading || !bootstrapped.current)
 
     return (
         <div

@@ -1,30 +1,11 @@
 'use client'
-import { createContext, useContext, useState } from 'react'
 import { create } from 'zustand'
 import { combine } from 'zustand/middleware'
 
-const UserContext = createContext(null)
+// Pass-through wrapper kept so providers.tsx import remains stable
+export const UserProvider = ({ children }) => children
 
-export const UserProvider = ({ children }) => {
-    const [user, setUser] = useState(null)
-    const [isUserLoading, setIsUserLoading] = useState(false)
-    const [hasResolvedUser, setHasResolvedUser] = useState(false)
-
-    return (
-        <UserContext.Provider
-            value={{
-                user,
-                setUser,
-                isUserLoading,
-                setIsUserLoading,
-                hasResolvedUser,
-                setHasResolvedUser,
-            }}>
-            {children}
-        </UserContext.Provider>
-    )
-}
-
+// Single source of truth for auth state across the entire app
 export const useUser = create(
     combine(
         { user: null, isUserLoading: false, hasResolvedUser: false },
@@ -35,5 +16,3 @@ export const useUser = create(
         }),
     ),
 )
-
-// export const useUser = () => useContext(UserContext)

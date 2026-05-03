@@ -23,10 +23,13 @@ export const useAuth = () => {
             if (response.data?.success) {
                 Cookies.set('analogueshifts', response.data?.data.token, { path: '/' })
                 notifyUser('success', 'success')
-                window.location.href = RedirectionLink || '/'
+                // Fetch user into store BEFORE navigating so navbar renders avatar immediately
+                await getUser({ setLoading: () => {}, layout: 'guest' })
+                Cookies.remove('RedirectionLink')
+                router.push(RedirectionLink || '/')
             }
         } catch (error) {
-            notifyUser('error', error.messsage || 'Invalid Request')
+            notifyUser('error', error.message || 'Invalid Request')
             router.push(RedirectionLink || '/')
             console.log(error)
         }
