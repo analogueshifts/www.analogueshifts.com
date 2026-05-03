@@ -8,13 +8,13 @@ import SectionMessage from './section-message'
 
 import FormImage from '@/public/images/guest-layout/post-a-job/form.svg'
 import VerifiedImage from '@/public/images/guest-layout/post-a-job/verified.svg'
+import { getAuthAppUrl } from '@/configs/auth'
 
 export default function PostAJob() {
     const { user } = useUser()
     const router = useRouter()
 
-    const authLink = process.env.NEXT_PUBLIC_AUTH_URL
-    const app = process.env.NEXT_PUBLIC_SITE_BUILD_UUID
+    const authUrl = getAuthAppUrl()
 
     return (
         <section className="w-full relative overflow-hidden large:py-168 tablet:py-14 py-24 tablet:px-6 px-20 items-center large:px-112 tablet:flex flex-col-reverse grid large:grid grid-cols-2 tablet:gap-10 gap-88">
@@ -34,7 +34,7 @@ export default function PostAJob() {
                 <SectionMessage
                     action={() => {
                         router.push(
-                            user ? '/recruiter/hire' : `${authLink}?app=${app}`,
+                            user ? '/recruiter/hire' : authUrl,
                         )
                     }}
                     title="Post A Job"

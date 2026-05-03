@@ -11,6 +11,7 @@ import LogoutIdiom from '@/components/application/guest-layout/logout-idiom'
 import SideBarMenuLinks, { sidebarMenuLinks } from './utilities/sidebar-links'
 import { usePathname, useRouter } from 'next/navigation'
 import Progress from './dashboard/components/progress'
+import { getAuthAppUrl } from '@/configs/auth'
 
 export default function RecruiterLayout({ children }) {
     const { user } = useUser()
@@ -24,14 +25,13 @@ export default function RecruiterLayout({ children }) {
 
     const token = Cookies.get('analogueshifts')
 
-    const authLink = process.env.NEXT_PUBLIC_AUTH_URL
-    const app = process.env.NEXT_PUBLIC_SITE_BUILD_UUID
+    const authUrl = getAuthAppUrl()
 
     useEffect(() => {
         // Redirect To Login if User is not Authenticated
         if (!user && !token) {
             Cookies.set('RedirectionLink', pathname)
-            window.location.href = `${authLink}?app=${app}`
+            window.location.href = authUrl
             return null
         } else if (!user && token) {
             //    Fetch User

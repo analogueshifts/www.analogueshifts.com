@@ -8,7 +8,7 @@ import { useToast } from '@/contexts/toast'
 
 export const useAuth = () => {
     const router = useRouter()
-    const { setUser } = useUser()
+    const { setUser, setIsUserLoading, setHasResolvedUser } = useUser()
     const { notifyUser } = useToast()
 
     const token = Cookies.get('analogueshifts')
@@ -54,6 +54,7 @@ export const useAuth = () => {
 
     const getUser = async ({ setLoading, layout }) => {
         setLoading(true)
+        setIsUserLoading(true)
         try {
             const freshToken = Cookies.get('analogueshifts')
             const response = await axios.request({
@@ -67,15 +68,19 @@ export const useAuth = () => {
             })
             const userData = response.data?.data?.user || response.data?.user
             setUser(userData)
+            setHasResolvedUser(true)
             console.log(userData)
 
             setLoading(false)
         } catch (error) {
             setLoading(false)
             setUser(false)
+            setHasResolvedUser(true)
             if (error?.response?.status === 401 && layout !== 'guest') {
                 clearUserSession()
             }
+        } finally {
+            setIsUserLoading(false)
         }
     }
 

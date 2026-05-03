@@ -15,6 +15,7 @@ import NavLogo from '@/public/images/guest-layout/nav-logo.svg'
 import LogoutIdiom from './logout-idiom'
 import { useUser } from '@/contexts/user'
 import { useAuth } from '@/hooks/auth'
+import { getAuthAppUrl } from '@/configs/auth'
 
 const Navigation = () => {
     const { user } = useUser()
@@ -22,11 +23,10 @@ const Navigation = () => {
 
     const [open, setOpen] = useState(false)
     const [logoutIdiomDisplay, setLogoutIdiomDisplay] = useState(false)
-    const [isChecking, setIsChecking] = useState(true)
+    const [isChecking, setIsChecking] = useState(false)
     const { getUser } = useAuth()
 
-    const authLink = process.env.NEXT_PUBLIC_AUTH_URL
-    const app = process.env.NEXT_PUBLIC_SITE_BUILD_UUID
+    const authUrl = getAuthAppUrl()
 
     //Close the Nav bar whenever the pathname changes
     useEffect(() => {
@@ -36,23 +36,13 @@ const Navigation = () => {
     }, [pathname])
 
     useEffect(() => {
-        const verifyUser = async () => {
-            const token = Cookies.get('analogueshifts')
-            if (!token) {
-                setIsChecking(false)
-                return
-            }
-
-            if (!user) {
-                // Wait for the fetch to complete
-                await getUser({ setLoading: () => {}, layout: 'guest' })
-            }
-            
-            setIsChecking(false)
-        }
-
-        verifyUser()
-    }, [pathname, user])
+        const token = Cookies.get('analogueshifts')
+        if (!token || user !== null) return
+        console.log('Checking for user authentication...')
+        getUser({ setLoading: setIsChecking, layout: 'guest' }).finally(() =>{
+        console.log('done...done checking for user authentication')
+        })
+    }, [])
 
     return (
         <div
@@ -117,10 +107,10 @@ const Navigation = () => {
                     </div>
                 ) : (
                     <div className="hidden lg:flex lg:items-center gap-6">
-                        <NavLink href={`${authLink}?app=${app}`}>Login</NavLink>
+                        <NavLink href={authUrl}>Login</NavLink>
                         <Link
                             className="text-[13px] large:text-base font-medium h-11 large:h-14 px-10  large:px-12 duration-200 rounded-2xl bg-tremor-background-darkYellow text-white hover:bg-transparent hover:text-tremor-background-darkYellow hover:ring-1 ring-tremor-background-darkYellow flex items-center justify-center"
-                            href={`${authLink}?app=${app}`}>
+                            href={authUrl}>
                             Sign Up
                         </Link>
                     </div>

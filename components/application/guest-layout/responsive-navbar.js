@@ -9,6 +9,7 @@ import ChevronDown from '@/public/images/guest-layout/chevron-down.svg'
 
 import ourApps from '../utilities/our-apps.json'
 import Link from 'next/link'
+import { getAuthAppUrl } from '@/configs/auth'
 
 export default function ResponsiveNavBar({
     handleBlogNavigation,
@@ -18,8 +19,7 @@ export default function ResponsiveNavBar({
 }) {
     const [showApps, setShowApps] = useState(false)
 
-    const authLink = process.env.NEXT_PUBLIC_AUTH_URL
-    const app = process.env.NEXT_PUBLIC_SITE_BUILD_UUID
+    const authUrl = getAuthAppUrl()
 
     const MenuLink = ({ item }) => (
         <div>
@@ -118,11 +118,11 @@ export default function ResponsiveNavBar({
                         ) : (
                             <>
                                 <ResponsiveNavLink
-                                    href={`${authLink}?app=${app}`}>
+                                    href={authUrl}>
                                     Login
                                 </ResponsiveNavLink>
                                 <ResponsiveNavLink
-                                    href={`${authLink}?app=${app}`}>
+                                    href={authUrl}>
                                     Sign Up
                                 </ResponsiveNavLink>
                             </>

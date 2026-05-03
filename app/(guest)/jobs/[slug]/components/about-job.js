@@ -13,6 +13,7 @@ import JobGridTile from '../../components/job-grid-tile'
 import DidYouApply from './did-you-apply'
 import Apply from './apply'
 import GoBack from './go-back'
+import { getAuthAppUrl } from '@/configs/auth'
 
 export default function AboutJob({ job, slug, easyApply }) {
     const router = useRouter()
@@ -23,8 +24,7 @@ export default function AboutJob({ job, slug, easyApply }) {
     const { user } = useUser()
     const { notifyUser } = useToast()
 
-    const authLink = process.env.NEXT_PUBLIC_AUTH_URL
-    const app = process.env.NEXT_PUBLIC_SITE_BUILD_UUID
+    const authUrl = getAuthAppUrl()
 
     const handleApply = () => {
         if (user) {
@@ -36,7 +36,7 @@ export default function AboutJob({ job, slug, easyApply }) {
             }
         } else {
             Cookies.set('RedirectionLink', pathname)
-            router.push(`${authLink}?app=${app}`)
+            router.push(authUrl)
         }
     }
 

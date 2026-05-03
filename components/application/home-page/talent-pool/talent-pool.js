@@ -10,13 +10,13 @@ import SectionMessage from '../section-message'
 
 import { useUser } from '@/contexts/user'
 import { useRouter } from 'next/navigation'
+import { getAuthAppUrl } from '@/configs/auth'
 
 export default function TalentPool() {
     const router = useRouter()
     const { user } = useUser()
 
-    const authLink = process.env.NEXT_PUBLIC_AUTH_URL
-    const app = process.env.NEXT_PUBLIC_SITE_BUILD_UUID
+    const authUrl = getAuthAppUrl()
 
     return (
         <section className="w-full relative items-end flex flex-col gap-6 large:gap-12 large:pb-69 tablet:pb-4 pb-6 large:pt-168 tablet:pt-3 pt-16 tablet:px-6 px-20 large:px-112">
@@ -29,9 +29,7 @@ export default function TalentPool() {
                 <SectionMessage
                     action={() =>
                         router.push(
-                            user
-                                ? '/recruiter/dashboard'
-                                : `${authLink}?app=${app}`,
+                            user ? '/recruiter/dashboard' : authUrl,
                         )
                     }
                     title="Connecting you to the Right Tech"

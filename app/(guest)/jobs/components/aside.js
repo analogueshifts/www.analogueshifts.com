@@ -1,14 +1,15 @@
 import { Input } from '@/components/ui/input'
 import Link from 'next/link'
+import { getAuthAppUrl, getAuthRegisterUrl } from '@/configs/auth'
 
 export default function AsideSection({ user }) {
+    const authUrl = getAuthAppUrl()
+    const registerUrl = getAuthRegisterUrl()
+
     const handleSubmit = e => {
         e.preventDefault()
-        window.location.href = `${authLink}/register`
+        window.location.href = registerUrl
     }
-
-    const authLink = process.env.NEXT_PUBLIC_AUTH_URL
-    const app = process.env.NEXT_PUBLIC_SITE_BUILD_UUID
 
     return (
         <aside className="h-max w-full  flex tablet:flex-col flex-row xl:flex-col large:gap-10 gap-7">
@@ -29,7 +30,7 @@ export default function AsideSection({ user }) {
                     <div className="w-max text-tremor-brand-boulder400 flex items-center text-sm large:text-base font-normal">
                         Already have an account?&nbsp;
                         <Link
-                            href={`${authLink}?app=${app}`}
+                            href={authUrl}
                             className="text-tremor-background-darkYellow">
                             Login
                         </Link>
@@ -54,7 +55,7 @@ export default function AsideSection({ user }) {
                                       ? '/tools/hire'
                                       : '/applied-jobs'
                               }`
-                            : `${authLink}?app=${app}`
+                            : authUrl
                     }
                     className="w-full h-14 mb-4 rounded-2xl bg-white border border-tremor-background-darkYellow text-tremor-background-darkYellow flex justify-center items-center text-sm large:text-base font-semibold">
                     {user

@@ -8,6 +8,7 @@ import Search from '@/public/icons/glass.png'
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { useUser } from '@/contexts/user'
+import { getAuthAppUrl } from '@/configs/auth'
 
 function Hero() {
     const { user } = useUser()
@@ -15,8 +16,7 @@ function Hero() {
 
     const router = useRouter()
 
-    const authLink = process.env.NEXT_PUBLIC_AUTH_URL
-    const app = process.env.NEXT_PUBLIC_SITE_BUILD_UUID
+    const authUrl = getAuthAppUrl()
 
     const handleSearch = e => {
         e.preventDefault()
@@ -77,9 +77,7 @@ function Hero() {
                         Direct Hire
                     </button>
                     <Link
-                        href={
-                            user ? '/recruiter/hire' : `${authLink}?app=${app}`
-                        }
+                        href={user ? '/recruiter/hire' : authUrl}
                         className="rounded-2xl tablet:h-12  h-full bg-transparent flex justify-center items-center text-tremor-background-darkYellow tablet:text-sm text-sm large:text-base font-semibold tablet:px-5 px-12 border border-tremor-background-darkYellow">
                         Post a Job
                     </Link>
