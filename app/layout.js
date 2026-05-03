@@ -4,9 +4,9 @@ import './scss/app.scss'
 import Script from 'next/script'
 import { cn } from '@/lib/utils'
 
-import { UserProvider } from '@/contexts/user'
-import { ToastProvider } from '@/contexts/toast'
+
 import ToastMessage from '@/components/application/toast-message'
+import { Providers } from '../components/providers'
 
 const plusJakartaSans = Plus_Jakarta_Sans({
     weight: ['400', '500', '600', '700'],
@@ -78,13 +78,10 @@ export default function RootLayout({ children }) {
 
             </head>
             <body className={cn('', plusJakartaSans.className)}>
-                <UserProvider>
-                    {' '}
-                    <ToastProvider>
-                        <ToastMessage />
-                        {children}
-                    </ToastProvider>
-                </UserProvider>
+                <Providers>
+                            <ToastMessage />
+                            {children}
+                </Providers>
                 <Script
                     src="https://kit.fontawesome.com/39a80cd06c.js"
                     crossorigin="anonymous"

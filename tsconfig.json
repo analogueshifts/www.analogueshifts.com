@@ -20,14 +20,17 @@
       {
         "name": "next"
       }
-    ]
+    ],
+    "paths": {
+      "@/*": ["./*"]
+    }
   },
   "include": [
     "next-env.d.ts",
     ".next/types/**/*.ts",
     "**/*.ts",
     "**/*.tsx"
-, "app/job-seeker/messages/[uuid]/page.js"  ],
+, "app/job-seeker/messages/[uuid]/page.js", "components/providers.tsx"  ],
   "exclude": [
     "node_modules"
   ]

@@ -7,7 +7,7 @@ import { useUser } from '@/contexts/user'
 import { useAuth } from '@/hooks/auth'
 
 export default function GuestLayout({ children }) {
-    const { user } = useUser(null)
+    const { user } = useUser()
     const token = Cookies.get('analogueshifts')
 
     return (
