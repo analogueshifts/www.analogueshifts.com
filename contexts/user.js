@@ -2,7 +2,7 @@
 import { create } from 'zustand'
 import { combine } from 'zustand/middleware'
 
-// Pass-through wrapper kept so providers.tsx import remains stable
+// Pass-through wrapper kept so providers.jsx import remains stable
 export const UserProvider = ({ children }) => children
 
 // Single source of truth for auth state across the entire app
