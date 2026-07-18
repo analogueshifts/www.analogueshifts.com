@@ -29,6 +29,8 @@ export default function Apply({ open, close, job, easyApply }) {
     })
     const [uuid, setUuid] = useState('')
     const [questions, setQuestions] = useState([])
+    const [prefilledResumeFromProfile, setPrefilledResumeFromProfile] =
+        useState(false)
 
     useEffect(() => {
         if (user) {
@@ -43,6 +45,20 @@ export default function Apply({ open, close, job, easyApply }) {
                     },
                 }
             })
+        }
+    }, [user])
+
+    // Auto-fill the resume step with the most recently saved resume from the
+    // user's job profile, so they don't have to re-upload one on every application.
+    useEffect(() => {
+        const savedResumes = user?.user_job_profile?.resume_cv
+        if (savedResumes?.length) {
+            const latestResume = savedResumes[savedResumes.length - 1]
+            setDetails(p => ({
+                ...p,
+                stepTwo: { ...p.stepTwo, resume: latestResume.url },
+            }))
+            setPrefilledResumeFromProfile(true)
         }
     }, [user])
 
@@ -91,6 +107,9 @@ export default function Apply({ open, close, job, easyApply }) {
     }
 
     const updateStepTwo = (newValue, label) => {
+        if (label === 'resume') {
+            setPrefilledResumeFromProfile(false)
+        }
         setDetails(prev => {
             return { ...prev, stepTwo: { ...prev.stepTwo, [label]: newValue } }
         })
@@ -273,6 +292,14 @@ export default function Apply({ open, close, job, easyApply }) {
                                                 updateStepTwo(value, 'resume')
                                             }
                                         />
+                                        {prefilledResumeFromProfile && (
+                                            <p className="text-[10px] text-[#7C7C7C]">
+                                                Using the most recent resume
+                                                from your profile — click
+                                                above to upload a different
+                                                one instead.
+                                            </p>
+                                        )}
                                     </div>
                                 )}
                                 {job?.easy_apply?.cover_letter && (
