@@ -3,7 +3,14 @@ import { useState, useRef } from 'react'
 import { useToast } from '@/contexts/toast'
 import { useHire } from '@/hooks/hires'
 
-export default function UploadFile({ setValue, value, label, isPDF }) {
+export default function UploadFile({
+    setValue,
+    value,
+    label,
+    isPDF,
+    fileName,
+    onFileNameChange,
+}) {
     const [loading, setLoading] = useState(false)
     const fileRef = useRef()
     const { notifyUser } = useToast()
@@ -17,6 +24,7 @@ export default function UploadFile({ setValue, value, label, isPDF }) {
             return
         }
         if (selectedFile) {
+            onFileNameChange?.(selectedFile.name)
             uploadFile({
                 fileValue: selectedFile,
                 setLoading,
@@ -67,20 +75,31 @@ export default function UploadFile({ setValue, value, label, isPDF }) {
                             <p className="flex text-[#292929] items-center gap-1.5 mb-1">
                                 <span className="font-medium text-xs">
                                     {value
-                                        ? 'File Uploaded'
+                                        ? fileName || 'File Uploaded'
                                         : label || 'Upload Logo'}
                                 </span>
                             </p>
-                            <p className="font-light text-[8px] text-[#525252] mb-1 truncate">
-                                {value
-                                    ? ''
-                                    : isPDF
-                                        ? 'Supported file types: pdf'
-                                        : 'Supported file types: jpg, png'}
-                            </p>
-                            <p className="font-light text-[8px] text-[#525252]">
-                                {value ? '' : ' The file size can be up to 5MB'}
-                            </p>
+                            {value ? (
+                                <a
+                                    href={value}
+                                    target="_blank"
+                                    rel="noreferrer"
+                                    onClick={e => e.stopPropagation()}
+                                    className="font-light text-[8px] text-tremor-background-darkYellow underline">
+                                    Preview file
+                                </a>
+                            ) : (
+                                <>
+                                    <p className="font-light text-[8px] text-[#525252] mb-1 truncate">
+                                        {isPDF
+                                            ? 'Supported file types: pdf'
+                                            : 'Supported file types: jpg, png'}
+                                    </p>
+                                    <p className="font-light text-[8px] text-[#525252]">
+                                        The file size can be up to 5MB
+                                    </p>
+                                </>
+                            )}
                         </>
                     )}
                 </div>

@@ -19,12 +19,15 @@ vi.mock(
     '../../../../recruiter/hire/edit/[uuid]/step-three/components/upload-file',
     () => ({
         __esModule: true,
-        default: ({ value, setValue }) => (
+        default: ({ value, setValue, fileName, onFileNameChange }) => (
             <div>
-                <span>{value ? 'File Uploaded' : 'Upload Resume'}</span>
+                <span>{value ? fileName || 'File Uploaded' : 'Upload Resume'}</span>
                 <button
                     type="button"
-                    onClick={() => setValue('https://cdn.example.com/manually-uploaded.pdf')}>
+                    onClick={() => {
+                        onFileNameChange?.('manually-uploaded.pdf')
+                        setValue('https://cdn.example.com/manually-uploaded.pdf')
+                    }}>
                     Simulate manual upload
                 </button>
             </div>
@@ -32,8 +35,20 @@ vi.mock(
     }),
 )
 
+// Tiptap is a rich-text editor with DOM requirements jsdom doesn't fully
+// support; stubbed out since these tests only care about whether the cover
+// letter step blocks submission, not the editor's own behavior.
+vi.mock('../../../../job-seeker/profile/edit/components/tiptap', () => ({
+    __esModule: true,
+    default: () => <div>Cover letter editor</div>,
+}))
+
 const jobRequiringResume = {
     easy_apply: { resume: true, cover_letter: false },
+}
+
+const jobRequestingCoverLetter = {
+    easy_apply: { resume: false, cover_letter: true },
 }
 
 const baseUser = {
@@ -67,7 +82,7 @@ describe('Apply — resume auto-fill from profile', () => {
         renderApply({ open: true, close: () => {}, job: jobRequiringResume, easyApply: {} })
         await advanceToResumeStep()
 
-        expect(await screen.findByText('File Uploaded')).toBeInTheDocument()
+        expect(await screen.findByText('latest.pdf')).toBeInTheDocument()
         expect(
             screen.getByText(/using the most recent resume from your profile/i),
         ).toBeInTheDocument()
@@ -111,6 +126,46 @@ describe('Apply — resume auto-fill from profile', () => {
         expect(
             screen.queryByText(/using the most recent resume from your profile/i),
         ).not.toBeInTheDocument()
-        expect(screen.getByText('File Uploaded')).toBeInTheDocument()
+        expect(screen.getByText('manually-uploaded.pdf')).toBeInTheDocument()
+    })
+
+    it('shows the prefilled resume\'s actual filename instead of a generic label', async () => {
+        useUser.setState({
+            user: {
+                ...baseUser,
+                user_job_profile: {
+                    resume_cv: [
+                        { id: 1, name: 'jane-doe-resume.pdf', url: 'https://cdn.example.com/jane.pdf' },
+                    ],
+                },
+            },
+        })
+
+        renderApply({ open: true, close: () => {}, job: jobRequiringResume, easyApply: {} })
+        await advanceToResumeStep()
+
+        expect(await screen.findByText('jane-doe-resume.pdf')).toBeInTheDocument()
+    })
+})
+
+describe('Apply — cover letter is always optional', () => {
+    beforeEach(() => {
+        useUser.setState({ user: null, isUserLoading: false, hasResolvedUser: false })
+    })
+
+    it('does not block moving past the cover letter step when left empty', async () => {
+        useUser.setState({ user: baseUser })
+
+        renderApply({
+            open: true,
+            close: () => {},
+            job: jobRequestingCoverLetter,
+            easyApply: {},
+        })
+
+        await advanceToResumeStep()
+
+        expect(await screen.findByText(/optional/i)).toBeInTheDocument()
+        expect(screen.getByRole('button', { name: /next/i })).not.toBeDisabled()
     })
 })

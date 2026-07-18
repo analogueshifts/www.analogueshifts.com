@@ -31,6 +31,7 @@ export default function Apply({ open, close, job, easyApply }) {
     const [questions, setQuestions] = useState([])
     const [prefilledResumeFromProfile, setPrefilledResumeFromProfile] =
         useState(false)
+    const [resumeFileName, setResumeFileName] = useState('')
 
     useEffect(() => {
         if (user) {
@@ -58,6 +59,7 @@ export default function Apply({ open, close, job, easyApply }) {
                 ...p,
                 stepTwo: { ...p.stepTwo, resume: latestResume.url },
             }))
+            setResumeFileName(latestResume.name || '')
             setPrefilledResumeFromProfile(true)
         }
     }, [user])
@@ -81,13 +83,12 @@ export default function Apply({ open, close, job, easyApply }) {
         return !!(job?.easy_apply?.resume || job?.easy_apply?.cover_letter)
     }, [job])
 
+    // Cover letter is always optional — it never blocks moving past this step,
+    // even when the job requests one.
     const isStepTwoCompleted = useMemo(() => {
         return (
-            (!job?.easy_apply?.resume ||
-                (job?.easy_apply?.resume && details.stepTwo.resume)) &&
-            (!job?.easy_apply?.cover_letter ||
-                (job?.easy_apply?.cover_letter &&
-                    details.stepTwo.coverLetter.length > 10))
+            !job?.easy_apply?.resume ||
+            (job?.easy_apply?.resume && details.stepTwo.resume)
         )
     }, [details, job])
 
@@ -288,6 +289,10 @@ export default function Apply({ open, close, job, easyApply }) {
                                             label="Upload Resume"
                                             isPDF={true}
                                             value={details.stepTwo.resume}
+                                            fileName={resumeFileName}
+                                            onFileNameChange={
+                                                setResumeFileName
+                                            }
                                             setValue={value =>
                                                 updateStepTwo(value, 'resume')
                                             }
@@ -306,7 +311,10 @@ export default function Apply({ open, close, job, easyApply }) {
                                     <div className="flex flex-col gap-3">
                                         <label
                                             className={`font-medium text-tremor-brand-boulder950 text-sm large:text-x"`}>
-                                            Cover Letter
+                                            Cover Letter{' '}
+                                            <span className="font-normal text-[#7C7C7C]">
+                                                (optional)
+                                            </span>
                                         </label>
                                         <div className="w-full flex flex-col">
                                             <Tiptap
