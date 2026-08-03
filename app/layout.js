@@ -6,6 +6,7 @@ import { cn } from '@/lib/utils'
 
 
 import ToastMessage from '@/components/application/toast-message'
+import ChatWidget from '@/components/application/chat-widget'
 import { Providers } from '../components/providers'
 
 const plusJakartaSans = Plus_Jakarta_Sans({
@@ -80,6 +81,7 @@ export default function RootLayout({ children }) {
             <body className={cn('', plusJakartaSans.className)}>
                 <Providers>
                             <ToastMessage />
+                            <ChatWidget />
                             {children}
                 </Providers>
                 <Script
