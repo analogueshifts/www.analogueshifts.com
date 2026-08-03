@@ -142,6 +142,35 @@ export const sidebarMenuLinks = {
             ),
         },
         {
+            path: '/job-seeker/resume-optimizer',
+            title: 'Resume Optimizer',
+            icon: ({ color, size }) => (
+                <svg
+                    width={size}
+                    height={size}
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M14 2V6C14 7.88562 14 8.82843 14.5858 9.41421C15.1716 10 16.1144 10 18 10H22"
+                        stroke={color}
+                        stroke-width="1.5"
+                    />
+                    <path
+                        d="M22 12.5V16.7C22 19.7802 22 21.3203 21.0777 22.2801C20.1554 23.24 18.6752 23.24 15.7148 23.24H8.28517C5.32475 23.24 3.84455 23.24 2.92227 22.2801C2 21.3203 2 19.7802 2 16.7V7.3C2 4.21979 2 2.67968 2.92227 1.71984C3.84455 0.76 5.32475 0.76 8.28517 0.76H10.3431C11.1606 0.76 11.5694 0.76 11.9369 0.906123C12.3045 1.05224 12.5967 1.32897 13.1812 1.88245L20.5566 8.87356C21.1966 9.47921 21.5166 9.78204 21.7583 10.2038C22 10.6256 22 11.084 22 12.5Z"
+                        stroke={color}
+                        stroke-width="1.5"
+                    />
+                    <path
+                        d="M8 17H16M8 13H12"
+                        stroke={color}
+                        stroke-width="1.5"
+                        stroke-linecap="round"
+                    />
+                </svg>
+            ),
+        },
+        {
             path: '/job-seeker/settings',
             title: 'Settings',
             icon: ({ color, size }) => (
