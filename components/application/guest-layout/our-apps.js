@@ -66,24 +66,28 @@ export default function OurApps() {
                                 return <MenuLink key={item.title} item={item} />
                             })}
                         </div>
-                        <div className="h-[197px] border-r border-tremor-brand-boulder100"></div>
-                        <div className="flex flex-col w-max items-center">
-                            <div className="py-1 w-max large:mb-8 mb-6 px-4 rounded-full bg-tremor-background-darkYellow/10">
-                                <p className="text-xs font-medium text-tremor-background-darkYellow">
-                                    Products Coming Soon!
-                                </p>
-                            </div>
-                            <div className="flex flex-col large:gap-[35.6px] gap-7">
-                                {data.comingSoon.map(item => {
-                                    return (
-                                        <MenuLink
-                                            key={item.title}
-                                            item={item}
-                                        />
-                                    )
-                                })}
-                            </div>
-                        </div>
+                        {data.comingSoon.length > 0 && (
+                            <>
+                                <div className="h-[197px] border-r border-tremor-brand-boulder100"></div>
+                                <div className="flex flex-col w-max items-center">
+                                    <div className="py-1 w-max large:mb-8 mb-6 px-4 rounded-full bg-tremor-background-darkYellow/10">
+                                        <p className="text-xs font-medium text-tremor-background-darkYellow">
+                                            Products Coming Soon!
+                                        </p>
+                                    </div>
+                                    <div className="flex flex-col large:gap-[35.6px] gap-7">
+                                        {data.comingSoon.map(item => {
+                                            return (
+                                                <MenuLink
+                                                    key={item.title}
+                                                    item={item}
+                                                />
+                                            )
+                                        })}
+                                    </div>
+                                </div>
+                            </>
+                        )}
                     </motion.div>
                 )}
             </AnimatePresence>

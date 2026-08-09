@@ -23,14 +23,13 @@
             "href": "https://pay.analogueshifts.app",
             "description": "Streamline payroll/bulk payments",
             "image": "/images/guest-layout/our-apps/payment.svg"
-        }
-    ],
-    "comingSoon": [
+        },
         {
-            "title": "Resume Builder",
-            "href": "#",
-            "description": "Build winning resumes",
+            "title": "Resume Optimizer",
+            "href": "/job-seeker/resume-optimizer",
+            "description": "Get an AI-powered resume score & suggestions",
             "image": "/images/guest-layout/our-apps/resume.svg"
         }
-    ]
+    ],
+    "comingSoon": []
 }
